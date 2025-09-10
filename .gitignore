@@ -1,0 +1,17 @@
+# Pastas de backup e recovery do Delphi
+__history/
+__recovery/
+
+# Arquivos temporários do Delphi
+*.identcache
+*.local
+*.dproj.local
+*.~*
+*.exe
+*.obj
+
+# Binários e objetos
+*.dcu
+*.res
+*.bpl
+*.dll
