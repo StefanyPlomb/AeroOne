@@ -123,10 +123,6 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="AeroOne.pas">
-            <Form>Form1</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="Model\UMgestor.pas"/>
         <DCCReference Include="View\FVgestor.pas">
             <Form>Form2</Form>
@@ -151,6 +147,14 @@
         </DCCReference>
         <DCCReference Include="Model\UMpiloto.pas"/>
         <DCCReference Include="Controller\UCpiloto.pas"/>
+        <DCCReference Include="View\FVlogin.pas">
+            <Form>Form1</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\FVcadastrofuncionarios.pas">
+            <Form>Form6</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

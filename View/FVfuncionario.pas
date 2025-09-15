@@ -16,6 +16,7 @@ type
 
 var
   Form3: TForm3;
+  FormFuncionario: TForm;
 
 implementation
 
