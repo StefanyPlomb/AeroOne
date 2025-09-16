@@ -4,8 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, FVfuncionario,
-  FVCadastroFuncionarios;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
+  FVfuncionario, FVCadastroFuncionarios, FVreservas, Vcl.Imaging.pngimage;
 
 type
   TForm2 = class(TForm)
@@ -17,7 +17,6 @@ type
     Panel3: TPanel;
     Panel4: TPanel;
     LabelSaida_Gestor: TLabel;
-    Label1: TLabel;
     Panel5: TPanel;
     Panel6: TPanel;
     Panel7: TPanel;
@@ -27,38 +26,72 @@ type
     Label5: TLabel;
     Label6: TLabel;
     PanelConteudo: TPanel;
+    Label1: TLabel;
     Label7: TLabel;
-    procedure AbrirFormulario (Frm: TForm);
+    Image1: TImage;
+    Image2: TImage;
     procedure Panel1Click(Sender: TObject);
-
+    procedure Panel2Click(Sender: TObject);
+    procedure PanelClick(Sender: TObject);
 
   private
-    { Private declarations }
+    PainelAtivo: TPanel;
+    procedure AbrirFormulario(FrmClass: TFormClass);
+
   public
     { Public declarations }
+
   end;
 
 var
   Form2: TForm2;
 
+
 implementation
 
 {$R *.dfm}
 
-procedure TForm2.AbrirFormulario(Frm: TForm);
-
+procedure TForm2.AbrirFormulario(FrmClass: TFormClass);
+var
+  Frm: TForm;
 begin
+
+  if PanelConteudo.ControlCount > 0 then
+    PanelConteudo.Controls[0].Free;
+
+  Frm := FrmClass.Create(Self);
   Frm.Parent := PanelConteudo;
-  Frm.BorderStyle := bsNone;    // Tira bordas
-  Frm.Align := alClient;        // Ocupa todo o espaço do painel
+  Frm.BorderStyle := bsNone;
+  Frm.Align := alClient;
   Frm.Show;
 end;
 
-
 procedure TForm2.Panel1Click(Sender: TObject);
 begin
-  AbrirFormulario(TForm6.Create(Self));
-   Panel1.Color := clSkyBlue;
+  AbrirFormulario(TForm6);
 end;
 
+procedure TForm2.Panel2Click(Sender: TObject);
+begin
+  AbrirFormulario(TForm7);
+end;
+
+ // Não ta funcionando
+
+procedure TForm2.PanelClick(Sender: TObject);
+var
+  PainelAnterior: TPanel;
+  CorOriginal: TColor;
+begin
+  PainelAnterior := PainelAtivo;
+  PainelAtivo := TPanel(Sender);
+
+  if Assigned(PainelAnterior) and (PainelAnterior <> PainelAtivo) then
+  begin
+    CorOriginal := $005B2E00;
+    PainelAnterior.Color := CorOriginal;
+  end;
+
+  PainelAtivo.Color := clHighlight;
+end;
 end.

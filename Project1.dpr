@@ -3,7 +3,6 @@ program Project1;
 uses
   Vcl.Forms,
   UMgestor in 'Model\UMgestor.pas',
-  FVgestor in 'View\FVgestor.pas' {Form2},
   UCgestor in 'Controller\UCgestor.pas',
   FVfuncionario in 'View\FVfuncionario.pas' {Form3},
   UMfuncionario in 'Model\UMfuncionario.pas',
@@ -15,7 +14,9 @@ uses
   UMpiloto in 'Model\UMpiloto.pas',
   UCpiloto in 'Controller\UCpiloto.pas',
   FVlogin in 'View\FVlogin.pas' {Form1},
-  FVcadastrofuncionarios in 'View\FVcadastrofuncionarios.pas' {Form6};
+  FVcadastrofuncionarios in 'View\FVcadastrofuncionarios.pas' {Form6},
+  FVgestor in 'View\FVgestor.pas' {Form2},
+  FVreservas in 'View\FVreservas.pas' {Form7};
 
 {$R *.res}
 
@@ -23,11 +24,13 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
 
-  Application.CreateForm(TForm2, Form2);
-  Application.CreateForm(TForm6, Form6);
-  Application.CreateForm(TForm1, Form1);
-  Application.CreateForm(TForm3, Form3);
-  Application.CreateForm(TForm4, Form4);
-  Application.CreateForm(TForm5, Form5);
+  // Só os forms que realmente abrem na inicialização
+  Application.CreateForm(TForm2, Form2); // gestor
+  Application.CreateForm(TForm1, Form1); // login
+  Application.CreateForm(TForm3, Form3); // funcionario
+  Application.CreateForm(TForm4, Form4); // passageiros
+  Application.CreateForm(TForm5, Form5); // piloto
+
   Application.Run;
 end.
+

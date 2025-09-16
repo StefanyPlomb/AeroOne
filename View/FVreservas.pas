@@ -1,4 +1,4 @@
-unit FVCadastrofuncionarios;
+unit FVreservas;
 
 interface
 
@@ -7,16 +7,14 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Grids;
 
 type
-  TForm6 = class(TForm)
-    PanelFundo_funcionarios: TPanel;
+  TForm7 = class(TForm)
+    Panel1: TPanel;
     Label1: TLabel;
     Label2: TLabel;
-    Panel1: TPanel;
-    Edit1: TEdit;
     Panel2: TPanel;
     Panel3: TPanel;
-    Panel4: TPanel;
     StringGrid1: TStringGrid;
+
   private
     { Private declarations }
   public
@@ -24,10 +22,9 @@ type
   end;
 
 
-
-
 implementation
 
 {$R *.dfm}
+
 
 end.
