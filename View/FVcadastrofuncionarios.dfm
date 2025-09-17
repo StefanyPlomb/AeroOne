@@ -3,7 +3,7 @@ object Form6: TForm6
   Top = 0
   Caption = 'Form6'
   ClientHeight = 345
-  ClientWidth = 811
+  ClientWidth = 848
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,13 +14,12 @@ object Form6: TForm6
   object PanelFundo_funcionarios: TPanel
     Left = 0
     Top = 0
-    Width = 811
+    Width = 848
     Height = 345
     Align = alClient
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 738
     object Label1: TLabel
       Left = 16
       Top = 8
@@ -50,11 +49,11 @@ object Form6: TForm6
       ParentFont = False
     end
     object Panel1: TPanel
-      Left = 568
-      Top = 24
-      Width = 185
-      Height = 49
-      Caption = '+    Novo Funcion'#225'rio'
+      Left = 655
+      Top = 31
+      Width = 146
+      Height = 42
+      Caption = '+ Novo Funcion'#225'rio'
       Color = 5975552
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -64,12 +63,13 @@ object Form6: TForm6
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
+      OnClick = Panel1Click
     end
     object Edit1: TEdit
       Left = 8
       Top = 72
       Width = 217
-      Height = 30
+      Height = 23
       Color = clMenu
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clGray
@@ -81,10 +81,10 @@ object Form6: TForm6
       Text = 'Pesquisar por nome...'
     end
     object Panel2: TPanel
-      Left = 656
-      Top = 284
-      Width = 97
-      Height = 33
+      Left = 520
+      Top = 72
+      Width = 89
+      Height = 30
       Caption = 'Excluir'
       Color = 5975552
       Font.Charset = DEFAULT_CHARSET
@@ -97,10 +97,10 @@ object Form6: TForm6
       TabOrder = 2
     end
     object Panel3: TPanel
-      Left = 656
-      Top = 245
-      Width = 97
-      Height = 33
+      Left = 408
+      Top = 72
+      Width = 89
+      Height = 30
       Caption = 'Editar'
       Color = 5975552
       Font.Charset = DEFAULT_CHARSET
@@ -122,14 +122,23 @@ object Form6: TForm6
       ParentBackground = False
       TabOrder = 4
       object StringGrid1: TStringGrid
-        Left = 8
+        Left = 16
         Top = 16
-        Width = 601
+        Width = 585
         Height = 193
         ColCount = 10
         RowCount = 9
         TabOrder = 0
       end
+    end
+    object Paneledit: TPanel
+      Left = 631
+      Top = 100
+      Width = 217
+      Height = 245
+      Color = clWhite
+      ParentBackground = False
+      TabOrder = 5
     end
   end
 end

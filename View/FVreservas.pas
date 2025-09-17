@@ -14,17 +14,29 @@ type
     Panel2: TPanel;
     Panel3: TPanel;
     StringGrid1: TStringGrid;
-
+    Panel4: TPanel;
+    procedure Panel4Click(Sender: TObject); // clique no painel 4 abre próximo form
   private
     { Private declarations }
   public
     { Public declarations }
   end;
 
+var
+  Form7: TForm7;
 
 implementation
 
 {$R *.dfm}
 
+uses
+  FVgestor, FVvoo; // importa gestor (Form2) e o próximo form (Form8)
+
+procedure TForm7.Panel4Click(Sender: TObject);
+begin
+  if Assigned(Form2) then   // Form2 = FVgestor
+    Form2.AbrirFormulario(TForm8); // abre TForm8 dentro do PanelConteudo
+end;
 
 end.
+

@@ -1,4 +1,4 @@
-unit FVCadastrofuncionarios;
+﻿unit FVCadastrofuncionarios;
 
 interface
 
@@ -17,17 +17,40 @@ type
     Panel3: TPanel;
     Panel4: TPanel;
     StringGrid1: TStringGrid;
+    Paneledit: TPanel;
+    procedure Panel1Click(Sender: TObject);
   private
-    { Private declarations }
+    procedure AbrirFormulario(FrmClass: TFormClass);
   public
-    { Public declarations }
   end;
-
-
-
 
 implementation
 
 {$R *.dfm}
 
+uses
+  FVgestor, FVeditfuncionario; // 👈 aqui sim, não no interface
+
+procedure TForm6.AbrirFormulario(FrmClass: TFormClass);
+var
+  Frm: TForm;
+begin
+
+  if Paneledit.ControlCount > 0 then
+    Paneledit.Controls[0].Free;
+
+  Frm := FrmClass.Create(Self);
+  Frm.Parent := Paneledit;
+  Frm.BorderStyle := bsNone;
+  Frm.Align := alClient;
+  Frm.Show;
+end;
+
+
+procedure TForm6.Panel1Click(Sender: TObject);
+begin
+  AbrirFormulario(TForm10); // TForm10 declarado no FVeditfuncionario
+end;
+
 end.
+

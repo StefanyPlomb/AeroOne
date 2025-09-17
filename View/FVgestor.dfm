@@ -26,22 +26,16 @@ object Form2: TForm2
       Width = 260
       Height = 533
       Align = alLeft
-      Color = 5975552
+      Color = 8404992
       ParentBackground = False
       TabOrder = 0
-      object Image2: TImage
-        Left = 15
-        Top = 48
-        Width = 50
-        Height = 43
-      end
       object Panel1: TPanel
         Left = 15
         Top = 48
         Width = 216
         Height = 45
         Caption = 'Funcion'#225'rios'
-        Color = 5975552
+        Color = 8404992
         Font.Charset = ANSI_CHARSET
         Font.Color = clWhite
         Font.Height = -20
@@ -58,7 +52,7 @@ object Form2: TForm2
         Width = 218
         Height = 38
         Caption = 'Reservas'
-        Color = 5975552
+        Color = 8404992
         Font.Charset = ANSI_CHARSET
         Font.Color = clWhite
         Font.Height = -20
@@ -75,7 +69,7 @@ object Form2: TForm2
         Width = 220
         Height = 32
         Caption = 'VOOS'
-        Color = 5975552
+        Color = 8404992
         Font.Charset = ANSI_CHARSET
         Font.Color = clWhite
         Font.Height = -20
@@ -84,6 +78,7 @@ object Form2: TForm2
         ParentBackground = False
         ParentFont = False
         TabOrder = 2
+        OnClick = Panel3Click
       end
       object Panel4: TPanel
         Left = 13
@@ -91,7 +86,7 @@ object Form2: TForm2
         Width = 218
         Height = 33
         Caption = 'Relat'#243'rios'
-        Color = 5975552
+        Color = 8404992
         Font.Charset = ANSI_CHARSET
         Font.Color = clWhite
         Font.Height = -20
@@ -108,7 +103,7 @@ object Form2: TForm2
       Width = 1096
       Height = 83
       Align = alTop
-      Color = 5975552
+      Color = 8404992
       ParentBackground = False
       TabOrder = 1
       object LabelSaida_Gestor: TLabel
@@ -181,6 +176,7 @@ object Form2: TForm2
         ParentBackground = False
         ParentFont = False
         TabOrder = 0
+        OnClick = Panel7Click
         object Image1: TImage
           Left = 16
           Top = 0
@@ -216,7 +212,7 @@ object Form2: TForm2
     end
     object Panel5: TPanel
       Left = 368
-      Top = 122
+      Top = 118
       Width = 185
       Height = 113
       Color = clWhite
@@ -291,8 +287,8 @@ object Form2: TForm2
       end
     end
     object PanelConteudo: TPanel
-      Left = 266
-      Top = 262
+      Left = 267
+      Top = 255
       Width = 831
       Height = 347
       Caption = '   Click'

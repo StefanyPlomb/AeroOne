@@ -17,6 +17,7 @@ type
     Panel1: TPanel; // pode trocar por TButton
     Label1: TLabel;
     Image1: TImage;
+    procedure Panel1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -29,6 +30,17 @@ var
 implementation
 
 {$R *.dfm}
+
+uses
+  FVgestor;
+
+procedure TForm1.Panel1Click(Sender: TObject);
+
+begin
+  Form2.Show;   // mostra o form de login existente
+
+end;
+
 
 end.
 

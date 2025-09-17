@@ -28072,6 +28072,7 @@ object Form1: TForm1
         ParentBackground = False
         ParentFont = False
         TabOrder = 2
+        OnClick = Panel1Click
       end
     end
   end

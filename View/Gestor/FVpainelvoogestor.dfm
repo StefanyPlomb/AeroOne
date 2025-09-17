@@ -1,9 +1,9 @@
-object Form7: TForm7
+object Form11: TForm11
   Left = 0
   Top = 0
-  Caption = 'Form7'
-  ClientHeight = 346
-  ClientWidth = 811
+  Caption = 'Form11'
+  ClientHeight = 222
+  ClientWidth = 146
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,41 +14,19 @@ object Form7: TForm7
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 811
-    Height = 346
+    Width = 146
+    Height = 222
     Align = alClient
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    object Label1: TLabel
-      Left = 16
-      Top = 8
-      Width = 127
-      Height = 35
-      Caption = 'Meus Voos'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 11556864
-      Font.Height = -25
-      Font.Name = 'Segoe UI'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label2: TLabel
-      Left = 18
-      Top = 41
-      Width = 125
-      Height = 20
-      Caption = 'Gerencie seus voos'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clGray
-      Font.Height = -15
-      Font.Name = 'Segoe UI'
-      Font.Style = []
-      ParentFont = False
-    end
+    ExplicitLeft = -7
+    ExplicitTop = 173
+    ExplicitWidth = 121
+    ExplicitHeight = 41
     object Panel2: TPanel
-      Left = 552
-      Top = 27
+      Left = 8
+      Top = 85
       Width = 105
       Height = 34
       Caption = 'Alterar '
@@ -63,9 +41,9 @@ object Form7: TForm7
       TabOrder = 0
     end
     object Panel3: TPanel
-      Left = 680
-      Top = 27
-      Width = 97
+      Left = 8
+      Top = 140
+      Width = 105
       Height = 34
       Caption = 'Excluir '
       Color = 8404992
@@ -78,25 +56,12 @@ object Form7: TForm7
       ParentFont = False
       TabOrder = 1
     end
-    object StringGrid1: TStringGrid
-      Left = 24
-      Top = 67
-      Width = 753
-      Height = 270
-      ColCount = 15
-      Constraints.MinHeight = 100
-      Constraints.MinWidth = 100
-      Ctl3D = False
-      RowCount = 9
-      ParentCtl3D = False
-      TabOrder = 2
-    end
     object Panel4: TPanel
-      Left = 432
-      Top = 27
+      Left = 8
+      Top = 24
       Width = 105
       Height = 34
-      Caption = 'Nova reserva'
+      Caption = 'Criar novo'
       Color = 8404992
       Font.Charset = DEFAULT_CHARSET
       Font.Color = 41984
@@ -105,8 +70,7 @@ object Form7: TForm7
       Font.Style = []
       ParentBackground = False
       ParentFont = False
-      TabOrder = 3
-      OnClick = Panel4Click
+      TabOrder = 2
     end
   end
 end

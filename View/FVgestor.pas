@@ -4,8 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  FVfuncionario, FVCadastroFuncionarios, FVreservas, Vcl.Imaging.pngimage;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,FVlogin, Vcl.Imaging.pngimage;
 
 type
   TForm2 = class(TForm)
@@ -29,36 +28,67 @@ type
     Label1: TLabel;
     Label7: TLabel;
     Image1: TImage;
-    Image2: TImage;
     procedure Panel1Click(Sender: TObject);
     procedure Panel2Click(Sender: TObject);
     procedure PanelClick(Sender: TObject);
-
+    procedure Panel3Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Panel7Click(Sender: TObject);
   private
     PainelAtivo: TPanel;
-    procedure AbrirFormulario(FrmClass: TFormClass);
-
+    DefaultPanelColor: TColor;
+    procedure SelecionarPainel(APainel: TPanel);
   public
-    { Public declarations }
-
+    procedure AbrirFormulario(FrmClass: TFormClass);
   end;
 
 var
   Form2: TForm2;
 
-
 implementation
 
 {$R *.dfm}
+
+uses
+  FVCadastroFuncionarios, FVreservas, FVvoo; // <-- esses ficam só no implementation
+
+{ TForm2 }
+
+procedure TForm2.FormCreate(Sender: TObject);
+begin
+  // guarda cor padrão (assume que todos os painéis laterais têm mesma cor)
+  if Assigned(Panel1) then
+    DefaultPanelColor := Panel1.Color
+  else
+    DefaultPanelColor := clBtnFace;
+end;
+
+procedure TForm2.SelecionarPainel(APainel: TPanel);
+begin
+  if not Assigned(APainel) then Exit;
+
+  if Assigned(PainelAtivo) and (PainelAtivo <> APainel) then
+    PainelAtivo.Color := DefaultPanelColor;
+
+  PainelAtivo := APainel;
+  PainelAtivo.Color := clHighlight;
+end;
+
+procedure TForm2.PanelClick(Sender: TObject);
+begin
+  if not (Sender is TPanel) then Exit;
+  SelecionarPainel(TPanel(Sender));
+end;
 
 procedure TForm2.AbrirFormulario(FrmClass: TFormClass);
 var
   Frm: TForm;
 begin
-
+  // libera controle anterior
   if PanelConteudo.ControlCount > 0 then
     PanelConteudo.Controls[0].Free;
 
+  // cria o form como filho do gestor (Owner = Self)
   Frm := FrmClass.Create(Self);
   Frm.Parent := PanelConteudo;
   Frm.BorderStyle := bsNone;
@@ -68,30 +98,27 @@ end;
 
 procedure TForm2.Panel1Click(Sender: TObject);
 begin
-  AbrirFormulario(TForm6);
+  AbrirFormulario(TForm6); // TForm6 declarado em FVCadastroFuncionarios
+  SelecionarPainel(Panel1);
 end;
 
 procedure TForm2.Panel2Click(Sender: TObject);
 begin
-  AbrirFormulario(TForm7);
+  AbrirFormulario(TForm7); // TForm7 declarado em FVreservas
+  SelecionarPainel(Panel2);
 end;
 
- // Não ta funcionando
-
-procedure TForm2.PanelClick(Sender: TObject);
-var
-  PainelAnterior: TPanel;
-  CorOriginal: TColor;
+procedure TForm2.Panel3Click(Sender: TObject);
 begin
-  PainelAnterior := PainelAtivo;
-  PainelAtivo := TPanel(Sender);
-
-  if Assigned(PainelAnterior) and (PainelAnterior <> PainelAtivo) then
-  begin
-    CorOriginal := $005B2E00;
-    PainelAnterior.Color := CorOriginal;
-  end;
-
-  PainelAtivo.Color := clHighlight;
+  AbrirFormulario(TForm8); // TForm8 declarado em FVvoo (exemplo)
+  SelecionarPainel(Panel3);
 end;
+
+procedure TForm2.Panel7Click(Sender: TObject);
+begin
+  Form1.Show;   // mostra o form de login existente
+  Self.Close;   // fecha o form do gestor
+end;
+
 end.
+
