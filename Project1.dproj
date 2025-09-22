@@ -183,6 +183,10 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="View\Gestor\FVrelatorios.pas">
+            <Form>Form13</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <None Include="Project1.dpr"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

@@ -28,18 +28,21 @@ type
     Label1: TLabel;
     Label7: TLabel;
     Image1: TImage;
+    Panelcentral_gestor: TPanel;
     procedure Panel1Click(Sender: TObject);
     procedure Panel2Click(Sender: TObject);
     procedure PanelClick(Sender: TObject);
     procedure Panel3Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Panel7Click(Sender: TObject);
+    procedure Panel4Click(Sender: TObject);
   private
     PainelAtivo: TPanel;
     DefaultPanelColor: TColor;
     procedure SelecionarPainel(APainel: TPanel);
   public
     procedure AbrirFormulario(FrmClass: TFormClass);
+    procedure  AbrirFormrelatorio (FrmClass: TFormClass);
   end;
 
 var
@@ -50,13 +53,13 @@ implementation
 {$R *.dfm}
 
 uses
-  FVCadastroFuncionarios, FVreservas, FVvoo; // <-- esses ficam só no implementation
+  FVCadastroFuncionarios, FVreservas,FVrelatorios, FVvoo;
 
 { TForm2 }
 
 procedure TForm2.FormCreate(Sender: TObject);
 begin
-  // guarda cor padrão (assume que todos os painéis laterais têm mesma cor)
+
   if Assigned(Panel1) then
     DefaultPanelColor := Panel1.Color
   else
@@ -84,11 +87,10 @@ procedure TForm2.AbrirFormulario(FrmClass: TFormClass);
 var
   Frm: TForm;
 begin
-  // libera controle anterior
+
   if PanelConteudo.ControlCount > 0 then
     PanelConteudo.Controls[0].Free;
 
-  // cria o form como filho do gestor (Owner = Self)
   Frm := FrmClass.Create(Self);
   Frm.Parent := PanelConteudo;
   Frm.BorderStyle := bsNone;
@@ -98,26 +100,46 @@ end;
 
 procedure TForm2.Panel1Click(Sender: TObject);
 begin
-  AbrirFormulario(TForm6); // TForm6 declarado em FVCadastroFuncionarios
+  AbrirFormulario(TForm6);
   SelecionarPainel(Panel1);
 end;
 
 procedure TForm2.Panel2Click(Sender: TObject);
 begin
-  AbrirFormulario(TForm7); // TForm7 declarado em FVreservas
+  AbrirFormulario(TForm7);
   SelecionarPainel(Panel2);
 end;
 
 procedure TForm2.Panel3Click(Sender: TObject);
 begin
-  AbrirFormulario(TForm8); // TForm8 declarado em FVvoo (exemplo)
+  AbrirFormulario(TForm8);
   SelecionarPainel(Panel3);
+end;
+
+procedure TForm2.Panel4Click(Sender: TObject);
+begin
+  AbrirFormrelatorio(TForm13);
+end;
+
+procedure TForm2.AbrirFormrelatorio (FrmClass: TFormClass);
+var
+  Frm: TForm;
+begin
+  if Panelcentral_gestor.ControlCount > 0 then
+    Panelcentral_gestor.Controls[0].Free;
+
+  Frm := FrmClass.Create(Self);
+  Frm.Parent := Panelcentral_gestor;
+  Frm.BorderStyle := bsNone;
+  Frm.Align := alClient;
+  Frm.Show;
+
 end;
 
 procedure TForm2.Panel7Click(Sender: TObject);
 begin
-  Form1.Show;   // mostra o form de login existente
-  Self.Close;   // fecha o form do gestor
+  Form1.Show;
+  Self.Close;
 end;
 
 end.

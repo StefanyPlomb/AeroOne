@@ -31,7 +31,7 @@ implementation
 {$R *.dfm}
 
 uses
-  FVgestor, FVeditfuncionario,FVpainelvoogestor; // 👈 aqui sim, não no interface
+  FVgestor, FVeditfuncionario,FVpainelvoogestor;
 
 procedure TForm8.AbrirFormulario(FrmClass: TFormClass);
 var

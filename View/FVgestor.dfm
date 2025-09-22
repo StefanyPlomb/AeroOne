@@ -95,6 +95,7 @@ object Form2: TForm2
         ParentBackground = False
         ParentFont = False
         TabOrder = 3
+        OnClick = Panel4Click
       end
     end
     object PanelSuperior_Gestor: TPanel
@@ -210,91 +211,98 @@ object Form2: TForm2
         end
       end
     end
-    object Panel5: TPanel
-      Left = 368
-      Top = 118
-      Width = 185
-      Height = 113
-      Color = clWhite
-      ParentBackground = False
-      TabOrder = 2
-      object Label3: TLabel
-        Left = 40
-        Top = 73
-        Width = 108
-        Height = 20
-        Caption = 'Voos ativos hoje'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGray
-        Font.Height = -15
-        Font.Name = 'Segoe UI'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label5: TLabel
-        Left = 80
-        Top = 26
-        Width = 34
-        Height = 41
-        Caption = '12'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = 12016384
-        Font.Height = -30
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-    end
-    object Panel6: TPanel
-      Left = 633
-      Top = 121
-      Width = 185
-      Height = 114
-      Color = clWhite
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -10
-      Font.Name = 'Segoe UI'
-      Font.Style = []
-      ParentBackground = False
-      ParentFont = False
-      TabOrder = 3
-      object Label4: TLabel
-        Left = 32
-        Top = 72
-        Width = 126
-        Height = 20
-        Caption = 'Check-ins iniciados'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGray
-        Font.Height = -15
-        Font.Name = 'Segoe UI'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label6: TLabel
-        Left = 72
-        Top = 25
-        Width = 51
-        Height = 41
-        Caption = '345'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = 12016384
-        Font.Height = -30
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-    end
-    object PanelConteudo: TPanel
+    object Panelcentral_gestor: TPanel
       Left = 267
-      Top = 255
-      Width = 831
-      Height = 347
-      Caption = '   Click'
-      Color = clWhite
-      ParentBackground = False
-      TabOrder = 4
+      Top = 90
+      Width = 830
+      Height = 527
+      TabOrder = 2
+      object Panel6: TPanel
+        Left = 473
+        Top = 46
+        Width = 185
+        Height = 114
+        Color = clWhite
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -10
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 0
+        object Label4: TLabel
+          Left = 32
+          Top = 72
+          Width = 126
+          Height = 20
+          Caption = 'Check-ins iniciados'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clGray
+          Font.Height = -15
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label6: TLabel
+          Left = 72
+          Top = 25
+          Width = 51
+          Height = 41
+          Caption = '345'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 12016384
+          Font.Height = -30
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+      end
+      object Panel5: TPanel
+        Left = 120
+        Top = 46
+        Width = 185
+        Height = 113
+        Color = clWhite
+        ParentBackground = False
+        TabOrder = 1
+        object Label3: TLabel
+          Left = 40
+          Top = 73
+          Width = 108
+          Height = 20
+          Caption = 'Voos ativos hoje'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clGray
+          Font.Height = -15
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label5: TLabel
+          Left = 80
+          Top = 26
+          Width = 34
+          Height = 41
+          Caption = '12'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 12016384
+          Font.Height = -30
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+      end
+      object PanelConteudo: TPanel
+        Left = 0
+        Top = 180
+        Width = 831
+        Height = 347
+        Caption = '   Click'
+        Color = clWhite
+        ParentBackground = False
+        TabOrder = 2
+      end
     end
   end
 end

@@ -22,7 +22,8 @@ uses
   FVeditfuncionario in 'View\Gestor\FVeditfuncionario.pas' {Form10},
   FVpainelvoogestor in 'View\Gestor\FVpainelvoogestor.pas' {Form11},
   FVpainelvoofuncionario in 'View\Funcionário\FVpainelvoofuncionario.pas' {Form12},
-  UData in 'Data\UData.pas' {DataModule1: TDataModule};
+  UData in 'Data\UData.pas' {DataModule1: TDataModule},
+  FVrelatorios in 'View\Gestor\FVrelatorios.pas' {Form13};
 
 {$R *.res}
 
@@ -33,6 +34,7 @@ begin
   // Só os forms que realmente abrem na inicialização
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TDataModule1, DataModule1);
+  Application.CreateForm(TForm13, Form13);
   // login
   Application.CreateForm(TForm2, Form2);
   Application.CreateForm(TForm8, Form8);

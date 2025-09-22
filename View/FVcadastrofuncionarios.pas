@@ -29,7 +29,7 @@ implementation
 {$R *.dfm}
 
 uses
-  FVgestor, FVeditfuncionario; // 👈 aqui sim, não no interface
+  FVgestor, FVeditfuncionario;
 
 procedure TForm6.AbrirFormulario(FrmClass: TFormClass);
 var
@@ -49,7 +49,7 @@ end;
 
 procedure TForm6.Panel1Click(Sender: TObject);
 begin
-  AbrirFormulario(TForm10); // TForm10 declarado no FVeditfuncionario
+  AbrirFormulario(TForm10);
 end;
 
 end.
