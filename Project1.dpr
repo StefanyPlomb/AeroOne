@@ -21,7 +21,8 @@ uses
   FVcadastrovoo in 'View\Gestor\FVcadastrovoo.pas' {Form9},
   FVeditfuncionario in 'View\Gestor\FVeditfuncionario.pas' {Form10},
   FVpainelvoogestor in 'View\Gestor\FVpainelvoogestor.pas' {Form11},
-  FVpainelvoofuncionario in 'View\Funcionário\FVpainelvoofuncionario.pas' {Form12};
+  FVpainelvoofuncionario in 'View\Funcionário\FVpainelvoofuncionario.pas' {Form12},
+  UData in 'Data\UData.pas' {DataModule1: TDataModule};
 
 {$R *.res}
 
@@ -30,7 +31,9 @@ begin
   Application.MainFormOnTaskbar := True;
 
   // Só os forms que realmente abrem na inicialização
-  Application.CreateForm(TForm1, Form1); // login
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TDataModule1, DataModule1);
+  // login
   Application.CreateForm(TForm2, Form2);
   Application.CreateForm(TForm8, Form8);
   Application.CreateForm(TForm9, Form9);

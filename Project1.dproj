@@ -178,6 +178,11 @@
             <Form>Form12</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Data\UData.pas">
+            <Form>DataModule1</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <None Include="Project1.dpr"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
