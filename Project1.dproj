@@ -166,10 +166,6 @@
             <Form>Form9</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="View\Gestor\FVeditfuncionario.pas">
-            <Form>Form10</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="View\Gestor\FVpainelvoogestor.pas">
             <Form>Form11</Form>
             <FormType>dfm</FormType>
@@ -187,6 +183,7 @@
             <Form>Form13</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Model\Gestor\UMcadastrofuncionario.pas"/>
         <None Include="Project1.dpr"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

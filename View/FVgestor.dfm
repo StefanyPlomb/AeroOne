@@ -2,7 +2,7 @@ object Form2: TForm2
   Left = 0
   Top = 0
   Caption = 'Form2'
-  ClientHeight = 618
+  ClientHeight = 750
   ClientWidth = 1098
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
@@ -15,20 +15,22 @@ object Form2: TForm2
     Left = 0
     Top = 0
     Width = 1098
-    Height = 618
+    Height = 750
     Align = alClient
     Color = 15263976
     ParentBackground = False
     TabOrder = 0
+    ExplicitHeight = 618
     object PanelLateral_Gestor: TPanel
       Left = 1
       Top = 84
       Width = 260
-      Height = 533
+      Height = 665
       Align = alLeft
       Color = 8404992
       ParentBackground = False
       TabOrder = 0
+      ExplicitHeight = 533
       object Panel1: TPanel
         Left = 15
         Top = 48
@@ -215,7 +217,7 @@ object Form2: TForm2
       Left = 267
       Top = 90
       Width = 830
-      Height = 527
+      Height = 647
       TabOrder = 2
       object Panel6: TPanel
         Left = 473
@@ -297,7 +299,7 @@ object Form2: TForm2
         Left = 0
         Top = 180
         Width = 831
-        Height = 347
+        Height = 461
         Caption = '   Click'
         Color = clWhite
         ParentBackground = False

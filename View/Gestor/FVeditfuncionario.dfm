@@ -20,12 +20,9 @@ object Form10: TForm10
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = -8
-    ExplicitWidth = 217
-    ExplicitHeight = 201
-    object Edit1: TEdit
+    object EditNome_cadastro: TEdit
       Left = 16
-      Top = 16
+      Top = 11
       Width = 153
       Height = 23
       Color = clMenu
@@ -40,7 +37,7 @@ object Form10: TForm10
     end
     object Edit2: TEdit
       Left = 16
-      Top = 64
+      Top = 48
       Width = 153
       Height = 23
       Color = clMenu
@@ -55,7 +52,7 @@ object Form10: TForm10
     end
     object Edit3: TEdit
       Left = 16
-      Top = 152
+      Top = 128
       Width = 153
       Height = 23
       Color = clMenu
@@ -70,7 +67,7 @@ object Form10: TForm10
     end
     object Edit4: TEdit
       Left = 16
-      Top = 107
+      Top = 88
       Width = 153
       Height = 23
       Color = clMenu
@@ -82,6 +79,15 @@ object Form10: TForm10
       ParentFont = False
       TabOrder = 3
       Text = 'Funs'#227'o...'
+    end
+    object Button1: TButton
+      Left = 48
+      Top = 157
+      Width = 75
+      Height = 25
+      Caption = 'Salvar'
+      TabOrder = 4
+      OnClick = Button1Click
     end
   end
 end
