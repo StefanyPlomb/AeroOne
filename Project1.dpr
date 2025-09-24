@@ -18,8 +18,6 @@ uses
   FVgestor in 'View\FVgestor.pas' {Form2},
   FVreservas in 'View\FVreservas.pas' {Form7},
   FVvoo in 'View\FVvoo.pas' {Form8},
-  FVcadastrovoo in 'View\Gestor\FVcadastrovoo.pas' {Form9},
-  FVpainelvoogestor in 'View\Gestor\FVpainelvoogestor.pas' {Form11},
   FVpainelvoofuncionario in 'View\Funcionário\FVpainelvoofuncionario.pas' {Form12},
   UData in 'Data\UData.pas' {DataModule1: TDataModule},
   FVrelatorios in 'View\Gestor\FVrelatorios.pas' {Form13},
@@ -38,8 +36,8 @@ begin
   // login
   Application.CreateForm(TForm2, Form2);
   Application.CreateForm(TForm8, Form8);
-  Application.CreateForm(TForm9, Form9);
-  Application.CreateForm(TForm11, Form11);
+//  Application.CreateForm(TForm9, Form9);
+//  Application.CreateForm(TForm11, Form11);
   Application.CreateForm(TForm12, Form12);
   // gestor
   Application.CreateForm(TForm3, Form3); // funcionario

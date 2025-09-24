@@ -18,8 +18,8 @@ object Form9: TForm9
     Height = 308
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 831
-    ExplicitHeight = 331
+    ExplicitLeft = -8
+    ExplicitTop = -8
     object Label1: TLabel
       Left = 42
       Top = 16
@@ -50,7 +50,7 @@ object Form9: TForm9
       Left = 74
       Top = 96
       Width = 150
-      Height = 34
+      Height = 23
       TabOrder = 0
       Text = 'De'
     end
@@ -58,7 +58,7 @@ object Form9: TForm9
       Left = 74
       Top = 232
       Width = 150
-      Height = 34
+      Height = 23
       TabOrder = 1
       Text = 'C'#243'digo'
     end
@@ -66,7 +66,7 @@ object Form9: TForm9
       Left = 74
       Top = 157
       Width = 150
-      Height = 34
+      Height = 23
       TabOrder = 2
       Text = 'AeroMo'#231'o(a)'
     end
@@ -74,7 +74,7 @@ object Form9: TForm9
       Left = 298
       Top = 96
       Width = 150
-      Height = 34
+      Height = 23
       TabOrder = 3
       Text = 'Para'
     end
@@ -82,7 +82,7 @@ object Form9: TForm9
       Left = 298
       Top = 157
       Width = 150
-      Height = 34
+      Height = 23
       TabOrder = 4
       Text = 'Piloto'
     end

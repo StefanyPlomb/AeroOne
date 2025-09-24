@@ -21,7 +21,6 @@ object Form6: TForm6
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = 8
     object Label1: TLabel
       Left = 16
       Top = 8
@@ -124,7 +123,7 @@ object Form6: TForm6
       ParentBackground = False
       TabOrder = 4
       object StringGrid1: TStringGrid
-        Left = 16
+        Left = 8
         Top = 16
         Width = 585
         Height = 193

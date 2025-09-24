@@ -162,14 +162,6 @@
             <Form>Form8</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="View\Gestor\FVcadastrovoo.pas">
-            <Form>Form9</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="View\Gestor\FVpainelvoogestor.pas">
-            <Form>Form11</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="View\Funcionário\FVpainelvoofuncionario.pas">
             <Form>Form12</Form>
             <FormType>dfm</FormType>

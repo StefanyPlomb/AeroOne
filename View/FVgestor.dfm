@@ -20,7 +20,6 @@ object Form2: TForm2
     Color = 15263976
     ParentBackground = False
     TabOrder = 0
-    ExplicitHeight = 618
     object PanelLateral_Gestor: TPanel
       Left = 1
       Top = 84
@@ -30,7 +29,6 @@ object Form2: TForm2
       Color = 8404992
       ParentBackground = False
       TabOrder = 0
-      ExplicitHeight = 533
       object Panel1: TPanel
         Left = 15
         Top = 48
@@ -49,8 +47,8 @@ object Form2: TForm2
         OnClick = Panel1Click
       end
       object Panel2: TPanel
-        Left = 13
-        Top = 113
+        Left = 15
+        Top = 241
         Width = 218
         Height = 38
         Caption = 'Reservas'
@@ -66,8 +64,8 @@ object Form2: TForm2
         OnClick = Panel2Click
       end
       object Panel3: TPanel
-        Left = 11
-        Top = 171
+        Left = 13
+        Top = 119
         Width = 220
         Height = 32
         Caption = 'VOOS'
@@ -83,8 +81,8 @@ object Form2: TForm2
         OnClick = Panel3Click
       end
       object Panel4: TPanel
-        Left = 13
-        Top = 228
+        Left = 15
+        Top = 180
         Width = 218
         Height = 33
         Caption = 'Relat'#243'rios'
@@ -297,9 +295,9 @@ object Form2: TForm2
       end
       object PanelConteudo: TPanel
         Left = 0
-        Top = 180
-        Width = 831
-        Height = 461
+        Top = 166
+        Width = 830
+        Height = 483
         Caption = '   Click'
         Color = clWhite
         ParentBackground = False
