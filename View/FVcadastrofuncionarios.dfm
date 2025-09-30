@@ -112,6 +112,7 @@ object Form6: TForm6
       ParentBackground = False
       ParentFont = False
       TabOrder = 3
+      OnClick = Panel3Click
     end
     object Panel4: TPanel
       Left = 8

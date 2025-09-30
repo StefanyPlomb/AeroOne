@@ -119,9 +119,10 @@
     <Transaction>2025/09/23 14:11:18.000.070,C:\AeroOne\UMcadastrofuncionario.pas=C:\AeroOne\Unit1.pas</Transaction>
     <Transaction>2025/09/23 14:11:34.000.773,C:\AeroOne\Model\Gestor\UMcadastrofuncionario.pas=C:\AeroOne\UMcadastrofuncionario.pas</Transaction>
     <Transaction>2025/09/23 16:39:47.000.965,C:\AeroOne\View\Gestor\FVeditfuncionario.pas=</Transaction>
-    <Transaction>2025/09/24 14:01:22.880,C:\AeroOne\View\Gestor\FVpainelvoogestor.pas=</Transaction>
-    <Transaction>2025/09/24 14:20:55.729,C:\AeroOne\View\Gestor\FVcadastrovoo.pas=</Transaction>
-  </Transactions>  <ProjectSortOrder AutoSort="0" SortType="0">
+    <Transaction>2025/09/24 14:01:22.000.880,C:\AeroOne\View\Gestor\FVpainelvoogestor.pas=</Transaction>
+    <Transaction>2025/09/24 14:20:55.000.729,C:\AeroOne\View\Gestor\FVcadastrovoo.pas=</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="Controller"/>
     <File Path="Controller\UCfuncionario.pas"/>
     <File Path="Controller\UCgestor.pas"/>

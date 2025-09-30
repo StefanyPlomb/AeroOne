@@ -27,6 +27,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure StringGrid1DrawCell(Sender: TObject; ACol, ARow: LongInt;
       Rect: TRect; State: TGridDrawState);
+    procedure Panel3Click(Sender: TObject);
   private
     //procedure adicionar;     controll do model de add
   public
@@ -56,6 +57,28 @@ begin
 
 end;
 
+
+procedure TForm6.Panel3Click(Sender: TObject);
+var linhaselecionada: Integer;
+begin
+
+EditNome_cadastro.Setfocus;
+linhaselecionada:= StringGrid1.Row;
+
+  if LinhaSelecionada = 0 then
+  begin
+    ShowMessage('Selecione um registro válido para editar!');
+    Exit;
+  end;
+
+  EditNome_cadastro.Text := StringGrid1.Cells [1,linhaselecionada];
+  Edit2.Text := StringGrid1.Cells [2,linhaselecionada];
+  Edit3.Text := StringGrid1.Cells [3,linhaselecionada];
+
+
+
+
+end;
 
 procedure TForm6.StringGrid1DrawCell(Sender: TObject; ACol, ARow: LongInt; // zebra
   Rect: TRect; State: TGridDrawState);
@@ -98,9 +121,9 @@ begin
   novaLinha := StringGrid1.RowCount;
   StringGrid1.RowCount := novaLinha + 1;
 
-  StringGrid1.Cells[0, novaLinha] := EditNome_cadastro.Text;
-  StringGrid1.Cells[1, novaLinha] := Edit2.Text;
-  StringGrid1.Cells[2, novaLinha] := Edit3.Text;
+  StringGrid1.Cells[1, novaLinha] := EditNome_cadastro.Text;
+  StringGrid1.Cells[2, novaLinha] := Edit2.Text;
+  StringGrid1.Cells[3, novaLinha] := Edit3.Text;
 
   EditNome_cadastro.Clear;
   Edit2.Clear;
