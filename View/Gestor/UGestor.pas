@@ -1,0 +1,104 @@
+unit UGestor;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
+  Vcl.StdCtrls, Vcl.Imaging.jpeg,FVLogin,UCadastroFuncionarios, UViewVoo, FVrelatorios;
+
+type
+  TFormGestor = class(TForm)
+    PanelSuperior_Gestor: TPanel;
+    LabelSaida_Gestor: TLabel;
+    LabelCargo_Gestor: TLabel;
+    LabelName_Gestor: TLabel;
+    LabelHome_Gestor: TLabel;
+    PanelLogout_Gestor: TPanel;
+    ImgLogout_Gestor: TImage;
+    PanelLateral_Gestor: TPanel;
+    PanelFuncionarios_Gestor: TPanel;
+    PanelReservas_Gestor: TPanel;
+    PanelVoos_Gestor: TPanel;
+    PanelRelatorios_Gestor: TPanel;
+    PanelCentral_Gestor: TPanel;
+    ImgHome_Gestor: TImage;
+    PanelDashVoo_Gestor: TPanel;
+    LabelDashVoo_Gestor: TLabel;
+    NumDashVoo_Gestor: TLabel;
+    PanelDashCheck_Gestor: TPanel;
+    LabelDashCheck_Gestor: TLabel;
+    NumDashCheck_Gestor: TLabel;
+    LabelDash_Gestor: TLabel;
+    PanelDados_Gestor: TPanel;
+    procedure FormCreate;
+    procedure PanelFuncionarios_GestorClick(Sender: TObject);
+    procedure AbrirForm (FrmClass: TFormClass);
+    procedure PanelLogout_GestorClick(Sender: TObject);
+    procedure PanelVoos_GestorClick(Sender: TObject);
+    procedure PanelRelatorios_GestorClick(Sender: TObject);
+
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormGestor: TFormGestor;
+
+implementation
+
+{$R *.dfm}
+
+ procedure TFormGestor.FormCreate;    // erro
+ begin
+  //FormLogin.DestroyComponents;
+    FormLogin.Destroy;
+ end;
+
+
+
+
+procedure TFormGestor.PanelFuncionarios_GestorClick(Sender: TObject);
+begin
+
+  AbrirForm(TFormCadastroFuncionaris);
+
+
+end;
+
+procedure TFormGestor.PanelLogout_GestorClick(Sender: TObject);
+begin
+   FormLogin.Show;
+   Self.Close;
+end;
+
+procedure TFormGestor.PanelRelatorios_GestorClick(Sender: TObject);
+begin
+  AbrirForm(TFormRelatorios);
+end;
+
+procedure TFormGestor.PanelVoos_GestorClick(Sender: TObject);
+begin
+  AbrirForm(TFormVoos);
+end;
+
+procedure TFormGestor.AbrirForm(FrmClass: TFormClass);
+var
+  Frm: TForm;
+begin
+
+  if PanelCentral_Gestor.ControlCount > 0 then
+    PanelCentral_Gestor.Controls[0].Free;
+
+  Frm := FrmClass.Create(Self);
+  Frm.Parent := PanelCentral_Gestor;
+  Frm.BorderStyle := bsNone;
+  Frm.Align := alClient;
+  Frm.Show;
+end;
+
+
+end.

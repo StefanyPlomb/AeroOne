@@ -1,9 +1,9 @@
-object Form7: TForm7
+object FormVoos: TFormVoos
   Left = 0
   Top = 0
-  Caption = 'Form7'
-  ClientHeight = 346
-  ClientWidth = 811
+  Caption = 'FormVoos'
+  ClientHeight = 598
+  ClientWidth = 746
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,18 +11,20 @@ object Form7: TForm7
   Font.Name = 'Segoe UI'
   Font.Style = []
   TextHeight = 15
-  object Panel1: TPanel
+  object PanelCentral_Gestor: TPanel
     Left = 0
     Top = 0
-    Width = 811
-    Height = 346
+    Width = 746
+    Height = 598
     Align = alClient
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    object Label1: TLabel
-      Left = 16
-      Top = 8
+    ExplicitWidth = 811
+    ExplicitHeight = 346
+    object LabelTitulo_Gestor: TLabel
+      Left = 18
+      Top = 16
       Width = 127
       Height = 35
       Caption = 'Meus Voos'
@@ -33,9 +35,9 @@ object Form7: TForm7
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label2: TLabel
-      Left = 18
-      Top = 41
+    object LabelSubtitulo_Gestor: TLabel
+      Left = 42
+      Top = 57
       Width = 125
       Height = 20
       Caption = 'Gerencie seus voos'
@@ -46,9 +48,9 @@ object Form7: TForm7
       Font.Style = []
       ParentFont = False
     end
-    object Panel2: TPanel
-      Left = 552
-      Top = 27
+    object PanelAlterarVoo: TPanel
+      Left = 562
+      Top = 75
       Width = 105
       Height = 34
       Caption = 'Alterar '
@@ -62,10 +64,10 @@ object Form7: TForm7
       ParentFont = False
       TabOrder = 0
     end
-    object Panel3: TPanel
-      Left = 680
-      Top = 27
-      Width = 97
+    object PanelExcluirVoo: TPanel
+      Left = 434
+      Top = 75
+      Width = 105
       Height = 34
       Caption = 'Excluir '
       Color = 8404992
@@ -78,10 +80,10 @@ object Form7: TForm7
       ParentFont = False
       TabOrder = 1
     end
-    object StringGrid1: TStringGrid
-      Left = 24
-      Top = 67
-      Width = 753
+    object StringGridVoo: TStringGrid
+      Left = 18
+      Top = 115
+      Width = 649
       Height = 270
       ColCount = 15
       Constraints.MinHeight = 100
@@ -91,9 +93,9 @@ object Form7: TForm7
       ParentCtl3D = False
       TabOrder = 2
     end
-    object Panel4: TPanel
-      Left = 432
-      Top = 27
+    object PanelNovoVoo: TPanel
+      Left = 312
+      Top = 443
       Width = 105
       Height = 34
       Caption = 'Nova reserva'
@@ -106,7 +108,6 @@ object Form7: TForm7
       ParentBackground = False
       ParentFont = False
       TabOrder = 3
-      OnClick = Panel4Click
     end
   end
 end

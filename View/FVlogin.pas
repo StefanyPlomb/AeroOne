@@ -8,7 +8,7 @@ uses
   Vcl.ExtCtrls,Vcl.ComCtrls;
 
 type
-  TForm1 = class(TForm)
+  TFormLogin = class(TForm)
     ImgLogin_Fundo: TImage;
     PanelLogin_fundo: TPanel;
     PanelLogin_cadastro: TPanel;
@@ -25,32 +25,32 @@ type
   end;
 
 var
-  Form1: TForm1;
+  FormLogin: TFormLogin;
 
 implementation
 
 {$R *.dfm}
 
 uses
-  FVgestor, UData;
+  Ugestor, UData;
 
-procedure TForm1.Panel1Click(Sender: TObject);
+procedure TFormLogin.Panel1Click(Sender: TObject);
 begin
-  DataModule1.FDQuery1.Close;     //
-  DataModule1.FDQuery1.SQL.Clear;   //
-  DataModule1.FDQuery1.SQL.Add('SELECT id_usuario, nome, tipo_acesso ');  //
+  DataModule1.FDQuery1.Close;
+  DataModule1.FDQuery1.SQL.Clear;
+  DataModule1.FDQuery1.SQL.Add('SELECT id_usuario, nome, tipo_acesso ');
   DataModule1.FDQuery1.SQL.Add('FROM usuarios ');
   DataModule1.FDQuery1.SQL.Add('WHERE email = :email AND senha = :senha');
 
   DataModule1.FDQuery1.ParamByName('email').AsString := EditLogin_Usuario.Text;
   DataModule1.FDQuery1.ParamByName('senha').AsString := EditLogin_Senha.Text;
-  DataModule1.FDQuery1.Open; //
+  DataModule1.FDQuery1.Open;
 
   if not DataModule1.FDQuery1.IsEmpty then
   begin
 
     case DataModule1.FDQuery1.FieldByName('tipo_acesso').AsInteger of
-      1:Form2.Show;
+      1:FormGestor.Show;
       2: ShowMessage('Abrir tela da Aeromoça');
       3: ShowMessage('Abrir tela do Piloto');
       4: ShowMessage('Abrir tela do Passageiro');

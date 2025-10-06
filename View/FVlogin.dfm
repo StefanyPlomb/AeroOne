@@ -1,7 +1,7 @@
-object Form1: TForm1
+object FormLogin: TFormLogin
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = 'FormLogin'
   ClientHeight = 600
   ClientWidth = 939
   Color = clBtnFace

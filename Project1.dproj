@@ -125,41 +125,14 @@
         </DelphiCompile>
         <DCCReference Include="Model\UMgestor.pas"/>
         <DCCReference Include="Controller\UCgestor.pas"/>
-        <DCCReference Include="View\FVfuncionario.pas">
-            <Form>Form3</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="Model\UMfuncionario.pas"/>
         <DCCReference Include="Controller\UCfuncionario.pas"/>
-        <DCCReference Include="View\FVpassageiros.pas">
-            <Form>Form4</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="Model\UMpassageiros.pas"/>
         <DCCReference Include="Controller\UCpassageiros.pas"/>
-        <DCCReference Include="View\FVpiloto.pas">
-            <Form>Form5</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="Model\UMpiloto.pas"/>
         <DCCReference Include="Controller\UCpiloto.pas"/>
         <DCCReference Include="View\FVlogin.pas">
-            <Form>Form1</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="View\FVcadastrofuncionarios.pas">
-            <Form>Form6</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="View\FVgestor.pas">
-            <Form>Form2</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="View\FVreservas.pas">
-            <Form>Form7</Form>
-        </DCCReference>
-        <DCCReference Include="View\FVvoo.pas">
-            <Form>Form8</Form>
+            <Form>FormLogin</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="View\Funcionário\FVpainelvoofuncionario.pas">
@@ -172,10 +145,26 @@
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="View\Gestor\FVrelatorios.pas">
-            <Form>Form13</Form>
+            <Form>FormRelatorios</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Model\Gestor\UMcadastrofuncionario.pas"/>
+        <DCCReference Include="View\Gestor\UCadastroFuncionarios.pas">
+            <Form>FormCadastroFuncionaris</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\Gestor\UGestor.pas">
+            <Form>FormGestor</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\Gestor\UViewVoo.pas">
+            <Form>FormVoos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\Gestor\UCadastroVoo.pas">
+            <Form>FormCadastroVoos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <None Include="Project1.dpr"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

@@ -29,6 +29,7 @@ object Form2: TForm2
       Color = 8404992
       ParentBackground = False
       TabOrder = 0
+      ExplicitTop = 90
       object Panel1: TPanel
         Left = 15
         Top = 48

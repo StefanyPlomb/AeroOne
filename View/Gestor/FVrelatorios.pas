@@ -7,14 +7,14 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.ExtCtrls, Vcl.StdCtrls;
 
 type
-  TForm13 = class(TForm)
-    Panel1: TPanel;
-    StringGrid1: TStringGrid;
-    Label1: TLabel;
-    Label2: TLabel;
-    ComboBox1: TComboBox;
-    Edit1: TEdit;
-    Panel2: TPanel;
+  TFormRelatorios = class(TForm)
+    PanelCentralRelatorios: TPanel;
+    StringGridRelatorios: TStringGrid;
+    LabelTituloRelatorios: TLabel;
+    LabelSubtituloRelatorios: TLabel;
+    BoxFiltroRelaorios: TComboBox;
+    EditBuscaRelatorios: TEdit;
+    PanelBuscarRelatorios: TPanel;
   private
     { Private declarations }
   public
@@ -22,7 +22,7 @@ type
   end;
 
 var
-  Form13: TForm13;
+  FormRelatorios: TFormRelatorios;
 
 implementation
 

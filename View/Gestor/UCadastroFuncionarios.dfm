@@ -1,29 +1,30 @@
-object Form6: TForm6
+object FormCadastroFuncionaris: TFormCadastroFuncionaris
   Left = 0
   Top = 0
-  Caption = 'Form6'
-  ClientHeight = 423
-  ClientWidth = 827
+  Caption = 'FormCadastroFuncionaris'
+  ClientHeight = 598
+  ClientWidth = 750
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  OnCreate = FormCreate
   TextHeight = 15
-  object PanelFundo_funcionarios: TPanel
+  object PanelCentral_Funcionarios: TPanel
     Left = 0
     Top = 0
-    Width = 827
-    Height = 423
+    Width = 750
+    Height = 598
     Align = alClient
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    object Label1: TLabel
-      Left = 16
-      Top = 8
+    ExplicitWidth = 811
+    ExplicitHeight = 390
+    object LabelTituloFuncionarios: TLabel
+      Left = 11
+      Top = 16
       Width = 148
       Height = 35
       Caption = 'Funcion'#225'rios'
@@ -36,9 +37,9 @@ object Form6: TForm6
       ParentColor = False
       ParentFont = False
     end
-    object Label2: TLabel
-      Left = 8
-      Top = 58
+    object LabelSubtituloFuncionarios: TLabel
+      Left = 11
+      Top = 57
       Width = 260
       Height = 20
       Caption = 'Gerencie a equipe da companhia a'#233'rea'
@@ -49,9 +50,9 @@ object Form6: TForm6
       Font.Style = []
       ParentFont = False
     end
-    object Panel1: TPanel
-      Left = 647
-      Top = 232
+    object PanelNovoFuncionario: TPanel
+      Left = 575
+      Top = 379
       Width = 132
       Height = 38
       Caption = 'Novo Funcion'#225'rio'
@@ -64,12 +65,11 @@ object Form6: TForm6
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
-      OnClick = Panel1Click
     end
-    object Edit1: TEdit
-      Left = 371
-      Top = 79
-      Width = 217
+    object EditBuscaFuncionarios: TEdit
+      Left = 304
+      Top = 104
+      Width = 244
       Height = 23
       Color = clMenu
       Font.Charset = DEFAULT_CHARSET
@@ -81,9 +81,9 @@ object Form6: TForm6
       TabOrder = 1
       Text = 'Pesquisar por nome...'
     end
-    object Panel2: TPanel
-      Left = 647
-      Top = 178
+    object PanelExcluirFuncionario: TPanel
+      Left = 575
+      Top = 308
       Width = 132
       Height = 30
       Caption = 'Excluir'
@@ -97,9 +97,9 @@ object Form6: TForm6
       ParentFont = False
       TabOrder = 2
     end
-    object Panel3: TPanel
-      Left = 647
-      Top = 124
+    object PanelEditarFuncionario: TPanel
+      Left = 575
+      Top = 238
       Width = 132
       Height = 30
       Caption = 'Editar'
@@ -112,49 +112,39 @@ object Form6: TForm6
       ParentBackground = False
       ParentFont = False
       TabOrder = 3
-      OnClick = Panel3Click
     end
-    object Panel4: TPanel
-      Left = 8
-      Top = 108
-      Width = 617
-      Height = 221
-      Caption = 'Panel4'
+    object PanelGridFuncionario: TPanel
+      Left = 11
+      Top = 133
+      Width = 537
+      Height = 355
       Color = 11316396
       ParentBackground = False
       TabOrder = 4
-      object StringGrid1: TStringGrid
+      object DBGridFuncionarios: TDBGrid
         Left = 8
         Top = 16
-        Width = 585
-        Height = 193
-        Color = 14197398
-        ColCount = 10
-        FixedColor = 12615680
-        RowCount = 1
-        FixedRows = 0
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -12
-        Font.Name = 'Segoe UI Semibold'
-        Font.Style = [fsBold]
-        ParentFont = False
+        Width = 521
+        Height = 321
         TabOrder = 0
-        OnDrawCell = StringGrid1DrawCell
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -12
+        TitleFont.Name = 'Segoe UI'
+        TitleFont.Style = []
       end
     end
-    object Button1: TButton
-      Left = 647
-      Top = 292
+    object ButSalvarFuncionarios: TButton
+      Left = 575
+      Top = 445
       Width = 132
       Height = 25
       Caption = 'Salvar'
       TabOrder = 5
-      OnClick = Button1Click
     end
-    object Edit2: TEdit
-      Left = 170
-      Top = 348
+    object EditViewEmail: TEdit
+      Left = 186
+      Top = 516
       Width = 153
       Height = 23
       Color = clMenu
@@ -167,9 +157,9 @@ object Form6: TForm6
       TabOrder = 6
       Text = 'E-mail...'
     end
-    object Edit3: TEdit
-      Left = 439
-      Top = 348
+    object EditViewCodigo: TEdit
+      Left = 490
+      Top = 516
       Width = 58
       Height = 23
       Color = clMenu
@@ -182,9 +172,9 @@ object Form6: TForm6
       TabOrder = 7
       Text = 'C'#243'digo'
     end
-    object Edit4: TEdit
-      Left = 329
-      Top = 348
+    object EditCargosFuncionarios: TEdit
+      Left = 369
+      Top = 516
       Width = 104
       Height = 23
       Color = clMenu
@@ -197,9 +187,9 @@ object Form6: TForm6
       TabOrder = 8
       Text = 'Funs'#227'o...'
     end
-    object EditNome_cadastro: TEdit
+    object EditNomeFuncionarios: TEdit
       Left = 11
-      Top = 348
+      Top = 516
       Width = 153
       Height = 23
       Color = clMenu
@@ -211,6 +201,14 @@ object Form6: TForm6
       ParentFont = False
       TabOrder = 9
       Text = 'Nome...'
+    end
+    object ButVoltarFuncionarios: TButton
+      Left = 575
+      Top = 173
+      Width = 132
+      Height = 25
+      Caption = 'HOME'
+      TabOrder = 10
     end
   end
 end
