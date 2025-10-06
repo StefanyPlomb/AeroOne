@@ -17,6 +17,7 @@ type
     FDQuery1: TFDQuery;
     DataSource1: TDataSource;
     FDPhysPgDriverLink1: TFDPhysPgDriverLink;
+    FDQueryFuncionarios: TFDQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

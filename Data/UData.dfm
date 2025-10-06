@@ -13,17 +13,22 @@ object DataModule1: TDataModule1
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
-    Left = 392
-    Top = 120
+    Left = 440
+    Top = 152
   end
   object DataSource1: TDataSource
     DataSet = FDQuery1
-    Left = 264
-    Top = 112
+    Left = 304
+    Top = 128
   end
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
     VendorLib = 'C:\AeroOne\Win32\lib\libpq.dll'
     Left = 120
     Top = 232
+  end
+  object FDQueryFuncionarios: TFDQuery
+    Connection = FDConnection1
+    Left = 328
+    Top = 264
   end
 end

@@ -65,6 +65,7 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
+      OnClick = PanelNovoFuncionarioClick
     end
     object EditBuscaFuncionarios: TEdit
       Left = 304
@@ -126,6 +127,7 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
         Top = 16
         Width = 521
         Height = 321
+        DataSource = DataModule1.DataSource1
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
