@@ -18,6 +18,7 @@ type
     Label1: TLabel;
     Image1: TImage;
     procedure Panel1Click(Sender: TObject);
+
   private
     { Private declarations }
   public
@@ -34,11 +35,12 @@ implementation
 uses
   Ugestor, UData;
 
+
 procedure TFormLogin.Panel1Click(Sender: TObject);
 begin
   DataModule1.FDQuery1.Close;
   DataModule1.FDQuery1.SQL.Clear;
-  DataModule1.FDQuery1.SQL.Add('SELECT id_usuario, nome, tipo_acesso ');
+  DataModule1.FDQuery1.SQL.Add('SELECT id_usuario, nome, cargo ');
   DataModule1.FDQuery1.SQL.Add('FROM usuarios ');
   DataModule1.FDQuery1.SQL.Add('WHERE email = :email AND senha = :senha');
 
@@ -47,21 +49,25 @@ begin
   DataModule1.FDQuery1.Open;
 
   if not DataModule1.FDQuery1.IsEmpty then
+begin
+  if DataModule1.FDQuery1.FieldByName('cargo').AsString = 'Gestor' then
   begin
-
-    case DataModule1.FDQuery1.FieldByName('tipo_acesso').AsInteger of
-      1:FormGestor.Show;
-      2: ShowMessage('Abrir tela da Aeromoça');
-      3: ShowMessage('Abrir tela do Piloto');
-      4: ShowMessage('Abrir tela do Passageiro');
-
-    end;
-
+    FormGestor.Show;
+    FormLogin.Hide;
   end
+  else if DataModule1.FDQuery1.FieldByName('cargo').AsString = 'Aeromoça' then
+    ShowMessage('Abrir tela da Aeromoça')
+  else if DataModule1.FDQuery1.FieldByName('cargo').AsString = 'Piloto' then
+    ShowMessage('Abrir tela do Piloto')
+  else if DataModule1.FDQuery1.FieldByName('cargo').AsString = 'Passageiro' then
+    ShowMessage('Abrir tela do Passageiro')
   else
-    ShowMessage('Login inválido!');
-end;
+    ShowMessage('Cargo desconhecido!');
+end
+else
+  ShowMessage('Login inválido!');
 
+end;
 
 end.
 

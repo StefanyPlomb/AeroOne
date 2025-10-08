@@ -8,27 +8,32 @@ object DataModule1: TDataModule1
       'Password=root'
       'Server=localhost'
       'DriverID=PG')
-    Left = 120
-    Top = 120
+    Left = 64
+    Top = 144
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
-    Left = 440
-    Top = 152
+    Left = 520
+    Top = 136
   end
   object DataSource1: TDataSource
     DataSet = FDQuery1
-    Left = 304
-    Top = 128
+    Left = 520
+    Top = 56
   end
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
     VendorLib = 'C:\AeroOne\Win32\lib\libpq.dll'
     Left = 120
-    Top = 232
+    Top = 24
   end
   object FDQueryFuncionarios: TFDQuery
     Connection = FDConnection1
-    Left = 328
-    Top = 264
+    Left = 512
+    Top = 384
+  end
+  object DataSourceFuncionarios: TDataSource
+    DataSet = FDQueryFuncionarios
+    Left = 504
+    Top = 296
   end
 end

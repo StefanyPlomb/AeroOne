@@ -18,6 +18,7 @@ type
     DataSource1: TDataSource;
     FDPhysPgDriverLink1: TFDPhysPgDriverLink;
     FDQueryFuncionarios: TFDQuery;
+    DataSourceFuncionarios: TDataSource;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -37,7 +38,9 @@ implementation
 procedure TDataModule1.DataModuleCreate(Sender: TObject);
 begin
   FDConnection1.Connected := True;
+  DataSourceFuncionarios.DataSet := FDQueryFuncionarios;
 end;
+
 
 end.
 

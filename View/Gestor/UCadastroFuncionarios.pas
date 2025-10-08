@@ -12,60 +12,167 @@ type
     PanelCentral_Funcionarios: TPanel;
     LabelTituloFuncionarios: TLabel;
     LabelSubtituloFuncionarios: TLabel;
-    PanelNovoFuncionario: TPanel;
+    ButNovoFuncionario: TPanel;
     EditBuscaFuncionarios: TEdit;
     PanelExcluirFuncionario: TPanel;
     PanelEditarFuncionario: TPanel;
     PanelGridFuncionario: TPanel;
     DBGridFuncionarios: TDBGrid;
     ButSalvarFuncionarios: TButton;
-    EditViewEmail: TEdit;
-    EditViewCodigo: TEdit;
+    EditEmailFuncionarios: TEdit;
     EditCargosFuncionarios: TEdit;
     EditNomeFuncionarios: TEdit;
     ButVoltarFuncionarios: TButton;
+
     procedure FormCreate(Sender: TObject);
-    procedure PanelNovoFuncionarioClick(Sender: TObject);
-
-
+    procedure ButNovoFuncionarioClick(Sender: TObject);
+    procedure ButSalvarFuncionariosClick(Sender: TObject);
+   // procedure DBGridFuncionariosCellClick(Column: TColumn);
+    procedure PanelEditarFuncionarioClick(Sender: TObject);
   private
-    { Private declarations }
+    procedure AbrirFuncionarios;
   public
-    { Public declarations }
   end;
 
 var
   FormCadastroFuncionaris: TFormCadastroFuncionaris;
+  OpcoesSalvar: Boolean = False;
+   IDSelecionado: Integer = 0;
 
 implementation
 
 {$R *.dfm}
 
-procedure TFormCadastroFuncionaris.FormCreate(Sender: TObject);
+procedure TFormCadastroFuncionaris.FormCreate(Sender: TObject);   // dx bonito
 begin
-  DataModule1.FDQueryFuncionarios.Close;
-  DataModule1.FDQueryFuncionarios.SQL.Clear;
-  DataModule1.FDQueryFuncionarios.SQL.Text := 'SELECT * FROM usuarios';
-  DataModule1.FDQueryFuncionarios.Open;
-  //DataModule1DBGridFuncionarios.DataSource1 := DataModule.DataSource1;
+
+with DBGridFuncionarios.Columns.Add do
+begin
+  FieldName := 'id_usuario';
+  Title.Caption := 'ID';
+   Title.Font.Style := [fsBold];
+   Title.Font.size := 15;
+end;
+
+ with DBGridFuncionarios.Columns.Add do
+begin
+  FieldName := 'nome';
+  Title.Caption := 'Nome do Funcionário';
+   Title.Font.Style := [fsBold];
+   Title.Font.size := 15;
+end;
+
+with DBGridFuncionarios.Columns.Add do
+begin
+  FieldName := 'email';
+  Title.Caption := 'E-mail';
+   Title.Font.Style := [fsBold];
+   Title.Font.size := 15;
+end;
+
+with DBGridFuncionarios.Columns.Add do
+begin
+  FieldName := 'cargo';
+  Title.Caption := 'Cargo';
+   Title.Font.Style := [fsBold];
+   Title.Font.size := 15;
+end;
+  AbrirFuncionarios;
+end;
+
+procedure TFormCadastroFuncionaris.AbrirFuncionarios;
+begin
+   if not DataModule1.FDQueryFuncionarios.Active then
+  begin
+    DataModule1.FDQueryFuncionarios.Close;
+    DataModule1.FDQueryFuncionarios.SQL.Text := 'SELECT * FROM usuarios';
+    DataModule1.FDQueryFuncionarios.Open;
+  end;
 
 end;
 
-
-procedure TFormCadastroFuncionaris.PanelNovoFuncionarioClick(Sender: TObject);
+procedure TFormCadastroFuncionaris.ButNovoFuncionarioClick(Sender: TObject);
 begin
- if Trim(EditNomeFuncionarios.Text) = '' then
+
+  EditNomeFuncionarios.SetFocus;
+  OpcoesSalvar := False;
+
+end;
+
+procedure TFormCadastroFuncionaris.ButSalvarFuncionariosClick(Sender: TObject);
   begin
-    ShowMessage('Digite um nome.');
+        // === INSERIR NOVO ===
+
+   if OpcoesSalvar = False then
+   begin
+
+   if (Trim(EditNomeFuncionarios.Text) = '') or    // VALIDAR
+     (Trim(EditEmailFuncionarios.Text) = '') or
+     (Trim(EditCargosFuncionarios.Text) = '') then
+  begin
+    ShowMessage('Informe um Nome, E-mail e Cargo.');
     Exit;
   end;
 
-  DataModule1.FDQueryFuncionarios.Append;
-  DataModule1.FDQueryFuncionarios.FieldByName('nome').AsString := EditNomeFuncionarios.Text;
-  DataModule1.FDQueryFuncionarios.Post;
+    DataModule1.FDQueryFuncionarios.Append;
+    DataModule1.FDQueryFuncionarios.FieldByName('nome').AsString := EditNomeFuncionarios.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('email').AsString := EditEmailFuncionarios.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('cargo').AsString := EditCargosFuncionarios.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('senha').AsString := '123';
+    DataModule1.FDQueryFuncionarios.Post;
 
-  EditNomeFuncionarios.Clear;
-  EditNomeFuncionarios.SetFocus;
+    DataModule1.FDQueryFuncionarios.Refresh;   // Atualiza
+    AbrirFuncionarios;
+
+    EditNomeFuncionarios.Clear;
+    EditEmailFuncionarios.Clear;
+    EditCargosFuncionarios.Clear;
+    EditNomeFuncionarios.SetFocus;
+ end
+ else     // === EDITAR EXISTENTE ===
+  begin
+    DataModule1.FDQueryFuncionarios.Edit;
+    DataModule1.FDQueryFuncionarios.FieldByName('nome').AsString := EditNomeFuncionarios.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('email').AsString := EditEmailFuncionarios.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('cargo').AsString := EditCargosFuncionarios.Text;
+    DataModule1.FDQueryFuncionarios.Post;
+
+    ShowMessage('Funcionário atualizado com sucesso!');
+    DataModule1.FDQueryFuncionarios.Refresh;
+  end;
+
+end;
+       {teste}
+
+//procedure TFormCadastroFuncionaris.DBGridFuncionariosCellClick(Column: TColumn);
+//begin
+//  EditNomeFuncionarios.Text := DataModule1.FDQueryFuncionarios.FieldByName('nome').AsString;
+//  EditEmailFuncionarios.Text := DataModule1.FDQueryFuncionarios.FieldByName('email').AsString;
+//  EditCargosFuncionarios.Text := DataModule1.FDQueryFuncionarios.FieldByName('cargo').AsString;
+//
+//end;
+
+//procedure TFormCadastroFuncionaris.PanelEditarFuncionarioClick(Sender: TObject);
+//begin
+//  DataModule1.FDQueryFuncionarios.Edit;
+//  DataModule1.FDQueryFuncionarios.FieldByName('nome').AsString := EditNomeFuncionarios.Text;
+//  DataModule1.FDQueryFuncionarios.FieldByName('email').AsString := EditEmailFuncionarios.Text;
+//  DataModule1.FDQueryFuncionarios.FieldByName('cargo').AsString := EditCargosFuncionarios.Text;
+//  DataModule1.FDQueryFuncionarios.Post;
+//
+//  ShowMessage('Funcionário atualizado com sucesso!');
+//  DataModule1.FDQueryFuncionarios.Refresh;
+//end;
+
+procedure TFormCadastroFuncionaris.PanelEditarFuncionarioClick(Sender: TObject);
+begin
+  EditNomeFuncionarios.Text := DataModule1.FDQueryFuncionarios.FieldByName('nome').AsString;
+  EditEmailFuncionarios.Text := DataModule1.FDQueryFuncionarios.FieldByName('email').AsString;
+  EditCargosFuncionarios.Text := DataModule1.FDQueryFuncionarios.FieldByName('cargo').AsString;
+
+  IDSelecionado := DataModule1.FDQueryFuncionarios.FieldByName('id_usuario').AsInteger;
+   OpcoesSalvar := True;
 end;
 
 end.
+

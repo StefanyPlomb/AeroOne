@@ -10,6 +10,7 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
   object PanelCentral_Funcionarios: TPanel
     Left = 0
@@ -20,8 +21,6 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 811
-    ExplicitHeight = 390
     object LabelTituloFuncionarios: TLabel
       Left = 11
       Top = 16
@@ -50,9 +49,9 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
       Font.Style = []
       ParentFont = False
     end
-    object PanelNovoFuncionario: TPanel
+    object ButNovoFuncionario: TPanel
       Left = 575
-      Top = 379
+      Top = 200
       Width = 132
       Height = 38
       Caption = 'Novo Funcion'#225'rio'
@@ -65,7 +64,7 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
-      OnClick = PanelNovoFuncionarioClick
+      OnClick = ButNovoFuncionarioClick
     end
     object EditBuscaFuncionarios: TEdit
       Left = 304
@@ -84,9 +83,9 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
     end
     object PanelExcluirFuncionario: TPanel
       Left = 575
-      Top = 308
+      Top = 356
       Width = 132
-      Height = 30
+      Height = 38
       Caption = 'Excluir'
       Color = 5975552
       Font.Charset = DEFAULT_CHARSET
@@ -100,9 +99,9 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
     end
     object PanelEditarFuncionario: TPanel
       Left = 575
-      Top = 238
+      Top = 278
       Width = 132
-      Height = 30
+      Height = 38
       Caption = 'Editar'
       Color = 5975552
       Font.Charset = DEFAULT_CHARSET
@@ -113,6 +112,7 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
       ParentBackground = False
       ParentFont = False
       TabOrder = 3
+      OnClick = PanelEditarFuncionarioClick
     end
     object PanelGridFuncionario: TPanel
       Left = 11
@@ -127,7 +127,13 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
         Top = 16
         Width = 521
         Height = 321
-        DataSource = DataModule1.DataSource1
+        DataSource = DataModule1.DataSourceFuncionarios
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -138,13 +144,14 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
     end
     object ButSalvarFuncionarios: TButton
       Left = 575
-      Top = 445
+      Top = 432
       Width = 132
-      Height = 25
+      Height = 38
       Caption = 'Salvar'
       TabOrder = 5
+      OnClick = ButSalvarFuncionariosClick
     end
-    object EditViewEmail: TEdit
+    object EditEmailFuncionarios: TEdit
       Left = 186
       Top = 516
       Width = 153
@@ -159,23 +166,8 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
       TabOrder = 6
       Text = 'E-mail...'
     end
-    object EditViewCodigo: TEdit
-      Left = 490
-      Top = 516
-      Width = 58
-      Height = 23
-      Color = clMenu
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clGray
-      Font.Height = -12
-      Font.Name = 'Segoe UI'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 7
-      Text = 'C'#243'digo'
-    end
     object EditCargosFuncionarios: TEdit
-      Left = 369
+      Left = 364
       Top = 516
       Width = 104
       Height = 23
@@ -186,7 +178,7 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
-      TabOrder = 8
+      TabOrder = 7
       Text = 'Funs'#227'o...'
     end
     object EditNomeFuncionarios: TEdit
@@ -201,16 +193,16 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
-      TabOrder = 9
+      TabOrder = 8
       Text = 'Nome...'
     end
     object ButVoltarFuncionarios: TButton
       Left = 575
-      Top = 173
+      Top = 133
       Width = 132
-      Height = 25
+      Height = 38
       Caption = 'HOME'
-      TabOrder = 10
+      TabOrder = 9
     end
   end
 end
