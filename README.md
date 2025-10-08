@@ -22,3 +22,5 @@ O objetivo é proporcionar praticidade tanto para os passageiros quanto para as 
 - **Delphi / Pascal** → desenvolvimento da aplicação  
 - **PostgreSQL** → banco de dados relacional.
   
+## 📊 Fluxograma 
+- **Link: https://www.canva.com/design/DAG1PJW9g3s/3xcCjGo_RCROojQ4_KvrEA/edit?utm_content=DAG1PJW9g3s&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
