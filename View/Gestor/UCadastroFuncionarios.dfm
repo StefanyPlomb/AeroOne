@@ -96,6 +96,7 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
       ParentBackground = False
       ParentFont = False
       TabOrder = 2
+      OnClick = PanelExcluirFuncionarioClick
     end
     object PanelEditarFuncionario: TPanel
       Left = 575

@@ -27,8 +27,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure ButNovoFuncionarioClick(Sender: TObject);
     procedure ButSalvarFuncionariosClick(Sender: TObject);
-   // procedure DBGridFuncionariosCellClick(Column: TColumn);
     procedure PanelEditarFuncionarioClick(Sender: TObject);
+    procedure PanelExcluirFuncionarioClick(Sender: TObject);
   private
     procedure AbrirFuncionarios;
   public
@@ -121,7 +121,7 @@ procedure TFormCadastroFuncionaris.ButSalvarFuncionariosClick(Sender: TObject);
     DataModule1.FDQueryFuncionarios.FieldByName('senha').AsString := '123';
     DataModule1.FDQueryFuncionarios.Post;
 
-    DataModule1.FDQueryFuncionarios.Refresh;   // Atualiza
+    DataModule1.FDQueryFuncionarios.Refresh;
     AbrirFuncionarios;
 
     EditNomeFuncionarios.Clear;
@@ -142,27 +142,6 @@ procedure TFormCadastroFuncionaris.ButSalvarFuncionariosClick(Sender: TObject);
   end;
 
 end;
-       {teste}
-
-//procedure TFormCadastroFuncionaris.DBGridFuncionariosCellClick(Column: TColumn);
-//begin
-//  EditNomeFuncionarios.Text := DataModule1.FDQueryFuncionarios.FieldByName('nome').AsString;
-//  EditEmailFuncionarios.Text := DataModule1.FDQueryFuncionarios.FieldByName('email').AsString;
-//  EditCargosFuncionarios.Text := DataModule1.FDQueryFuncionarios.FieldByName('cargo').AsString;
-//
-//end;
-
-//procedure TFormCadastroFuncionaris.PanelEditarFuncionarioClick(Sender: TObject);
-//begin
-//  DataModule1.FDQueryFuncionarios.Edit;
-//  DataModule1.FDQueryFuncionarios.FieldByName('nome').AsString := EditNomeFuncionarios.Text;
-//  DataModule1.FDQueryFuncionarios.FieldByName('email').AsString := EditEmailFuncionarios.Text;
-//  DataModule1.FDQueryFuncionarios.FieldByName('cargo').AsString := EditCargosFuncionarios.Text;
-//  DataModule1.FDQueryFuncionarios.Post;
-//
-//  ShowMessage('Funcionário atualizado com sucesso!');
-//  DataModule1.FDQueryFuncionarios.Refresh;
-//end;
 
 procedure TFormCadastroFuncionaris.PanelEditarFuncionarioClick(Sender: TObject);
 begin
@@ -172,6 +151,17 @@ begin
 
   IDSelecionado := DataModule1.FDQueryFuncionarios.FieldByName('id_usuario').AsInteger;
    OpcoesSalvar := True;
+end;
+
+procedure TFormCadastroFuncionaris.PanelExcluirFuncionarioClick(
+  Sender: TObject);
+begin
+   if MessageDlg('Deseja realmente excluir este funcionário?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  begin
+    DataModule1.FDQueryFuncionarios.Delete;
+    DataModule1.FDQueryFuncionarios.Refresh;
+    ShowMessage('Funcionário excluído com sucesso!');
+  end;
 end;
 
 end.

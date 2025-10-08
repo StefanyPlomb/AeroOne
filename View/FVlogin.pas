@@ -49,25 +49,36 @@ begin
   DataModule1.FDQuery1.Open;
 
   if not DataModule1.FDQuery1.IsEmpty then
-begin
-  if DataModule1.FDQuery1.FieldByName('cargo').AsString = 'Gestor' then
   begin
-    FormGestor.Show;
-    FormLogin.Hide;
-  end
-  else if DataModule1.FDQuery1.FieldByName('cargo').AsString = 'Aeromoça' then
-    ShowMessage('Abrir tela da Aeromoça')
-  else if DataModule1.FDQuery1.FieldByName('cargo').AsString = 'Piloto' then
-    ShowMessage('Abrir tela do Piloto')
-  else if DataModule1.FDQuery1.FieldByName('cargo').AsString = 'Passageiro' then
-    ShowMessage('Abrir tela do Passageiro')
-  else
-    ShowMessage('Cargo desconhecido!');
-end
-else
-  ShowMessage('Login inválido!');
+    if DataModule1.FDQuery1.FieldByName('cargo').AsString = 'Gestor' then
+    begin
+      FormGestor.Show;
+      FormLogin.Hide;
+    end
+    else if DataModule1.FDQuery1.FieldByName('cargo').AsString = 'AeroMoca' then
+    begin
+      //FormGestor.Show;
+      //FormLogin.Hide;
+       ShowMessage('Abrir tela da Aeromoça')
+    end
+    else if DataModule1.FDQuery1.FieldByName('cargo').AsString = 'Piloto' then
+    begin
+      //FormGestor.Show;
+      //FormLogin.Hide;
+       ShowMessage('Abrir tela da Piloto')
+    end
+    else
+     begin
+      //FormGestor.Show;
+      //FormLogin.Hide;
+       ShowMessage('Abrir tela do Passageiro')
+    end
 
-end;
+  end
+  else
+    ShowMessage('Login inválido!');
+
+  end;
 
 end.
 
