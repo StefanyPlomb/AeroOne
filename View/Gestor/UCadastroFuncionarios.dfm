@@ -21,6 +21,8 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
+    ExplicitWidth = 748
+    ExplicitHeight = 590
     object LabelTituloFuncionarios: TLabel
       Left = 11
       Top = 16
@@ -154,7 +156,7 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
     end
     object EditEmailFuncionarios: TEdit
       Left = 186
-      Top = 516
+      Top = 508
       Width = 153
       Height = 23
       Color = clMenu
@@ -168,8 +170,8 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
       Text = 'E-mail...'
     end
     object EditCargosFuncionarios: TEdit
-      Left = 364
-      Top = 516
+      Left = 372
+      Top = 508
       Width = 104
       Height = 23
       Color = clMenu
@@ -184,7 +186,7 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
     end
     object EditNomeFuncionarios: TEdit
       Left = 11
-      Top = 516
+      Top = 508
       Width = 153
       Height = 23
       Color = clMenu

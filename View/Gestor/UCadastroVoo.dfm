@@ -20,8 +20,8 @@ object FormCadastroVoos: TFormCadastroVoos
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 814
-    ExplicitHeight = 444
+    ExplicitWidth = 748
+    ExplicitHeight = 590
     object LabelTituloVoos: TLabel
       Left = 16
       Top = 8
@@ -48,17 +48,6 @@ object FormCadastroVoos: TFormCadastroVoos
       Font.Style = []
       ParentFont = False
     end
-    object StringGridCadVoos: TStringGrid
-      Left = 16
-      Top = 80
-      Width = 591
-      Height = 233
-      ColCount = 9
-      FixedColor = 12615680
-      RowCount = 1
-      FixedRows = 0
-      TabOrder = 1
-    end
     object EditBuscaVoos: TEdit
       Left = 390
       Top = 51
@@ -79,7 +68,7 @@ object FormCadastroVoos: TFormCadastroVoos
       Top = 330
       Width = 150
       Height = 23
-      TabOrder = 2
+      TabOrder = 1
       Text = 'De'
     end
     object EditCodigoVoos: TEdit
@@ -87,7 +76,7 @@ object FormCadastroVoos: TFormCadastroVoos
       Top = 330
       Width = 79
       Height = 23
-      TabOrder = 3
+      TabOrder = 2
       Text = 'C'#243'digo'
     end
     object EditAeroMVoos: TEdit
@@ -95,7 +84,7 @@ object FormCadastroVoos: TFormCadastroVoos
       Top = 370
       Width = 150
       Height = 23
-      TabOrder = 4
+      TabOrder = 3
       Text = 'AeroMo'#231'o(a)'
     end
     object EditDestinoVoos: TEdit
@@ -103,7 +92,7 @@ object FormCadastroVoos: TFormCadastroVoos
       Top = 330
       Width = 150
       Height = 23
-      TabOrder = 5
+      TabOrder = 4
       Text = 'Para'
     end
     object EditPVoos: TEdit
@@ -111,7 +100,7 @@ object FormCadastroVoos: TFormCadastroVoos
       Top = 370
       Width = 150
       Height = 23
-      TabOrder = 6
+      TabOrder = 5
       Text = 'Piloto'
     end
     object PanelSalvarCadVoos: TPanel
@@ -128,7 +117,8 @@ object FormCadastroVoos: TFormCadastroVoos
       Font.Style = []
       ParentBackground = False
       ParentFont = False
-      TabOrder = 7
+      TabOrder = 6
+      OnClick = PanelSalvarCadVoosClick
     end
     object PanelAlterarCadVoos: TPanel
       Left = 631
@@ -144,7 +134,8 @@ object FormCadastroVoos: TFormCadastroVoos
       Font.Style = []
       ParentBackground = False
       ParentFont = False
-      TabOrder = 8
+      TabOrder = 7
+      OnClick = PanelAlterarCadVoosClick
     end
     object PanelExcluirCadVoos: TPanel
       Left = 631
@@ -160,7 +151,8 @@ object FormCadastroVoos: TFormCadastroVoos
       Font.Style = []
       ParentBackground = False
       ParentFont = False
-      TabOrder = 9
+      TabOrder = 8
+      OnClick = PanelExcluirCadVoosClick
     end
     object PanelNovoCadVoos: TPanel
       Left = 631
@@ -176,7 +168,36 @@ object FormCadastroVoos: TFormCadastroVoos
       Font.Style = []
       ParentBackground = False
       ParentFont = False
+      TabOrder = 9
+      OnClick = PanelNovoCadVoosClick
+    end
+    object DBGridCadastroVoos: TDBGrid
+      Left = 18
+      Top = 88
+      Width = 607
+      Height = 236
       TabOrder = 10
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -12
+      TitleFont.Name = 'Segoe UI'
+      TitleFont.Style = []
+    end
+    object EditDataPartida: TEdit
+      Left = 358
+      Top = 370
+      Width = 121
+      Height = 23
+      TabOrder = 11
+      Text = 'EditDataPartida'
+    end
+    object EditHorarioVoos: TEdit
+      Left = 18
+      Top = 408
+      Width = 121
+      Height = 23
+      TabOrder = 12
+      Text = 'EditHorarioVoos'
     end
   end
 end

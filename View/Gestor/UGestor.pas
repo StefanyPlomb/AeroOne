@@ -52,20 +52,12 @@ implementation
 
 {$R *.dfm}
 
- procedure TFormGestor.FormCreate;    // erro
- begin
-  //FormLogin.DestroyComponents;
-    FormLogin.Destroy;
- end;
-
-
 
 
 procedure TFormGestor.PanelFuncionarios_GestorClick(Sender: TObject);
 begin
 
   AbrirForm(TFormCadastroFuncionaris);
-
 
 end;
 

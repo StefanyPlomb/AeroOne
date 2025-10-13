@@ -101,7 +101,7 @@ end;
 
 procedure TFormCadastroFuncionaris.ButSalvarFuncionariosClick(Sender: TObject);
   begin
-        // === INSERIR NOVO ===
+           // === INSERIR NOVO ===
 
    if OpcoesSalvar = False then
    begin
@@ -153,8 +153,7 @@ begin
    OpcoesSalvar := True;
 end;
 
-procedure TFormCadastroFuncionaris.PanelExcluirFuncionarioClick(
-  Sender: TObject);
+procedure TFormCadastroFuncionaris.PanelExcluirFuncionarioClick(Sender: TObject);
 begin
    if MessageDlg('Deseja realmente excluir este funcionário?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
   begin
