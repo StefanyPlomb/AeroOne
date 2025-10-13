@@ -18,7 +18,8 @@ uses
   UCadastroFuncionarios in 'View\Gestor\UCadastroFuncionarios.pas' {FormCadastroFuncionaris},
   UGestor in 'View\Gestor\UGestor.pas' {FormGestor},
   UViewVoo in 'View\Gestor\UViewVoo.pas' {FormVoos},
-  UCadastroVoo in 'View\Gestor\UCadastroVoo.pas' {FormCadastroVoos};
+  UCadastroVoo in 'View\Gestor\UCadastroVoo.pas' {FormCadastroVoos},
+  UAeromoc in 'View\Funcionário\UAeromoc.pas' {FormAeroMoc};
 
 {$R *.res}
 
@@ -34,6 +35,7 @@ begin
   Application.CreateForm(TFormGestor, FormGestor);
   Application.CreateForm(TFormVoos, FormVoos);
   Application.CreateForm(TFormCadastroVoos, FormCadastroVoos);
+  Application.CreateForm(TFormAeroMoc, FormAeroMoc);
   // login
   Application.CreateForm(TFormGestor, FormGestor);
   //Application.CreateForm(TForm8, Form8);

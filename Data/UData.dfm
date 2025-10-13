@@ -1,7 +1,6 @@
 object DataModule1: TDataModule1
-  Height = 600
-  Width = 800
-  PixelsPerInch = 120
+  Height = 480
+  Width = 640
   object FDConnection1: TFDConnection
     Params.Strings = (
       'Database=AeroOne'
@@ -9,42 +8,42 @@ object DataModule1: TDataModule1
       'Password=root'
       'Server=localhost'
       'DriverID=PG')
-    Left = 152
-    Top = 20
+    Left = 122
+    Top = 16
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
-    Left = 658
-    Top = 130
+    Left = 526
+    Top = 104
   end
   object DataSource1: TDataSource
     DataSet = FDQuery1
-    Left = 658
-    Top = 46
+    Left = 526
+    Top = 37
   end
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
     VendorLib = 'C:\AeroOne\Win32\lib\libpq.dll'
-    Left = 30
-    Top = 22
+    Left = 24
+    Top = 18
   end
   object FDQueryFuncionarios: TFDQuery
     Connection = FDConnection1
-    Left = 240
-    Top = 304
+    Left = 192
+    Top = 243
   end
   object DataSourceFuncionarios: TDataSource
     DataSet = FDQueryFuncionarios
-    Left = 70
-    Top = 304
+    Left = 56
+    Top = 243
   end
   object DataSourceVoos: TDataSource
     DataSet = FDQueryVoos
-    Left = 56
-    Top = 392
+    Left = 45
+    Top = 314
   end
   object FDQueryVoos: TFDQuery
     Connection = FDConnection1
-    Left = 240
-    Top = 400
+    Left = 192
+    Top = 320
   end
 end

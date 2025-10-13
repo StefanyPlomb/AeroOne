@@ -10,6 +10,7 @@ object FormCadastroVoos: TFormCadastroVoos
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
   object PanelCentralVoos: TPanel
     Left = 0
@@ -20,8 +21,6 @@ object FormCadastroVoos: TFormCadastroVoos
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 748
-    ExplicitHeight = 590
     object LabelTituloVoos: TLabel
       Left = 16
       Top = 8
@@ -176,6 +175,7 @@ object FormCadastroVoos: TFormCadastroVoos
       Top = 88
       Width = 607
       Height = 236
+      DataSource = DataModule1.DataSourceVoos
       TabOrder = 10
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText

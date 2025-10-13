@@ -40,7 +40,7 @@ type
 var
   FormCadastroVoos: TFormCadastroVoos;
   OpcoesSalvar: Boolean = false;
-  IDselecionado: Integer = 0;
+  IDSelecionado: Integer = 0;
 
 implementation
 
@@ -50,12 +50,10 @@ implementation
 procedure TFormCadastroVoos.FormCreate(Sender: TObject);
 begin
 
- AbrirVoos;
-
 with DBGridCadastroVoos.Columns.Add do
 begin
-  FieldName := 'id_voos';
-  Title.Caption := 'ID';
+  FieldName := 'origem';
+  Title.Caption := 'Partida';
    Title.Font.Style := [fsBold];
    Title.Font.size := 15;
 end;
@@ -69,6 +67,8 @@ begin
     DataModule1.FDQueryVoos.SQL.Text := 'SELECT * FROM voos';
     DataModule1.FDQueryVoos.Open;
   end;
+
+   //AbrirVoos;
 
 end;
 
@@ -93,13 +93,13 @@ begin
     end;
 
       DataModule1.FDQueryVoos.Append;
-      DataModule1.FDQueryVoos.FieldByName('partida').AsString := EditPartidaVoos.Text;
+      DataModule1.FDQueryVoos.FieldByName('origem').AsString := EditPartidaVoos.Text;
       DataModule1.FDQueryVoos.FieldByName('destino').AsString := EditDestinoVoos.Text;
-      DataModule1.FDQueryVoos.FieldByName('data').AsString := EditDataPartida.Text;
-      DataModule1.FDQueryVoos.FieldByName('horario').AsString := EditHorarioVoos.Text;
+      DataModule1.FDQueryVoos.FieldByName('hora_partida').AsString := EditHorarioVoos.Text;
+      DataModule1.FDQueryVoos.FieldByName('hora_chegada').AsString := EditHorarioVoos.Text;
       DataModule1.FDQueryVoos.Post;
 
-      DataModule1.FDQueryFuncionarios.Refresh;
+      DataModule1.FDQueryVoos.Refresh;
       AbrirVoos;
 
       EditPartidaVoos.Clear;
@@ -112,10 +112,10 @@ begin
   begin
 
     DataModule1.FDQueryVoos.Edit;
-    DataModule1.FDQueryVoos.FieldByName('partida').AsString := EditPartidaVoos.Text;
+    DataModule1.FDQueryVoos.FieldByName('origem').AsString := EditPartidaVoos.Text;
     DataModule1.FDQueryVoos.FieldByName('destino').AsString := EditDestinoVoos.Text;
-    DataModule1.FDQueryVoos.FieldByName('data').AsString := EditDataPartida.Text;
-    DataModule1.FDQueryVoos.FieldByName('horario').AsString := EditHorarioVoos.Text;
+    DataModule1.FDQueryVoos.FieldByName('data_partida').AsString := EditDataPartida.Text;
+    DataModule1.FDQueryVoos.FieldByName('hora_chegada').AsString := EditHorarioVoos.Text;
     DataModule1.FDQueryVoos.Post;
 
     ShowMessage('Voo atualizado com sucesso!');
@@ -127,12 +127,12 @@ end;
 procedure TFormCadastroVoos.PanelAlterarCadVoosClick(Sender: TObject);
 begin
 
-  EditPartidaVoos.Text :=  DataModule1.FDQueryVoos.FieldByName('partida').AsString;
+  EditPartidaVoos.Text :=  DataModule1.FDQueryVoos.FieldByName('origem').AsString;
   EditDestinoVoos.Text :=  DataModule1.FDQueryVoos.FieldByName('destino').AsString;
-  EditDataPartida.Text :=  DataModule1.FDQueryVoos.FieldByName('data').AsString;
-  EditHorarioVoos.Text :=  DataModule1.FDQueryVoos.FieldByName('horario').AsString;
+  EditDataPartida.Text :=  DataModule1.FDQueryVoos.FieldByName('data_partida').AsString;
+  EditHorarioVoos.Text :=  DataModule1.FDQueryVoos.FieldByName('hora_chegada').AsString;
 
-  IDSelecionado := DataModule1.FDQueryFuncionarios.FieldByName('id_voos').AsInteger;
+  IDSelecionado := DataModule1.FDQueryVoos.FieldByName('id_voo').AsInteger;
    OpcoesSalvar := True;
 
 end;

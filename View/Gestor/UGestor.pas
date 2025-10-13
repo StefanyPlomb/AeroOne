@@ -31,7 +31,6 @@ type
     NumDashCheck_Gestor: TLabel;
     LabelDash_Gestor: TLabel;
     PanelDados_Gestor: TPanel;
-    procedure FormCreate;
     procedure PanelFuncionarios_GestorClick(Sender: TObject);
     procedure AbrirForm (FrmClass: TFormClass);
     procedure PanelLogout_GestorClick(Sender: TObject);

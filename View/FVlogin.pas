@@ -33,7 +33,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Ugestor, UData;
+  Ugestor, UData, UAeromoc;
 
 
 procedure TFormLogin.Panel1Click(Sender: TObject);
@@ -57,9 +57,8 @@ begin
     end
     else if DataModule1.FDQuery1.FieldByName('cargo').AsString = 'AeroMoca' then
     begin
-      //FormGestor.Show;
-      //FormLogin.Hide;
-       ShowMessage('Abrir tela da Aeromoça')
+       FormAeroMoc.Show;
+       FormLogin.Hide;
     end
     else if DataModule1.FDQuery1.FieldByName('cargo').AsString = 'Piloto' then
     begin

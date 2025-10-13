@@ -165,6 +165,10 @@
             <Form>FormCadastroVoos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="View\Funcionário\UAeromoc.pas">
+            <Form>FormAeroMoc</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <None Include="Project1.dpr"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

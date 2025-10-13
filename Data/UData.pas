@@ -41,6 +41,7 @@ procedure TDataModule1.DataModuleCreate(Sender: TObject);
 begin
   FDConnection1.Connected := True;
   DataSourceFuncionarios.DataSet := FDQueryFuncionarios;
+   DataSourceVoos.DataSet := FDQueryVoos;
 end;
 
 
