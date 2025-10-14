@@ -21,6 +21,8 @@ object FormCadastroVoos: TFormCadastroVoos
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
+    ExplicitWidth = 748
+    ExplicitHeight = 590
     object LabelTituloVoos: TLabel
       Left = 16
       Top = 8
@@ -198,6 +200,22 @@ object FormCadastroVoos: TFormCadastroVoos
       Height = 23
       TabOrder = 12
       Text = 'EditHorarioVoos'
+    end
+    object Edit1: TEdit
+      Left = 145
+      Top = 408
+      Width = 121
+      Height = 23
+      TabOrder = 13
+      Text = 'EditHorarioVoos'
+    end
+    object Edit2: TEdit
+      Left = 290
+      Top = 408
+      Width = 121
+      Height = 23
+      TabOrder = 14
+      Text = 'EditDataPartida'
     end
   end
 end

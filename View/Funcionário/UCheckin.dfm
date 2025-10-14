@@ -21,8 +21,6 @@ object FormCheckin: TFormCheckin
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = 8
-    ExplicitTop = -8
     object LabelSubtituloCheck: TLabel
       Left = 18
       Top = 52
@@ -67,7 +65,7 @@ object FormCheckin: TFormCheckin
       Left = 424
       Top = 43
       Width = 201
-      Height = 29
+      Height = 23
       TabOrder = 1
       Text = 'Busca...'
     end
@@ -94,6 +92,7 @@ object FormCheckin: TFormCheckin
       Height = 33
       Caption = 'Iniciar'
       TabOrder = 3
+      OnClick = Button1Click
     end
     object PanelAbrir: TPanel
       Left = 0

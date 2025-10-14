@@ -10,6 +10,7 @@ object FormVoosAeroMo: TFormVoosAeroMo
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
   object PanelCentral_AeroMo: TPanel
     Left = 0
@@ -20,7 +21,6 @@ object FormVoosAeroMo: TFormVoosAeroMo
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = -8
     object LabelSubtituloVoo: TLabel
       Left = 10
       Top = 60
@@ -2090,11 +2090,13 @@ object FormVoosAeroMo: TFormVoosAeroMo
         00181000000000302000000000604000000000C0800000000080810099BAF197
         74C1E0B00000000049454E44AE426082}
     end
-    object DBGrid1: TDBGrid
+    object DBGridVoosDisponiveis: TDBGrid
       Left = 11
       Top = 183
       Width = 494
       Height = 137
+      DataSource = DataModule1.DataSourceVoos
+      ReadOnly = True
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
@@ -2107,6 +2109,8 @@ object FormVoosAeroMo: TFormVoosAeroMo
       Top = 432
       Width = 494
       Height = 145
+      DataSource = DataModule1.DataSourceAtribuidos
+      ReadOnly = True
       TabOrder = 1
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
@@ -2118,7 +2122,7 @@ object FormVoosAeroMo: TFormVoosAeroMo
       Left = 408
       Top = 43
       Width = 201
-      Height = 29
+      Height = 23
       TabOrder = 2
       Text = 'Busca...'
     end
@@ -2153,6 +2157,7 @@ object FormVoosAeroMo: TFormVoosAeroMo
       ParentBackground = False
       ParentFont = False
       TabOrder = 4
+      OnClick = ButConectaClick
     end
     object ButDesconecta: TPanel
       Left = 519

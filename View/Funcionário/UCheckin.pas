@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  Data.DB, Vcl.Grids, Vcl.DBGrids, UDash;
+  Data.DB, Vcl.Grids, Vcl.DBGrids, UDash, UIniciarCheckin;
 type
   TFormCheckin = class(TForm)
     PaneleCentral_AeroMo: TPanel;
@@ -17,6 +17,7 @@ type
     Button1: TButton;
     PanelAbrir: TPanel;
     procedure FormCreate(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     procedure AbrirDash(AFormClass: TFormClass);
   public
@@ -26,6 +27,9 @@ var
   FormCheckin: TFormCheckin;
 
 implementation
+
+uses
+  UAeromoc;
 
 {$R *.dfm}
 
@@ -41,6 +45,12 @@ begin
   Frm.Align := alClient;
   Frm.Parent := PanelAbrir;
   Frm.Show;
+end;
+
+procedure TFormCheckin.Button1Click(Sender: TObject);
+begin
+   FormAeroMoc.AbrirForm(TFormCheckin_Iniciado);
+  // Self.Close;
 end;
 
 procedure TFormCheckin.FormCreate(Sender: TObject);

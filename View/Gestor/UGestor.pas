@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
-  Vcl.StdCtrls, Vcl.Imaging.jpeg,FVLogin,UCadastroFuncionarios, UViewVoo, FVrelatorios,UData;
+  Vcl.StdCtrls, Vcl.Imaging.jpeg,FVLogin,UCadastroFuncionarios, UCadastroVoo, FVrelatorios,UData;
 
 type
   TFormGestor = class(TForm)
@@ -18,7 +18,6 @@ type
     ImgLogout_Gestor: TImage;
     PanelLateral_Gestor: TPanel;
     PanelFuncionarios_Gestor: TPanel;
-    PanelReservas_Gestor: TPanel;
     PanelVoos_Gestor: TPanel;
     PanelRelatorios_Gestor: TPanel;
     PanelCentral_Gestor: TPanel;
@@ -73,7 +72,7 @@ end;
 
 procedure TFormGestor.PanelVoos_GestorClick(Sender: TObject);
 begin
-  AbrirForm(TFormVoos);
+  AbrirForm(TFormCadastroVoos);
 end;
 
 procedure TFormGestor.AbrirForm(FrmClass: TFormClass);

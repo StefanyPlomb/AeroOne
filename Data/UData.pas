@@ -21,10 +21,13 @@ type
     DataSourceFuncionarios: TDataSource;
     DataSourceVoos: TDataSource;
     FDQueryVoos: TFDQuery;
+    DataSourceAtribuidos: TDataSource;
+    FDQueryAtribuidos: TFDQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
+     UsuarioLogadoID: Integer;
     { Public declarations }
   end;
 

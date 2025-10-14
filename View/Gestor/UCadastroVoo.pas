@@ -25,6 +25,8 @@ type
     DBGridCadastroVoos: TDBGrid;
     EditDataPartida: TEdit;
     EditHorarioVoos: TEdit;
+    Edit1: TEdit;
+    Edit2: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure PanelNovoCadVoosClick(Sender: TObject);
     procedure PanelSalvarCadVoosClick(Sender: TObject);
@@ -47,29 +49,61 @@ implementation
 {$R *.dfm}
 
 
+
 procedure TFormCadastroVoos.FormCreate(Sender: TObject);
 begin
 
-with DBGridCadastroVoos.Columns.Add do
-begin
-  FieldName := 'origem';
-  Title.Caption := 'Partida';
-   Title.Font.Style := [fsBold];
-   Title.Font.size := 15;
-end;
+ with DBGridCadastroVoos.Columns.Add do
+  begin
+    FieldName := 'origem';
+    Title.Caption := 'Partida';
+    Title.Font.Style := [fsBold];
+    Title.Font.Size := 15;
+  end;
+
+  with DBGridCadastroVoos.Columns.Add do
+  begin
+    FieldName := 'destino';
+    Title.Caption := 'Destino';
+    Title.Font.Style := [fsBold];
+    Title.Font.Size := 15;
+  end;
+
+  with DBGridCadastroVoos.Columns.Add do
+  begin
+    FieldName := 'data_partida';
+    Title.Caption := 'Data Partida';
+    Title.Font.Style := [fsBold];
+    Title.Font.Size := 15;
+  end;
+
+  with DBGridCadastroVoos.Columns.Add do
+  begin
+    FieldName := 'hora_partida';
+    Title.Caption := 'Hora Partida';
+    Title.Font.Style := [fsBold];
+    Title.Font.Size := 15;
+  end;
+
+  with DBGridCadastroVoos.Columns.Add do
+  begin
+    FieldName := 'hora_chegada';
+    Title.Caption := 'Hora Chegada';
+    Title.Font.Style := [fsBold];
+    Title.Font.Size := 15;
+  end;
+
+  AbrirVoos;
 end;
 
 procedure TFormCadastroVoos.AbrirVoos;
 begin
- if not DataModule1.FDQueryVoos.Active then
+   if not DataModule1.FDQueryVoos.Active then
   begin
     DataModule1.FDQueryVoos.Close;
     DataModule1.FDQueryVoos.SQL.Text := 'SELECT * FROM voos';
     DataModule1.FDQueryVoos.Open;
   end;
-
-   //AbrirVoos;
-
 end;
 
 procedure TFormCadastroVoos.PanelNovoCadVoosClick(Sender: TObject);
@@ -93,10 +127,13 @@ begin
     end;
 
       DataModule1.FDQueryVoos.Append;
+      DataModule1.FDQueryVoos.FieldByName('codigo_voo').AsString := EditCodigoVoos.Text;
       DataModule1.FDQueryVoos.FieldByName('origem').AsString := EditPartidaVoos.Text;
       DataModule1.FDQueryVoos.FieldByName('destino').AsString := EditDestinoVoos.Text;
+      DataModule1.FDQueryVoos.FieldByName('data_partida').AsString := EditDataPartida.Text;
+      DataModule1.FDQueryVoos.FieldByName('data_chegada').AsString := Edit2.Text;
       DataModule1.FDQueryVoos.FieldByName('hora_partida').AsString := EditHorarioVoos.Text;
-      DataModule1.FDQueryVoos.FieldByName('hora_chegada').AsString := EditHorarioVoos.Text;
+      DataModule1.FDQueryVoos.FieldByName('hora_chegada').AsString := Edit1.Text;
       DataModule1.FDQueryVoos.Post;
 
       DataModule1.FDQueryVoos.Refresh;
@@ -146,5 +183,9 @@ begin
     ShowMessage('Voo excluído com sucesso!');
   end;
 end;
+
+
+
+
 
 end.

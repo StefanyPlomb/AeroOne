@@ -20,6 +20,7 @@ object FormGestor: TFormGestor
     Color = 5581568
     ParentBackground = False
     TabOrder = 0
+    ExplicitWidth = 1024
     object LabelSaida_Gestor: TLabel
       Left = 273
       Top = 27
@@ -133,6 +134,7 @@ object FormGestor: TFormGestor
     Color = 5581568
     ParentBackground = False
     TabOrder = 1
+    ExplicitHeight = 629
     object PanelFuncionarios_Gestor: TPanel
       Left = 17
       Top = 72
@@ -150,22 +152,6 @@ object FormGestor: TFormGestor
       TabOrder = 0
       OnClick = PanelFuncionarios_GestorClick
     end
-    object PanelReservas_Gestor: TPanel
-      Left = 15
-      Top = 304
-      Width = 216
-      Height = 45
-      Caption = 'Reservas'
-      Color = 5581568
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWhite
-      Font.Height = -20
-      Font.Name = 'Microsoft New Tai Lue'
-      Font.Style = [fsBold]
-      ParentBackground = False
-      ParentFont = False
-      TabOrder = 1
-    end
     object PanelVoos_Gestor: TPanel
       Left = 17
       Top = 151
@@ -180,7 +166,7 @@ object FormGestor: TFormGestor
       Font.Style = [fsBold]
       ParentBackground = False
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 1
       OnClick = PanelVoos_GestorClick
     end
     object PanelRelatorios_Gestor: TPanel
@@ -197,12 +183,12 @@ object FormGestor: TFormGestor
       Font.Style = [fsBold]
       ParentBackground = False
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 2
       OnClick = PanelRelatorios_GestorClick
     end
     object PanelDados_Gestor: TPanel
       Left = 15
-      Top = 376
+      Top = 304
       Width = 216
       Height = 45
       Caption = 'Meus Dados'
@@ -214,7 +200,7 @@ object FormGestor: TFormGestor
       Font.Style = [fsBold]
       ParentBackground = False
       ParentFont = False
-      TabOrder = 4
+      TabOrder = 3
     end
   end
   object PanelCentral_Gestor: TPanel
@@ -224,6 +210,8 @@ object FormGestor: TFormGestor
     Height = 637
     Align = alClient
     TabOrder = 2
+    ExplicitWidth = 764
+    ExplicitHeight = 629
     object ImgHome_Gestor: TImage
       Left = 0
       Top = -88

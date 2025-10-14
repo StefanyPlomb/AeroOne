@@ -22,6 +22,7 @@ type
   private
     { Private declarations }
   public
+
     { Public declarations }
   end;
 
@@ -50,6 +51,7 @@ begin
 
   if not DataModule1.FDQuery1.IsEmpty then
   begin
+    DataModule1.UsuarioLogadoID := DataModule1.FDQuery1.FieldByName('id_usuario').AsInteger;
     if DataModule1.FDQuery1.FieldByName('cargo').AsString = 'Gestor' then
     begin
       FormGestor.Show;
