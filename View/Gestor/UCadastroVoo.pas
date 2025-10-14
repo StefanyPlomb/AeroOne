@@ -14,7 +14,6 @@ type
     LabelSubtituloVoos: TLabel;
     EditBuscaVoos: TEdit;
     EditPartidaVoos: TEdit;
-    EditCodigoVoos: TEdit;
     EditAeroMVoos: TEdit;
     EditDestinoVoos: TEdit;
     EditPVoos: TEdit;
@@ -115,51 +114,57 @@ begin
 end;
 
 procedure TFormCadastroVoos.PanelSalvarCadVoosClick(Sender: TObject);
+var
+ ProximoID: Integer;
 begin
-          // === INSERIR NOVO ===
+  // === INSERIR NOVO ===
   if OpcoesSalvar = False then
+  begin
+
+    if (Trim(EditPartidaVoos.Text) = '') or (Trim(EditDestinoVoos.Text) = '') then
     begin
-     if (Trim(EditPartidaVoos.Text) = '') or    // VALIDAR
-     (Trim(EditDestinoVoos.Text) = '')  then
-    begin
-      ShowMessage('Informe Local de Partina e Destino.');
+      ShowMessage('Informe Local de Partida e Destino.');
       Exit;
     end;
 
-      DataModule1.FDQueryVoos.Append;
-      DataModule1.FDQueryVoos.FieldByName('codigo_voo').AsString := EditCodigoVoos.Text;
-      DataModule1.FDQueryVoos.FieldByName('origem').AsString := EditPartidaVoos.Text;
-      DataModule1.FDQueryVoos.FieldByName('destino').AsString := EditDestinoVoos.Text;
-      DataModule1.FDQueryVoos.FieldByName('data_partida').AsString := EditDataPartida.Text;
-      DataModule1.FDQueryVoos.FieldByName('data_chegada').AsString := Edit2.Text;
-      DataModule1.FDQueryVoos.FieldByName('hora_partida').AsString := EditHorarioVoos.Text;
-      DataModule1.FDQueryVoos.FieldByName('hora_chegada').AsString := Edit1.Text;
-      DataModule1.FDQueryVoos.Post;
+    DataModule1.FDQueryVoos.Append;
+    DataModule1.FDQueryVoos.FieldByName('origem').AsString := EditPartidaVoos.Text;
+    DataModule1.FDQueryVoos.FieldByName('destino').AsString := EditDestinoVoos.Text;
+    DataModule1.FDQueryVoos.FieldByName('data_partida').AsString := EditDataPartida.Text;
+    DataModule1.FDQueryVoos.FieldByName('data_chegada').AsString := Edit2.Text;
+    DataModule1.FDQueryVoos.FieldByName('hora_partida').AsString := EditHorarioVoos.Text;
+    DataModule1.FDQueryVoos.FieldByName('hora_chegada').AsString := Edit1.Text;
+    DataModule1.FDQueryVoos.Post;
 
-      DataModule1.FDQueryVoos.Refresh;
-      AbrirVoos;
+    DataModule1.FDQueryVoos.Refresh;
+    AbrirVoos;
 
-      EditPartidaVoos.Clear;
-      EditDestinoVoos.Clear;
-      EditDataPartida.Clear;
-      EditHorarioVoos.Clear;
-      EditPartidaVoos.SetFocus;
 
-    end else  // === EDITAR EXISTENTE ===
+    EditPartidaVoos.Clear;
+    EditDestinoVoos.Clear;
+    EditDataPartida.Clear;
+    EditHorarioVoos.Clear;
+    EditPartidaVoos.SetFocus;
+
+    ShowMessage('Voo cadastrado com sucesso!');
+  end
+  else
   begin
-
+    // === EDITAR EXISTENTE ===
     DataModule1.FDQueryVoos.Edit;
     DataModule1.FDQueryVoos.FieldByName('origem').AsString := EditPartidaVoos.Text;
     DataModule1.FDQueryVoos.FieldByName('destino').AsString := EditDestinoVoos.Text;
     DataModule1.FDQueryVoos.FieldByName('data_partida').AsString := EditDataPartida.Text;
-    DataModule1.FDQueryVoos.FieldByName('hora_chegada').AsString := EditHorarioVoos.Text;
+    DataModule1.FDQueryVoos.FieldByName('data_chegada').AsString := Edit2.Text;
+    DataModule1.FDQueryVoos.FieldByName('hora_partida').AsString := EditHorarioVoos.Text;
+    DataModule1.FDQueryVoos.FieldByName('hora_chegada').AsString := Edit1.Text;
     DataModule1.FDQueryVoos.Post;
 
     ShowMessage('Voo atualizado com sucesso!');
     DataModule1.FDQueryVoos.Refresh;
   end;
-
 end;
+
 
 procedure TFormCadastroVoos.PanelAlterarCadVoosClick(Sender: TObject);
 begin

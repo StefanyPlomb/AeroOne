@@ -35,6 +35,7 @@ type
     procedure PanelLogout_GestorClick(Sender: TObject);
     procedure PanelVoos_GestorClick(Sender: TObject);
     procedure PanelRelatorios_GestorClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
 
 
   private
@@ -51,6 +52,29 @@ implementation
 {$R *.dfm}
 
 
+
+procedure TFormGestor.FormCreate(Sender: TObject);
+begin
+  with DataModule1.FDQuery1 do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('SELECT nome, cargo FROM usuarios WHERE id_usuario = :id');
+    ParamByName('id').AsInteger := DataModule1.UsuarioLogadoID;
+    Open;
+
+    if not IsEmpty then
+    begin
+      LabelName_Gestor.Caption := FieldByName('nome').AsString;
+      LabelCargo_Gestor.Caption := FieldByName('cargo').AsString;
+    end
+    else
+    begin
+      LabelName_Gestor.Caption := 'Usuário não encontrado';
+      LabelCargo_Gestor.Caption := '-';
+    end;
+  end;
+end;
 
 procedure TFormGestor.PanelFuncionarios_GestorClick(Sender: TObject);
 begin

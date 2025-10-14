@@ -10,6 +10,7 @@ object FormGestor: TFormGestor
   Font.Height = -6
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 8
   object PanelSuperior_Gestor: TPanel
     Left = 0
@@ -20,7 +21,6 @@ object FormGestor: TFormGestor
     Color = 5581568
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 1024
     object LabelSaida_Gestor: TLabel
       Left = 273
       Top = 27
@@ -134,7 +134,6 @@ object FormGestor: TFormGestor
     Color = 5581568
     ParentBackground = False
     TabOrder = 1
-    ExplicitHeight = 629
     object PanelFuncionarios_Gestor: TPanel
       Left = 17
       Top = 72
@@ -210,8 +209,6 @@ object FormGestor: TFormGestor
     Height = 637
     Align = alClient
     TabOrder = 2
-    ExplicitWidth = 764
-    ExplicitHeight = 629
     object ImgHome_Gestor: TImage
       Left = 0
       Top = -88

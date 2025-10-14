@@ -54,22 +54,26 @@ begin
     DataModule1.UsuarioLogadoID := DataModule1.FDQuery1.FieldByName('id_usuario').AsInteger;
     if DataModule1.FDQuery1.FieldByName('cargo').AsString = 'Gestor' then
     begin
+      Application.CreateForm(TFormGestor, FormGestor);
       FormGestor.Show;
       FormLogin.Hide;
     end
     else if DataModule1.FDQuery1.FieldByName('cargo').AsString = 'AeroMoca' then
     begin
+       Application.CreateForm(TFormAeroMoc, FormAeroMoc);
        FormAeroMoc.Show;
        FormLogin.Hide;
     end
     else if DataModule1.FDQuery1.FieldByName('cargo').AsString = 'Piloto' then
     begin
+      // Application.CreateForm(TFormGestor, FormGestor);
       //FormGestor.Show;
       //FormLogin.Hide;
        ShowMessage('Abrir tela da Piloto')
     end
     else
      begin
+      // Application.CreateForm(TFormGestor, FormGestor);
       //FormGestor.Show;
       //FormLogin.Hide;
        ShowMessage('Abrir tela do Passageiro')

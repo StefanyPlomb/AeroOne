@@ -19,8 +19,6 @@ object FormLogin: TFormLogin
     Align = alClient
     Caption = 'PanelLogin_fundo'
     TabOrder = 0
-    ExplicitWidth = 937
-    ExplicitHeight = 592
     object ImgLogin_Fundo: TImage
       Left = -178
       Top = -241

@@ -117,7 +117,7 @@ procedure TFormVoosAeroMo.AtualizarVoosAtribuidos;   // banco persis
 begin
   DataModule1.FDQueryAtribuidos.Close;
   DataModule1.FDQueryAtribuidos.SQL.Text :=
-    'SELECT v.id_voo, v.codigo_voo, v.origem, v.destino, v.status ' +
+    'SELECT v.id_voo, v.origem, v.destino, v.status ' +
     'FROM voos v ' +
     'WHERE v.id_aeromoca = :id_usuario';
   DataModule1.FDQueryAtribuidos.ParamByName('id_usuario').AsInteger := DataModule1.UsuarioLogadoID;

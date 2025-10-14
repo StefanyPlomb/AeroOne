@@ -22,7 +22,6 @@ type
     EditEmailFuncionarios: TEdit;
     EditCargosFuncionarios: TEdit;
     EditNomeFuncionarios: TEdit;
-    ButVoltarFuncionarios: TButton;
 
     procedure FormCreate(Sender: TObject);
     procedure ButNovoFuncionarioClick(Sender: TObject);
@@ -43,15 +42,16 @@ implementation
 
 {$R *.dfm}
 
-procedure TFormCadastroFuncionaris.FormCreate(Sender: TObject);   // dx bonito
+procedure TFormCadastroFuncionaris.FormCreate(Sender: TObject);
 begin
 
 with DBGridFuncionarios.Columns.Add do
 begin
   FieldName := 'id_usuario';
   Title.Caption := 'ID';
-   Title.Font.Style := [fsBold];
-   Title.Font.size := 15;
+  Title.Font.Style := [fsBold];
+  Title.Font.size := 15;
+  Width := 50;
 end;
 
  with DBGridFuncionarios.Columns.Add do
@@ -60,6 +60,7 @@ begin
   Title.Caption := 'Nome do Funcionário';
    Title.Font.Style := [fsBold];
    Title.Font.size := 15;
+   Width := 210;
 end;
 
 with DBGridFuncionarios.Columns.Add do
@@ -68,6 +69,7 @@ begin
   Title.Caption := 'E-mail';
    Title.Font.Style := [fsBold];
    Title.Font.size := 15;
+   Width := 200;
 end;
 
 with DBGridFuncionarios.Columns.Add do
@@ -76,6 +78,7 @@ begin
   Title.Caption := 'Cargo';
    Title.Font.Style := [fsBold];
    Title.Font.size := 15;
+   Width := 100;
 end;
   AbrirFuncionarios;
 end;
@@ -106,7 +109,7 @@ procedure TFormCadastroFuncionaris.ButSalvarFuncionariosClick(Sender: TObject);
    if OpcoesSalvar = False then
    begin
 
-   if (Trim(EditNomeFuncionarios.Text) = '') or    // VALIDAR
+   if (Trim(EditNomeFuncionarios.Text) = '') or
      (Trim(EditEmailFuncionarios.Text) = '') or
      (Trim(EditCargosFuncionarios.Text) = '') then
   begin

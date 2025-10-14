@@ -21,8 +21,6 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 748
-    ExplicitHeight = 590
     object LabelTituloFuncionarios: TLabel
       Left = 11
       Top = 16
@@ -198,14 +196,6 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
       ParentFont = False
       TabOrder = 8
       Text = 'Nome...'
-    end
-    object ButVoltarFuncionarios: TButton
-      Left = 575
-      Top = 133
-      Width = 132
-      Height = 38
-      Caption = 'HOME'
-      TabOrder = 9
     end
   end
 end
