@@ -20,14 +20,20 @@ type
     DBGridFuncionarios: TDBGrid;
     ButSalvarFuncionarios: TButton;
     EditEmailFuncionarios: TEdit;
-    EditCargosFuncionarios: TEdit;
     EditNomeFuncionarios: TEdit;
+    ComboBoxCargos: TComboBox;
+    EditNascimento: TEdit;
+    EditTelefone: TEdit;
+    EditCEP: TEdit;
+    EditRua: TEdit;
+    ComboBoxEscolaridade: TComboBox;
 
     procedure FormCreate(Sender: TObject);
     procedure ButNovoFuncionarioClick(Sender: TObject);
     procedure ButSalvarFuncionariosClick(Sender: TObject);
     procedure PanelEditarFuncionarioClick(Sender: TObject);
     procedure PanelExcluirFuncionarioClick(Sender: TObject);
+    procedure EditBuscaFuncionariosChange(Sender: TObject);
   private
     procedure AbrirFuncionarios;
   public
@@ -80,6 +86,51 @@ begin
    Title.Font.size := 15;
    Width := 100;
 end;
+
+with DBGridFuncionarios.Columns.Add do
+begin
+  FieldName := 'data_nascimento';
+  Title.Caption := 'Data De Nascimento';
+  Title.Font.Style := [fsBold];
+  Title.Font.size := 15;
+  Width := 50;
+end;
+
+with DBGridFuncionarios.Columns.Add do
+begin
+  FieldName := 'telefone';
+  Title.Caption := 'Telefone/Celular';
+  Title.Font.Style := [fsBold];
+  Title.Font.size := 15;
+  Width := 50;
+end;
+
+with DBGridFuncionarios.Columns.Add do
+begin
+  FieldName := 'cep';
+  Title.Caption := 'CEP';
+  Title.Font.Style := [fsBold];
+  Title.Font.size := 15;
+  Width := 50;
+end;
+
+with DBGridFuncionarios.Columns.Add do
+begin
+  FieldName := 'rua';
+  Title.Caption := 'Rua';
+  Title.Font.Style := [fsBold];
+  Title.Font.size := 15;
+  Width := 50;
+end;
+
+with DBGridFuncionarios.Columns.Add do
+begin
+  FieldName := 'escolaridade';
+  Title.Caption := 'Escolaridade';
+  Title.Font.Style := [fsBold];
+  Title.Font.size := 15;
+  Width := 50;
+end;
   AbrirFuncionarios;
 end;
 
@@ -111,7 +162,7 @@ procedure TFormCadastroFuncionaris.ButSalvarFuncionariosClick(Sender: TObject);
 
    if (Trim(EditNomeFuncionarios.Text) = '') or
      (Trim(EditEmailFuncionarios.Text) = '') or
-     (Trim(EditCargosFuncionarios.Text) = '') then
+     (Trim(ComboBoxCargos.Text) = '') then
   begin
     ShowMessage('Informe um Nome, E-mail e Cargo.');
     Exit;
@@ -120,7 +171,12 @@ procedure TFormCadastroFuncionaris.ButSalvarFuncionariosClick(Sender: TObject);
     DataModule1.FDQueryFuncionarios.Append;
     DataModule1.FDQueryFuncionarios.FieldByName('nome').AsString := EditNomeFuncionarios.Text;
     DataModule1.FDQueryFuncionarios.FieldByName('email').AsString := EditEmailFuncionarios.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('cargo').AsString := EditCargosFuncionarios.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('cargo').AsString := ComboBoxCargos.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('data_nascimento').AsString := EditNascimento.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('telefone').AsString := EditTelefone.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('cep').AsString := EditCEP.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('rua').AsString := EditRua.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('escolaridade').AsString := ComboBoxEscolaridade.Text;
     DataModule1.FDQueryFuncionarios.FieldByName('senha').AsString := '123';
     DataModule1.FDQueryFuncionarios.Post;
 
@@ -129,7 +185,10 @@ procedure TFormCadastroFuncionaris.ButSalvarFuncionariosClick(Sender: TObject);
 
     EditNomeFuncionarios.Clear;
     EditEmailFuncionarios.Clear;
-    EditCargosFuncionarios.Clear;
+    EditNascimento.Clear;
+    EditTelefone.Clear;
+    EditCEP.Clear;
+    EditRua.Clear;
     EditNomeFuncionarios.SetFocus;
  end
  else     // === EDITAR EXISTENTE ===
@@ -137,7 +196,12 @@ procedure TFormCadastroFuncionaris.ButSalvarFuncionariosClick(Sender: TObject);
     DataModule1.FDQueryFuncionarios.Edit;
     DataModule1.FDQueryFuncionarios.FieldByName('nome').AsString := EditNomeFuncionarios.Text;
     DataModule1.FDQueryFuncionarios.FieldByName('email').AsString := EditEmailFuncionarios.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('cargo').AsString := EditCargosFuncionarios.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('cargo').AsString := ComboBoxCargos.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('data_nascimento').AsString := EditNascimento.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('telefone').AsString := EditTelefone.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('cep').AsString := EditCEP.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('rua').AsString := EditRua.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('escolaridade').AsString := ComboBoxEscolaridade.Text;
     DataModule1.FDQueryFuncionarios.Post;
 
     ShowMessage('Funcionário atualizado com sucesso!');
@@ -146,11 +210,30 @@ procedure TFormCadastroFuncionaris.ButSalvarFuncionariosClick(Sender: TObject);
 
 end;
 
+
+
+procedure TFormCadastroFuncionaris.EditBuscaFuncionariosChange(Sender: TObject);
+begin
+   with DataModule1.FDQueryFuncionarios do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('SELECT * FROM usuarios WHERE nome ILIKE :filtro or cargo ILIKE :filtro');
+    ParamByName('filtro').AsString := '%' + EditBuscaFuncionarios.Text + '%';
+    Open;
+  end;
+end;
+
 procedure TFormCadastroFuncionaris.PanelEditarFuncionarioClick(Sender: TObject);
 begin
   EditNomeFuncionarios.Text := DataModule1.FDQueryFuncionarios.FieldByName('nome').AsString;
   EditEmailFuncionarios.Text := DataModule1.FDQueryFuncionarios.FieldByName('email').AsString;
-  EditCargosFuncionarios.Text := DataModule1.FDQueryFuncionarios.FieldByName('cargo').AsString;
+  ComboBoxCargos.Text := DataModule1.FDQueryFuncionarios.FieldByName('cargo').AsString;
+  EditNascimento.Text := DataModule1.FDQueryFuncionarios.FieldByName('data_nascimento').AsString;
+  EditTelefone.Text := DataModule1.FDQueryFuncionarios.FieldByName('telefone').AsString;
+  EditCEP.Text := DataModule1.FDQueryFuncionarios.FieldByName('cep').AsString;
+  EditRua.Text := DataModule1.FDQueryFuncionarios.FieldByName('rua').AsString;
+  ComboBoxEscolaridade.Text := DataModule1.FDQueryFuncionarios.FieldByName('escolaridade').AsString;
 
   IDSelecionado := DataModule1.FDQueryFuncionarios.FieldByName('id_usuario').AsInteger;
    OpcoesSalvar := True;

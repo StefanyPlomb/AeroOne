@@ -21,8 +21,9 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
+    ExplicitLeft = -8
     object LabelTituloFuncionarios: TLabel
-      Left = 11
+      Left = 19
       Top = 16
       Width = 148
       Height = 35
@@ -37,7 +38,7 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
       ParentFont = False
     end
     object LabelSubtituloFuncionarios: TLabel
-      Left = 11
+      Left = 19
       Top = 57
       Width = 260
       Height = 20
@@ -50,7 +51,7 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
       ParentFont = False
     end
     object ButNovoFuncionario: TPanel
-      Left = 575
+      Left = 599
       Top = 200
       Width = 132
       Height = 38
@@ -67,7 +68,7 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
       OnClick = ButNovoFuncionarioClick
     end
     object EditBuscaFuncionarios: TEdit
-      Left = 304
+      Left = 328
       Top = 104
       Width = 244
       Height = 23
@@ -79,17 +80,18 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
       Font.Style = []
       ParentFont = False
       TabOrder = 1
-      Text = 'Pesquisar por nome...'
+      TextHint = 'Pesquisar por nome'
+      OnChange = EditBuscaFuncionariosChange
     end
     object PanelExcluirFuncionario: TPanel
-      Left = 575
+      Left = 599
       Top = 356
       Width = 132
       Height = 38
       Caption = 'Excluir'
       Color = 5975552
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4079359
+      Font.Color = clWhite
       Font.Height = -15
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
@@ -99,14 +101,14 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
       OnClick = PanelExcluirFuncionarioClick
     end
     object PanelEditarFuncionario: TPanel
-      Left = 575
+      Left = 599
       Top = 278
       Width = 132
       Height = 38
       Caption = 'Editar'
       Color = 5975552
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = 41984
+      Font.Color = clWhite
       Font.Height = -15
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
@@ -116,7 +118,7 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
       OnClick = PanelEditarFuncionarioClick
     end
     object PanelGridFuncionario: TPanel
-      Left = 11
+      Left = 35
       Top = 133
       Width = 537
       Height = 355
@@ -135,6 +137,7 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
+        ReadOnly = True
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -144,58 +147,121 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
       end
     end
     object ButSalvarFuncionarios: TButton
-      Left = 575
+      Left = 599
       Top = 432
       Width = 132
       Height = 38
       Caption = 'Salvar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 8404992
+      Font.Height = -15
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 5
       OnClick = ButSalvarFuncionariosClick
     end
     object EditEmailFuncionarios: TEdit
       Left = 186
-      Top = 508
+      Top = 494
       Width = 153
       Height = 23
       Color = clMenu
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clGray
+      Font.Color = clBlack
       Font.Height = -12
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
       TabOrder = 6
-      Text = 'E-mail...'
+      TextHint = 'E-mail'
     end
-    object EditCargosFuncionarios: TEdit
-      Left = 372
-      Top = 508
-      Width = 104
+    object EditNomeFuncionarios: TEdit
+      Left = 35
+      Top = 494
+      Width = 145
       Height = 23
       Color = clMenu
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clGray
+      Font.Color = clBlack
       Font.Height = -12
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
       TabOrder = 7
-      Text = 'Funs'#227'o...'
+      TextHint = 'Nome'
     end
-    object EditNomeFuncionarios: TEdit
-      Left = 11
-      Top = 508
-      Width = 153
+    object ComboBoxCargos: TComboBox
+      Left = 265
+      Top = 523
+      Width = 128
+      Height = 23
+      Color = clMenu
+      TabOrder = 8
+      TextHint = 'Cargo'
+      Items.Strings = (
+        'Gestor '
+        'Piloto '
+        'AeroMo'#231'o(a)')
+    end
+    object EditNascimento: TEdit
+      Left = 472
+      Top = 494
+      Width = 118
       Height = 23
       Color = clMenu
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clGray
+      Font.Color = clWindowText
       Font.Height = -12
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
-      TabOrder = 8
-      Text = 'Nome...'
+      TabOrder = 9
+      TextHint = 'Data de Nascimento'
+    end
+    object EditTelefone: TEdit
+      Left = 345
+      Top = 494
+      Width = 121
+      Height = 23
+      Color = clMenu
+      TabOrder = 10
+      TextHint = 'Telefone '
+    end
+    object EditCEP: TEdit
+      Left = 35
+      Top = 523
+      Width = 97
+      Height = 23
+      Color = clMenu
+      TabOrder = 11
+      TextHint = 'CEP'
+    end
+    object EditRua: TEdit
+      Left = 138
+      Top = 523
+      Width = 121
+      Height = 23
+      Color = clMenu
+      TabOrder = 12
+      TextHint = 'Rua'
+    end
+    object ComboBoxEscolaridade: TComboBox
+      Left = 399
+      Top = 523
+      Width = 145
+      Height = 23
+      Color = clMenu
+      TabOrder = 13
+      TextHint = 'Escolaridade'
+      Items.Strings = (
+        'Sem escolaridade'
+        'Ensino M'#233'dio (Incompleto)'
+        'Ensino M'#233'dio (Completo)'
+        'Ensino Superior (Incompleto)'
+        'Ensino Superior (Completo) '
+        'Ensino T'#233'cnico/Profissionalizante'
+        'P'#243's-Graduado')
     end
   end
 end

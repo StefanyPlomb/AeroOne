@@ -22,7 +22,7 @@ object FormVoosAeroMo: TFormVoosAeroMo
     ParentBackground = False
     TabOrder = 0
     object LabelSubtituloVoo: TLabel
-      Left = 10
+      Left = 26
       Top = 60
       Width = 230
       Height = 20
@@ -35,8 +35,8 @@ object FormVoosAeroMo: TFormVoosAeroMo
       ParentFont = False
     end
     object LabelTituloVoo: TLabel
-      Left = 10
-      Top = 11
+      Left = 26
+      Top = 19
       Width = 127
       Height = 35
       Caption = 'Meus Voos'
@@ -49,9 +49,9 @@ object FormVoosAeroMo: TFormVoosAeroMo
       ParentColor = False
       ParentFont = False
     end
-    object Label1: TLabel
-      Left = 10
-      Top = 142
+    object LabelVoosDisponiveisTitulo: TLabel
+      Left = 27
+      Top = 118
       Width = 133
       Height = 23
       Caption = 'Voos Dispon'#237'veis'
@@ -62,9 +62,9 @@ object FormVoosAeroMo: TFormVoosAeroMo
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label2: TLabel
-      Left = 157
-      Top = 142
+    object LabelQuantidadeDisponivel: TLabel
+      Left = 174
+      Top = 118
       Width = 22
       Height = 23
       Caption = '(7)'
@@ -75,9 +75,9 @@ object FormVoosAeroMo: TFormVoosAeroMo
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label3: TLabel
-      Left = 11
-      Top = 374
+    object LabelVoosAtribuidosTitulo: TLabel
+      Left = 27
+      Top = 366
       Width = 132
       Height = 23
       Caption = 'Voos Atribu'#237'dos '
@@ -88,9 +88,9 @@ object FormVoosAeroMo: TFormVoosAeroMo
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label4: TLabel
-      Left = 157
-      Top = 374
+    object LabelQuantidadeAtribuida: TLabel
+      Left = 174
+      Top = 366
       Width = 22
       Height = 23
       Caption = '(2)'
@@ -102,8 +102,8 @@ object FormVoosAeroMo: TFormVoosAeroMo
       ParentFont = False
     end
     object Image1: TImage
-      Left = 648
-      Top = 248
+      Left = 576
+      Top = 131
       Width = 82
       Height = 97
       Picture.Data = {
@@ -2091,11 +2091,10 @@ object FormVoosAeroMo: TFormVoosAeroMo
         74C1E0B00000000049454E44AE426082}
     end
     object DBGridVoosDisponiveis: TDBGrid
-      Left = 11
-      Top = 183
-      Width = 494
-      Height = 137
-      DataSource = DataModule1.DataSourceVoos
+      Left = 27
+      Top = 165
+      Width = 479
+      Height = 164
       ReadOnly = True
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
@@ -2105,10 +2104,10 @@ object FormVoosAeroMo: TFormVoosAeroMo
       TitleFont.Style = []
     end
     object DBGrid2: TDBGrid
-      Left = 0
-      Top = 432
-      Width = 494
-      Height = 145
+      Left = 27
+      Top = 416
+      Width = 479
+      Height = 161
       DataSource = DataModule1.DataSourceAtribuidos
       ReadOnly = True
       TabOrder = 1
@@ -2118,19 +2117,20 @@ object FormVoosAeroMo: TFormVoosAeroMo
       TitleFont.Name = 'Segoe UI'
       TitleFont.Style = []
     end
-    object Edit1: TEdit
+    object EditBuscaDisponiveis: TEdit
       Left = 408
-      Top = 43
+      Top = 60
       Width = 201
-      Height = 23
+      Height = 30
       TabOrder = 2
-      Text = 'Busca...'
+      TextHint = 'Busca...'
+      OnChange = EditBuscaDisponiveisChange
     end
     object ButBuscar_Aeromo: TPanel
       Left = 615
-      Top = 44
+      Top = 60
       Width = 91
-      Height = 28
+      Height = 30
       Caption = 'Buscar'
       Color = 5975552
       Font.Charset = DEFAULT_CHARSET
@@ -2143,9 +2143,9 @@ object FormVoosAeroMo: TFormVoosAeroMo
       TabOrder = 3
     end
     object ButConecta: TPanel
-      Left = 519
-      Top = 279
-      Width = 106
+      Left = 512
+      Top = 288
+      Width = 121
       Height = 41
       Caption = 'Me Conectar'
       Color = 5975552
@@ -2160,7 +2160,7 @@ object FormVoosAeroMo: TFormVoosAeroMo
       OnClick = ButConectaClick
     end
     object ButDesconecta: TPanel
-      Left = 519
+      Left = 512
       Top = 536
       Width = 121
       Height = 41

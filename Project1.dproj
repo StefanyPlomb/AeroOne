@@ -135,10 +135,6 @@
             <Form>FormLogin</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="View\Funcionário\FVpainelvoofuncionario.pas">
-            <Form>Form12</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="Data\UData.pas">
             <Form>DataModule1</Form>
             <FormType>dfm</FormType>
@@ -167,6 +163,30 @@
         </DCCReference>
         <DCCReference Include="View\Funcionário\UAeromoc.pas">
             <Form>FormAeroMoc</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\UDash.pas">
+            <Form>FormDash</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\Funcionário\UCheckin.pas">
+            <Form>FormCheckin</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\Funcionário\UIniciarCheckin.pas">
+            <Form>FormCheckin_Iniciado</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\Funcionário\ULiberarCheckin.pas">
+            <Form>FormLiberarCheckin</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\Funcionário\UMapaAcentos.pas">
+            <Form>FormMapaAcentos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\Funcionário\UVoosAeroMo.pas">
+            <Form>FormVoosAeroMo</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <None Include="Project1.dpr"/>

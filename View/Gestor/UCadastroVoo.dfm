@@ -22,8 +22,8 @@ object FormCadastroVoos: TFormCadastroVoos
     ParentBackground = False
     TabOrder = 0
     object LabelTituloVoos: TLabel
-      Left = 16
-      Top = 8
+      Left = 18
+      Top = 32
       Width = 202
       Height = 35
       Caption = 'Cadastro de Voos'
@@ -36,7 +36,7 @@ object FormCadastroVoos: TFormCadastroVoos
     end
     object LabelSubtituloVoos: TLabel
       Left = 18
-      Top = 37
+      Top = 73
       Width = 150
       Height = 20
       Caption = 'Crie a pr'#243'xima viagem'
@@ -48,8 +48,8 @@ object FormCadastroVoos: TFormCadastroVoos
       ParentFont = False
     end
     object EditBuscaVoos: TEdit
-      Left = 390
-      Top = 51
+      Left = 408
+      Top = 91
       Width = 217
       Height = 23
       Color = clMenu
@@ -60,43 +60,48 @@ object FormCadastroVoos: TFormCadastroVoos
       Font.Style = []
       ParentFont = False
       TabOrder = 0
-      Text = 'Pesquisar por ID...'
+      TextHint = 'Buscar...'
+      OnChange = EditBuscaVoosChange
     end
     object EditPartidaVoos: TEdit
       Left = 18
-      Top = 330
+      Top = 418
       Width = 150
       Height = 23
+      Color = clMenu
       TabOrder = 1
-      Text = 'De'
+      TextHint = 'Partida'
     end
     object EditAeroMVoos: TEdit
       Left = 18
-      Top = 359
+      Top = 460
       Width = 150
       Height = 23
+      Color = clMenu
       TabOrder = 2
-      Text = 'AeroMo'#231'o(a)'
+      TextHint = 'AeroMo'#231'o(a)'
     end
     object EditDestinoVoos: TEdit
-      Left = 187
-      Top = 330
+      Left = 186
+      Top = 418
       Width = 150
       Height = 23
+      Color = clMenu
       TabOrder = 3
-      Text = 'Para'
+      TextHint = 'Origem'
     end
     object EditPVoos: TEdit
-      Left = 343
-      Top = 330
+      Left = 186
+      Top = 460
       Width = 150
       Height = 23
+      Color = clMenu
       TabOrder = 4
-      Text = 'Piloto'
+      TextHint = 'Piloto '
     end
     object PanelSalvarCadVoos: TPanel
       Left = 631
-      Top = 281
+      Top = 361
       Width = 105
       Height = 33
       Caption = 'Salvar'
@@ -113,13 +118,13 @@ object FormCadastroVoos: TFormCadastroVoos
     end
     object PanelAlterarCadVoos: TPanel
       Left = 631
-      Top = 146
+      Top = 226
       Width = 105
       Height = 34
       Caption = 'Alterar '
       Color = 8404992
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = 41984
+      Font.Color = clWhite
       Font.Height = -15
       Font.Name = 'Segoe UI'
       Font.Style = []
@@ -130,13 +135,13 @@ object FormCadastroVoos: TFormCadastroVoos
     end
     object PanelExcluirCadVoos: TPanel
       Left = 631
-      Top = 216
+      Top = 296
       Width = 105
       Height = 34
       Caption = 'Excluir '
       Color = 8404992
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4079359
+      Font.Color = clWhite
       Font.Height = -15
       Font.Name = 'Segoe UI'
       Font.Style = []
@@ -147,13 +152,13 @@ object FormCadastroVoos: TFormCadastroVoos
     end
     object PanelNovoCadVoos: TPanel
       Left = 631
-      Top = 88
+      Top = 168
       Width = 105
       Height = 34
       Caption = 'Criar novo'
       Color = 8404992
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = 41984
+      Font.Color = clWhite
       Font.Height = -15
       Font.Name = 'Segoe UI'
       Font.Style = []
@@ -164,10 +169,11 @@ object FormCadastroVoos: TFormCadastroVoos
     end
     object DBGridCadastroVoos: TDBGrid
       Left = 18
-      Top = 88
+      Top = 128
       Width = 607
-      Height = 236
+      Height = 268
       DataSource = DataModule1.DataSourceVoos
+      ReadOnly = True
       TabOrder = 9
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
@@ -176,36 +182,40 @@ object FormCadastroVoos: TFormCadastroVoos
       TitleFont.Style = []
     end
     object EditDataPartida: TEdit
-      Left = 187
-      Top = 359
+      Left = 352
+      Top = 418
       Width = 121
       Height = 23
+      Color = clMenu
       TabOrder = 10
-      Text = 'Data Partida'
+      TextHint = 'Data Partida'
     end
     object EditHorarioVoos: TEdit
-      Left = 314
-      Top = 359
+      Left = 352
+      Top = 460
       Width = 121
       Height = 23
+      Color = clMenu
       TabOrder = 11
-      Text = 'Horario Partida'
+      TextHint = 'Horario Partida'
     end
     object Edit1: TEdit
-      Left = 16
-      Top = 388
+      Left = 504
+      Top = 460
       Width = 121
       Height = 23
+      Color = clMenu
       TabOrder = 12
-      Text = 'Horario Chegada'
+      TextHint = 'Horario Chegada'
     end
     object Edit2: TEdit
-      Left = 143
-      Top = 388
+      Left = 504
+      Top = 418
       Width = 121
       Height = 23
+      Color = clMenu
       TabOrder = 13
-      Text = 'Data Chegada'
+      TextHint = 'Data Chegada'
     end
   end
 end

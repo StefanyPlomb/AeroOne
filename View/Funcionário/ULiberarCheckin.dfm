@@ -1,7 +1,7 @@
-object Form1: TForm1
+object FormLiberarCheckin: TFormLiberarCheckin
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = 'FormLiberarCheckin'
   ClientHeight = 300
   ClientWidth = 734
   Color = clBtnFace

@@ -1,4 +1,4 @@
-object Form2: TForm2
+object FormMapaAcentos: TFormMapaAcentos
   Left = 0
   Top = 0
   Caption = 'FormMapaAcentos'
@@ -20,10 +20,6 @@ object Form2: TForm2
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = -8
-    ExplicitTop = -47
-    ExplicitWidth = 750
-    ExplicitHeight = 339
     object Label6: TLabel
       Left = 10
       Top = 11

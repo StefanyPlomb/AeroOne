@@ -8,7 +8,7 @@ uses
   Vcl.DBGrids, Vcl.ExtCtrls;
 
 type
-  TForm1 = class(TForm)
+  TFormLiberarCheckin = class(TForm)
     Panel5: TPanel;
     Label6: TLabel;
     DBGrid1: TDBGrid;
@@ -21,7 +21,7 @@ type
   end;
 
 var
-  Form1: TForm1;
+  FormLiberarCheckin: TFormLiberarCheckin;
 
 implementation
 

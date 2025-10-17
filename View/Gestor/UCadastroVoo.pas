@@ -31,6 +31,7 @@ type
     procedure PanelSalvarCadVoosClick(Sender: TObject);
     procedure PanelAlterarCadVoosClick(Sender: TObject);
     procedure PanelExcluirCadVoosClick(Sender: TObject);
+    procedure EditBuscaVoosChange(Sender: TObject);
   private
   procedure AbrirVoos;
     { Private declarations }
@@ -49,6 +50,18 @@ implementation
 
 
 
+procedure TFormCadastroVoos.EditBuscaVoosChange(Sender: TObject);
+begin
+with DataModule1.FDQueryVoos do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('SELECT * FROM voos WHERE origem ILIKE :filtro or destino ILIKE :filtro or CAST(data_partida AS VARCHAR) ILIKE :filtro or CAST (id_piloto AS VARCHAR) ILIKE :filtro');
+    ParamByName('filtro').AsString := '%' + EditBuscaVoos.Text + '%';
+    Open;
+  end;
+end;
+
 procedure TFormCadastroVoos.FormCreate(Sender: TObject);
 begin
 
@@ -58,6 +71,7 @@ begin
     Title.Caption := 'Partida';
     Title.Font.Style := [fsBold];
     Title.Font.Size := 15;
+    Width := 100;
   end;
 
   with DBGridCadastroVoos.Columns.Add do
@@ -66,6 +80,7 @@ begin
     Title.Caption := 'Destino';
     Title.Font.Style := [fsBold];
     Title.Font.Size := 15;
+    Width := 100;
   end;
 
   with DBGridCadastroVoos.Columns.Add do

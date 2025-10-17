@@ -27004,8 +27004,8 @@ object FormLogin: TFormLogin
         FF00BAE189E6E2C2F2560000000049454E44AE426082}
     end
     object Image1: TImage
-      Left = 240
-      Top = -166
+      Left = -104
+      Top = 50
       Width = 409
       Height = 320
       Picture.Data = {
@@ -28006,8 +28006,8 @@ object FormLogin: TFormLogin
         4E44AE426082}
     end
     object PanelLogin_cadastro: TPanel
-      Left = 304
-      Top = 152
+      Left = 296
+      Top = 80
       Width = 361
       Height = 409
       Color = clWhite
@@ -28034,13 +28034,13 @@ object FormLogin: TFormLogin
         Width = 233
         Height = 28
         Font.Charset = GB2312_CHARSET
-        Font.Color = clMenuHighlight
+        Font.Color = clGray
         Font.Height = 20
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
         TabOrder = 0
-        Text = 'Usuario'
+        TextHint = 'Usuario'
         StyleElements = [seClient, seBorder]
       end
       object EditLogin_Senha: TEdit
@@ -28049,13 +28049,13 @@ object FormLogin: TFormLogin
         Width = 233
         Height = 28
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clMenuHighlight
+        Font.Color = clGray
         Font.Height = 20
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
         TabOrder = 1
-        Text = 'Senha'
+        TextHint = 'Senha'
       end
       object Panel1: TPanel
         Left = 72

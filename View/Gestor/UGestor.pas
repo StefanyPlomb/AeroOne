@@ -59,19 +59,19 @@ begin
   begin
     Close;
     SQL.Clear;
-    SQL.Add('SELECT nome, cargo FROM usuarios WHERE id_usuario = :id');
+    SQL.Add('SELECT nome FROM usuarios WHERE id_usuario = :id');
     ParamByName('id').AsInteger := DataModule1.UsuarioLogadoID;
     Open;
 
     if not IsEmpty then
     begin
       LabelName_Gestor.Caption := FieldByName('nome').AsString;
-      LabelCargo_Gestor.Caption := FieldByName('cargo').AsString;
+
     end
     else
     begin
       LabelName_Gestor.Caption := 'Usuário não encontrado';
-      LabelCargo_Gestor.Caption := '-';
+
     end;
   end;
 end;

@@ -18,7 +18,6 @@ object FormRelatorios: TFormRelatorios
     Height = 598
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 814
     object LabelTituloRelatorios: TLabel
       Left = 24
       Top = 28
@@ -56,7 +55,7 @@ object FormRelatorios: TFormRelatorios
     end
     object BoxFiltroRelaorios: TComboBox
       Left = 271
-      Top = 155
+      Top = 144
       Width = 154
       Height = 23
       TabOrder = 1
@@ -72,9 +71,9 @@ object FormRelatorios: TFormRelatorios
       Left = 24
       Top = 144
       Width = 217
-      Height = 34
+      Height = 23
       TabOrder = 2
-      Text = 'Buscar (nome/ID)'
+      TextHint = 'Buscar (nome/ID)'
     end
     object PanelBuscarRelatorios: TPanel
       Left = 568

@@ -67,7 +67,7 @@ object FormCheckin: TFormCheckin
       Width = 201
       Height = 23
       TabOrder = 1
-      Text = 'Busca...'
+      TextHint = 'Buscar'
     end
     object ButBuscar_Aeromo: TPanel
       Left = 631

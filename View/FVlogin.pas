@@ -38,6 +38,8 @@ uses
 
 
 procedure TFormLogin.Panel1Click(Sender: TObject);
+var
+  cargo : string;
 begin
   DataModule1.FDQuery1.Close;
   DataModule1.FDQuery1.SQL.Clear;
@@ -51,34 +53,29 @@ begin
 
   if not DataModule1.FDQuery1.IsEmpty then
   begin
+    cargo := Trim(DataModule1.FDQuery1.FieldByName('cargo').AsString);
     DataModule1.UsuarioLogadoID := DataModule1.FDQuery1.FieldByName('id_usuario').AsInteger;
-    if DataModule1.FDQuery1.FieldByName('cargo').AsString = 'Gestor' then
+
+    if cargo = 'Gestor' then
     begin
       Application.CreateForm(TFormGestor, FormGestor);
       FormGestor.Show;
       FormLogin.Hide;
     end
-    else if DataModule1.FDQuery1.FieldByName('cargo').AsString = 'AeroMoca' then
+    else if cargo = 'AeroMoço(a)' then
     begin
-       Application.CreateForm(TFormAeroMoc, FormAeroMoc);
-       FormAeroMoc.Show;
-       FormLogin.Hide;
+      Application.CreateForm(TFormAeroMoc, FormAeroMoc);
+      FormAeroMoc.Show;
+      FormLogin.Hide;
     end
-    else if DataModule1.FDQuery1.FieldByName('cargo').AsString = 'Piloto' then
+    else if cargo = 'piloto' then
     begin
-      // Application.CreateForm(TFormGestor, FormGestor);
-      //FormGestor.Show;
-      //FormLogin.Hide;
-       ShowMessage('Abrir tela da Piloto')
+      ShowMessage('Abrir tela da Piloto');
     end
     else
-     begin
-      // Application.CreateForm(TFormGestor, FormGestor);
-      //FormGestor.Show;
-      //FormLogin.Hide;
-       ShowMessage('Abrir tela do Passageiro')
-    end
-
+    begin
+      ShowMessage('Abrir tela do Passageiro');
+    end;
   end
   else
     ShowMessage('Login inválido!');

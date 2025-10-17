@@ -43,6 +43,34 @@ implementation
 
 {$R *.dfm}
 
+uses UData;
+
+procedure TFormAeroMoc.FormCreate(Sender: TObject);
+begin
+
+  with DataModule1.FDQueryFuncionarios do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('SELECT nome FROM usuarios WHERE id_usuario = :id');
+    ParamByName('id').AsInteger := DataModule1.UsuarioLogadoID;
+    Open;
+
+    if not IsEmpty then
+    begin
+      LabelName_Aeromo.Caption := FieldByName('nome').AsString;
+    end
+    else
+    begin
+      LabelName_Aeromo.Caption := 'Usuário não encontrado';
+
+    end;
+  end;
+
+   AbrirDash (TFormDash);
+
+end;
+
 procedure TFormAeroMoc.PanelDados_AeromoClick(Sender: TObject);
 begin
   //AbrirForm(TFormMeusDados);
@@ -79,10 +107,6 @@ begin
   Frm.Show;
 end;
 
-procedure TFormAeroMoc.FormCreate(Sender: TObject);
-begin
-  AbrirDash (TFormDash);
-end;
 
 procedure TFormAeroMoc.AbrirDash;
 var

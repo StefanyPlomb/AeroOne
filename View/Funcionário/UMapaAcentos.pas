@@ -8,7 +8,7 @@ uses
   Vcl.DBGrids, Vcl.ExtCtrls;
 
 type
-  TForm2 = class(TForm)
+  TFormMapaAcentos = class(TForm)
     Panel5: TPanel;
     Label6: TLabel;
     DBGrid1: TDBGrid;
@@ -20,7 +20,7 @@ type
   end;
 
 var
-  Form2: TForm2;
+  FormMapaAcentos: TFormMapaAcentos;
 
 implementation
 
