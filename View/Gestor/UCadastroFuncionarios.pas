@@ -10,23 +10,25 @@ uses
 type
   TFormCadastroFuncionaris = class(TForm)
     PanelCentral_Funcionarios: TPanel;
-    LabelTituloFuncionarios: TLabel;
-    LabelSubtituloFuncionarios: TLabel;
     ButNovoFuncionario: TPanel;
     EditBuscaFuncionarios: TEdit;
     PanelExcluirFuncionario: TPanel;
     PanelEditarFuncionario: TPanel;
-    PanelGridFuncionario: TPanel;
+    PanelDados: TPanel;
     DBGridFuncionarios: TDBGrid;
     ButSalvarFuncionarios: TButton;
     EditEmailFuncionarios: TEdit;
     EditNomeFuncionarios: TEdit;
     ComboBoxCargos: TComboBox;
-    EditNascimento: TEdit;
+    EditCPF: TEdit;
     EditTelefone: TEdit;
     EditCEP: TEdit;
     EditRua: TEdit;
     ComboBoxEscolaridade: TComboBox;
+    PanelSuperiorTitulos: TPanel;
+    Label1: TLabel;
+    PanelLateralBotoes: TPanel;
+    Panel1: TPanel;
 
     procedure FormCreate(Sender: TObject);
     procedure ButNovoFuncionarioClick(Sender: TObject);
@@ -56,7 +58,7 @@ begin
   FieldName := 'id_usuario';
   Title.Caption := 'ID';
   Title.Font.Style := [fsBold];
-  Title.Font.size := 15;
+  Title.Font.size := 10;
   Width := 50;
 end;
 
@@ -65,7 +67,7 @@ begin
   FieldName := 'nome';
   Title.Caption := 'Nome do Funcionário';
    Title.Font.Style := [fsBold];
-   Title.Font.size := 15;
+   Title.Font.size := 10;
    Width := 210;
 end;
 
@@ -74,7 +76,7 @@ begin
   FieldName := 'email';
   Title.Caption := 'E-mail';
    Title.Font.Style := [fsBold];
-   Title.Font.size := 15;
+   Title.Font.size := 10;
    Width := 200;
 end;
 
@@ -83,16 +85,16 @@ begin
   FieldName := 'cargo';
   Title.Caption := 'Cargo';
    Title.Font.Style := [fsBold];
-   Title.Font.size := 15;
+   Title.Font.size := 10;
    Width := 100;
 end;
 
 with DBGridFuncionarios.Columns.Add do
 begin
-  FieldName := 'data_nascimento';
-  Title.Caption := 'Data De Nascimento';
+  FieldName := 'cpf';
+  Title.Caption := 'CPF';
   Title.Font.Style := [fsBold];
-  Title.Font.size := 15;
+  Title.Font.size := 10;
   Width := 50;
 end;
 
@@ -136,13 +138,9 @@ end;
 
 procedure TFormCadastroFuncionaris.AbrirFuncionarios;
 begin
-   if not DataModule1.FDQueryFuncionarios.Active then
-  begin
     DataModule1.FDQueryFuncionarios.Close;
     DataModule1.FDQueryFuncionarios.SQL.Text := 'SELECT * FROM usuarios';
     DataModule1.FDQueryFuncionarios.Open;
-  end;
-
 end;
 
 procedure TFormCadastroFuncionaris.ButNovoFuncionarioClick(Sender: TObject);
@@ -172,7 +170,7 @@ procedure TFormCadastroFuncionaris.ButSalvarFuncionariosClick(Sender: TObject);
     DataModule1.FDQueryFuncionarios.FieldByName('nome').AsString := EditNomeFuncionarios.Text;
     DataModule1.FDQueryFuncionarios.FieldByName('email').AsString := EditEmailFuncionarios.Text;
     DataModule1.FDQueryFuncionarios.FieldByName('cargo').AsString := ComboBoxCargos.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('data_nascimento').AsString := EditNascimento.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('cpf').AsString := EditCPF.Text;
     DataModule1.FDQueryFuncionarios.FieldByName('telefone').AsString := EditTelefone.Text;
     DataModule1.FDQueryFuncionarios.FieldByName('cep').AsString := EditCEP.Text;
     DataModule1.FDQueryFuncionarios.FieldByName('rua').AsString := EditRua.Text;
@@ -185,7 +183,7 @@ procedure TFormCadastroFuncionaris.ButSalvarFuncionariosClick(Sender: TObject);
 
     EditNomeFuncionarios.Clear;
     EditEmailFuncionarios.Clear;
-    EditNascimento.Clear;
+    EditCPF.Clear;
     EditTelefone.Clear;
     EditCEP.Clear;
     EditRua.Clear;
@@ -197,7 +195,7 @@ procedure TFormCadastroFuncionaris.ButSalvarFuncionariosClick(Sender: TObject);
     DataModule1.FDQueryFuncionarios.FieldByName('nome').AsString := EditNomeFuncionarios.Text;
     DataModule1.FDQueryFuncionarios.FieldByName('email').AsString := EditEmailFuncionarios.Text;
     DataModule1.FDQueryFuncionarios.FieldByName('cargo').AsString := ComboBoxCargos.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('data_nascimento').AsString := EditNascimento.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('cpf').AsString := EditCPF.Text;
     DataModule1.FDQueryFuncionarios.FieldByName('telefone').AsString := EditTelefone.Text;
     DataModule1.FDQueryFuncionarios.FieldByName('cep').AsString := EditCEP.Text;
     DataModule1.FDQueryFuncionarios.FieldByName('rua').AsString := EditRua.Text;
@@ -229,7 +227,7 @@ begin
   EditNomeFuncionarios.Text := DataModule1.FDQueryFuncionarios.FieldByName('nome').AsString;
   EditEmailFuncionarios.Text := DataModule1.FDQueryFuncionarios.FieldByName('email').AsString;
   ComboBoxCargos.Text := DataModule1.FDQueryFuncionarios.FieldByName('cargo').AsString;
-  EditNascimento.Text := DataModule1.FDQueryFuncionarios.FieldByName('data_nascimento').AsString;
+  EditCPF.Text := DataModule1.FDQueryFuncionarios.FieldByName('cpf').AsString;
   EditTelefone.Text := DataModule1.FDQueryFuncionarios.FieldByName('telefone').AsString;
   EditCEP.Text := DataModule1.FDQueryFuncionarios.FieldByName('cep').AsString;
   EditRua.Text := DataModule1.FDQueryFuncionarios.FieldByName('rua').AsString;

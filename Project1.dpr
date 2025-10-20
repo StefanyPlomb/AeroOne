@@ -24,7 +24,14 @@ uses
   UIniciarCheckin in 'View\Funcionário\UIniciarCheckin.pas' {FormCheckin_Iniciado},
   ULiberarCheckin in 'View\Funcionário\ULiberarCheckin.pas' {FormLiberarCheckin},
   UMapaAcentos in 'View\Funcionário\UMapaAcentos.pas' {FormMapaAcentos},
-  UVoosAeroMo in 'View\Funcionário\UVoosAeroMo.pas' {FormVoosAeroMo};
+  UVoosAeroMo in 'View\Funcionário\UVoosAeroMo.pas' {FormVoosAeroMo},
+  UConexão in 'View\UConexão.pas' {Form5},
+  UDados in 'View\UDados.pas' {FormMeusDados},
+  UPartidaVoo in 'View\Piloto\UPartidaVoo.pas' {Form3},
+  UPiloto in 'View\Piloto\UPiloto.pas' {Form2},
+  UPassageiro in 'View\Passageiro\UPassageiro.pas' {Form4},
+  MEndereco in 'Model\MEndereco.pas',
+  CEnderecoController in 'Controller\CEnderecoController.pas';
 
 {$R *.res}
 
@@ -33,7 +40,13 @@ begin
   Application.MainFormOnTaskbar := True;
 
   // Só os forms que realmente abrem na inicialização
-  Application.CreateForm(TFormLogin, FormLogin); // LOGIN
+  Application.CreateForm(TFormLogin, FormLogin);   // LOGIN
+  Application.CreateForm(TForm5, Form5);
+  Application.CreateForm(TFormMeusDados, FormMeusDados);
+  Application.CreateForm(TForm3, Form3);
+  Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TForm4, Form4);
+
   Application.CreateForm(TDataModule1, DataModule1);  //BD
 
   Application.CreateForm(TFormRelatorios, FormRelatorios);

@@ -10,11 +10,12 @@ type
   TFormRelatorios = class(TForm)
     PanelCentralRelatorios: TPanel;
     StringGridRelatorios: TStringGrid;
-    LabelTituloRelatorios: TLabel;
-    LabelSubtituloRelatorios: TLabel;
+    PanelSuperiorTitulos: TPanel;
+    PanelDadosRelatórios: TPanel;
+    Panel1: TPanel;
+    Label1: TLabel;
     BoxFiltroRelaorios: TComboBox;
     EditBuscaRelatorios: TEdit;
-    PanelBuscarRelatorios: TPanel;
   private
     { Private declarations }
   public

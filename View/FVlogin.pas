@@ -16,7 +16,7 @@ type
     EditLogin_Senha: TEdit;
     Panel1: TPanel;
     Label1: TLabel;
-    Image1: TImage;
+    Image2: TImage;
     procedure Panel1Click(Sender: TObject);
 
   private
@@ -68,7 +68,7 @@ begin
       FormAeroMoc.Show;
       FormLogin.Hide;
     end
-    else if cargo = 'piloto' then
+    else if cargo = 'Piloto' then
     begin
       ShowMessage('Abrir tela da Piloto');
     end

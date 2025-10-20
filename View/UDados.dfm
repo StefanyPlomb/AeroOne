@@ -1,7 +1,7 @@
-object Form1: TForm1
+﻿object FormMeusDados: TFormMeusDados
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = 'FormMeusDados'
   ClientHeight = 598
   ClientWidth = 750
   Color = clBtnFace
@@ -10,6 +10,7 @@ object Form1: TForm1
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
   object PanelCentralDados: TPanel
     Left = 0
@@ -18,9 +19,7 @@ object Form1: TForm1
     Height = 598
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 24
-    ExplicitTop = -8
-    object Label15: TLabel
+    object LabelIcon: TLabel
       Left = 605
       Top = 441
       Width = 82
@@ -33,7 +32,7 @@ object Form1: TForm1
       Font.Style = []
       ParentFont = False
     end
-    object Panel1: TPanel
+    object PanelSuperiorTitulo: TPanel
       Left = 1
       Top = 1
       Width = 748
@@ -52,10 +51,8 @@ object Form1: TForm1
       ParentDoubleBuffered = False
       ParentFont = False
       TabOrder = 0
-      ExplicitLeft = 24
-      ExplicitWidth = 725
     end
-    object Panel2: TPanel
+    object PanelDados: TPanel
       Left = 16
       Top = 79
       Width = 521
@@ -63,7 +60,7 @@ object Form1: TForm1
       Color = clWhite
       ParentBackground = False
       TabOrder = 1
-      object Label1: TLabel
+      object LabelSubTitulo: TLabel
         Left = 16
         Top = 13
         Width = 201
@@ -76,7 +73,7 @@ object Form1: TForm1
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object Label2: TLabel
+      object LabelEndereço: TLabel
         Left = 16
         Top = 226
         Width = 93
@@ -89,7 +86,7 @@ object Form1: TForm1
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object Label3: TLabel
+      object LabelNome: TLabel
         Left = 16
         Top = 57
         Width = 97
@@ -102,7 +99,7 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
       end
-      object Label4: TLabel
+      object LabelCPF: TLabel
         Left = 264
         Top = 57
         Width = 21
@@ -115,7 +112,7 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
       end
-      object Label5: TLabel
+      object LabelEmail: TLabel
         Left = 16
         Top = 129
         Width = 36
@@ -128,7 +125,7 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
       end
-      object Label6: TLabel
+      object LabelTelefone: TLabel
         Left = 264
         Top = 129
         Width = 94
@@ -141,7 +138,7 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
       end
-      object Label7: TLabel
+      object LabelCEP: TLabel
         Left = 16
         Top = 260
         Width = 22
@@ -154,7 +151,7 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
       end
-      object Label8: TLabel
+      object LabelRua: TLabel
         Left = 135
         Top = 257
         Width = 22
@@ -167,7 +164,7 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
       end
-      object Label9: TLabel
+      object LabelNumero: TLabel
         Left = 16
         Top = 329
         Width = 48
@@ -180,7 +177,7 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
       end
-      object Label10: TLabel
+      object LabelBairro: TLabel
         Left = 135
         Top = 329
         Width = 35
@@ -193,7 +190,7 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
       end
-      object Label11: TLabel
+      object LabelCidade: TLabel
         Left = 295
         Top = 329
         Width = 41
@@ -206,78 +203,76 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
       end
-      object Edit1: TEdit
+      object EditNome: TEdit
         Left = 16
         Top = 80
         Width = 201
-        Height = 33
+        Height = 23
         TabOrder = 0
-        Text = 'Edit1'
+        TextHint = 'EX: Maria da Silva'
       end
-      object Edit2: TEdit
+      object EditCPF: TEdit
         Left = 264
         Top = 80
         Width = 201
-        Height = 33
+        Height = 23
         TabOrder = 1
-        Text = 'Edit2'
+        TextHint = '000.000.000-00'
       end
-      object Edit3: TEdit
+      object EditEmail: TEdit
         Left = 16
         Top = 152
         Width = 201
-        Height = 33
+        Height = 23
         TabOrder = 2
-        Text = 'Edit1'
+        TextHint = 'seu@exemplo.com'
       end
-      object Edit4: TEdit
+      object EditTelefone: TEdit
         Left = 264
         Top = 152
         Width = 201
-        Height = 33
+        Height = 23
         TabOrder = 3
-        Text = 'Edit1'
+        TextHint = '(00) 00000-0000'
       end
-      object Edit5: TEdit
+      object EditCEP: TEdit
         Left = 16
         Top = 280
         Width = 113
-        Height = 33
+        Height = 23
         TabOrder = 4
+        TextHint = '00000-000'
+        OnExit = EditCEPExit
       end
-      object Edit6: TEdit
+      object EditRua: TEdit
         Left = 135
         Top = 280
         Width = 330
-        Height = 33
+        Height = 23
         TabOrder = 5
-        Text = 'Edit1'
       end
-      object Edit7: TEdit
+      object EditNumero: TEdit
         Left = 16
         Top = 352
         Width = 113
-        Height = 33
+        Height = 23
         TabOrder = 6
-        Text = 'Edit1'
       end
-      object Edit8: TEdit
+      object EditBairro: TEdit
         Left = 135
         Top = 352
         Width = 154
-        Height = 33
+        Height = 23
         TabOrder = 7
-        Text = 'Edit1'
       end
-      object Edit9: TEdit
+      object EditCidade: TEdit
         Left = 295
         Top = 352
         Width = 170
-        Height = 33
+        Height = 23
         TabOrder = 8
-        Text = 'Edit1'
       end
-      object Panel3: TPanel
+      object ButSalvar: TPanel
         Left = 16
         Top = 416
         Width = 137
@@ -293,7 +288,7 @@ object Form1: TForm1
         ParentFont = False
         TabOrder = 9
       end
-      object Panel4: TPanel
+      object ButCancelar: TPanel
         Left = 184
         Top = 416
         Width = 145
@@ -311,7 +306,7 @@ object Form1: TForm1
         ParentFont = False
         TabOrder = 10
       end
-      object Panel5: TPanel
+      object ButEditar: TPanel
         Left = 352
         Top = 416
         Width = 113
@@ -328,9 +323,10 @@ object Form1: TForm1
         ParentDoubleBuffered = False
         ParentFont = False
         TabOrder = 11
+        OnClick = ButEditarClick
       end
     end
-    object Panel6: TPanel
+    object PanelLateralDados: TPanel
       Left = 552
       Top = 79
       Width = 185
@@ -377,21 +373,19 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
       end
-      object Edit10: TEdit
+      object EditRG: TEdit
         Left = 8
         Top = 74
         Width = 169
-        Height = 33
+        Height = 23
         TabOrder = 0
-        Text = 'Edit1'
       end
-      object Edit11: TEdit
+      object EditPassaporte: TEdit
         Left = 8
         Top = 146
         Width = 169
-        Height = 33
+        Height = 23
         TabOrder = 1
-        Text = 'Edit1'
       end
     end
   end

@@ -189,6 +189,28 @@
             <Form>FormVoosAeroMo</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="View\UConexão.pas">
+            <Form>Form5</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\UDados.pas">
+            <Form>FormMeusDados</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\Piloto\UPartidaVoo.pas">
+            <Form>Form3</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\Piloto\UPiloto.pas">
+            <Form>Form2</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\Passageiro\UPassageiro.pas">
+            <Form>Form4</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Model\MEndereco.pas"/>
+        <DCCReference Include="Controller\CEnderecoController.pas"/>
         <None Include="Project1.dpr"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

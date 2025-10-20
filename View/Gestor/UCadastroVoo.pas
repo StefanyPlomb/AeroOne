@@ -10,13 +10,9 @@ uses
 type
   TFormCadastroVoos = class(TForm)
     PanelCentralVoos: TPanel;
-    LabelTituloVoos: TLabel;
-    LabelSubtituloVoos: TLabel;
     EditBuscaVoos: TEdit;
     EditPartidaVoos: TEdit;
-    EditAeroMVoos: TEdit;
     EditDestinoVoos: TEdit;
-    EditPVoos: TEdit;
     PanelSalvarCadVoos: TPanel;
     PanelAlterarCadVoos: TPanel;
     PanelExcluirCadVoos: TPanel;
@@ -26,6 +22,11 @@ type
     EditHorarioVoos: TEdit;
     Edit1: TEdit;
     Edit2: TEdit;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    PanelSuperiorTitulos: TPanel;
+    Label1: TLabel;
+    Panel3: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure PanelNovoCadVoosClick(Sender: TObject);
     procedure PanelSalvarCadVoosClick(Sender: TObject);
@@ -112,12 +113,9 @@ end;
 
 procedure TFormCadastroVoos.AbrirVoos;
 begin
-   if not DataModule1.FDQueryVoos.Active then
-  begin
     DataModule1.FDQueryVoos.Close;
     DataModule1.FDQueryVoos.SQL.Text := 'SELECT * FROM voos';
     DataModule1.FDQueryVoos.Open;
-  end;
 end;
 
 procedure TFormCadastroVoos.PanelNovoCadVoosClick(Sender: TObject);

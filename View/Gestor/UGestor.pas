@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
-  Vcl.StdCtrls, Vcl.Imaging.jpeg,FVLogin,UCadastroFuncionarios, UCadastroVoo, FVrelatorios,UData;
+  Vcl.StdCtrls, Vcl.Imaging.jpeg,FVLogin,UCadastroFuncionarios, UCadastroVoo, FVrelatorios,UData, UDados;
 
 type
   TFormGestor = class(TForm)
@@ -36,6 +36,7 @@ type
     procedure PanelVoos_GestorClick(Sender: TObject);
     procedure PanelRelatorios_GestorClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure PanelDados_GestorClick(Sender: TObject);
 
 
   private
@@ -74,6 +75,11 @@ begin
 
     end;
   end;
+end;
+
+procedure TFormGestor.PanelDados_GestorClick(Sender: TObject);
+begin
+  AbrirForm(TFormMeusDados);
 end;
 
 procedure TFormGestor.PanelFuncionarios_GestorClick(Sender: TObject);
