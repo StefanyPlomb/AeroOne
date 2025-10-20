@@ -19,10 +19,11 @@ type
     LabelQuantidadeAtribuida: TLabel;
     DBGrid2: TDBGrid;
     EditBuscaDisponiveis: TEdit;
-    Image1: TImage;
     ButBuscar_Aeromo: TPanel;
     ButConecta: TPanel;
     ButDesconecta: TPanel;
+    Label1: TLabel;
+    Label2: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure ButConectaClick(Sender: TObject);
     procedure EditBuscaDisponiveisChange(Sender: TObject);
