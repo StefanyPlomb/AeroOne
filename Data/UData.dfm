@@ -57,7 +57,8 @@ object DataModule1: TDataModule1
     Top = 152
   end
   object DataSourceVoos: TDataSource
-    Left = 40
-    Top = 400
+    DataSet = FDQueryVoos
+    Left = 120
+    Top = 368
   end
 end

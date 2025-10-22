@@ -57,7 +57,7 @@ with DataModule1.FDQueryVoos do
   begin
     Close;
     SQL.Clear;
-    SQL.Add('SELECT * FROM voos WHERE origem ILIKE :filtro or destino ILIKE :filtro or CAST(data_partida AS VARCHAR) ILIKE :filtro or CAST (id_piloto AS VARCHAR) ILIKE :filtro');
+    SQL.Add('SELECT * FROM voos WHERE origem ILIKE :filtro or destino ILIKE :filtro or CAST(data_partida AS VARCHAR) ILIKE :filtro or CAST (id_piloto AS VARCHAR) ILIKE :filtro ORDER BY data_partida DESC, hora_partida DESC');
     ParamByName('filtro').AsString := '%' + EditBuscaVoos.Text + '%';
     Open;
   end;
@@ -114,7 +114,7 @@ end;
 procedure TFormCadastroVoos.AbrirVoos;
 begin
     DataModule1.FDQueryVoos.Close;
-    DataModule1.FDQueryVoos.SQL.Text := 'SELECT * FROM voos';
+    DataModule1.FDQueryVoos.SQL.Text := 'SELECT * FROM voos ORDER BY data_partida DESC, hora_partida DESC';
     DataModule1.FDQueryVoos.Open;
 end;
 

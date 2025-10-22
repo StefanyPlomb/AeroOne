@@ -8,7 +8,7 @@ uses
   Vcl.ExtCtrls;
 
 type
-  TForm4 = class(TForm)
+  TFormPassageiro = class(TForm)
     PanelCentral_Gestor: TPanel;
     ImgHome_Gestor: TImage;
     PanelLateral_Gestor: TPanel;
@@ -27,7 +27,7 @@ type
   end;
 
 var
-  Form4: TForm4;
+  FormPassageiro: TFormPassageiro;
 
 implementation
 

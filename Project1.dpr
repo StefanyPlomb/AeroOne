@@ -13,7 +13,7 @@ uses
   FVlogin in 'View\FVlogin.pas' {FormLogin},
   UData in 'Data\UData.pas' {DataModule1: TDataModule},
   FVrelatorios in 'View\Gestor\FVrelatorios.pas' {FormRelatorios},
-  UMcadastrofuncionario in 'Model\Gestor\UMcadastrofuncionario.pas',
+  Mcadastrofuncionario in 'Model\Gestor\Mcadastrofuncionario.pas',
   UCadastroFuncionarios in 'View\Gestor\UCadastroFuncionarios.pas' {FormCadastroFuncionaris},
   UGestor in 'View\Gestor\UGestor.pas' {FormGestor},
   UViewVoo in 'View\Gestor\UViewVoo.pas' {FormVoos},
@@ -28,10 +28,12 @@ uses
   UConexão in 'View\UConexão.pas' {Form5},
   UDados in 'View\UDados.pas' {FormMeusDados},
   UPartidaVoo in 'View\Piloto\UPartidaVoo.pas' {Form3},
-  UPiloto in 'View\Piloto\UPiloto.pas' {Form2},
-  UPassageiro in 'View\Passageiro\UPassageiro.pas' {Form4},
+  UPiloto in 'View\Piloto\UPiloto.pas' {FormPiloto},
+  UPassageiro in 'View\Passageiro\UPassageiro.pas' {FormPassageiro},
   MEndereco in 'Model\MEndereco.pas',
-  CEnderecoController in 'Controller\CEnderecoController.pas';
+  CEnderecoController in 'Controller\CEnderecoController.pas',
+  CBloquear in 'Controller\CBloquear.pas',
+  CCadastroFuncionario in 'Controller\Gestor\CCadastroFuncionario.pas';
 
 {$R *.res}
 
@@ -40,12 +42,13 @@ begin
   Application.MainFormOnTaskbar := True;
 
   // Só os forms que realmente abrem na inicialização
-  Application.CreateForm(TFormLogin, FormLogin);   // LOGIN
+  Application.CreateForm(TFormLogin, FormLogin);
+  // LOGIN
   Application.CreateForm(TForm5, Form5);
   Application.CreateForm(TFormMeusDados, FormMeusDados);
   Application.CreateForm(TForm3, Form3);
-  Application.CreateForm(TForm2, Form2);
-  Application.CreateForm(TForm4, Form4);
+  Application.CreateForm(TFormPiloto, FormPiloto);
+  Application.CreateForm(TFormPassageiro, FormPassageiro);
 
   Application.CreateForm(TDataModule1, DataModule1);  //BD
 

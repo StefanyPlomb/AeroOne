@@ -107,25 +107,22 @@ begin
       EditEmail.text := FieldByName('email').AsString;
       EditTelefone.text := FieldByName('telefone').AsString;
       EditRG.text := FieldByName('rg').AsString;
-      EditPassaporte.text := FieldByName('passapote').AsString;
+      EditPassaporte.text := FieldByName('passaporte').AsString;
       EditCPF.text := FieldByName('cpf').AsString;
 
     end
     else
     begin
       ShowMessage('Erro ao exibir dados salvos');
-
     end;
   end;
 
 end;
 
 procedure TFormMeusDados.FormCreate(Sender: TObject);
-var
-  Controller : TFormBloquear;
+var Controller : TFormBloquear;
 begin
   Controller.BloquearEdits([EditNome, EditEmail, EditCPF, EditRG, EditPassaporte]);
-  ExibirDados;
 end;
 
 end.

@@ -14,10 +14,12 @@ type
     PanelLogin_cadastro: TPanel;
     EditLogin_Usuario: TEdit;
     EditLogin_Senha: TEdit;
-    Panel1: TPanel;
+    butEntrar: TPanel;
     Label1: TLabel;
     Image2: TImage;
-    procedure Panel1Click(Sender: TObject);
+    procedure butEntrarClick(Sender: TObject);
+    procedure EditLogin_SenhaKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
 
   private
     { Private declarations }
@@ -34,10 +36,18 @@ implementation
 {$R *.dfm}
 
 uses
-  Ugestor, UData, UAeromoc;
+  Ugestor, UData, UAeromoc,UPiloto, UPassageiro;
 
 
-procedure TFormLogin.Panel1Click(Sender: TObject);
+procedure TFormLogin.EditLogin_SenhaKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = VK_RETURN then begin
+   Self.butEntrarClick(nil);
+  end;
+end;
+
+procedure TFormLogin.butEntrarClick(Sender: TObject);
 var
   cargo : string;
 begin
@@ -45,7 +55,7 @@ begin
   DataModule1.FDQuery1.SQL.Clear;
   DataModule1.FDQuery1.SQL.Add('SELECT id_usuario, nome, cargo ');
   DataModule1.FDQuery1.SQL.Add('FROM usuarios ');
-  DataModule1.FDQuery1.SQL.Add('WHERE email = :email AND senha = :senha');
+  DataModule1.FDQuery1.SQL.Add('WHERE email = :email AND senha = :senha'); // SQL injection
 
   DataModule1.FDQuery1.ParamByName('email').AsString := EditLogin_Usuario.Text;
   DataModule1.FDQuery1.ParamByName('senha').AsString := EditLogin_Senha.Text;
@@ -70,11 +80,15 @@ begin
     end
     else if cargo = 'Piloto' then
     begin
-      ShowMessage('Abrir tela da Piloto');
+      Application.CreateForm(TFormPiloto, FormPiloto);
+      FormPiloto.Show;
+      FormLogin.Hide;
     end
     else
     begin
-      ShowMessage('Abrir tela do Passageiro');
+      Application.CreateForm(TFormPassageiro, FormPassageiro);
+      FormPassageiro.Show;
+      FormLogin.Hide;
     end;
   end
   else
@@ -83,4 +97,3 @@ begin
   end;
 
 end.
-

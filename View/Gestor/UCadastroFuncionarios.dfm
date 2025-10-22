@@ -20,7 +20,6 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
     Align = alClient
     ParentBackground = False
     TabOrder = 0
-    ExplicitTop = 8
     object PanelDados: TPanel
       Left = 17
       Top = 104
@@ -98,8 +97,6 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
       ParentDoubleBuffered = False
       ParentFont = False
       TabOrder = 1
-      ExplicitLeft = 2
-      ExplicitTop = 0
     end
     object PanelLateralBotoes: TPanel
       Left = 606
@@ -216,13 +213,14 @@ object FormCadastroFuncionaris: TFormCadastroFuncionaris
       end
     end
     object EditCEP: TEdit
-      Left = 33
+      Left = 31
       Top = 545
       Width = 97
       Height = 23
       Color = clMenu
       TabOrder = 4
       TextHint = 'CEP'
+      OnExit = EditCEPExit
     end
     object EditEmailFuncionarios: TEdit
       Left = 182

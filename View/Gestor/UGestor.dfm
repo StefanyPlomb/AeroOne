@@ -10,6 +10,7 @@ object FormGestor: TFormGestor
   Font.Height = -6
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesktopCenter
   OnCreate = FormCreate
   TextHeight = 8
   object PanelSuperior_Gestor: TPanel
@@ -80,6 +81,7 @@ object FormGestor: TFormGestor
       Top = 32
       Width = 162
       Height = 35
+      Cursor = crHandPoint
       Align = alCustom
       Caption = '        Logout'
       Color = clWhite
@@ -210,8 +212,6 @@ object FormGestor: TFormGestor
     Height = 637
     Align = alClient
     TabOrder = 2
-    ExplicitLeft = 266
-    ExplicitTop = 105
     object ImgHome_Gestor: TImage
       Left = 0
       Top = -88

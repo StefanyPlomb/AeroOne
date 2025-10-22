@@ -10,6 +10,7 @@ object FormLogin: TFormLogin
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesktopCenter
   TextHeight = 15
   object PanelLogin_fundo: TPanel
     Left = 0
@@ -27869,8 +27870,9 @@ object FormLogin: TFormLogin
         ParentFont = False
         TabOrder = 1
         TextHint = 'Senha'
+        OnKeyDown = EditLogin_SenhaKeyDown
       end
-      object Panel1: TPanel
+      object butEntrar: TPanel
         Left = 72
         Top = 272
         Width = 209
@@ -27885,7 +27887,7 @@ object FormLogin: TFormLogin
         ParentBackground = False
         ParentFont = False
         TabOrder = 2
-        OnClick = Panel1Click
+        OnClick = butEntrarClick
       end
     end
   end

@@ -20,7 +20,6 @@ object FormCadastroVoos: TFormCadastroVoos
     Align = alClient
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = -8
     object Panel1: TPanel
       Left = 18
       Top = 464
@@ -156,7 +155,6 @@ object FormCadastroVoos: TFormCadastroVoos
       ParentDoubleBuffered = False
       ParentFont = False
       TabOrder = 2
-      ExplicitLeft = -7
     end
     object Panel3: TPanel
       Left = 609

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.DBGrids,
-  Vcl.Grids, Vcl.ExtCtrls, UData;
+  Vcl.Grids, Vcl.ExtCtrls, UData, CBloquear, MEndereco, CEnderecoController;
 
 type
   TFormCadastroFuncionaris = class(TForm)
@@ -36,6 +36,7 @@ type
     procedure PanelEditarFuncionarioClick(Sender: TObject);
     procedure PanelExcluirFuncionarioClick(Sender: TObject);
     procedure EditBuscaFuncionariosChange(Sender: TObject);
+    procedure EditCEPExit(Sender: TObject);
   private
     procedure AbrirFuncionarios;
   public
@@ -51,6 +52,7 @@ implementation
 {$R *.dfm}
 
 procedure TFormCadastroFuncionaris.FormCreate(Sender: TObject);
+var  Controller : TFormBloquear;
 begin
 
 with DBGridFuncionarios.Columns.Add do
@@ -134,24 +136,30 @@ begin
   Width := 50;
 end;
   AbrirFuncionarios;
+  Controller.BloquearEdits([EditNomeFuncionarios, EditEmailFuncionarios,EditTelefone, EditCPF, EditCEP, EditRua]);
+  Controller.BloquearComboBox([ComboBoxCargos,ComboBoxEscolaridade]);
 end;
 
-procedure TFormCadastroFuncionaris.AbrirFuncionarios;
+procedure TFormCadastroFuncionaris.AbrirFuncionarios;   // vai sair model
 begin
     DataModule1.FDQueryFuncionarios.Close;
-    DataModule1.FDQueryFuncionarios.SQL.Text := 'SELECT * FROM usuarios';
+    DataModule1.FDQueryFuncionarios.SQL.Text := 'SELECT * FROM usuarios ORDER BY id_usuario';
     DataModule1.FDQueryFuncionarios.Open;
 end;
 
 procedure TFormCadastroFuncionaris.ButNovoFuncionarioClick(Sender: TObject);
+var
+  Controller: TFormBloquear;
 begin
-
+  Controller.DesbloquearEdits([EditNomeFuncionarios, EditEmailFuncionarios,EditTelefone, EditCPF, EditCEP, EditRua]);
+  Controller.DesbloquearComboBox([ComboBoxCargos,ComboBoxEscolaridade]);
   EditNomeFuncionarios.SetFocus;
   OpcoesSalvar := False;
-
 end;
 
 procedure TFormCadastroFuncionaris.ButSalvarFuncionariosClick(Sender: TObject);
+var
+  Controller: TFormBloquear;
   begin
            // === INSERIR NOVO ===
 
@@ -187,7 +195,8 @@ procedure TFormCadastroFuncionaris.ButSalvarFuncionariosClick(Sender: TObject);
     EditTelefone.Clear;
     EditCEP.Clear;
     EditRua.Clear;
-    EditNomeFuncionarios.SetFocus;
+    Controller.BloquearEdits([EditNomeFuncionarios,EditEmailFuncionarios,EditTelefone, EditCPF, EditCEP, EditRua]);
+    Controller.BloquearComboBox([ComboBoxCargos,ComboBoxEscolaridade]);
  end
  else     // === EDITAR EXISTENTE ===
   begin
@@ -204,6 +213,8 @@ procedure TFormCadastroFuncionaris.ButSalvarFuncionariosClick(Sender: TObject);
 
     ShowMessage('Funcionário atualizado com sucesso!');
     DataModule1.FDQueryFuncionarios.Refresh;
+    Controller.BloquearComboBox([ComboBoxCargos,ComboBoxEscolaridade]);
+    Controller.BloquearEdits([EditNomeFuncionarios, EditEmailFuncionarios,EditTelefone, EditCPF, EditCEP, EditRua]);
   end;
 
 end;
@@ -222,7 +233,29 @@ begin
   end;
 end;
 
+procedure TFormCadastroFuncionaris.EditCEPExit(Sender: TObject);
+var
+  Endereco: TEndereco;
+begin
+  if Trim(EditCEP.Text) = '' then Exit;
+
+  Endereco := TEnderecoController.BuscarPorCEP(EditCEP.Text);
+
+  if Assigned(Endereco) then
+  begin
+    EditRua.Text := Endereco.Logradouro;
+
+  end
+  else
+    ShowMessage('Endereço não encontrado.');
+
+  Endereco.Free;
+
+end;
+
 procedure TFormCadastroFuncionaris.PanelEditarFuncionarioClick(Sender: TObject);
+var
+  Controller: TFormBloquear;
 begin
   EditNomeFuncionarios.Text := DataModule1.FDQueryFuncionarios.FieldByName('nome').AsString;
   EditEmailFuncionarios.Text := DataModule1.FDQueryFuncionarios.FieldByName('email').AsString;
@@ -234,7 +267,9 @@ begin
   ComboBoxEscolaridade.Text := DataModule1.FDQueryFuncionarios.FieldByName('escolaridade').AsString;
 
   IDSelecionado := DataModule1.FDQueryFuncionarios.FieldByName('id_usuario').AsInteger;
-   OpcoesSalvar := True;
+  OpcoesSalvar := True;
+  Controller.DesbloquearComboBox([ComboBoxCargos,ComboBoxEscolaridade]);
+  Controller.DesbloquearEdits([EditNomeFuncionarios, EditEmailFuncionarios,EditTelefone, EditCPF, EditCEP, EditRua]);
 end;
 
 procedure TFormCadastroFuncionaris.PanelExcluirFuncionarioClick(Sender: TObject);
