@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.DBGrids,
-  Vcl.Grids, Vcl.ExtCtrls, UData, CBloquear, MEndereco, CEnderecoController;
+  Vcl.Grids, Vcl.ExtCtrls, UData, CBloquear, MEndereco, CEnderecoController, CCadastroFuncionario;
 
 type
   TFormCadastroFuncionaris = class(TForm)
@@ -38,7 +38,7 @@ type
     procedure EditBuscaFuncionariosChange(Sender: TObject);
     procedure EditCEPExit(Sender: TObject);
   private
-    procedure AbrirFuncionarios;
+
   public
   end;
 
@@ -52,7 +52,9 @@ implementation
 {$R *.dfm}
 
 procedure TFormCadastroFuncionaris.FormCreate(Sender: TObject);
-var  Controller : TFormBloquear;
+var
+  ControllerBloquear : TFormBloquear;
+  ControllerAbrir: TCCadastroFuncionario;
 begin
 
 with DBGridFuncionarios.Columns.Add do
@@ -135,16 +137,13 @@ begin
   Title.Font.size := 15;
   Width := 50;
 end;
-  AbrirFuncionarios;
-  Controller.BloquearEdits([EditNomeFuncionarios, EditEmailFuncionarios,EditTelefone, EditCPF, EditCEP, EditRua]);
-  Controller.BloquearComboBox([ComboBoxCargos,ComboBoxEscolaridade]);
-end;
+   ControllerAbrir := TCCadastroFuncionario.Create;
+   ControllerAbrir.CarregarFuncionarios;
+   ControllerAbrir.Free;
 
-procedure TFormCadastroFuncionaris.AbrirFuncionarios;   // vai sair model
-begin
-    DataModule1.FDQueryFuncionarios.Close;
-    DataModule1.FDQueryFuncionarios.SQL.Text := 'SELECT * FROM usuarios ORDER BY id_usuario';
-    DataModule1.FDQueryFuncionarios.Open;
+  ControllerBloquear.BloquearEdits([EditNomeFuncionarios, EditEmailFuncionarios,EditTelefone, EditCPF, EditCEP, EditRua]);
+  ControllerBloquear.BloquearComboBox([ComboBoxCargos,ComboBoxEscolaridade]);
+
 end;
 
 procedure TFormCadastroFuncionaris.ButNovoFuncionarioClick(Sender: TObject);
@@ -159,78 +158,46 @@ end;
 
 procedure TFormCadastroFuncionaris.ButSalvarFuncionariosClick(Sender: TObject);
 var
-  Controller: TFormBloquear;
-  begin
-           // === INSERIR NOVO ===
+  ControllerBloquear: TFormBloquear;
+  ControllerSalvar: TCCadastroFuncionario;
+begin
+  ControllerSalvar := TCCadastroFuncionario.Create;
+  try
+    ControllerSalvar.Salvar(
+      EditNomeFuncionarios.Text,
+      EditEmailFuncionarios.Text,
+      ComboBoxCargos.Text,
+      EditCPF.Text,
+      EditTelefone.Text,
+      EditCEP.Text,
+      EditRua.Text,
+      ComboBoxEscolaridade.Text
+    );
 
-   if OpcoesSalvar = False then
-   begin
-
-   if (Trim(EditNomeFuncionarios.Text) = '') or
-     (Trim(EditEmailFuncionarios.Text) = '') or
-     (Trim(ComboBoxCargos.Text) = '') then
-  begin
-    ShowMessage('Informe um Nome, E-mail e Cargo.');
-    Exit;
+    ControllerSalvar.CarregarFuncionarios;
+  finally
+    ControllerSalvar.Free;
   end;
 
-    DataModule1.FDQueryFuncionarios.Append;
-    DataModule1.FDQueryFuncionarios.FieldByName('nome').AsString := EditNomeFuncionarios.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('email').AsString := EditEmailFuncionarios.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('cargo').AsString := ComboBoxCargos.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('cpf').AsString := EditCPF.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('telefone').AsString := EditTelefone.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('cep').AsString := EditCEP.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('rua').AsString := EditRua.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('escolaridade').AsString := ComboBoxEscolaridade.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('senha').AsString := '123';
-    DataModule1.FDQueryFuncionarios.Post;
+  EditNomeFuncionarios.Clear;
+  EditEmailFuncionarios.Clear;
+  EditCPF.Clear;
+  EditTelefone.Clear;
+  EditCEP.Clear;
+  EditRua.Clear;
 
-    DataModule1.FDQueryFuncionarios.Refresh;
-    AbrirFuncionarios;
-
-    EditNomeFuncionarios.Clear;
-    EditEmailFuncionarios.Clear;
-    EditCPF.Clear;
-    EditTelefone.Clear;
-    EditCEP.Clear;
-    EditRua.Clear;
-    Controller.BloquearEdits([EditNomeFuncionarios,EditEmailFuncionarios,EditTelefone, EditCPF, EditCEP, EditRua]);
-    Controller.BloquearComboBox([ComboBoxCargos,ComboBoxEscolaridade]);
- end
- else     // === EDITAR EXISTENTE ===
-  begin
-    DataModule1.FDQueryFuncionarios.Edit;
-    DataModule1.FDQueryFuncionarios.FieldByName('nome').AsString := EditNomeFuncionarios.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('email').AsString := EditEmailFuncionarios.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('cargo').AsString := ComboBoxCargos.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('cpf').AsString := EditCPF.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('telefone').AsString := EditTelefone.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('cep').AsString := EditCEP.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('rua').AsString := EditRua.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('escolaridade').AsString := ComboBoxEscolaridade.Text;
-    DataModule1.FDQueryFuncionarios.Post;
-
-    ShowMessage('Funcionário atualizado com sucesso!');
-    DataModule1.FDQueryFuncionarios.Refresh;
-    Controller.BloquearComboBox([ComboBoxCargos,ComboBoxEscolaridade]);
-    Controller.BloquearEdits([EditNomeFuncionarios, EditEmailFuncionarios,EditTelefone, EditCPF, EditCEP, EditRua]);
-  end;
-
+  ControllerBloquear.BloquearComboBox([ComboBoxCargos, ComboBoxEscolaridade]);
+  ControllerBloquear.BloquearEdits([EditNomeFuncionarios, EditEmailFuncionarios, EditTelefone, EditCPF, EditCEP, EditRua]);
 end;
 
 
-
 procedure TFormCadastroFuncionaris.EditBuscaFuncionariosChange(Sender: TObject);
+ var
+  ControllerBuscar: TCCadastroFuncionario;
 begin
-   with DataModule1.FDQueryFuncionarios do
-  begin
-    Close;
-    SQL.Clear;
-    SQL.Add('SELECT * FROM usuarios WHERE nome ILIKE :filtro or cargo ILIKE :filtro');
-    ParamByName('filtro').AsString := '%' + EditBuscaFuncionarios.Text + '%';
-    Open;
-  end;
+   ControllerBuscar:= TCCadastroFuncionario.Create;
+   ControllerBuscar.BuscarFiltro(EditBuscaFuncionarios.Text);
+   ControllerBuscar.Destroy;
 end;
 
 procedure TFormCadastroFuncionaris.EditCEPExit(Sender: TObject);
@@ -253,7 +220,7 @@ begin
 
 end;
 
-procedure TFormCadastroFuncionaris.PanelEditarFuncionarioClick(Sender: TObject);
+procedure TFormCadastroFuncionaris.PanelEditarFuncionarioClick(Sender: TObject);    // precisa separar ainda
 var
   Controller: TFormBloquear;
 begin
@@ -273,12 +240,15 @@ begin
 end;
 
 procedure TFormCadastroFuncionaris.PanelExcluirFuncionarioClick(Sender: TObject);
+var
+  ControllerExcluir:TCCadastroFuncionario;
 begin
    if MessageDlg('Deseja realmente excluir este funcionário?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
   begin
-    DataModule1.FDQueryFuncionarios.Delete;
-    DataModule1.FDQueryFuncionarios.Refresh;
-    ShowMessage('Funcionário excluído com sucesso!');
+    ControllerExcluir:=TCCadastroFuncionario.Create;
+    ControllerExcluir.ExcluirFuncionario;
+    ControllerExcluir.Destroy
+
   end;
 end;
 

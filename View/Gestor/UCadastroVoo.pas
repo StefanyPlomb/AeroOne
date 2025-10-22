@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Grids, Vcl.ExtCtrls,
-  Data.DB, UData, Vcl.DBGrids;
+  Data.DB, UData, Vcl.DBGrids,CBloquear;
 
 type
   TFormCadastroVoos = class(TForm)
@@ -20,8 +20,8 @@ type
     DBGridCadastroVoos: TDBGrid;
     EditDataPartida: TEdit;
     EditHorarioVoos: TEdit;
-    Edit1: TEdit;
-    Edit2: TEdit;
+    EditHorarioChegada: TEdit;
+    EditDataChegada: TEdit;
     Panel1: TPanel;
     Panel2: TPanel;
     PanelSuperiorTitulos: TPanel;
@@ -50,7 +50,6 @@ implementation
 {$R *.dfm}
 
 
-
 procedure TFormCadastroVoos.EditBuscaVoosChange(Sender: TObject);
 begin
 with DataModule1.FDQueryVoos do
@@ -64,6 +63,8 @@ with DataModule1.FDQueryVoos do
 end;
 
 procedure TFormCadastroVoos.FormCreate(Sender: TObject);
+var
+  ControllerBloquear : TFormBloquear;
 begin
 
  with DBGridCadastroVoos.Columns.Add do
@@ -109,6 +110,8 @@ begin
   end;
 
   AbrirVoos;
+
+  ControllerBloquear.BloquearEdits([EditPartidaVoos, EditDestinoVoos,EditDataPartida, EditHorarioVoos, EditDataChegada, EditHorarioChegada]);
 end;
 
 procedure TFormCadastroVoos.AbrirVoos;
@@ -144,9 +147,9 @@ begin
     DataModule1.FDQueryVoos.FieldByName('origem').AsString := EditPartidaVoos.Text;
     DataModule1.FDQueryVoos.FieldByName('destino').AsString := EditDestinoVoos.Text;
     DataModule1.FDQueryVoos.FieldByName('data_partida').AsString := EditDataPartida.Text;
-    DataModule1.FDQueryVoos.FieldByName('data_chegada').AsString := Edit2.Text;
+    DataModule1.FDQueryVoos.FieldByName('data_chegada').AsString := EditDataChegada.Text;
     DataModule1.FDQueryVoos.FieldByName('hora_partida').AsString := EditHorarioVoos.Text;
-    DataModule1.FDQueryVoos.FieldByName('hora_chegada').AsString := Edit1.Text;
+    DataModule1.FDQueryVoos.FieldByName('hora_chegada').AsString := EditHorarioChegada.Text;
     DataModule1.FDQueryVoos.Post;
 
     DataModule1.FDQueryVoos.Refresh;
@@ -168,9 +171,9 @@ begin
     DataModule1.FDQueryVoos.FieldByName('origem').AsString := EditPartidaVoos.Text;
     DataModule1.FDQueryVoos.FieldByName('destino').AsString := EditDestinoVoos.Text;
     DataModule1.FDQueryVoos.FieldByName('data_partida').AsString := EditDataPartida.Text;
-    DataModule1.FDQueryVoos.FieldByName('data_chegada').AsString := Edit2.Text;
+    DataModule1.FDQueryVoos.FieldByName('data_chegada').AsString := EditDataChegada.Text;
     DataModule1.FDQueryVoos.FieldByName('hora_partida').AsString := EditHorarioVoos.Text;
-    DataModule1.FDQueryVoos.FieldByName('hora_chegada').AsString := Edit1.Text;
+    DataModule1.FDQueryVoos.FieldByName('hora_chegada').AsString := EditHorarioChegada.Text;
     DataModule1.FDQueryVoos.Post;
 
     ShowMessage('Voo atualizado com sucesso!');
@@ -180,6 +183,8 @@ end;
 
 
 procedure TFormCadastroVoos.PanelAlterarCadVoosClick(Sender: TObject);
+var
+  ControllerBloquear: TFormBloquear;
 begin
 
   EditPartidaVoos.Text :=  DataModule1.FDQueryVoos.FieldByName('origem').AsString;
@@ -189,6 +194,8 @@ begin
 
   IDSelecionado := DataModule1.FDQueryVoos.FieldByName('id_voo').AsInteger;
    OpcoesSalvar := True;
+
+   ControllerBloquear.BloquearEdits([EditPartidaVoos, EditDestinoVoos,EditDataPartida, EditHorarioVoos, EditDataChegada, EditHorarioChegada]);
 
 end;
 

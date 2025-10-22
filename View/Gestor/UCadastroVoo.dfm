@@ -64,7 +64,7 @@ object FormCadastroVoos: TFormCadastroVoos
         TabOrder = 3
         TextHint = 'Partida'
       end
-      object Edit1: TEdit
+      object EditHorarioChegada: TEdit
         Left = 404
         Top = 58
         Width = 135
@@ -73,7 +73,7 @@ object FormCadastroVoos: TFormCadastroVoos
         TabOrder = 4
         TextHint = 'Horario Chegada'
       end
-      object Edit2: TEdit
+      object EditDataChegada: TEdit
         Left = 404
         Top = 18
         Width = 135
