@@ -33,10 +33,13 @@ end;
 procedure TFormBloquear.BloquearEdits(const Edits: array of TEdit);
 var
   I: Integer;
+  Bloquear: TFormBloquear;
 begin
+
   for I := Low(Edits) to High(Edits) do
     if Assigned(Edits[I]) then
       Edits[I].Enabled := False;
+   Bloquear.Free;
 end;
 
 procedure TFormBloquear.DesbloquearCombobox(const ComboBox: array of TComboBox);

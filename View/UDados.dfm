@@ -164,21 +164,8 @@
         Font.Style = []
         ParentFont = False
       end
-      object LabelNumero: TLabel
-        Left = 16
-        Top = 329
-        Width = 48
-        Height = 17
-        Caption = 'N'#250'mero'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -13
-        Font.Name = 'Segoe UI'
-        Font.Style = []
-        ParentFont = False
-      end
       object LabelBairro: TLabel
-        Left = 135
+        Left = 17
         Top = 329
         Width = 35
         Height = 17
@@ -191,7 +178,7 @@
         ParentFont = False
       end
       object LabelCidade: TLabel
-        Left = 295
+        Left = 199
         Top = 329
         Width = 41
         Height = 17
@@ -251,26 +238,19 @@
         Height = 23
         TabOrder = 5
       end
-      object EditNumero: TEdit
-        Left = 16
-        Top = 352
-        Width = 113
-        Height = 23
-        TabOrder = 6
-      end
       object EditBairro: TEdit
-        Left = 135
+        Left = 17
         Top = 352
         Width = 154
         Height = 23
-        TabOrder = 7
+        TabOrder = 6
       end
       object EditCidade: TEdit
-        Left = 295
+        Left = 199
         Top = 352
         Width = 170
         Height = 23
-        TabOrder = 8
+        TabOrder = 7
       end
       object ButSalvar: TPanel
         Left = 16
@@ -286,7 +266,8 @@
         Font.Style = [fsBold]
         ParentBackground = False
         ParentFont = False
-        TabOrder = 9
+        TabOrder = 8
+        OnClick = ButSalvarClick
       end
       object ButCancelar: TPanel
         Left = 184
@@ -304,7 +285,7 @@
         ParentBackground = False
         ParentDoubleBuffered = False
         ParentFont = False
-        TabOrder = 10
+        TabOrder = 9
       end
       object ButEditar: TPanel
         Left = 352
@@ -322,7 +303,7 @@
         ParentBackground = False
         ParentDoubleBuffered = False
         ParentFont = False
-        TabOrder = 11
+        TabOrder = 10
         OnClick = ButEditarClick
       end
     end

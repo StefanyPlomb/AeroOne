@@ -32,7 +32,8 @@ end;
 destructor TCCadastroFuncionario.Destroy;
 begin
   FModel.Free;
-  inherited;
+  FModel := nil;
+  inherited Destroy;
 end;
 
 procedure TCCadastroFuncionario.CarregarFuncionarios;

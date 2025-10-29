@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.pngimage,
-  Vcl.ExtCtrls, FVLogin, UVoosAeroMo, UCheckin, UDash;
+  Vcl.ExtCtrls, FVLogin, UVoos, UCheckin, UDash, UDados;
 
 type
   TFormAeroMoc = class(TForm)
@@ -73,7 +73,7 @@ end;
 
 procedure TFormAeroMoc.PanelDados_AeromoClick(Sender: TObject);
 begin
-  //AbrirForm(TFormMeusDados);
+  AbrirForm(TFormMeusDados);
 end;
 
 procedure TFormAeroMoc.PanelLogout_AeromoClick(Sender: TObject);

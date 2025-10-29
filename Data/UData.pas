@@ -9,7 +9,7 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
   FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, FireDAC.Phys.PG, FireDAC.Phys.PGDef;
+  FireDAC.Comp.Client, FireDAC.Phys.PG, FireDAC.Phys.PGDef,CBloquear;
 
 type
   TDataModule1 = class(TDataModule)
@@ -29,6 +29,7 @@ type
     { Private declarations }
   public
      UsuarioLogadoID: Integer;
+     TipoUsuarioLogado: string;
     { Public declarations }
   end;
 
@@ -42,6 +43,7 @@ implementation
 {$R *.dfm}
 
 procedure TDataModule1.DataModuleCreate(Sender: TObject);
+
 begin
   FDConnection1.Connected := True;
   DataSourceFuncionarios.DataSet := FDQueryFuncionarios;

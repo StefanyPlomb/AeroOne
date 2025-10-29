@@ -122,16 +122,19 @@ begin
 end;
 
 procedure TFormCadastroVoos.PanelNovoCadVoosClick(Sender: TObject);
+var
+  ControllerBloquear: TFormBloquear;
 begin
 
-  EditPartidaVoos.SetFocus;
+  ControllerBloquear.DesbloquearEdits([EditPartidaVoos, EditDestinoVoos,EditDataPartida, EditHorarioVoos, EditDataChegada, EditHorarioChegada]);
   OpcoesSalvar := False;
-
+  EditPartidaVoos.SetFocus;
 end;
 
 procedure TFormCadastroVoos.PanelSalvarCadVoosClick(Sender: TObject);
 var
  ProximoID: Integer;
+ ControllerBloquear: TFormBloquear;
 begin
   // === INSERIR NOVO ===
   if OpcoesSalvar = False then
@@ -160,9 +163,13 @@ begin
     EditDestinoVoos.Clear;
     EditDataPartida.Clear;
     EditHorarioVoos.Clear;
+    EditDataChegada.Clear;
+    EditHorarioChegada.Clear;
     EditPartidaVoos.SetFocus;
 
     ShowMessage('Voo cadastrado com sucesso!');
+
+    ControllerBloquear.BloquearEdits([EditPartidaVoos, EditDestinoVoos,EditDataPartida, EditHorarioVoos, EditDataChegada, EditHorarioChegada]);
   end
   else
   begin
@@ -178,6 +185,15 @@ begin
 
     ShowMessage('Voo atualizado com sucesso!');
     DataModule1.FDQueryVoos.Refresh;
+
+    EditPartidaVoos.Clear;
+    EditDestinoVoos.Clear;
+    EditDataPartida.Clear;
+    EditHorarioVoos.Clear;
+    EditHorarioChegada.Clear;
+    EditPartidaVoos.SetFocus;
+
+    ControllerBloquear.BloquearEdits([EditPartidaVoos, EditDestinoVoos,EditDataPartida, EditHorarioVoos, EditDataChegada, EditHorarioChegada]);
   end;
 end;
 
@@ -195,7 +211,7 @@ begin
   IDSelecionado := DataModule1.FDQueryVoos.FieldByName('id_voo').AsInteger;
    OpcoesSalvar := True;
 
-   ControllerBloquear.BloquearEdits([EditPartidaVoos, EditDestinoVoos,EditDataPartida, EditHorarioVoos, EditDataChegada, EditHorarioChegada]);
+   ControllerBloquear.DesbloquearEdits([EditPartidaVoos, EditDestinoVoos,EditDataPartida, EditHorarioVoos, EditDataChegada, EditHorarioChegada]);
 
 end;
 
@@ -208,9 +224,6 @@ begin
     ShowMessage('Voo excluído com sucesso!');
   end;
 end;
-
-
-
 
 
 end.

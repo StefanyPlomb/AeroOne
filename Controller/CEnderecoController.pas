@@ -3,13 +3,18 @@ unit CEnderecoController;
 interface
 
 uses
-  System.SysUtils, System.JSON, REST.Client, Data.Bind.Components, Data.Bind.ObjectScope, MEndereco;
+  System.SysUtils, System.JSON, REST.Client, Data.Bind.Components, Data.Bind.ObjectScope, MEndereco, UData;
 
 type
   TEnderecoController  = Class
 
+  private
+   //  FIdUsuario: Integer;
+
   public
     class function BuscarPorCEP(const ACEP: string): TEndereco;
+    class procedure SalvarEndereco(Endereco: TEndereco);
+   // property IdUsuario: Integer read FIdUsuario write FIdUsuario;
   End;
 
 implementation
@@ -51,5 +56,24 @@ begin
     RESTResponse.Free;
   end;
 end;
+
+
+class procedure TEnderecoController.SalvarEndereco(Endereco: TEndereco);
+begin
+  with DataModule1.FDQuery1 do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('INSERT INTO enderecos (id_usuario, cep, logradouro, bairro, cidade)');
+    SQL.Add('VALUES (:id_usuario, :cep, :logradouro, :bairro, :cidade)');
+    ParamByName('id_usuario').AsInteger := Endereco.IdUsuario;
+    ParamByName('cep').AsString := Endereco.Cep;
+    ParamByName('logradouro').AsString := Endereco.Logradouro;
+    ParamByName('bairro').AsString := Endereco.Bairro;
+    ParamByName('cidade').AsString := Endereco.Cidade;
+    ExecSQL;
+  end;
+end;
+
 
 end.

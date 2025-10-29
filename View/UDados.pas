@@ -20,7 +20,6 @@ type
     LabelEndereço: TLabel;
     EditCEP: TEdit;
     EditRua: TEdit;
-    EditNumero: TEdit;
     EditBairro: TEdit;
     EditCidade: TEdit;
     ButSalvar: TPanel;
@@ -32,7 +31,6 @@ type
     LabelTelefone: TLabel;
     LabelCEP: TLabel;
     LabelRua: TLabel;
-    LabelNumero: TLabel;
     LabelBairro: TLabel;
     LabelCidade: TLabel;
     PanelLateralDados: TPanel;
@@ -45,9 +43,13 @@ type
     procedure EditCEPExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ButEditarClick(Sender: TObject);
+    procedure ButSalvarClick(Sender: TObject);
 
 
   private
+    FBloquear: TFormBloquear;
+    procedure FormDestroy;
+
     procedure ExibirDados;
     { Private declarations }
   public
@@ -61,13 +63,62 @@ implementation
 
 {$R *.dfm}
 
+procedure TFormMeusDados.FormCreate(Sender: TObject);
+begin
+  FBloquear := TFormBloquear.Create;
+  ExibirDados;
+  FBloquear.BloquearEdits([EditNome, EditEmail, EditCPF, EditRG, EditPassaporte,
+  EditTelefone, EditCEP, EditRua, EditBairro, EditCidade]);
+ // FBloquear.Free;
+end;
+
+procedure TFormMeusDados.FormDestroy;
+begin
+  FBloquear.Free;
+end;
+
+
 
 procedure TFormMeusDados.ButEditarClick(Sender: TObject);
-var
-  Controller: TFormBloquear;
 begin
-   Controller.DesbloquearEdits([EditNome, EditEmail, EditCPF, EditRG, EditPassaporte]);
-   EditNome.SetFocus;
+  FBloquear.DesbloquearEdits([EditNome, EditEmail, EditCPF, EditRG, EditPassaporte,
+    EditTelefone, EditCEP, EditRua, EditBairro, EditCidade]);
+  EditNome.SetFocus;
+end;
+
+
+
+procedure TFormMeusDados.ButSalvarClick(Sender: TObject);
+var
+  Endereco: TEndereco;
+ // ControllerBloquear : TFormBloquear;
+begin
+    DataModule1.FDQueryFuncionarios.Edit;
+    DataModule1.FDQueryFuncionarios.FieldByName('nome').AsString := EditNome.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('email').AsString := EditEmail.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('cpf').AsString := EditCPF.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('telefone').AsString := EditTelefone.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('rg').AsString := EditRG.Text;
+    DataModule1.FDQueryFuncionarios.FieldByName('passaporte').AsString := EditPassaporte.Text;
+    DataModule1.FDQueryFuncionarios.Post;
+
+    Endereco := TEndereco.Create;
+    Endereco.IdUsuario := DataModule1.UsuarioLogadoID;
+    Endereco.Cep := EditCEP.Text;
+    Endereco.Logradouro := EditRua.Text;
+    Endereco.Bairro := EditBairro.Text;
+    Endereco.Cidade := EditCidade.Text;
+
+    // Salva o endereço
+    TEnderecoController.SalvarEndereco(Endereco);
+    DataModule1.FDQueryFuncionarios.Post;
+    Endereco.Free;
+    ExibirDados;
+    DataModule1.FDQueryFuncionarios.Refresh;
+    FBloquear.BloquearEdits([EditNome, EditEmail, EditCPF, EditRG, EditPassaporte,
+    EditTelefone, EditCEP, EditRua,EditBairro, EditCidade]);
+
+  ShowMessage('Dados atualizados com sucesso!');
 end;
 
 procedure TFormMeusDados.EditCEPExit(Sender: TObject);
@@ -97,7 +148,10 @@ begin
   begin
     Close;
     SQL.Clear;
-    SQL.Add('SELECT * FROM usuarios WHERE id_usuario = :id');
+    SQL.Add('SELECT u.*, e.bairro, e.cidade, e.cep, e.logradouro AS rua');
+    SQL.Add('FROM usuarios u');
+    SQL.Add('LEFT JOIN enderecos e ON e.id_usuario = u.id_usuario');
+    SQL.Add('WHERE u.id_usuario = :id');
     ParamByName('id').AsInteger := DataModule1.UsuarioLogadoID;
     Open;
 
@@ -109,7 +163,10 @@ begin
       EditRG.text := FieldByName('rg').AsString;
       EditPassaporte.text := FieldByName('passaporte').AsString;
       EditCPF.text := FieldByName('cpf').AsString;
-
+      EditCEP.Text:= FieldByName('cep').AsString;
+      EditRUA.Text:= FieldByName('rua').AsString;
+      EditBairro.Text:= FieldByName('bairro').AsString;
+      EditCidade.Text:= FieldByName('cidade').AsString;
     end
     else
     begin
@@ -117,12 +174,6 @@ begin
     end;
   end;
 
-end;
-
-procedure TFormMeusDados.FormCreate(Sender: TObject);
-var Controller : TFormBloquear;
-begin
-  Controller.BloquearEdits([EditNome, EditEmail, EditCPF, EditRG, EditPassaporte]);
 end;
 
 end.

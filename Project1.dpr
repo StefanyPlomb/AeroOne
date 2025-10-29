@@ -43,6 +43,7 @@ begin
 
   // Só os forms que realmente abrem na inicialização
   Application.CreateForm(TFormLogin, FormLogin);
+  Application.CreateForm(TDataModule1, DataModule1);
   // LOGIN
   Application.CreateForm(TForm5, Form5);
   Application.CreateForm(TFormMeusDados, FormMeusDados);

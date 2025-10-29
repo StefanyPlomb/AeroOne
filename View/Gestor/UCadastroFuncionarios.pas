@@ -45,7 +45,7 @@ type
 var
   FormCadastroFuncionaris: TFormCadastroFuncionaris;
   OpcoesSalvar: Boolean = False;
-   IDSelecionado: Integer = 0;
+  IDSelecionado: Integer = 0;
 
 implementation
 
@@ -197,7 +197,7 @@ procedure TFormCadastroFuncionaris.EditBuscaFuncionariosChange(Sender: TObject);
 begin
    ControllerBuscar:= TCCadastroFuncionario.Create;
    ControllerBuscar.BuscarFiltro(EditBuscaFuncionarios.Text);
-   ControllerBuscar.Destroy;
+   ControllerBuscar.Free;
 end;
 
 procedure TFormCadastroFuncionaris.EditCEPExit(Sender: TObject);
@@ -222,7 +222,7 @@ end;
 
 procedure TFormCadastroFuncionaris.PanelEditarFuncionarioClick(Sender: TObject);    // precisa separar ainda
 var
-  Controller: TFormBloquear;
+  ControllerBloquear: TFormBloquear;
 begin
   EditNomeFuncionarios.Text := DataModule1.FDQueryFuncionarios.FieldByName('nome').AsString;
   EditEmailFuncionarios.Text := DataModule1.FDQueryFuncionarios.FieldByName('email').AsString;
@@ -235,8 +235,8 @@ begin
 
   IDSelecionado := DataModule1.FDQueryFuncionarios.FieldByName('id_usuario').AsInteger;
   OpcoesSalvar := True;
-  Controller.DesbloquearComboBox([ComboBoxCargos,ComboBoxEscolaridade]);
-  Controller.DesbloquearEdits([EditNomeFuncionarios, EditEmailFuncionarios,EditTelefone, EditCPF, EditCEP, EditRua]);
+  ControllerBloquear.DesbloquearComboBox([ComboBoxCargos,ComboBoxEscolaridade]);
+  ControllerBloquear.DesbloquearEdits([EditNomeFuncionarios, EditEmailFuncionarios,EditTelefone, EditCPF, EditCEP, EditRua]);
 end;
 
 procedure TFormCadastroFuncionaris.PanelExcluirFuncionarioClick(Sender: TObject);
@@ -247,7 +247,7 @@ begin
   begin
     ControllerExcluir:=TCCadastroFuncionario.Create;
     ControllerExcluir.ExcluirFuncionario;
-    ControllerExcluir.Destroy
+    ControllerExcluir.Free
 
   end;
 end;
