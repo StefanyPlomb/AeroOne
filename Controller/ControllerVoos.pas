@@ -47,9 +47,9 @@ begin
   VooID := DataModule1.FDQueryVoos.FieldByName('id').AsInteger;
   UsuarioID := DataModule1.UsuarioLogadoID;
 
-  if TipoUsuario = 'aeromoca' then
+ if TipoUsuario = 'AeroMoco(a)' then
     acesso := 'id_aeromoca'
-  else if TipoUsuario = 'piloto' then
+  else if TipoUsuario = 'Piloto' then
     acesso := 'id_piloto'
   else
     raise Exception.Create('Tipo de usuário desconhecido.');

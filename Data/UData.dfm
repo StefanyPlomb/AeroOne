@@ -33,13 +33,13 @@ object DataModule1: TDataModule1
   end
   object DataSourceFuncionarios: TDataSource
     DataSet = FDQueryFuncionarios
-    Left = 32
-    Top = 267
+    Left = 24
+    Top = 259
   end
   object FDQueryVoos: TFDQuery
     Connection = FDConnection1
-    Left = 32
-    Top = 368
+    Left = 72
+    Top = 384
   end
   object DataSourceAtribuidos: TDataSource
     DataSet = FDQueryAtribuidos
@@ -48,17 +48,27 @@ object DataModule1: TDataModule1
   end
   object FDQueryAtribuidos: TFDQuery
     Connection = FDConnection1
-    Left = 46
-    Top = 166
+    Left = 38
+    Top = 150
   end
   object FDQueryQuantidade: TFDQuery
     Connection = FDConnection1
-    Left = 216
-    Top = 152
+    Left = 208
+    Top = 160
   end
   object DataSourceVoos: TDataSource
     DataSet = FDQueryVoos
-    Left = 120
+    Left = 24
+    Top = 376
+  end
+  object DataSourceEndereco: TDataSource
+    DataSet = FDQueryEndereco
+    Left = 272
+    Top = 352
+  end
+  object FDQueryEndereco: TFDQuery
+    Connection = FDConnection1
+    Left = 280
     Top = 368
   end
 end

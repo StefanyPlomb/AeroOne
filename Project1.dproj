@@ -187,7 +187,7 @@
             <Form>FormMapaAcentos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="View\Funcionário\UVoosAeroMo.pas">
+        <DCCReference Include="View\Funcionário\UVoos.pas">
             <Form>FormVoosAeroMo</Form>
             <FormType>dfm</FormType>
         </DCCReference>
@@ -215,6 +215,8 @@
         <DCCReference Include="Controller\CEnderecoController.pas"/>
         <DCCReference Include="Controller\CBloquear.pas"/>
         <DCCReference Include="Controller\Gestor\CCadastroFuncionario.pas"/>
+        <DCCReference Include="Controller\ControllerVoos.pas"/>
+        <DCCReference Include="Model\ModelVoo.pas"/>
         <None Include="Project1.dpr"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

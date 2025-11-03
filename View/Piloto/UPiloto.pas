@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.pngimage,
   Vcl.ExtCtrls,
-  UData, UDados,UVoos;
+  UData, UDados,UVoos,FVLogin;
 
 type
   TFormPiloto = class(TForm)
@@ -26,6 +26,7 @@ type
     procedure AbrirForm (FrmClass: TFormClass);
     procedure PanelVoos_GestorClick(Sender: TObject);
     procedure PanelDados_GestorClick(Sender: TObject);
+    procedure PanelLogout_GestorClick(Sender: TObject);
   private
 
     { Private declarations }
@@ -59,6 +60,12 @@ end;
 procedure TFormPiloto.PanelDados_GestorClick(Sender: TObject);
 begin
    AbrirForm(TFormMeusDados);
+end;
+
+procedure TFormPiloto.PanelLogout_GestorClick(Sender: TObject);
+begin
+  FormLogin.Show;
+  Self.Close;
 end;
 
 procedure TFormPiloto.PanelVoos_GestorClick(Sender: TObject);

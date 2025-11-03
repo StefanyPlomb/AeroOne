@@ -49,11 +49,12 @@ object FormCheckin: TFormCheckin
       ParentColor = False
       ParentFont = False
     end
-    object DBGrid1: TDBGrid
+    object DBGridAtribuidos: TDBGrid
       Left = 114
       Top = 112
       Width = 431
       Height = 161
+      DataSource = DataModule1.DataSourceAtribuidos
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
@@ -85,14 +86,14 @@ object FormCheckin: TFormCheckin
       ParentFont = False
       TabOrder = 2
     end
-    object Button1: TButton
-      Left = 584
-      Top = 224
+    object ButtonIniciar: TButton
+      Left = 576
+      Top = 240
       Width = 129
       Height = 33
       Caption = 'Iniciar'
       TabOrder = 3
-      OnClick = Button1Click
+      OnClick = ButtonIniciarClick
     end
     object PanelAbrir: TPanel
       Left = 0

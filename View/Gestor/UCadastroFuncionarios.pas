@@ -210,7 +210,7 @@ begin
 
   if Assigned(Endereco) then
   begin
-    EditRua.Text := Endereco.Logradouro;
+    EditRua.Text := Endereco.Rua;
 
   end
   else

@@ -24,6 +24,8 @@ type
     FDQueryAtribuidos: TFDQuery;
     FDQueryQuantidade: TFDQuery;
     DataSourceVoos: TDataSource;
+    DataSourceEndereco: TDataSource;
+    FDQueryEndereco: TFDQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

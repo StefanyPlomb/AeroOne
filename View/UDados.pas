@@ -69,7 +69,7 @@ begin
   ExibirDados;
   FBloquear.BloquearEdits([EditNome, EditEmail, EditCPF, EditRG, EditPassaporte,
   EditTelefone, EditCEP, EditRua, EditBairro, EditCidade]);
- // FBloquear.Free;
+
 end;
 
 procedure TFormMeusDados.FormDestroy;
@@ -82,7 +82,7 @@ end;
 procedure TFormMeusDados.ButEditarClick(Sender: TObject);
 begin
   FBloquear.DesbloquearEdits([EditNome, EditEmail, EditCPF, EditRG, EditPassaporte,
-    EditTelefone, EditCEP, EditRua, EditBairro, EditCidade]);
+  EditTelefone, EditCEP, EditRua, EditBairro, EditCidade]);
   EditNome.SetFocus;
 end;
 
@@ -91,32 +91,34 @@ end;
 procedure TFormMeusDados.ButSalvarClick(Sender: TObject);
 var
   Endereco: TEndereco;
- // ControllerBloquear : TFormBloquear;
 begin
-    DataModule1.FDQueryFuncionarios.Edit;
-    DataModule1.FDQueryFuncionarios.FieldByName('nome').AsString := EditNome.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('email').AsString := EditEmail.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('cpf').AsString := EditCPF.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('telefone').AsString := EditTelefone.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('rg').AsString := EditRG.Text;
-    DataModule1.FDQueryFuncionarios.FieldByName('passaporte').AsString := EditPassaporte.Text;
-    DataModule1.FDQueryFuncionarios.Post;
+  with DataModule1.FDQueryFuncionarios do
+  begin
+    Edit;
+    FieldByName('nome').AsString := EditNome.Text;
+    FieldByName('email').AsString := EditEmail.Text;
+    FieldByName('cpf').AsString := EditCPF.Text;
+    FieldByName('telefone').AsString := EditTelefone.Text;
+    FieldByName('rg').AsString := EditRG.Text;
+    FieldByName('passaporte').AsString := EditPassaporte.Text;
+    Post;
+  end;
 
-    Endereco := TEndereco.Create;
+  Endereco := TEndereco.Create;
+  begin
     Endereco.IdUsuario := DataModule1.UsuarioLogadoID;
-    Endereco.Cep := EditCEP.Text;
-    Endereco.Logradouro := EditRua.Text;
-    Endereco.Bairro := EditBairro.Text;
-    Endereco.Cidade := EditCidade.Text;
+    Endereco.Cep := Trim(EditCEP.Text);
+    Endereco.Rua := Trim(EditRua.Text);
+    Endereco.Bairro := Trim(EditBairro.Text);
+    Endereco.Cidade := Trim(EditCidade.Text);
 
-    // Salva o endereço
     TEnderecoController.SalvarEndereco(Endereco);
-    DataModule1.FDQueryFuncionarios.Post;
     Endereco.Free;
-    ExibirDados;
-    DataModule1.FDQueryFuncionarios.Refresh;
-    FBloquear.BloquearEdits([EditNome, EditEmail, EditCPF, EditRG, EditPassaporte,
-    EditTelefone, EditCEP, EditRua,EditBairro, EditCidade]);
+  end;
+
+  ExibirDados;
+  DataModule1.FDQueryFuncionarios.Refresh;
+  FBloquear.BloquearEdits([EditNome, EditEmail, EditCPF, EditRG, EditPassaporte,EditTelefone, EditCEP, EditRua, EditBairro, EditCidade]);
 
   ShowMessage('Dados atualizados com sucesso!');
 end;
@@ -131,7 +133,7 @@ begin
 
   if Assigned(Endereco) then
   begin
-    EditRua.Text := Endereco.Logradouro;
+    EditRua.Text := Endereco.Rua;
     EditBairro.Text := Endereco.Bairro;
     EditCidade.Text := Endereco.Cidade;
   end
@@ -148,7 +150,7 @@ begin
   begin
     Close;
     SQL.Clear;
-    SQL.Add('SELECT u.*, e.bairro, e.cidade, e.cep, e.logradouro AS rua');
+    SQL.Add('SELECT u.*, e.bairro, e.cidade, e.cep, e.rua AS rua');
     SQL.Add('FROM usuarios u');
     SQL.Add('LEFT JOIN enderecos e ON e.id_usuario = u.id_usuario');
     SQL.Add('WHERE u.id_usuario = :id');

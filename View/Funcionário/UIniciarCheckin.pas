@@ -5,17 +5,15 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Data.DB, Vcl.Grids,
-  Vcl.DBGrids, Vcl.StdCtrls;
+  Vcl.DBGrids, Vcl.StdCtrls, UData;
 
 type
   TFormCheckin_Iniciado = class(TForm)
-    Panel1: TPanel;
-    LabelSubtituloCheck: TLabel;
-    LabelTituloCheck: TLabel;
-    Label1: TLabel;
-    Label2: TLabel;
+    PanelCentral: TPanel;
+    LabelOrigem: TLabel;
+    LabelDestino: TLabel;
     Label3: TLabel;
-    Label4: TLabel;
+    LabelHoraPartida: TLabel;
     Label5: TLabel;
     Panel2: TPanel;
     Panel3: TPanel;
@@ -27,10 +25,16 @@ type
     Panel5: TPanel;
     Button2: TButton;
     Button3: TButton;
+    PanelSuperiorTitulos: TPanel;
+    procedure Edit1Change(Sender: TObject);
   private
     { Private declarations }
+
   public
     { Public declarations }
+    VooID: Integer;
+    procedure CarregarDadosDoBanco;
+    procedure CarregarDados(origem, destino, status, dataPartida, dataChegada, horaPartida: string);
   end;
 
 var
@@ -39,5 +43,48 @@ var
 implementation
 
 {$R *.dfm}
+
+{ TFormCheckin_Iniciado }
+
+procedure TFormCheckin_Iniciado.CarregarDados(origem, destino, status,
+  dataPartida, dataChegada, horaPartida: string);
+begin
+  LabelOrigem.Caption := origem;
+  LabelDestino.Caption := destino;
+  LabelHoraPartida.Caption := horaPartida;
+end;
+
+procedure TFormCheckin_Iniciado.CarregarDadosDoBanco;
+begin
+  with DataModule1.FDQueryVoos do
+  begin
+    Close;
+    SQL.Text := 'SELECT origem, destino, hora_partida ' +
+                'FROM voos WHERE id = :id';
+    ParamByName('id').AsInteger := VooID;
+    Open;
+
+    if not IsEmpty then
+    begin
+      LabelOrigem.Caption := FieldByName('origem').AsString;
+      LabelDestino.Caption := FieldByName('destino').AsString;
+      LabelHoraPartida.Caption := FieldByName('hora_partida').AsString;
+    end;
+
+    Close;
+  end;
+end;
+
+procedure TFormCheckin_Iniciado.Edit1Change(Sender: TObject);
+Var Filtro: String;
+begin
+  with DataModule1.FDQueryVoos do
+  begin
+    Close;
+    SQL.Text := 'SELECT * FROM voos WHERE (nome ILIKE :filtro OR acento ILIKE :filtro ) ILIKE :filtro) AND id_aeromoca IS NULL ORDER BY data_partida, hora_partida';
+    ParamByName('filtro').AsString := '%' + Filtro + '%';
+    Open;
+  end;
+end;
 
 end.

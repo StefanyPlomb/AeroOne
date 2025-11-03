@@ -24,7 +24,7 @@ uses
   UIniciarCheckin in 'View\Funcionário\UIniciarCheckin.pas' {FormCheckin_Iniciado},
   ULiberarCheckin in 'View\Funcionário\ULiberarCheckin.pas' {FormLiberarCheckin},
   UMapaAcentos in 'View\Funcionário\UMapaAcentos.pas' {FormMapaAcentos},
-  UVoosAeroMo in 'View\Funcionário\UVoosAeroMo.pas' {FormVoosAeroMo},
+  UVoos in 'View\Funcionário\UVoos.pas' {FormVoosAeroMo},
   UConexão in 'View\UConexão.pas' {Form5},
   UDados in 'View\UDados.pas' {FormMeusDados},
   UPartidaVoo in 'View\Piloto\UPartidaVoo.pas' {Form3},
@@ -33,7 +33,9 @@ uses
   MEndereco in 'Model\MEndereco.pas',
   CEnderecoController in 'Controller\CEnderecoController.pas',
   CBloquear in 'Controller\CBloquear.pas',
-  CCadastroFuncionario in 'Controller\Gestor\CCadastroFuncionario.pas';
+  CCadastroFuncionario in 'Controller\Gestor\CCadastroFuncionario.pas',
+  ControllerVoos in 'Controller\ControllerVoos.pas',
+  ModelVoo in 'Model\ModelVoo.pas';
 
 {$R *.res}
 
