@@ -1,14 +1,14 @@
-unit CCadastroFuncionario;
+unit UFuncionarioController;
 
 interface
 
 uses
-  System.SysUtils, MCadastrofuncionario, Data.DB, Vcl.Dialogs;
+  System.SysUtils, UFuncionarioDao, Vcl.Dialogs;
 
 type
-  TCCadastroFuncionario = class
-   private
-    FModel: TFuncionarioCadastro;
+  TFuncionarioController = class
+  private
+    FModel: TFuncionarioModel;
   public
     constructor Create;
     destructor Destroy; override;
@@ -24,31 +24,31 @@ var OpcoesSalvar: Boolean = False;
 
 { TCCadastroFuncionario }
 
-constructor TCCadastroFuncionario.Create;
+constructor TFuncionarioController.Create;
 begin
-  FModel := TFuncionarioCadastro.Create;
+  FModel := TFuncionarioModel.Create;
 end;
 
-destructor TCCadastroFuncionario.Destroy;
+destructor TFuncionarioController.Destroy;
 begin
   FModel.Free;
   FModel := nil;
   inherited Destroy;
 end;
 
-procedure TCCadastroFuncionario.CarregarFuncionarios;
+procedure TFuncionarioController.CarregarFuncionarios;
 begin
   FModel.AbrirFuncionarios;
 end;
 
-procedure TCCadastroFuncionario.Salvar;
+procedure TFuncionarioController.Salvar;
 begin
 
   if OpcoesSalvar = False then
   begin
     if (Trim(Nome) = '') or (Trim(Email) = '') or (Trim(Cargo) = '') then
       begin
-      ShowMessage('Informe um Nome, E-mail e Cargo.');
+        ShowMessage('Informe um Nome, E-mail e Cargo.');
       Exit;
       end;
     FModel.SalvarFuncionarios(Nome, Email, Cargo, CPF, Telefone, CEP, Rua, Escolaridade)
@@ -59,12 +59,12 @@ begin
 
 end;
 
-procedure TCCadastroFuncionario.BuscarFiltro(const Filtro: string);
+procedure TFuncionarioController.BuscarFiltro(const Filtro: string);
 begin
    FModel.Buscar(Filtro);
 end;
 
-procedure TCCadastroFuncionario.ExcluirFuncionario;
+procedure TFuncionarioController.ExcluirFuncionario;
 begin
   FModel.Exluir;
 end;

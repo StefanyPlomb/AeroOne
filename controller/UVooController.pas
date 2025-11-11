@@ -1,14 +1,14 @@
-unit ControllerVoos;
+unit UVooController;
 
 interface
 
 uses
-  System.SysUtils, ModelVoo, UData;
+  System.SysUtils, UVooDao, UConn;
 
 type
   TVooController = class
   public
-    class procedure ConectarVoo(const TipoUsuario: string);
+    class procedure conectarVoo(id: Integer; tipoUsuario: string);
     class procedure DesconectaVoo(const TipoUsuario: string);
     class procedure Busca(const Filtro: string);
     class procedure BaixarVoos(const TipodeAcesso: string);
@@ -36,16 +36,15 @@ begin
   TVooModel.FiltrodeBusca(Filtro);
 end;
 
-class procedure TVooController.ConectarVoo(const TipoUsuario: string);
+class procedure TVooController.conectarVoo(id: Integer; tipoUsuario: string);
 var
   VooID, UsuarioID: Integer;
   acesso: string;
 begin
-  if DataModule1.FDQueryVoos.IsEmpty then
+  if DataModuleConn.FDQueryVoos.IsEmpty then
     raise Exception.Create('Nenhum voo selecionado.');
 
-  VooID := DataModule1.FDQueryVoos.FieldByName('id').AsInteger;
-  UsuarioID := DataModule1.UsuarioLogadoID;
+  VooID := DataModuleConn.FDQueryVoos.FieldByName('id').AsInteger;
 
  if TipoUsuario = 'AeroMoco(a)' then
     acesso := 'id_aeromoca'
@@ -65,10 +64,10 @@ var
   acesso: string;
 begin
 
-    if DataModule1.FDQueryVoos.IsEmpty then
+    if DataModuleConn.FDQueryVoos.IsEmpty then
     raise Exception.Create('Nenhum voo selecionado.');
 
-  VooID := DataModule1.FDQueryVoos.FieldByName('id').AsInteger;
+  VooID := DataModuleConn.FDQueryVoos.FieldByName('id').AsInteger;
 
   if TipoUsuario = 'AeroMoco(a)' then
     acesso := 'id_aeromoca'
@@ -82,9 +81,8 @@ end;
 
 class procedure TVooController.Quantidade(var Disponiveis, Atribuidos: Integer);
 begin
-
-  Disponiveis:= TVooModel.ContarDisponiveis( DataModule1.TipoUsuarioLogado);
-  Atribuidos:= TVooModel.ContarAtribuidos(DataModule1.TipoUsuarioLogado, DataModule1.UsuarioLogadoID);;
+  // Disponiveis:= TVooModel.ContarDisponiveis();
+  // Atribuidos:= TVooModel.ContarAtribuidos(DataModuleConn.TipoUsuarioLogado, DataModuleConn.UsuarioLogadoID);;
 end;
 
 end.

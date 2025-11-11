@@ -1,10 +1,10 @@
-unit CEnderecoController;
+unit UEnderecoController;
 
 interface
 
 uses
   System.SysUtils, System.JSON, REST.Client, Data.Bind.Components, Data.Bind.ObjectScope,
-  MEndereco, UData;
+  UEndereco;
 
 type
   TEnderecoController = class
@@ -20,10 +20,12 @@ type
 
 implementation
 
+uses UConn;
+
 {-------------------------------------------------------------}
 class function TEnderecoController.ExisteEndereco(IdUsuario: Integer): Boolean;
 begin
-  with DataModule1.FDQueryEndereco do
+  with DataModuleConn.FDQueryEndereco do
   begin
     Close;
     SQL.Text := 'SELECT COUNT(*) FROM enderecos WHERE id_usuario = :id';
@@ -37,17 +39,17 @@ end;
 {-------------------------------------------------------------}
 class procedure TEnderecoController.InserirEndereco(Endereco: TEndereco);
 begin
-  with DataModule1.FDQueryEndereco do
+  with DataModuleConn.FDQueryEndereco do
   begin
     Close;
     SQL.Clear;
     SQL.Add('INSERT INTO enderecos (id_usuario, cep, rua, bairro, cidade)');
     SQL.Add('VALUES (:id_usuario, :cep, :rua, :bairro, :cidade)');
-    ParamByName('id_usuario').AsInteger := Endereco.IdUsuario;
-    ParamByName('cep').AsString := Endereco.Cep;
-    ParamByName('rua').AsString := Endereco.Rua;
-    ParamByName('bairro').AsString := Endereco.Bairro;
-    ParamByName('cidade').AsString := Endereco.Cidade;
+    ParamByName('id_usuario').AsInteger := Endereco.getIdUsuario;
+    ParamByName('cep').AsString := Endereco.getCep;
+    ParamByName('rua').AsString := Endereco.getRua;
+    ParamByName('bairro').AsString := Endereco.getBairro;
+    ParamByName('cidade').AsString := Endereco.getCidade;
     ExecSQL;
   end;
 end;
@@ -55,7 +57,7 @@ end;
 {-------------------------------------------------------------}
 class procedure TEnderecoController.AtualizarEndereco(Endereco: TEndereco);
 begin
-  with DataModule1.FDQueryEndereco do
+  with DataModuleConn.FDQueryEndereco do
   begin
     Close;
     SQL.Clear;
@@ -65,11 +67,11 @@ begin
     SQL.Add('  bairro = :bairro,');
     SQL.Add('  cidade = :cidade');
     SQL.Add('WHERE id_usuario = :id_usuario');
-    ParamByName('id_usuario').AsInteger := Endereco.IdUsuario;
-    ParamByName('cep').AsString := Endereco.Cep;
-    ParamByName('rua').AsString := Endereco.Rua;
-    ParamByName('bairro').AsString := Endereco.Bairro;
-    ParamByName('cidade').AsString := Endereco.Cidade;
+    ParamByName('id_usuario').AsInteger := Endereco.getIdUsuario;
+    ParamByName('cep').AsString := Endereco.getCep;
+    ParamByName('rua').AsString := Endereco.getRua;
+    ParamByName('bairro').AsString := Endereco.getBairro;
+    ParamByName('cidade').AsString := Endereco.getCidade;
     ExecSQL;
   end;
 end;
@@ -77,7 +79,7 @@ end;
 {-------------------------------------------------------------}
 class procedure TEnderecoController.LimparEndereco(IdUsuario: Integer);
 begin
-  with DataModule1.FDQueryEndereco do
+  with DataModuleConn.FDQueryEndereco do
   begin
     Close;
     SQL.Clear;
@@ -90,12 +92,12 @@ end;
 {-------------------------------------------------------------}
 class procedure TEnderecoController.SalvarEndereco(Endereco: TEndereco);
 begin
-  if (Trim(Endereco.Cep) = '') and (Trim(Endereco.Rua) = '') and
-     (Trim(Endereco.Bairro) = '') and (Trim(Endereco.Cidade) = '') then
+  if (Trim(Endereco.getCep) = '') and (Trim(Endereco.getRua) = '') and
+     (Trim(Endereco.getBairro) = '') and (Trim(Endereco.getCidade) = '') then
   begin
-    LimparEndereco(Endereco.IdUsuario);
+    LimparEndereco(Endereco.getIdUsuario);
   end
-  else if ExisteEndereco(Endereco.IdUsuario) then
+  else if ExisteEndereco(Endereco.getIdUsuario) then
   begin
     AtualizarEndereco(Endereco);
   end
@@ -129,10 +131,10 @@ begin
 
     if Assigned(JSONObj) then
     begin
-      Endereco.CEP := ACEP;
-      Endereco.Rua := JSONObj.GetValue<string>('logradouro');
-      Endereco.Bairro := JSONObj.GetValue<string>('bairro');
-      Endereco.Cidade := JSONObj.GetValue<string>('localidade');
+      Endereco.setCEP(ACEP);
+      Endereco.setRua(JSONObj.GetValue<string>('logradouro'));
+      Endereco.setBairro(JSONObj.GetValue<string>('bairro'));
+      Endereco.setCidade(JSONObj.GetValue<string>('localidade'));
     end;
 
     Result := Endereco;
