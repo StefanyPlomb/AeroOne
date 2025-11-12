@@ -1,4 +1,4 @@
-unit UData;
+unit UConn;
 
 interface
 
@@ -9,14 +9,14 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
   FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, FireDAC.Phys.PG, FireDAC.Phys.PGDef,CBloquear;
+  FireDAC.Comp.Client, FireDAC.Phys.PG, FireDAC.Phys.PGDef;
 
 type
-  TDataModule1 = class(TDataModule)
-    FDConnection1: TFDConnection;
-    FDQuery1: TFDQuery;
-    DataSource1: TDataSource;
-    FDPhysPgDriverLink1: TFDPhysPgDriverLink;
+  TDataModuleConn = class(TDataModule)
+    FDConnection: TFDConnection;
+    FDQueryLogin: TFDQuery;
+    DataSourceLogin: TDataSource;
+    FDPhysPgDriverLink: TFDPhysPgDriverLink;
     FDQueryFuncionarios: TFDQuery;
     DataSourceFuncionarios: TDataSource;
     FDQueryVoos: TFDQuery;
@@ -26,33 +26,24 @@ type
     DataSourceVoos: TDataSource;
     DataSourceEndereco: TDataSource;
     FDQueryEndereco: TFDQuery;
+    FDQueryGestor: TFDQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
-     UsuarioLogadoID: Integer;
-     TipoUsuarioLogado: string;
     { Public declarations }
   end;
 
 var
-  DataModule1: TDataModule1;
+  DataModuleConn: TDataModuleConn;
 
 implementation
 
-
-
 {$R *.dfm}
 
-procedure TDataModule1.DataModuleCreate(Sender: TObject);
-
+procedure TDataModuleConn.DataModuleCreate(Sender: TObject);
 begin
-  FDConnection1.Connected := True;
-  DataSourceFuncionarios.DataSet := FDQueryFuncionarios;
-  DataSourceVoos.DataSet := FDQueryVoos;
-  DataSourceAtribuidos.DataSet := FDQueryAtribuidos;
+  FDConnection.Connected := True;
 end;
 
-
 end.
-
