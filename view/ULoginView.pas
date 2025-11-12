@@ -39,7 +39,7 @@ implementation
 
 {$R *.dfm}
 
-uses UUsuarioController, UUsuario, UGestorView, UAeroMocView, UPilotoView, UPassageiroView;
+uses UUsuarioController, UUsuario, UEnderecoController, UGestorView, UAeroMocView, UPilotoView, UPassageiroView;
 
 procedure TFormLogin.edtLoginSenhaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
@@ -52,7 +52,7 @@ procedure TFormLogin.imgOlhoAbertoClick(Sender: TObject);
 begin
   imgOlhoAberto.Visible := not imgOlhoAberto.Visible;
   imgOlhoFechado.Visible := not imgOlhoFechado.Visible;
-  edtLoginSenha.PasswordChar := '•';
+  edtLoginSenha.PasswordChar := '*';
 end;
 
 procedure TFormLogin.imgOlhoFechadoClick(Sender: TObject);
@@ -70,18 +70,19 @@ begin
   try
     usuario := TUsuarioController.login(edtLoginEmail.Text, edtLoginSenha.Text);
     if usuario <> nil then begin
+      usuario.setEndereco(TEnderecoController.getEndereco(usuario.getId));
       cargo := usuario.getCargo;
-      FormLogin.Hide;
+      edtLoginEmail.SetFocus;
+      edtLoginEmail.Clear;
+      edtLoginSenha.Clear;
+      self.Hide;
       if cargo = 'Gestor' then begin
         TFormGestor.open(usuario);
-      end
-      else if cargo = 'Piloto' then begin
-        // TFormPiloto.open(usuario);
-      end
-      else if cargo = 'Aeromoço' then begin
+      end else if cargo = 'Piloto' then begin
+        TFormPiloto.open(usuario);
+      end else if cargo = 'Aeromoco' then begin
         TFormAeroMoc.open(usuario);
-      end
-      else begin
+      end else begin
         TFormPassageiro.open(usuario);
       end;
     end;
