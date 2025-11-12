@@ -2,6 +2,8 @@ unit UUsuario;
 
 interface
 
+uses UEndereco;
+
 type
   TUsuario = class
   private
@@ -13,10 +15,8 @@ type
     Fcargo: String;
     FCPF: String;
     Fpassaporte: String;
-    FCEP: Integer;
-    Fendereco: String;
-    Fnumero: Integer;
     Fstatus: String;
+    Fendereco: TEndereco;
   public
     function getId: Integer;
     procedure setId(const Value: Integer);
@@ -34,14 +34,11 @@ type
     procedure setCPF(const Value: String);
     function getPassaporte: String;
     procedure setPassaporte(const Value: String);
-    function getCEP: Integer;
-    procedure setCEP(const Value: Integer);
-    function getEndereco: String;
-    procedure setEndereco(const Value: String);
-    function getNumero: Integer;
-    procedure setNumero(const Value: Integer);
     function getStatus: String;
     procedure setStatus(const Value: String);
+    function getEndereco: TEndereco;
+    procedure setEndereco(const Value: TEndereco);
+    procedure AssignFrom(copyUsuario: TUsuario);
   end;
 
 implementation
@@ -128,36 +125,6 @@ begin
   Fpassaporte := Value;
 end;
 
-function TUsuario.getCEP: Integer;
-begin
-  Result := FCEP;
-end;
-
-procedure TUsuario.setCEP(const Value: Integer);
-begin
-  FCEP := Value;
-end;
-
-function TUsuario.getEndereco: String;
-begin
-  Result := Fendereco;
-end;
-
-procedure TUsuario.setEndereco(const Value: String);
-begin
-  Fendereco := Value;
-end;
-
-function TUsuario.getNumero: Integer;
-begin
-  Result := Fnumero;
-end;
-
-procedure TUsuario.setNumero(const Value: Integer);
-begin
-  Fnumero := Value;
-end;
-
 function TUsuario.getStatus: String;
 begin
   Result := Fstatus;
@@ -166,6 +133,47 @@ end;
 procedure TUsuario.setStatus(const Value: String);
 begin
   Fstatus := Value;
+end;
+
+function TUsuario.getEndereco: TEndereco;
+begin
+  Result := Fendereco;
+end;
+
+procedure TUsuario.setEndereco(const Value: TEndereco);
+begin
+  Fendereco := Value;
+end;
+
+procedure TUsuario.AssignFrom(copyUsuario: TUsuario);
+begin
+  if copyUsuario = nil then Exit;
+  setId(copyUsuario.getId);
+  setNome(copyUsuario.getNome);
+  setEmail(copyUsuario.getEmail);
+  setSenha(copyUsuario.getSenha);
+  setTelefone(copyUsuario.getTelefone);
+  setCargo(copyUsuario.getCargo);
+  setCPF(copyUsuario.getCPF);
+  setPassaporte(copyUsuario.getPassaporte);
+  setStatus(copyUsuario.getStatus);
+
+  if copyUsuario.getEndereco <> nil then begin
+    if Fendereco = nil then Fendereco := TEndereco.Create;
+    Fendereco.setId(copyUsuario.getEndereco.getId);
+    Fendereco.setIdUsuario(copyUsuario.getEndereco.getIdUsuario);
+    Fendereco.setCep(copyUsuario.getEndereco.getCep);
+    Fendereco.setRua(copyUsuario.getEndereco.getRua);
+    Fendereco.setBairro(copyUsuario.getEndereco.getBairro);
+    Fendereco.setCidade(copyUsuario.getEndereco.getCidade);
+    Fendereco.setUF(copyUsuario.getEndereco.getUF);
+    Fendereco.setNumero(copyUsuario.getEndereco.getNumero);
+  end else begin
+    if Fendereco <> nil then begin
+      Fendereco.Free;
+      Fendereco := nil;
+    end;
+  end;
 end;
 
 end.

@@ -2,7 +2,7 @@ object FormGestor: TFormGestor
   Left = 0
   Top = 0
   BorderStyle = bsSingle
-  Caption = 'AeroOne - Home'
+  Caption = 'AeroOne'
   ClientHeight = 649
   ClientWidth = 1110
   Color = clBtnFace
@@ -25,6 +25,7 @@ object FormGestor: TFormGestor
     Color = 6310948
     ParentBackground = False
     TabOrder = 0
+    ExplicitLeft = 2
     object imgLogo: TImage
       Left = 0
       Top = 0
@@ -141,9 +142,9 @@ object FormGestor: TFormGestor
     object pnlLogout: TPanel
       AlignWithMargins = True
       Left = 0
-      Top = 608
+      Top = 585
       Width = 166
-      Height = 41
+      Height = 64
       Cursor = crHandPoint
       Margins.Left = 0
       Margins.Top = 0
@@ -166,7 +167,7 @@ object FormGestor: TFormGestor
         Left = 5
         Top = 0
         Width = 33
-        Height = 41
+        Height = 64
         Cursor = crHandPoint
         Margins.Left = 5
         Margins.Top = 0
@@ -197,7 +198,7 @@ object FormGestor: TFormGestor
         Left = 38
         Top = 0
         Width = 128
-        Height = 37
+        Height = 60
         Cursor = crHandPoint
         Margins.Left = 0
         Margins.Top = 0
@@ -218,6 +219,7 @@ object FormGestor: TFormGestor
         TabOrder = 0
         StyleElements = [seClient, seBorder]
         OnClick = pnlLogoutTextClick
+        ExplicitHeight = 37
       end
     end
     object pnlFuncionarios: TPanel
@@ -641,7 +643,7 @@ object FormGestor: TFormGestor
           44AE426082}
         ShowHint = True
         OnClick = imgUsuarioClick
-        ExplicitLeft = 872
+        ExplicitTop = -6
       end
       object pnlSuperiorDivisoria: TPanel
         AlignWithMargins = True
@@ -726,13 +728,13 @@ object FormGestor: TFormGestor
             AlignWithMargins = True
             Left = 128
             Top = 0
-            Width = 144
+            Width = 668
             Height = 41
             Margins.Left = 0
             Margins.Top = 0
             Margins.Right = 5
             Margins.Bottom = 0
-            Align = alLeft
+            Align = alClient
             Alignment = taLeftJustify
             BevelOuter = bvNone
             Caption = 'Usuario'
@@ -746,6 +748,7 @@ object FormGestor: TFormGestor
             ParentFont = False
             TabOrder = 1
             StyleElements = [seClient, seBorder]
+            ExplicitWidth = 505
           end
         end
       end

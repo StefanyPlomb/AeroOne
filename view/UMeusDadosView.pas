@@ -79,7 +79,7 @@ var
 
 implementation
 
-uses UEnderecoController, UEndereco, UConn;
+uses UUsuarioController, UEnderecoController, UEndereco, UConn;
 
 {$R *.dfm}
 
@@ -101,7 +101,6 @@ end;
 procedure TFormMeusDados.btnEditarClick(Sender: TObject);
 begin
   mudarParaEdicao;
-  desbloquearEdits;
   edtNome.SetFocus;
 end;
 
@@ -125,17 +124,15 @@ begin
   if edtCEP.Text = '' then Exit;
 
   try
-    endereco := TEnderecoController.BuscarPorCEP(edtCEP.Text);
+    endereco := TEnderecoController.buscarCEP(edtCEP.Text);
 
-    if endereco <> nil then
-    begin
+    if endereco <> nil then begin
       edtRua.Text := endereco.getRua;
       edtBairro.Text := endereco.getBairro;
       edtCidade.Text := endereco.getCidade;
       edtUF.Text := endereco.getUF;
+      endereco.Free;
     end;
-
-    endereco.Free;
   except
     on e: Exception do begin
       ShowMessage(e.Message);
@@ -204,6 +201,8 @@ end;
 
 procedure TFormMeusDados.mudarParaEdicao;
 begin
+  desbloquearEdits;
+
   btnEditar.Visible := false;
 
   btnCancelar.Visible := true;
@@ -213,6 +212,8 @@ end;
 
 procedure TFormMeusDados.mudarParaVisualizacao;
 begin
+  bloquearEdits;
+
   btnCancelar.Visible := false;
   pnlSeparador.Visible := false;
   btnSalvar.Visible := false;
@@ -320,26 +321,6 @@ begin
     edtCEP.Text := '';
   end;
 
-  edtRua.Enabled:=True;
-  if edtRua.Text = edtRua.TextHint then begin
-    edtRua.Text := '';
-  end;
-
-  edtBairro.Enabled:=True;
-  if edtBairro.Text = edtBairro.TextHint then begin
-    edtBairro.Text := '';
-  end;
-
-  edtCidade.Enabled:=True;
-  if edtCidade.Text = edtCidade.TextHint then begin
-    edtCidade.Text := '';
-  end;
-
-  edtUF.Enabled:=True;
-  if edtUF.Text = edtUF.TextHint then begin
-    edtUF.Text := '';
-  end;
-
   edtNumero.Enabled:=True;
   if edtNumero.Text = edtNumero.TextHint then begin
     edtNumero.Text := '';
@@ -351,26 +332,36 @@ var
   novoUsuario: TUsuario;
   endereco: TEndereco;
 begin
+  edtNome.SetFocus;
   novoUsuario := TUsuario.Create;
-  endereco := TEndereco.Create;
   novoUsuario.setNome(edtNome.Text);
   novoUsuario.setTelefone(edtTelefone.Text);
   novoUsuario.setEmail(edtEmail.Text);
   novoUsuario.setSenha(edtSenha.Text);
   novoUsuario.setCPF(edtCPF.Text);
   novoUsuario.setPassaporte(edtPassaporte.Text);
-  endereco.setCEP(edtCEP.Text);
-  endereco.setRua(edtRua.Text);
-  endereco.setNumero(edtNumero.Text);
-  endereco.setBairro(edtBairro.Text);
-  endereco.setCidade(edtCidade.Text);
-  endereco.setUF(edtUF.Text);
+  if edtCEP.Text <> '' then begin
+    endereco := TEndereco.Create;
+    endereco.setIdUsuario(usuario.getId);
+    endereco.setCEP(edtCEP.Text);
+    endereco.setRua(edtRua.Text);
+    endereco.setBairro(edtBairro.Text);
+    endereco.setCidade(edtCidade.Text);
+    endereco.setUF(edtUF.Text);
+    if edtNumero.Text = '' then begin
+      endereco.setNumero('S/N');
+    end else begin
+      endereco.setNumero(edtNumero.Text);
+    end;
 
-  novoUsuario.setEndereco(endereco);
+    novoUsuario.setEndereco(endereco);
+  end;
 
   try
-    // TUsuarioController.update(novoUsuario, usuario);
-    usuario := novoUsuario;
+    TUsuarioController.update(novoUsuario, usuario);
+    usuario.AssignFrom(novoUsuario);
+    verificarEndereco;
+    edtSenha.Text := '';
     carregarEdits;
     bloquearEdits;
     mudarParaVisualizacao;
@@ -385,6 +376,7 @@ end;
 
 procedure TFormMeusDados.btnCancelarClick(Sender: TObject);
 begin
+  mudarParaVisualizacao;
   carregarEdits;
 end;
 

@@ -126,7 +126,14 @@ end;
 
 procedure TFormGestor.imgUsuarioClick(Sender: TObject);
 begin
-  abrirForm(TFormMeusDados);
+  if formAberto <> nil then begin
+    formAberto.Close;
+    formAberto.Free;
+  end;
+  formAberto := TFormMeusDados.create(self, usuario);
+  formAberto.Parent := pnlMain;
+  formAberto.Align := alClient;
+  formAberto.Show;
 end;
 
 procedure TFormGestor.logout;

@@ -236,11 +236,16 @@ object FormMeusDados: TFormMeusDados
         ParentBackground = False
         TabOrder = 14
         object imgEnderecoAlerta: TImage
+          AlignWithMargins = True
           Left = 88
-          Top = 0
+          Top = 2
           Width = 20
-          Height = 49
+          Height = 47
           Hint = 'Nenhum endere'#231'o cadastrado'
+          Margins.Left = 0
+          Margins.Top = 2
+          Margins.Right = 0
+          Margins.Bottom = 0
           Align = alLeft
           Center = True
           ParentShowHint = False
@@ -262,6 +267,8 @@ object FormMeusDados: TFormMeusDados
             AE426082}
           ShowHint = True
           Visible = False
+          ExplicitTop = 0
+          ExplicitHeight = 49
         end
         object pnlEnderecoText: TPanel
           AlignWithMargins = True
