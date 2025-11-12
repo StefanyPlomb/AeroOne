@@ -17,8 +17,8 @@ type
     FDQueryLogin: TFDQuery;
     DataSourceLogin: TDataSource;
     FDPhysPgDriverLink: TFDPhysPgDriverLink;
-    FDQueryFuncionarios: TFDQuery;
-    DataSourceFuncionarios: TDataSource;
+    FDQueryFuncionario: TFDQuery;
+    DataSourceFuncionario: TDataSource;
     FDQueryVoos: TFDQuery;
     DataSourceAtribuidos: TDataSource;
     FDQueryAtribuidos: TFDQuery;

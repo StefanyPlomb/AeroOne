@@ -28,13 +28,13 @@ object DataModuleConn: TDataModuleConn
     Left = 144
     Top = 8
   end
-  object FDQueryFuncionarios: TFDQuery
+  object FDQueryFuncionario: TFDQuery
     Connection = FDConnection
     Left = 417
     Top = 136
   end
-  object DataSourceFuncionarios: TDataSource
-    DataSet = FDQueryFuncionarios
+  object DataSourceFuncionario: TDataSource
+    DataSet = FDQueryFuncionario
     Left = 416
     Top = 83
   end
