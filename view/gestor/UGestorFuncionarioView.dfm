@@ -28,7 +28,7 @@ object FormGestorFuncionario: TFormGestorFuncionario
       Width = 944
       Height = 576
       Align = alClient
-      ActiveCard = cardAddOrUpdateFuncionario
+      ActiveCard = cardMainFuncionarios
       BevelOuter = bvNone
       Caption = 'cardGestorFuncionario'
       TabOrder = 0
@@ -409,6 +409,7 @@ object FormGestorFuncionario: TFormGestorFuncionario
               E20E81BED80544624815046E12118872A502A9C037D2289D2116CDA6F4000000
               0049454E44AE426082}
             ShowHint = True
+            OnClick = imgStatusClick
             ExplicitLeft = 0
             ExplicitTop = 70
             ExplicitWidth = 36
@@ -532,6 +533,7 @@ object FormGestorFuncionario: TFormGestorFuncionario
             TabOrder = 2
             StyleElements = [seClient, seBorder]
             OnClick = btnSalvarClick
+            ExplicitLeft = 512
           end
         end
         object pnlDivPassaporte: TPanel
@@ -729,6 +731,7 @@ object FormGestorFuncionario: TFormGestorFuncionario
           BevelEdges = []
           BevelInner = bvNone
           BevelOuter = bvNone
+          Style = csDropDownList
           Color = 15791343
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clGray

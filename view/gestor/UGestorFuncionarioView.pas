@@ -55,12 +55,15 @@ type
     procedure FormCreate(Sender: TObject);
     procedure cardAddOrUpdateFuncionarioEnter(Sender: TObject);
     procedure edtSearchChange(Sender: TObject);
+    procedure imgStatusClick(Sender: TObject);
   private
     { Private declarations }
     operacao: String;
     status: String;
+    idUsuarioGrid: Integer;
+    statusUsuarioGrid: String;
     procedure limparEdits;
-    procedure loadGrid(searchBar, status: String);
+    procedure loadGrid(searchBar: String);
     procedure loadEditsFromGrid;
   public
     { Public declarations }
@@ -68,7 +71,7 @@ type
 
 implementation
 
-uses UFuncionarioController, UUsuarioController, UUsuario;
+uses UFuncionarioController, UUsuarioController, UUsuario, UConn;
 
 {$R *.dfm}
 
@@ -80,9 +83,50 @@ end;
 
 procedure TFormGestorFuncionario.imgEditarClick(Sender: TObject);
 begin
+  if DBGridFuncionarios.DataSource.DataSet.IsEmpty then begin
+    ShowMessage('Nenhum registro selecionado');
+    exit;
+  end;
   operacao := 'Atualizar';
   loadEditsFromGrid;
   cardGestorFuncionario.ActiveCard := cardAddOrUpdateFuncionario;
+end;
+
+procedure TFormGestorFuncionario.imgStatusClick(Sender: TObject);
+var
+  novoUsuario: TUsuario;
+begin
+  try
+    loadEditsFromGrid;
+    novoUsuario := TUsuario.Create;
+    novoUsuario := TUsuario.Create;
+    novoUsuario.setNome(edtNome.Text);
+    novoUsuario.setEmail(edtEmail.Text);
+    novoUsuario.setSenha(edtSenha.Text);
+    novoUsuario.setTelefone(edtTelefone.Text);
+    if cbxCargo.ItemIndex = 0 then begin
+      novoUsuario.setCargo('Gestor');
+    end else if cbxCargo.ItemIndex = 1 then begin
+      novoUsuario.setCargo('Piloto');
+    end else begin
+      novoUsuario.setCargo('Aeromoco');
+    end;
+    novoUsuario.setCPF(edtCPF.Text);
+    novoUsuario.setPassaporte(edtPassaporte.Text);
+    if statusUsuarioGrid = 'A' then begin
+      novoUsuario.setStatus('I');
+    end else begin
+      novoUsuario.setStatus('A');
+    end;
+    TUsuarioController.update(novoUsuario, TUsuarioCOntroller.getUsuario(idUsuarioGrid));
+    limparEdits;
+    loadGrid(edtSearch.Text);
+    novoUsuario.Free;
+  except
+    on E: Exception do begin
+      ShowMessage(e.Message);
+    end;
+  end;
 end;
 
 procedure TFormGestorFuncionario.limparEdits;
@@ -98,24 +142,33 @@ end;
 
 procedure TFormGestorFuncionario.btnSalvarClick(Sender: TObject);
 var
-  usuario: TUsuario;
+  novoUsuario: TUsuario;
 begin
   try
-    usuario := TUsuario.Create;
-    usuario.setNome(edtNome.Text);
-    usuario.setEmail(edtEmail.Text);
-    usuario.setSenha(edtSenha.Text);
-    usuario.setTelefone(edtTelefone.Text);
-    usuario.setCargo(cbxCargo.Text);
-    usuario.setCPF(edtCPF.Text);
-    usuario.setPassaporte(edtPassaporte.Text);
-    if operacao = 'Inserir' then begin
-      // TUsuarioController.cadastrar(usuario);
+    novoUsuario := TUsuario.Create;
+    novoUsuario.setNome(edtNome.Text);
+    novoUsuario.setEmail(edtEmail.Text);
+    novoUsuario.setSenha(edtSenha.Text);
+    novoUsuario.setTelefone(edtTelefone.Text);
+    if cbxCargo.ItemIndex = 0 then begin
+      novoUsuario.setCargo('Gestor');
+    end else if cbxCargo.ItemIndex = 1 then begin
+      novoUsuario.setCargo('Piloto');
     end else begin
-      limparEdits;
-      // TUsuarioController.update(usuario);
+      novoUsuario.setCargo('Aeromoco');
     end;
-    usuario.Free;
+    novoUsuario.setCPF(edtCPF.Text);
+    novoUsuario.setPassaporte(edtPassaporte.Text);
+    if operacao = 'Inserir' then begin
+      TUsuarioController.cadastrar(novoUsuario);
+    end else begin
+      edtNome.SetFocus;
+      TUsuarioController.update(novoUsuario, TUsuarioCOntroller.getUsuario(idUsuarioGrid));
+    end;
+    limparEdits;
+    loadGrid(edtSearch.Text);
+    cardGestorFuncionario.ActiveCard := cardMainFuncionarios;
+    novoUsuario.Free;
   except
     on E: Exception do begin
       ShowMessage(e.Message);
@@ -142,28 +195,48 @@ end;
 procedure TFormGestorFuncionario.loadEditsFromGrid;
 var
   ds: TDataSet;
+  cargo: String;
 begin
   ds := DBGridFuncionarios.DataSource.DataSet;
+  idUsuarioGrid := ds.FieldByName('id').AsInteger;
   edtNome.Text := ds.FieldByName('nome').AsString;
   edtEmail.Text := ds.FieldByName('email').AsString;
   edtTelefone.Text := ds.FieldByName('telefone').AsString;
-  cbxCargo.Text := ds.FieldByName('cargo').AsString;
+  cargo := ds.FieldByName('cargo').AsString;
+  if cargo = 'Gestor' then begin
+    cbxCargo.ItemIndex := 0;
+  end else if cargo = 'Piloto' then begin
+    cbxCargo.ItemIndex := 1;
+  end else begin
+    cbxCargo.ItemIndex := 2;
+  end;
   edtCPF.Text := ds.FieldByName('cpf').AsString;
   edtPassaporte.Text := ds.FieldByName('passaporte').AsString;
+  statusUsuarioGrid := ds.FieldByName('status').AsString;
 end;
 
-procedure TFormGestorFuncionario.loadGrid(searchBar, status: String);
+procedure TFormGestorFuncionario.loadGrid(searchBar: String);
 var
   id: Integer;
-  nome: String;
+  nome, status: String;
 begin
+  DBGridFuncionarios.DataSource := DataModuleConn.DataSourceFuncionario;
+
   try
     id := StrToInt(searchBar);
   except
     id := 0;
     nome := searchBar;
   end;
-  // TUsuarioController.getUsuarios(id, nome, status);
+
+  status := '';
+  if searchBar.ToUpper.Contains('INATIVO') then begin
+    status := 'I';
+  end else if searchBar.ToUpper.Contains('ATIVO') then begin
+    status := 'A';
+  end;
+
+  TUsuarioController.getUsuarios(id, nome, status);
 end;
 
 procedure TFormGestorFuncionario.edtCPFEnter(Sender: TObject);
@@ -192,7 +265,7 @@ end;
 
 procedure TFormGestorFuncionario.edtSearchChange(Sender: TObject);
 begin
-  loadGrid(edtSearch.Text, status);
+  loadGrid(edtSearch.Text);
 end;
 
 procedure TFormGestorFuncionario.edtTelefoneEnter(Sender: TObject);
@@ -212,6 +285,7 @@ begin
   operacao := 'Inserir';
   status := '';
   cardGestorFuncionario.ActiveCard := cardMainFuncionarios;
+  loadGrid(edtSearch.Text);
 end;
 
 end.

@@ -2,12 +2,18 @@ unit UUsuarioController;
 
 interface
 
-uses SysUtils, System.Hash, UUsuario, UEndereco;
+uses SysUtils, StrUtils, System.Hash, UUsuario, UEndereco;
 
 type
   TUsuarioController = class
+  private
+    class function removeWordIgnoreCase(const Text, WordToRemove: String): String;
   public
+    class procedure getUsuarios(id: Integer; nome, status: String);
+    class function getUsuario(id: Integer): TUsuario;
+    class function getUsuarioByEmail(email: String): TUsuario;
     class function login(email, senha: String): TUsuario;
+    class procedure cadastrar(usuario: TUsuario);
     class procedure update(novoUsuario, usuario: TUsuario);
   end;
 
@@ -16,6 +22,75 @@ implementation
 uses UUsuarioDao, UEnderecoController;
 
 { TUsuarioController }
+
+class procedure TUsuarioController.cadastrar(usuario: TUsuario);
+var
+  dao: TUsuarioDao;
+  usuarioEmail: TUsuario;
+begin
+  if Trim(usuario.getNome) = '' then begin
+    raise Exception.Create('Nome não pode ser vazio');
+  end;
+
+  if Trim(usuario.getEmail) = '' then begin
+    raise Exception.Create('Email não pode ser vazio');
+  end;
+
+  usuarioEmail := TUsuarioController.getUsuarioByEmail(usuario.getEmail);
+  if usuarioEmail <> nil then begin
+    usuarioEmail.Free;
+    raise Exception.Create('Email já cadastrado');
+  end;
+
+  if Trim(usuario.getSenha) = '' then begin
+    usuario.setSenha(THashSHA2.GetHashString('senha123'));
+  end;
+
+  if Length(usuario.getSenha) < 8 then begin
+    raise Exception.Create('A senha deve conter no mínimo 8 caracteres');
+  end;
+
+  if Trim(usuario.getCPF) = '' then begin
+    raise Exception.Create('CPF não pode ser vazio');
+  end;
+
+  if Trim(usuario.getPassaporte) = '' then begin
+    raise Exception.Create('Passaporte não pode ser vazio');
+  end;
+
+  dao := TUsuarioDao.Create;
+  dao.cadastrar(usuario);
+  dao.Free;
+end;
+
+class function TUsuarioController.getUsuario(id: Integer): TUsuario;
+var
+  dao: TUsuarioDao;
+begin
+  dao := TUsuarioDao.Create;
+  result := dao.getUsuario(id);
+  dao.Free;
+end;
+
+class function TUsuarioController.getUsuarioByEmail(email: String): TUsuario;
+var
+  dao: TUsuarioDao;
+begin
+  dao := TUsuarioDao.Create;
+  result := dao.getUsuarioByEmail(email);
+  dao.Free;
+end;
+
+class procedure TUsuarioController.getUsuarios(id: Integer; nome, status: String);
+var
+  dao: TUsuarioDao;
+begin
+  dao := TUsuarioDao.Create;
+  nome := removeWordIgnoreCase(nome, 'ativo');
+  nome := removeWordIgnoreCase(nome, 'inativo');
+  dao.getUsuarios(id, nome, status);
+  dao.Free;
+end;
 
 class function TUsuarioController.login(email, senha: String): TUsuario;
 var
@@ -46,9 +121,26 @@ begin
   result := usuario;
 end;
 
+class function TUsuarioController.removeWordIgnoreCase(const Text, WordToRemove: String): String;
+var
+  Words: TArray<string>;
+  i: Integer;
+begin
+  Result := '';
+  Words := Text.Split([' ']);
+
+  for i := Low(Words) to High(Words) do begin
+    if not ContainsText(Words[i], WordToRemove) then begin
+      if Result <> '' then
+        Result := Result + ' ';
+      Result := Result + Words[i];
+    end;
+  end;
+end;
+
 class procedure TUsuarioController.update(novoUsuario, usuario: TUsuario);
 var
-  alterado: TUsuario;
+  alterado, usuarioEmail: TUsuario;
   temAlteracao: Boolean;
   dao: TUsuarioDao;
 begin
@@ -66,10 +158,11 @@ begin
   end;
 
   if Trim(novoUsuario.getEmail) <> '' then begin
-
-//    if TUsuarioController.getUsuarioByEmail(novoUsuario.getEmail) then begin
-//      raise Exception.Create('Email já cadastrado');
-//    end;
+    usuarioEmail := TUsuarioController.getUsuarioByEmail(novoUsuario.getEmail);
+    if usuarioEmail = nil then begin
+      raise Exception.Create('Email já cadastrado');
+    end;
+    usuarioEmail.Free;
 
     if novoUsuario.getEmail <> usuario.getEmail then begin
       temAlteracao := true;
