@@ -12,7 +12,7 @@ type
 
 implementation
 
-uses UUsuarioDao, UExceptions;
+uses UUsuarioDao;
 
 { TUsuarioController }
 
@@ -23,21 +23,21 @@ var
   usuario: TUsuario;
 begin
   if trim(email) = '' then begin
-    raise WarningException.create('O email não pode ser vazio');
+    raise Exception.create('O email não pode ser vazio');
   end;
 
   if not email.Contains('@') then begin
-    raise WarningException.create('O email deve conter "@"');
+    raise Exception.create('O email deve conter "@"');
   end;
 
   if trim(senha) = '' then begin
-    raise WarningException.create('A senha não pode ser vazia');
+    raise Exception.create('A senha não pode ser vazia');
   end;
 
   usuario := dao.login(email);
 
   if (THashSHA2.GetHashString(senha) <> usuario.getSenha) or (usuario = nil) then begin
-    raise WarningException.create('Email ou senha incorretos');
+    raise Exception.create('Email ou senha incorretos');
   end;
 
   result := usuario;
