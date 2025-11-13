@@ -4,8 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.DBGrids,
-  Vcl.Grids, Vcl.ExtCtrls, Vcl.WinXPanels, Vcl.Imaging.pngimage, Vcl.Mask;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.DBGrids, Vcl.Grids,
+  Vcl.ExtCtrls, Vcl.WinXPanels, Vcl.Imaging.pngimage, Vcl.Mask, UUsuario;
 
 type
   TFormGestorFuncionario = class(TForm)
@@ -58,6 +58,7 @@ type
     procedure imgStatusClick(Sender: TObject);
   private
     { Private declarations }
+    usuario: TUsuario;
     operacao: String;
     status: String;
     idUsuarioGrid: Integer;
@@ -67,11 +68,13 @@ type
     procedure loadEditsFromGrid;
   public
     { Public declarations }
+    procedure open(owner: TForm; aUsuario: TUsuario);
+    constructor create(owner: TForm; aUsuario: TUsuario);
   end;
 
 implementation
 
-uses UFuncionarioController, UUsuarioController, UUsuario, UConn;
+uses UFuncionarioController, UUsuarioController, UConn;
 
 {$R *.dfm}
 
@@ -98,27 +101,32 @@ var
 begin
   try
     loadEditsFromGrid;
-    novoUsuario := TUsuario.Create;
-    novoUsuario := TUsuario.Create;
-    novoUsuario.setNome(edtNome.Text);
-    novoUsuario.setEmail(edtEmail.Text);
-    novoUsuario.setSenha(edtSenha.Text);
-    novoUsuario.setTelefone(edtTelefone.Text);
-    if cbxCargo.ItemIndex = 0 then begin
-      novoUsuario.setCargo('Gestor');
-    end else if cbxCargo.ItemIndex = 1 then begin
-      novoUsuario.setCargo('Piloto');
+
+    if usuario.getId <> idUsuarioGrid then begin
+      novoUsuario := TUsuario.Create;
+      novoUsuario.setNome(edtNome.Text);
+      novoUsuario.setEmail(edtEmail.Text);
+      novoUsuario.setSenha(edtSenha.Text);
+      novoUsuario.setTelefone(edtTelefone.Text);
+      if cbxCargo.ItemIndex = 0 then begin
+        novoUsuario.setCargo('Gestor');
+      end else if cbxCargo.ItemIndex = 1 then begin
+        novoUsuario.setCargo('Piloto');
+      end else begin
+        novoUsuario.setCargo('Aeromoco');
+      end;
+      novoUsuario.setCPF(edtCPF.Text);
+      novoUsuario.setPassaporte(edtPassaporte.Text);
+      if statusUsuarioGrid = 'A' then begin
+        novoUsuario.setStatus('I');
+      end else begin
+        novoUsuario.setStatus('A');
+      end;
+      TUsuarioController.update(novoUsuario, TUsuarioCOntroller.getUsuario(idUsuarioGrid));
     end else begin
-      novoUsuario.setCargo('Aeromoco');
+      raise Exception.Create('Não permitido desativar o usuário atualmente logado');
     end;
-    novoUsuario.setCPF(edtCPF.Text);
-    novoUsuario.setPassaporte(edtPassaporte.Text);
-    if statusUsuarioGrid = 'A' then begin
-      novoUsuario.setStatus('I');
-    end else begin
-      novoUsuario.setStatus('A');
-    end;
-    TUsuarioController.update(novoUsuario, TUsuarioCOntroller.getUsuario(idUsuarioGrid));
+
     limparEdits;
     loadGrid(edtSearch.Text);
     novoUsuario.Free;
@@ -192,6 +200,12 @@ begin
   end;
 end;
 
+constructor TFormGestorFuncionario.create(owner: TForm; aUsuario: TUsuario);
+begin
+  inherited create(owner);
+  usuario := aUsuario;
+end;
+
 procedure TFormGestorFuncionario.loadEditsFromGrid;
 var
   ds: TDataSet;
@@ -237,6 +251,14 @@ begin
   end;
 
   TUsuarioController.getUsuarios(id, nome, status);
+end;
+
+procedure TFormGestorFuncionario.open(owner: TForm; aUsuario: TUsuario);
+var
+  form: TFormGestorFuncionario;
+begin
+  form := TFormGestorFuncionario.create(owner, aUsuario);
+  form.ShowModal;
 end;
 
 procedure TFormGestorFuncionario.edtCPFEnter(Sender: TObject);

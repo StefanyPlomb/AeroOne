@@ -33,8 +33,11 @@ CREATE TABLE voos (
     dataPartida VARCHAR(10) NOT NULL,
 	horaPartida VARCHAR(8) NOT NULL,
     dataChegada VARCHAR(10) NOT NULL,
-	horaPartida VARCHAR(8) NOT NULL,
-    status VARCHAR(1);
+	horaChegada VARCHAR(8) NOT NULL,
+    status VARCHAR(1)
 );
 
 INSERT INTO usuarios (nome, email, senha, telefone, cargo, cpf, passaporte, status) VALUES ('Stefany Diniz Plombon', 'admin@gestor.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '11900000000', 'Gestor', '12345678900', 'AB123456', 'A');
+
+INSERT INTO voos (numeroVoo, origem, destino, dataPartida, horaPartida, dataChegada, horaChegada, status) VALUES ('AZ1234','São Paulo','Rio de Janeiro','2025-11-12','14:30','2025-11-12','15:20','A');
+

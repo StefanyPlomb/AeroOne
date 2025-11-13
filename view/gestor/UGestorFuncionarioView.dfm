@@ -533,7 +533,6 @@ object FormGestorFuncionario: TFormGestorFuncionario
             TabOrder = 2
             StyleElements = [seClient, seBorder]
             OnClick = btnSalvarClick
-            ExplicitLeft = 512
           end
         end
         object pnlDivPassaporte: TPanel

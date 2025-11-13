@@ -25,7 +25,7 @@ object FormGestor: TFormGestor
     Color = 6310948
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = 2
+    ExplicitHeight = 641
     object imgLogo: TImage
       Left = 0
       Top = 0
@@ -162,6 +162,7 @@ object FormGestor: TFormGestor
       ParentFont = False
       TabOrder = 0
       StyleElements = [seClient, seBorder]
+      ExplicitTop = 577
       object imgLogout: TImage
         AlignWithMargins = True
         Left = 5
@@ -219,7 +220,6 @@ object FormGestor: TFormGestor
         TabOrder = 0
         StyleElements = [seClient, seBorder]
         OnClick = pnlLogoutTextClick
-        ExplicitHeight = 37
       end
     end
     object pnlFuncionarios: TPanel
@@ -599,6 +599,8 @@ object FormGestor: TFormGestor
     Color = clWhite
     ParentBackground = False
     TabOrder = 1
+    ExplicitWidth = 942
+    ExplicitHeight = 641
     object pnlSuperior: TPanel
       Left = 0
       Top = 0
@@ -609,6 +611,7 @@ object FormGestor: TFormGestor
       Color = 6310948
       ParentBackground = False
       TabOrder = 0
+      ExplicitWidth = 942
       object imgUsuario: TImage
         Left = 878
         Top = 0
@@ -748,7 +751,6 @@ object FormGestor: TFormGestor
             ParentFont = False
             TabOrder = 1
             StyleElements = [seClient, seBorder]
-            ExplicitWidth = 505
           end
         end
       end
@@ -763,6 +765,8 @@ object FormGestor: TFormGestor
       Color = 15791343
       ParentBackground = False
       TabOrder = 1
+      ExplicitWidth = 942
+      ExplicitHeight = 568
     end
   end
 end

@@ -153,7 +153,14 @@ end;
 
 procedure TFormGestor.pnlFuncionariosTextClick(Sender: TObject);
 begin
-  abrirForm(TFormGestorFuncionario);
+  if formAberto <> nil then begin
+    formAberto.Close;
+    formAberto.Free;
+  end;
+  formAberto := TFormGestorFuncionario.create(self, usuario);
+  formAberto.Parent := pnlMain;
+  formAberto.Align := alClient;
+  formAberto.Show;
 end;
 
 procedure TFormGestor.pnlHomeTextClick(Sender: TObject);
