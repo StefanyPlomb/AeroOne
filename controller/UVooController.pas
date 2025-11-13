@@ -3,11 +3,14 @@ unit UVooController;
 interface
 
 uses
-  System.SysUtils, UVooDao, UConn;
+  System.SysUtils, StrUtils, UVoo, UConn;
 
 type
   TVooController = class
+  private
+    class function removeWordIgnoreCase(const Text, WordToRemove: String): String;
   public
+    class procedure getVoos(id: Integer; numeroVoo, status: String);
     class procedure conectarVoo(id: Integer; tipoUsuario: string);
     class procedure DesconectaVoo(const TipoUsuario: string);
     class procedure Busca(const Filtro: string);
@@ -18,22 +21,23 @@ type
 
 implementation
 
+uses UVooDao;
 
 { TVooController }
 
 class procedure TVooController.Atribuidos(const TipoUsuario: string; UsuarioID: Integer);
 begin
-  TVooModel.AbrirAtribuidos(TipoUsuario, UsuarioID);
+  TVooDao.AbrirAtribuidos(TipoUsuario, UsuarioID);
 end;
 
 class procedure TVooController.BaixarVoos(const TipodeAcesso: string);
 begin
-  TVooModel.AbrirVoos(TipodeAcesso);
+  TVooDao.AbrirVoos(TipodeAcesso);
 end;
 
 class procedure TVooController.Busca(const Filtro: string);
 begin
-  TVooModel.FiltrodeBusca(Filtro);
+  TVooDao.FiltrodeBusca(Filtro);
 end;
 
 class procedure TVooController.conectarVoo(id: Integer; tipoUsuario: string);
@@ -53,7 +57,7 @@ begin
   else
     raise Exception.Create('Tipo de usuário desconhecido.');
 
-  TVooModel.ConectarVoo(VooID, UsuarioID, acesso);
+  TVooDao.ConectarVoo(VooID, UsuarioID, acesso);
 end;
 
 
@@ -76,13 +80,42 @@ begin
   else
     raise Exception.Create('Tipo de usuário desconhecido.');
 
-  TVooModel.DesconectarVoo(VooID,UsuarioID,acesso);
+  TVooDao.DesconectarVoo(VooID,UsuarioID,acesso);
+end;
+
+class procedure TVooController.getVoos(id: Integer; numeroVoo, status: String);
+var
+  dao: TVooDao;
+begin
+  dao := TVooDao.Create;
+  numeroVoo := removeWordIgnoreCase(numeroVoo, 'ativo');
+  numeroVoo := removeWordIgnoreCase(numeroVoo, 'inativo');
+  numeroVoo := removeWordIgnoreCase(numeroVoo, 'cancelado');
+  dao.getVoos(id, numeroVoo, status);
+  dao.Free;
+end;
+
+class function TVooController.removeWordIgnoreCase(const Text, WordToRemove: String): String;
+var
+  Words: TArray<string>;
+  i: Integer;
+begin
+  Result := '';
+  Words := Text.Split([' ']);
+
+  for i := Low(Words) to High(Words) do begin
+    if not ContainsText(Words[i], WordToRemove) then begin
+      if Result <> '' then
+        Result := Result + ' ';
+      Result := Result + Words[i];
+    end;
+  end;
 end;
 
 class procedure TVooController.Quantidade(var Disponiveis, Atribuidos: Integer);
 begin
-  // Disponiveis:= TVooModel.ContarDisponiveis();
-  // Atribuidos:= TVooModel.ContarAtribuidos(DataModuleConn.TipoUsuarioLogado, DataModuleConn.UsuarioLogadoID);;
+  // Disponiveis:= TVooDao.ContarDisponiveis();
+  // Atribuidos:= TVooDao.ContarAtribuidos(DataModuleConn.TipoUsuarioLogado, DataModuleConn.UsuarioLogadoID);;
 end;
 
 end.

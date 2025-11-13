@@ -11,6 +11,7 @@ object FormGestorVoo: TFormGestorVoo
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
   object pnlMain: TPanel
     Left = 0
@@ -27,7 +28,7 @@ object FormGestorVoo: TFormGestorVoo
       Width = 944
       Height = 576
       Align = alClient
-      ActiveCard = cardAddOrUpdateVoo
+      ActiveCard = cardMainVoo
       BevelOuter = bvNone
       Caption = 'cardGestorVoo'
       TabOrder = 0
@@ -49,7 +50,7 @@ object FormGestorVoo: TFormGestorVoo
           Color = 15791343
           ParentBackground = False
           TabOrder = 0
-          object DBGridFuncionarios: TDBGrid
+          object DBGridVoos: TDBGrid
             AlignWithMargins = True
             Left = 5
             Top = 84
@@ -102,13 +103,13 @@ object FormGestorVoo: TFormGestorVoo
               end
               item
                 Expanded = False
-                FieldName = 'nome'
+                FieldName = 'numeroVoo'
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = 6310948
                 Font.Height = -13
                 Font.Name = 'Segoe UI'
                 Font.Style = []
-                Title.Caption = 'Nome'
+                Title.Caption = 'N'#250'mero Voo'
                 Title.Font.Charset = ANSI_CHARSET
                 Title.Font.Color = clWhite
                 Title.Font.Height = -16
@@ -119,13 +120,13 @@ object FormGestorVoo: TFormGestorVoo
               end
               item
                 Expanded = False
-                FieldName = 'email'
+                FieldName = 'origem'
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = 6310948
                 Font.Height = -13
                 Font.Name = 'Segoe UI'
                 Font.Style = []
-                Title.Caption = 'E-mail'
+                Title.Caption = 'Origem'
                 Title.Font.Charset = ANSI_CHARSET
                 Title.Font.Color = clWhite
                 Title.Font.Height = -16
@@ -136,13 +137,13 @@ object FormGestorVoo: TFormGestorVoo
               end
               item
                 Expanded = False
-                FieldName = 'telefone'
+                FieldName = 'destino'
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = 6310948
                 Font.Height = -13
                 Font.Name = 'Segoe UI'
                 Font.Style = []
-                Title.Caption = 'Telefone'
+                Title.Caption = 'Destino'
                 Title.Font.Charset = ANSI_CHARSET
                 Title.Font.Color = clWhite
                 Title.Font.Height = -16
@@ -153,105 +154,70 @@ object FormGestorVoo: TFormGestorVoo
               end
               item
                 Expanded = False
-                FieldName = 'cargo'
+                FieldName = 'dataPartida'
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = 6310948
                 Font.Height = -13
                 Font.Name = 'Segoe UI'
                 Font.Style = []
-                Title.Caption = 'Cargo'
+                Title.Caption = 'Data Partida'
                 Title.Font.Charset = ANSI_CHARSET
                 Title.Font.Color = clWhite
                 Title.Font.Height = -16
                 Title.Font.Name = 'Segoe UI Semibold'
                 Title.Font.Style = [fsBold]
-                Width = 90
+                Width = 120
                 Visible = True
               end
               item
                 Expanded = False
-                FieldName = 'cpf'
+                FieldName = 'horaPartida'
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = 6310948
                 Font.Height = -13
                 Font.Name = 'Segoe UI'
                 Font.Style = []
-                Title.Caption = 'CPF'
+                Title.Caption = 'Hora Partida'
                 Title.Font.Charset = ANSI_CHARSET
                 Title.Font.Color = clWhite
                 Title.Font.Height = -16
                 Title.Font.Name = 'Segoe UI Semibold'
                 Title.Font.Style = [fsBold]
-                Width = 90
+                Width = 120
                 Visible = True
               end
               item
                 Expanded = False
-                FieldName = 'passaporte'
+                FieldName = 'dataChegada'
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = 6310948
                 Font.Height = -13
                 Font.Name = 'Segoe UI'
                 Font.Style = []
-                Title.Caption = 'Passaporte'
+                Title.Caption = 'Data Chegada'
                 Title.Font.Charset = ANSI_CHARSET
                 Title.Font.Color = clWhite
                 Title.Font.Height = -16
                 Title.Font.Name = 'Segoe UI Semibold'
                 Title.Font.Style = [fsBold]
-                Width = 90
+                Width = 120
                 Visible = True
               end
               item
                 Expanded = False
-                FieldName = 'cep'
+                FieldName = 'horaChegada'
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = 6310948
                 Font.Height = -13
                 Font.Name = 'Segoe UI'
                 Font.Style = []
-                Title.Caption = 'CEP'
+                Title.Caption = 'Hora Chegada'
                 Title.Font.Charset = ANSI_CHARSET
                 Title.Font.Color = clWhite
                 Title.Font.Height = -16
                 Title.Font.Name = 'Segoe UI Semibold'
                 Title.Font.Style = [fsBold]
-                Width = 90
-                Visible = True
-              end
-              item
-                Expanded = False
-                FieldName = 'endereco'
-                Font.Charset = DEFAULT_CHARSET
-                Font.Color = 6310948
-                Font.Height = -13
-                Font.Name = 'Segoe UI'
-                Font.Style = []
-                Title.Caption = 'Endereco'
-                Title.Font.Charset = ANSI_CHARSET
-                Title.Font.Color = clWhite
-                Title.Font.Height = -16
-                Title.Font.Name = 'Segoe UI Semibold'
-                Title.Font.Style = [fsBold]
-                Width = 240
-                Visible = True
-              end
-              item
-                Alignment = taRightJustify
-                Expanded = False
-                FieldName = 'numero'
-                Font.Charset = DEFAULT_CHARSET
-                Font.Color = 6310948
-                Font.Height = -13
-                Font.Name = 'Segoe UI'
-                Font.Style = []
-                Title.Caption = 'N'#250'mero'
-                Title.Font.Charset = ANSI_CHARSET
-                Title.Font.Color = clWhite
-                Title.Font.Height = -16
-                Title.Font.Name = 'Segoe UI Semibold'
-                Title.Font.Style = [fsBold]
-                Width = 90
+                Width = 120
                 Visible = True
               end
               item
@@ -299,7 +265,7 @@ object FormGestorVoo: TFormGestorVoo
               TabOrder = 0
               object Image1: TImage
                 AlignWithMargins = True
-                Left = 713
+                Left = 745
                 Top = 3
                 Width = 32
                 Height = 22
@@ -340,7 +306,7 @@ object FormGestorVoo: TFormGestorVoo
                 AlignWithMargins = True
                 Left = 0
                 Top = 0
-                Width = 713
+                Width = 745
                 Height = 28
                 Margins.Left = 0
                 Margins.Top = 0
@@ -356,7 +322,8 @@ object FormGestorVoo: TFormGestorVoo
                 Font.Style = []
                 ParentFont = False
                 TabOrder = 0
-                TextHint = ' Pesquise por ID ou nome'
+                TextHint = ' Pesquise por ID, N'#250'mero do VOO ou status'
+                ExplicitWidth = 713
               end
               object pnlDiv1: TPanel
                 AlignWithMargins = True
@@ -373,119 +340,6 @@ object FormGestorVoo: TFormGestorVoo
                 Color = 6310948
                 ParentBackground = False
                 TabOrder = 1
-              end
-              object pnlStatus: TPanel
-                Left = 745
-                Top = 0
-                Width = 32
-                Height = 28
-                Align = alRight
-                BevelOuter = bvNone
-                Color = 15791343
-                ParentBackground = False
-                TabOrder = 2
-                object imgAtivo: TImage
-                  AlignWithMargins = True
-                  Left = 0
-                  Top = 3
-                  Width = 32
-                  Height = 22
-                  Cursor = crHandPoint
-                  Hint = 'Ativos'
-                  Margins.Left = 0
-                  Margins.Right = 0
-                  Align = alClient
-                  Center = True
-                  ParentShowHint = False
-                  Picture.Data = {
-                    0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
-                    00180803000000D7A9CDCA000000017352474201D9C92C7F0000000970485973
-                    00000B1300000B1301009A9C1800000069504C54450000002A5555244C60244B
-                    60234B5F244C60234B60274E62244B5F234C60254B5E234C5F234D5E24485B24
-                    4B60244B5F24486D28505D1E4B5A234B5F234A5F234C5F234C5F234B5F224466
-                    274E62234B60244C5F234C60234C5F2A4663254C5F234B60234C5F234C605B77
-                    8ED80000002374524E5300066AC6F3FF6C1ACDCF1BE3560E55E2071311D86D50
-                    C8F20F0DC753C96B126ECED0F4D3C0073A000000A64944415478DACD915B0B82
-                    401484CFEC5A9B125D09C9B4FEFFCF8A0ACC242FC9BE646CEB06AE493DD73CEC
-                    C07C7BE05C405F845F03346A13A5F85D1920F0E8FD76203580E8E4435D0A4847
-                    E420C63BF930D3EF02E53405716681A88CADF27902F2AF162C6363EB54D5EF60
-                    74EB80E062815B1ADB24FE1114C51678BC29DF1632D8EBEE76274B26CC2156C9
-                    30D3ED92A7EADE80E159BE5632988D0F6D1A556E91FFC1A13EEA0922FF2F1967
-                    DAFCF10000000049454E44AE426082}
-                  ShowHint = True
-                  Visible = False
-                  ExplicitLeft = 864
-                  ExplicitWidth = 20
-                  ExplicitHeight = 75
-                end
-                object imgIndeterminado: TImage
-                  AlignWithMargins = True
-                  Left = 0
-                  Top = 3
-                  Width = 32
-                  Height = 22
-                  Cursor = crHandPoint
-                  Margins.Left = 0
-                  Margins.Right = 0
-                  Align = alClient
-                  Center = True
-                  ParentShowHint = False
-                  Picture.Data = {
-                    0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
-                    00180806000000E0773DF8000000097048597300000B1300000B1301009A9C18
-                    000001BF4944415478DA6364A031601CB5608459A0E291CBCEC8F229FD1F0343
-                    14504A0728C94D8C21FF1918BE02C92B0CFF1997B0737D9D756DF5EA5F1816A8
-                    7AC749FF6364DCCAC8C0A84F898B81965D60FAFFCFE7F6D6454FE116805CFE9F
-                    E5D3499C86FFFFFF18A8B2909989791788FBE7DF5F67A0491D8C8C8CEAD89533
-                    9C07FAC402E413B005AA3EF179FF191827E2329CED378BC1B55D73DF210BCB79
-                    4709B231B05E64606494C5EE93FF3977B72C9C0AB640D92701E87A06331C9E0E
-                    B9B365E15A6C322ADE09A1409FADC2E18B1377B72EB08458E01DFF19E85D1E6C
-                    0A999998F86E6E9AF719AB051ED17C0C2CAC1FB15BF0FFF3DDAD0BF928B240C9
-                    258D9F89E3D707C216F8C49F0046B0398EB00C0486E5066C72CABE71618CFF99
-                    56620F5986E377B62EB08258E0159FCBC8C43809874B6EFE66F86DF968EBB2F7
-                    C8E21A01B1C2BFFF305D003A4C067BDC3164DFD9B2601A5232FD0CF405830176
-                    D7009329036331C3DFDF3BC15C56660F60A6EAC569F8FFFFE7D8B8BE59C29329
-                    0840321AD3169C96100B8086333333FB02E3ED19888B5254688586B2FDFCC69D
-                    06148C0286BD2EAE88C7128C5F80BEB90C346D091BE7D739588B0A5A81510B46
-                    80050021A9B21907B1A1770000000049454E44AE426082}
-                  ShowHint = True
-                  ExplicitTop = 6
-                end
-                object imgInativo: TImage
-                  AlignWithMargins = True
-                  Left = 0
-                  Top = 3
-                  Width = 32
-                  Height = 22
-                  Cursor = crHandPoint
-                  Hint = 'Inativos'
-                  Margins.Left = 0
-                  Margins.Right = 0
-                  Align = alClient
-                  Center = True
-                  ParentShowHint = False
-                  Picture.Data = {
-                    0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
-                    00180806000000E0773DF8000000097048597300000B1300000B1301009A9C18
-                    000001BE4944415478DA6364A031601CB5608459A0E291CBCEC8F229FD1F0343
-                    14504A0728C94D8C21FF1918BE02C92B0CFF1997B0737D9D756DF5EA5F1816A8
-                    7AC749FF6364DCCAC8C0A84F898B81965D60FAFFCFE7F6D6454FE116805CFE9F
-                    E5D349B0E1FFFF3F068A16323331EF02C9FDF9F7D719A8AB839191519D684BFE
-                    339C07FAC402E413B005AA3EF179FF191827820C67FBCD62706DD7DC77C81AE4
-                    BCA304D918582F323032CA12EF93FF3977B72C9C0AB640D92701E87A0633A070
-                    C89D2D0BD762D3A0E29D100AF4D92A127C71E2EED60596100BBCE33F03838087
-                    998989EFE6A6799FB15AE011CDC7C0C2FA91780BFE7FBEBB75211FD11628B9A4
-                    F13371FCFA409E053EF12780116C0E0CB74060B86DC0A641D9372E8CF13FD34A
-                    622D0046C2F13B5B1758412CF08ACF6564629C04B4F5E66F86DF968FB62E7B8F
-                    AC56232056F8F71FA60B4047C8106D010343F69D2D0BA62125D3CF405F301880
-                    9329036331C3DFDF3BC10E6165F60066A05E920CFFFFFF1C1BD7374B78320501
-                    484663DA02B6841200349C9999D9171897CF405C94A2422B3494EDE737EE34A0
-                    6014303E7441114F9C99FFBF007D781968DA1236CEAF73B01615B402A3168C00
-                    0B0035F4B219786D71E80000000049454E44AE426082}
-                  ShowHint = True
-                  Visible = False
-                  ExplicitTop = 6
-                end
               end
             end
           end

@@ -2,12 +2,10 @@ unit UVooDao;
 
 interface
 
-uses
-  System.SysUtils, UConn;
-
 type
-  TVooModel = class
+  TVooDao = class
   public
+    procedure getVoos(id: Integer; numeroVoo, status: String);
     class procedure ConectarVoo(const VooID, UsuarioID: Integer; acesso: string);
     class procedure DesconectarVoo(const VOOID,UsuarioID:Integer; acesso: string);
     class procedure FiltrodeBusca(  const Filtro: String);
@@ -19,9 +17,11 @@ type
 
 implementation
 
-{ TVooModel }
+uses UConn, FireDAC.Comp.Client, System.SysUtils;
 
-class procedure TVooModel.AbrirAtribuidos(const TipoUsuario: string; UsuarioID: Integer);
+{ TVooDao }
+
+class procedure TVooDao.AbrirAtribuidos(const TipoUsuario: string; UsuarioID: Integer);
 var
   TipodeAcesso:string;
 
@@ -42,7 +42,7 @@ begin
 
 end;
 
-class procedure TVooModel.AbrirVoos (const TipoUsuario: string);
+class procedure TVooDao.AbrirVoos (const TipoUsuario: string);
 var
   TipodeAcesso: string;
 begin
@@ -60,7 +60,7 @@ begin
   end;
 end;
 
-class procedure TVooModel.ConectarVoo(const VooID, UsuarioID: Integer; acesso: string);
+class procedure TVooDao.ConectarVoo(const VooID, UsuarioID: Integer; acesso: string);
 begin
   with DataModuleConn.FDQueryVoos do
   begin
@@ -73,10 +73,9 @@ begin
     else
       raise Exception.Create('Voo não encontrado.');
   end;
-
 end;
 
-class function TVooModel.ContarAtribuidos(const TipoUsuario: string;  UsuarioID: Integer): Integer;
+class function TVooDao.ContarAtribuidos(const TipoUsuario: string;  UsuarioID: Integer): Integer;
 var
   TipodeAcesso: string;
 begin
@@ -95,10 +94,9 @@ begin
     Result := FieldByName('total').AsInteger;
     Close;
   end
-
 end;
 
-class function TVooModel.ContarDisponiveis(const TipoUsuario: string): Integer;
+class function TVooDao.ContarDisponiveis(const TipoUsuario: string): Integer;
 var
   TipodeAcesso: string;
 begin
@@ -116,10 +114,9 @@ begin
     Result := FieldByName('total').AsInteger;
     Close;
   end;
-
 end;
 
-class procedure TVooModel.DesconectarVoo(const VOOID, UsuarioID: Integer; acesso: string);
+class procedure TVooDao.DesconectarVoo(const VOOID, UsuarioID: Integer; acesso: string);
 begin
    with DataModuleConn.FDQueryVoos do
   begin
@@ -133,10 +130,9 @@ begin
     else
       raise Exception.Create('Voo não encontrado.');
   end;
-
 end;
 
-class procedure TVooModel.FiltrodeBusca(const Filtro: String);
+class procedure TVooDao.FiltrodeBusca(const Filtro: String);
 begin
   with DataModuleConn.FDQueryVoos do
   begin
@@ -145,6 +141,51 @@ begin
     ParamByName('filtro').AsString := '%' + Filtro + '%';
     Open;
   end;
+end;
+
+procedure TVooDao.getVoos(id: Integer; numeroVoo, status: String);
+var
+  query: TFDQuery;
+  sql: String;
+begin
+  query := DataModuleConn.FDQueryVoos;
+
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('SELECT * FROM voos');
+
+  if (id <> 0) or (numeroVoo <> '') or (status <> '') then begin
+    query.SQL.Add('WHERE 1=1');
+  end;
+
+  if id <> 0 then begin
+    query.SQL.Add('AND id = :id');
+  end;
+
+  if numeroVoo <> '' then begin
+    query.SQL.Add('AND numeroVoo ilike :numeroVoo');
+  end;
+
+  if status <> '' then begin
+    query.SQL.Add('AND status = :status');
+  end;
+
+  query.SQL.Add('ORDER BY id');
+
+  if id <> 0 then begin
+    query.ParamByName('id').AsInteger := id;
+  end;
+
+  if numeroVoo <> '' then begin
+    numeroVoo := '%' + numeroVoo + '%';
+    query.ParamByName('numeroVoo').AsString := numeroVoo;
+  end;
+
+  if status <> '' then begin
+    query.ParamByName('status').AsString := status;
+  end;
+
+  query.Open;
 end;
 
 end.

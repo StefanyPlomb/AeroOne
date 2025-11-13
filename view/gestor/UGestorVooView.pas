@@ -14,16 +14,12 @@ type
     cardGestorVoo: TCardPanel;
     cardMainVoo: TCard;
     pnlMainFrame: TPanel;
-    DBGridFuncionarios: TDBGrid;
+    DBGridVoos: TDBGrid;
     pnlHeader: TPanel;
     pnlSearch: TPanel;
     Image1: TImage;
     edtSearch: TEdit;
     pnlDiv1: TPanel;
-    pnlStatus: TPanel;
-    imgAtivo: TImage;
-    imgIndeterminado: TImage;
-    imgInativo: TImage;
     pnlLateral: TPanel;
     imgCadastrar: TImage;
     imgStatus: TImage;
@@ -53,8 +49,11 @@ type
     procedure edtHoraOrigemEnter(Sender: TObject);
     procedure edtDataDestinoEnter(Sender: TObject);
     procedure edtHoraDestinoEnter(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
+    operacao: String;
+    procedure loadGrid(searchBar: String);
   public
     { Public declarations }
   end;
@@ -63,6 +62,8 @@ var
   FormGestorVoo: TFormGestorVoo;
 
 implementation
+
+uses UVooController, UConn;
 
 {$R *.dfm}
 
@@ -92,6 +93,37 @@ begin
   edtHoraOrigem.EditMask := '00:00:00';
   edtHoraOrigem.SelStart := 0;
   edtHoraOrigem.SelLength := 0;
+end;
+
+procedure TFormGestorVoo.FormCreate(Sender: TObject);
+begin
+  operacao := 'Inserir';
+  cardGestorVoo.ActiveCard := cardMainVoo;
+  loadGrid(edtSearch.Text);
+end;
+
+procedure TFormGestorVoo.loadGrid(searchBar: String);
+var
+  id: Integer;
+  numeroVoo, status: String;
+begin
+  DBGridVoos.DataSource := DataModuleConn.DataSourceVoos;
+
+  try
+    id := StrToInt(searchBar);
+  except
+    id := 0;
+    numeroVoo := searchBar;
+  end;
+
+  status := '';
+  if (searchBar.ToUpper.Contains('INATIVO')) or (searchBar.ToUpper.Contains('CANCELADO')) then begin
+    status := 'I';
+  end else if searchBar.ToUpper.Contains('ATIVO') then begin
+    status := 'A';
+  end;
+
+  TVooController.getVoos(id, numeroVoo, status);
 end;
 
 end.
