@@ -19,10 +19,8 @@ type
     btnVoltar: TPanel;
     btnSalvar: TPanel;
     pnlDivDataChegada: TPanel;
-    edtDestino: TEdit;
     pnlDivDataOrigem: TPanel;
     edtOrigem: TEdit;
-    pnlDivDestino: TPanel;
     pnlDivOrigem: TPanel;
     pnlDivHoraChegada: TPanel;
     edtDataChegada: TMaskEdit;
@@ -61,6 +59,8 @@ type
     procedure imgCadastrarWhiteMouseLeave(Sender: TObject);
     procedure imgCadastrarWhiteClick(Sender: TObject);
     procedure imgEditarWhiteClick(Sender: TObject);
+    procedure edtNumeroVooEnter(Sender: TObject);
+    procedure edtNumeroVooExit(Sender: TObject);
   private
     { Private declarations }
     operacao: String;
@@ -82,9 +82,9 @@ uses UVooController, UConn;
 
 procedure TFormGestorVoo.edtDataChegadaEnter(Sender: TObject);
 begin
-  edtDataDestino.EditMask := '99/99/9999';
-  edtDataDestino.SelStart := 0;
-  edtDataDestino.SelLength := 0;
+  edtDataChegada.EditMask := '99/99/9999';
+  edtDataChegada.SelStart := 0;
+  edtDataChegada.SelLength := 0;
 end;
 
 procedure TFormGestorVoo.edtDataOrigemEnter(Sender: TObject);
@@ -96,9 +96,9 @@ end;
 
 procedure TFormGestorVoo.edtHoraChegadaEnter(Sender: TObject);
 begin
-  edtHoraDestino.EditMask := '99:99:99';
-  edtHoraDestino.SelStart := 0;
-  edtHoraDestino.SelLength := 0;
+  edtHoraChegada.EditMask := '99:99:99';
+  edtHoraChegada.SelStart := 0;
+  edtHoraChegada.SelLength := 0;
 end;
 
 procedure TFormGestorVoo.edtHoraOrigemEnter(Sender: TObject);
@@ -106,6 +106,18 @@ begin
   edtHoraOrigem.EditMask := '99:99:99';
   edtHoraOrigem.SelStart := 0;
   edtHoraOrigem.SelLength := 0;
+end;
+
+procedure TFormGestorVoo.edtNumeroVooEnter(Sender: TObject);
+begin
+  edtNumeroVoo.EditMask := '??9999';
+  edtNumeroVoo.SelStart := 0;
+  edtNumeroVoo.SelLength := 0;
+end;
+
+procedure TFormGestorVoo.edtNumeroVooExit(Sender: TObject);
+begin
+   edtNumeroVoo.EditMask := '';
 end;
 
 procedure TFormGestorVoo.edtSearchChange(Sender: TObject);
@@ -156,12 +168,12 @@ var
 begin
   ds := DBGridVoos.DataSource.DataSet;
   idVooGrid := ds.FieldByName('id').AsInteger;
-  edt.Text := ds.FieldByName('nome').AsString;
-  edtEmail.Text := ds.FieldByName('email').AsString;
-  edtTelefone.Text := ds.FieldByName('telefone').AsString;
-  cargo := ds.FieldByName('cargo').AsString;
-  edtCPF.Text := ds.FieldByName('cpf').AsString;
-  edtPassaporte.Text := ds.FieldByName('passaporte').AsString;
+//  edt.Text := ds.FieldByName('nome').AsString;
+//  edtEmail.Text := ds.FieldByName('email').AsString;
+//  edtTelefone.Text := ds.FieldByName('telefone').AsString;
+//  cargo := ds.FieldByName('cargo').AsString;
+//  edtCPF.Text := ds.FieldByName('cpf').AsString;
+//  edtPassaporte.Text := ds.FieldByName('passaporte').AsString;
 end;
 
 procedure TFormGestorVoo.loadGrid(searchBar: String);

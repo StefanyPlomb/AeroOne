@@ -86,7 +86,7 @@ type
 
 implementation
 
-uses UFuncionarioController, UUsuarioController, UConn;
+uses UUsuarioController, UConn;
 
 {$R *.dfm}
 

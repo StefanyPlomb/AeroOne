@@ -39,7 +39,7 @@ implementation
 
 {$R *.dfm}
 
-uses UUsuarioController, UUsuario, UEnderecoController, UGestorView, UAeroMocView, UPilotoView, UPassageiroView;
+uses UUsuarioController, UUsuario, UEnderecoController, UGestorView, UComissarioView, UPilotoView, UPassageiroView;
 
 procedure TFormLogin.edtLoginSenhaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin

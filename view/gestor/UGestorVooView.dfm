@@ -978,6 +978,8 @@ object FormGestorVoo: TFormGestorVoo
           TabOrder = 13
           Text = ''
           TextHint = 'N'#250'meroVoo'
+          OnEnter = edtNumeroVooEnter
+          OnExit = edtNumeroVooExit
           ExplicitTop = -10
         end
         object pnlDivNumeroVoo: TPanel

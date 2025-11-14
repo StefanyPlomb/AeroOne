@@ -583,8 +583,8 @@ object FormAeroMoc: TFormAeroMoc
         object lblCargo: TLabel
           Left = 0
           Top = 41
-          Width = 88
-          Height = 20
+          Width = 801
+          Height = 32
           Align = alClient
           Caption = 'Aeromo'#231'o(a)'
           Font.Charset = DEFAULT_CHARSET
@@ -593,6 +593,8 @@ object FormAeroMoc: TFormAeroMoc
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
+          ExplicitWidth = 88
+          ExplicitHeight = 20
         end
         object pnlInfoUsuarioLabels: TPanel
           Left = 0

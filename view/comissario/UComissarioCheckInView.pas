@@ -1,11 +1,11 @@
-unit UAeroMocCheckInView;
+unit UComissarioCheckInView;
 
 interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  Data.DB, Vcl.Grids, Vcl.DBGrids, UAeroMocIniciarCheckinView, UConn;
+  Data.DB, Vcl.Grids, Vcl.DBGrids, UComissarioIniciarCheckInView, UConn;
 type
   TFormCheckIn = class(TForm)
     PaneleCentral_AeroMo: TPanel;
@@ -29,7 +29,7 @@ var
 implementation
 
 uses
-  UAeromocView;
+  UComissarioView;
 
 {$R *.dfm}
 
