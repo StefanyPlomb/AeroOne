@@ -186,6 +186,10 @@ begin
   end;
 
   if Trim(novoUsuario.getTelefone) <> '' then begin
+    if Length(novoUsuario.getTelefone) < 11  then begin
+      raise Exception.Create('Telefone deve conter 11 digitos');
+    end;
+
     if novoUsuario.getTelefone <> usuario.getTelefone then begin
       temAlteracao := true;
       alterado.setTelefone(novoUsuario.getTelefone);
@@ -200,6 +204,10 @@ begin
   end;
 
   if Trim(novoUsuario.getCPF) <> '' then begin
+    if Length(novoUsuario.getCPF) < 11  then begin
+      raise Exception.Create('CPF deve conter 11 digitos');
+    end;
+
     if novoUsuario.getCPF <> usuario.getCPF then begin
       temAlteracao := true;
       alterado.setCPF(novoUsuario.getCPF);
@@ -213,8 +221,6 @@ begin
       temAlteracao := true;
       alterado.setPassaporte(novoUsuario.getPassaporte);
     end;
-  end else begin
-    raise Exception.Create('Passaporte não pode ser vazio');
   end;
 
   if Trim(novoUsuario.getStatus) <> '' then begin

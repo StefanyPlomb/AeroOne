@@ -31,15 +31,12 @@ type
     pnlInfoUsuarioLabels: TPanel;
     pnlInfoUsuarioBemVindo: TPanel;
     pnlInfoUsuarioName: TPanel;
-    imgUsuario: TImage;
-    pnlDivRelatorios: TPanel;
-    pnlDivHome: TPanel;
-    pnlDivFuncionarios: TPanel;
     pnlHome: TPanel;
     imgHome: TImage;
     pnlHomeText: TPanel;
-    pnlDivVoos: TPanel;
     pnlMainFrame: TPanel;
+    pnlMeusDados: TPanel;
+    imgUsuario: TImage;
     procedure pnlLogoutTextClick(Sender: TObject);
     procedure imgLogoutClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -54,9 +51,10 @@ type
     usuario: TUsuario;
     isLogout: Boolean;
     formAberto: TForm;
+    pnlSelecionado: TPanel;
     procedure updateInfoUsuario;
     procedure logout;
-    procedure abrirForm(form: TFormClass);
+    procedure mudarPagina(form: TFormClass; pnlASelecionar: TPanel);
   public
     { Public declarations }
     class procedure open(aUsuario: TUsuario);
@@ -74,16 +72,22 @@ uses ULoginView, UGestorHomeView, UGestorFuncionarioView, UGestorRelatorioView, 
 
 { TFormGestor }
 
-procedure TFormGestor.abrirForm(form: TFormClass);
+procedure TFormGestor.mudarPagina(form: TFormClass; pnlASelecionar: TPanel);
 begin
   if formAberto <> nil then begin
     formAberto.Close;
     formAberto.Free;
   end;
+  if pnlSelecionado <> nil then begin
+    pnlSelecionado.Color := $00604C24;
+  end;
   formAberto := form.Create(Self);
   formAberto.Parent := pnlMain;
   formAberto.Align := alClient;
   formAberto.Show;
+
+  pnlSelecionado := pnlASelecionar;
+  pnlSelecionado.Color := $0048391C;
 end;
 
 constructor TFormGestor.create(aUsuario: TUsuario);
@@ -112,6 +116,7 @@ begin
   isLogout := false;
   formAberto := nil;
   updateInfoUsuario;
+  mudarPagina(TFormGestorHome, pnlHome);
 end;
 
 procedure TFormGestor.imgLogoutClick(Sender: TObject);
@@ -130,10 +135,16 @@ begin
     formAberto.Close;
     formAberto.Free;
   end;
+  if pnlSelecionado <> nil then begin
+    pnlSelecionado.Color := $00604C24;
+  end;
   formAberto := TFormMeusDados.create(self, usuario);
   formAberto.Parent := pnlMain;
   formAberto.Align := alClient;
   formAberto.Show;
+
+  pnlSelecionado := pnlMeusDados;
+  pnlSelecionado.Color := $0048391C;
 end;
 
 procedure TFormGestor.logout;
@@ -157,25 +168,31 @@ begin
     formAberto.Close;
     formAberto.Free;
   end;
+  if pnlSelecionado <> nil then begin
+    pnlSelecionado.Color := $00604C24;
+  end;
   formAberto := TFormGestorFuncionario.create(self, usuario);
   formAberto.Parent := pnlMain;
   formAberto.Align := alClient;
   formAberto.Show;
+
+  pnlSelecionado := pnlFuncionarios;
+  pnlSelecionado.Color := $0048391C;
 end;
 
 procedure TFormGestor.pnlHomeTextClick(Sender: TObject);
 begin
-  abrirForm(TFormGestorHome);
+  mudarPagina(TFormGestorHome, pnlHome);
 end;
 
 procedure TFormGestor.pnlRelatoriosTextClick(Sender: TObject);
 begin
-  abrirForm(TFormGestorRelatorio);
+  mudarPagina(TFormGestorRelatorio, pnlRelatorios);
 end;
 
 procedure TFormGestor.pnlVoosTextClick(Sender: TObject);
 begin
-  abrirForm(TFormGestorVoo);
+  mudarPagina(TFormGestorVoo, pnlVoos);
 end;
 
 procedure TFormGestor.updateInfoUsuario;

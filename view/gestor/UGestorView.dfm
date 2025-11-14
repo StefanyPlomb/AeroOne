@@ -25,7 +25,6 @@ object FormGestor: TFormGestor
     Color = 6310948
     ParentBackground = False
     TabOrder = 0
-    ExplicitHeight = 641
     object imgLogo: TImage
       Left = 0
       Top = 0
@@ -162,7 +161,6 @@ object FormGestor: TFormGestor
       ParentFont = False
       TabOrder = 0
       StyleElements = [seClient, seBorder]
-      ExplicitTop = 577
       object imgLogout: TImage
         AlignWithMargins = True
         Left = 5
@@ -224,14 +222,14 @@ object FormGestor: TFormGestor
     end
     object pnlFuncionarios: TPanel
       AlignWithMargins = True
-      Left = 5
-      Top = 132
-      Width = 156
+      Left = 0
+      Top = 124
+      Width = 166
       Height = 41
       Cursor = crHandPoint
-      Margins.Left = 5
+      Margins.Left = 0
       Margins.Top = 5
-      Margins.Right = 5
+      Margins.Right = 0
       Margins.Bottom = 0
       Align = alTop
       BevelOuter = bvNone
@@ -245,12 +243,19 @@ object FormGestor: TFormGestor
       ParentFont = False
       TabOrder = 1
       StyleElements = [seClient, seBorder]
+      ExplicitLeft = 5
+      ExplicitWidth = 156
       object imgFuncionarios: TImage
-        Left = 0
+        AlignWithMargins = True
+        Left = 5
         Top = 0
         Width = 33
         Height = 41
         Cursor = crHandPoint
+        Margins.Left = 5
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
         Align = alLeft
         Center = True
         Picture.Data = {
@@ -268,19 +273,19 @@ object FormGestor: TFormGestor
           D80E64C10E20C39DE83025DE0210D8CE88233752CB824F8C4428A2C40286510B
           88B2A083440B2A902C20A897E6450500DA74A6656DA919640000000049454E44
           AE426082}
+        ExplicitLeft = 0
         ExplicitHeight = 49
       end
       object pnlFuncionariosText: TPanel
         AlignWithMargins = True
-        Left = 33
+        Left = 38
         Top = 0
-        Width = 123
-        Height = 37
+        Width = 128
+        Height = 38
         Cursor = crHandPoint
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 0
-        Margins.Bottom = 4
         Align = alClient
         Alignment = taLeftJustify
         BevelOuter = bvNone
@@ -291,23 +296,25 @@ object FormGestor: TFormGestor
         Font.Height = -20
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
-        ParentBackground = False
         ParentFont = False
         TabOrder = 0
         StyleElements = [seClient, seBorder]
         OnClick = pnlFuncionariosTextClick
+        ExplicitLeft = 33
+        ExplicitWidth = 123
+        ExplicitHeight = 37
       end
     end
     object pnlRelatorios: TPanel
       AlignWithMargins = True
-      Left = 5
-      Top = 186
-      Width = 156
+      Left = 0
+      Top = 170
+      Width = 166
       Height = 41
       Cursor = crHandPoint
-      Margins.Left = 5
+      Margins.Left = 0
       Margins.Top = 5
-      Margins.Right = 5
+      Margins.Right = 0
       Margins.Bottom = 0
       Align = alTop
       BevelOuter = bvNone
@@ -321,12 +328,19 @@ object FormGestor: TFormGestor
       ParentFont = False
       TabOrder = 2
       StyleElements = [seClient, seBorder]
+      ExplicitLeft = 5
+      ExplicitWidth = 156
       object imgRelatorios: TImage
-        Left = 0
+        AlignWithMargins = True
+        Left = 5
         Top = 0
         Width = 33
         Height = 41
         Cursor = crHandPoint
+        Margins.Left = 5
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
         Align = alLeft
         Center = True
         Picture.Data = {
@@ -340,19 +354,19 @@ object FormGestor: TFormGestor
           2C20732A9AC10CE886531407406E26905A0B95DE0BA5510CA73892714536D52D
           C007069505A45438E8E031D07C39421680AACC596458F21888D38016ECC06B01
           B501CD2D000032BAC619254FE9430000000049454E44AE426082}
+        ExplicitLeft = 0
         ExplicitHeight = 49
       end
       object pnlRelatoriosText: TPanel
         AlignWithMargins = True
-        Left = 33
+        Left = 38
         Top = 0
-        Width = 123
-        Height = 37
+        Width = 128
+        Height = 38
         Cursor = crHandPoint
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 0
-        Margins.Bottom = 4
         Align = alClient
         Alignment = taLeftJustify
         BevelOuter = bvNone
@@ -363,23 +377,25 @@ object FormGestor: TFormGestor
         Font.Height = -20
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
-        ParentBackground = False
         ParentFont = False
         TabOrder = 0
         StyleElements = [seClient, seBorder]
         OnClick = pnlRelatoriosTextClick
+        ExplicitLeft = 33
+        ExplicitWidth = 123
+        ExplicitHeight = 37
       end
     end
     object pnlVoos: TPanel
       AlignWithMargins = True
-      Left = 5
-      Top = 240
-      Width = 156
+      Left = 0
+      Top = 216
+      Width = 166
       Height = 41
       Cursor = crHandPoint
-      Margins.Left = 5
+      Margins.Left = 0
       Margins.Top = 5
-      Margins.Right = 5
+      Margins.Right = 0
       Margins.Bottom = 0
       Align = alTop
       BevelOuter = bvNone
@@ -393,12 +409,19 @@ object FormGestor: TFormGestor
       ParentFont = False
       TabOrder = 3
       StyleElements = [seClient, seBorder]
+      ExplicitLeft = 5
+      ExplicitWidth = 156
       object imgVoos: TImage
-        Left = 0
+        AlignWithMargins = True
+        Left = 5
         Top = 0
         Width = 33
         Height = 41
         Cursor = crHandPoint
+        Margins.Left = 5
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
         Align = alLeft
         Center = True
         Picture.Data = {
@@ -419,19 +442,19 @@ object FormGestor: TFormGestor
           91D48E116BD6C708354D8E02856484C5DB923AF16C887313EFAE296A96D312A4
           482AA19BC5EF8ABA1623F97A0EC9E69D1E3471F02E16BF19595EF9F3A7AFBA7E
           0029CC95199C9BCF470000000049454E44AE426082}
+        ExplicitLeft = 0
         ExplicitHeight = 49
       end
       object pnlVoosText: TPanel
         AlignWithMargins = True
-        Left = 33
+        Left = 38
         Top = 0
-        Width = 123
-        Height = 37
+        Width = 128
+        Height = 38
         Cursor = crHandPoint
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 0
-        Margins.Bottom = 4
         Align = alClient
         Alignment = taLeftJustify
         BevelOuter = bvNone
@@ -442,71 +465,25 @@ object FormGestor: TFormGestor
         Font.Height = -20
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
-        ParentBackground = False
         ParentFont = False
         TabOrder = 0
         StyleElements = [seClient, seBorder]
         OnClick = pnlVoosTextClick
+        ExplicitLeft = 33
+        ExplicitWidth = 123
+        ExplicitHeight = 37
       end
-    end
-    object pnlDivRelatorios: TPanel
-      AlignWithMargins = True
-      Left = 7
-      Top = 232
-      Width = 152
-      Height = 3
-      Margins.Left = 7
-      Margins.Top = 5
-      Margins.Right = 7
-      Margins.Bottom = 0
-      Align = alTop
-      BevelOuter = bvNone
-      Color = 4733212
-      ParentBackground = False
-      TabOrder = 4
-    end
-    object pnlDivHome: TPanel
-      AlignWithMargins = True
-      Left = 7
-      Top = 124
-      Width = 152
-      Height = 3
-      Margins.Left = 7
-      Margins.Top = 5
-      Margins.Right = 7
-      Margins.Bottom = 0
-      Align = alTop
-      BevelOuter = bvNone
-      Color = 4733212
-      ParentBackground = False
-      TabOrder = 5
-    end
-    object pnlDivFuncionarios: TPanel
-      AlignWithMargins = True
-      Left = 7
-      Top = 178
-      Width = 152
-      Height = 3
-      Margins.Left = 7
-      Margins.Top = 5
-      Margins.Right = 7
-      Margins.Bottom = 0
-      Align = alTop
-      BevelOuter = bvNone
-      Color = 4733212
-      ParentBackground = False
-      TabOrder = 6
     end
     object pnlHome: TPanel
       AlignWithMargins = True
-      Left = 5
+      Left = 0
       Top = 78
-      Width = 156
+      Width = 166
       Height = 41
       Cursor = crHandPoint
-      Margins.Left = 5
+      Margins.Left = 0
       Margins.Top = 5
-      Margins.Right = 5
+      Margins.Right = 0
       Margins.Bottom = 0
       Align = alTop
       BevelOuter = bvNone
@@ -518,14 +495,21 @@ object FormGestor: TFormGestor
       Font.Style = [fsBold]
       ParentBackground = False
       ParentFont = False
-      TabOrder = 7
+      TabOrder = 4
       StyleElements = [seClient, seBorder]
+      ExplicitLeft = 5
+      ExplicitWidth = 156
       object imgHome: TImage
-        Left = 0
+        AlignWithMargins = True
+        Left = 5
         Top = 0
         Width = 33
         Height = 41
         Cursor = crHandPoint
+        Margins.Left = 5
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
         Align = alLeft
         Center = True
         Picture.Data = {
@@ -546,15 +530,14 @@ object FormGestor: TFormGestor
       end
       object pnlHomeText: TPanel
         AlignWithMargins = True
-        Left = 33
+        Left = 38
         Top = 0
-        Width = 123
-        Height = 37
+        Width = 128
+        Height = 38
         Cursor = crHandPoint
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 0
-        Margins.Bottom = 4
         Align = alClient
         Alignment = taLeftJustify
         BevelOuter = bvNone
@@ -565,28 +548,14 @@ object FormGestor: TFormGestor
         Font.Height = -20
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
-        ParentBackground = False
         ParentFont = False
         TabOrder = 0
         StyleElements = [seClient, seBorder]
         OnClick = pnlHomeTextClick
+        ExplicitLeft = 33
+        ExplicitWidth = 123
+        ExplicitHeight = 37
       end
-    end
-    object pnlDivVoos: TPanel
-      AlignWithMargins = True
-      Left = 7
-      Top = 286
-      Width = 152
-      Height = 3
-      Margins.Left = 7
-      Margins.Top = 5
-      Margins.Right = 7
-      Margins.Bottom = 0
-      Align = alTop
-      BevelOuter = bvNone
-      Color = 4733212
-      ParentBackground = False
-      TabOrder = 8
     end
   end
   object pnlMain: TPanel
@@ -599,8 +568,6 @@ object FormGestor: TFormGestor
     Color = clWhite
     ParentBackground = False
     TabOrder = 1
-    ExplicitWidth = 942
-    ExplicitHeight = 641
     object pnlSuperior: TPanel
       Left = 0
       Top = 0
@@ -611,43 +578,6 @@ object FormGestor: TFormGestor
       Color = 6310948
       ParentBackground = False
       TabOrder = 0
-      ExplicitWidth = 942
-      object imgUsuario: TImage
-        Left = 878
-        Top = 0
-        Width = 66
-        Height = 73
-        Cursor = crHandPoint
-        Hint = 'Meus dados'
-        ParentCustomHint = False
-        Align = alRight
-        Center = True
-        ParentShowHint = False
-        Picture.Data = {
-          0954506E67496D61676589504E470D0A1A0A0000000D49484452000000300000
-          003008060000005702F987000000097048597300000B1300000B1301009A9C18
-          0000020D4944415478DAED98414B54511886CF3528B04CC26D8B5C59D6D83E5D
-          14D1A2C18510F9070A1C89CA6684FE43E0E8C4442DC6BD81BB5041A416216D5B
-          4C6AAB5CB40DA6197061D8F41CEE1D18A18B73CE3DE37707CE0B2F2F889FBCCF
-          BD1FC73313A81E57205DC0034817F000D2055207D06C3633C4637C175F897EBC
-          8FB7702508826A2A01287E8E58C433B82FE6D78EF03B9C07E430350051F90D7C
-          A7C3918FF8BE0B0857006F899CE1581980A7E200D1CE7F55F16B1327BD4E3781
-          F8260D50229E598E2F02909706D04F70D472BC0A40461AA0415CB01C6F007051
-          1AA04E0C588ED701189406E8F9155A229E5B8E1701284803DC50E1317AC67054
-          1FA36300EC8802441065E289E1D86BCADBBE39E700678975155EE03A91BED865
-          01F8930A803688053CABE2D749AFCD1B3CEFA2BC53803690EBC4237C4F1DBF4E
-          6FE2E5A43BDF7580D39607909607909607E0D8D47FE31A1E57E1A56E040FE321
-          DCBA2AEB1BEB2FFC037FC7FA28DDC6BB1CABCD5307A0F47962123FC4B7A3B236
-          D2509FF02AFE00CC415701287E957889A771BFED538B912EFF1EBF0264CF2900
-          C52F1345FC40997F7837D55F15BE9102203F1303507E8AA828FB35B1D56F9C03
-          62C51A80F22F54F8E425350744C91880F2B788CFAAFB2B7392F44A4D00F1C514
-          608DC80A976F690D804953801A91E81B0387AA0170C91420D13F18D702E0BF5D
-          3D8007F0003D2E0F202D0F20AD9E07F8073E10AC31130E0B740000000049454E
-          44AE426082}
-        ShowHint = True
-        OnClick = imgUsuarioClick
-        ExplicitTop = -6
-      end
       object pnlSuperiorDivisoria: TPanel
         AlignWithMargins = True
         Left = 0
@@ -754,6 +684,55 @@ object FormGestor: TFormGestor
           end
         end
       end
+      object pnlMeusDados: TPanel
+        Left = 878
+        Top = 0
+        Width = 66
+        Height = 73
+        Align = alRight
+        BevelOuter = bvNone
+        Color = 6310948
+        ParentBackground = False
+        TabOrder = 2
+        ExplicitLeft = 759
+        object imgUsuario: TImage
+          Left = 0
+          Top = 0
+          Width = 66
+          Height = 73
+          Cursor = crHandPoint
+          Hint = 'Meus dados'
+          ParentCustomHint = False
+          Align = alRight
+          Center = True
+          ParentShowHint = False
+          Picture.Data = {
+            0954506E67496D61676589504E470D0A1A0A0000000D49484452000000300000
+            003008060000005702F987000000097048597300000B1300000B1301009A9C18
+            0000020D4944415478DAED98414B54511886CF3528B04CC26D8B5C59D6D83E5D
+            14D1A2C18510F9070A1C89CA6684FE43E0E8C4442DC6BD81BB5041A416216D5B
+            4C6AAB5CB40DA6197061D8F41CEE1D18A18B73CE3DE37707CE0B2F2F889FBCCF
+            BD1FC73313A81E57205DC0034817F000D2055207D06C3633C4637C175F897EBC
+            8FB7702508826A2A01287E8E58C433B82FE6D78EF03B9C07E430350051F90D7C
+            A7C3918FF8BE0B0857006F899CE1581980A7E200D1CE7F55F16B1327BD4E3781
+            F8260D50229E598E2F02909706D04F70D472BC0A40461AA0415CB01C6F007051
+            1AA04E0C588ED701189406E8F9155A229E5B8E1701284803DC50E1317AC67054
+            1FA36300EC8802441065E289E1D86BCADBBE39E700678975155EE03A91BED865
+            01F8930A803688053CABE2D749AFCD1B3CEFA2BC53803690EBC4237C4F1DBF4E
+            6FE2E5A43BDF7580D39607909607909607E0D8D47FE31A1E57E1A56E040FE321
+            DCBA2AEB1BEB2FFC037FC7FA28DDC6BB1CABCD5307A0F47962123FC4B7A3B236
+            D2509FF02AFE00CC415701287E957889A771BFED538B912EFF1EBF0264CF2900
+            C52F1345FC40997F7837D55F15BE9102203F1303507E8AA828FB35B1D56F9C03
+            62C51A80F22F54F8E425350744C91880F2B788CFAAFB2B7392F44A4D00F1C514
+            608DC80A976F690D804953801A91E81B0387AA0170C91420D13F18D702E0BF5D
+            3D8007F0003D2E0F202D0F20AD9E07F8073E10AC31130E0B740000000049454E
+            44AE426082}
+          ShowHint = True
+          OnClick = imgUsuarioClick
+          ExplicitLeft = 878
+          ExplicitTop = -6
+        end
+      end
     end
     object pnlMainFrame: TPanel
       Left = 0
@@ -765,8 +744,6 @@ object FormGestor: TFormGestor
       Color = 15791343
       ParentBackground = False
       TabOrder = 1
-      ExplicitWidth = 942
-      ExplicitHeight = 568
     end
   end
 end

@@ -76,11 +76,11 @@ begin
       edtLoginEmail.Clear;
       edtLoginSenha.Clear;
       self.Hide;
-      if cargo = 'Gestor' then begin
+      if cargo = 'Gestor(a)' then begin
         TFormGestor.open(usuario);
-      end else if cargo = 'Piloto' then begin
+      end else if cargo = 'Piloto(a)' then begin
         TFormPiloto.open(usuario);
-      end else if cargo = 'Aeromoco' then begin
+      end else if cargo = 'Comissário(a)' then begin
         TFormAeroMoc.open(usuario);
       end else begin
         TFormPassageiro.open(usuario);

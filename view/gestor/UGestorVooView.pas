@@ -13,47 +13,60 @@ type
     pnlMain: TPanel;
     cardGestorVoo: TCardPanel;
     cardMainVoo: TCard;
-    pnlMainFrame: TPanel;
-    DBGridVoos: TDBGrid;
-    pnlHeader: TPanel;
-    pnlSearch: TPanel;
-    Image1: TImage;
-    edtSearch: TEdit;
-    pnlDiv1: TPanel;
-    pnlLateral: TPanel;
-    imgCadastrar: TImage;
-    imgStatus: TImage;
-    imgEditar: TImage;
     cardAddOrUpdateVoo: TCard;
     pnlFooter: TPanel;
     pnlSeparador: TPanel;
     btnVoltar: TPanel;
     btnSalvar: TPanel;
-    pnlDivPassaporte: TPanel;
-    pnlDivDataDestino: TPanel;
+    pnlDivDataChegada: TPanel;
     edtDestino: TEdit;
     pnlDivDataOrigem: TPanel;
     edtOrigem: TEdit;
     pnlDivDestino: TPanel;
     pnlDivOrigem: TPanel;
-    pnlDivHoraDestino: TPanel;
-    edtDataDestino: TMaskEdit;
-    edtPassaporte: TMaskEdit;
-    edtHoraDestino: TMaskEdit;
-    edtCEP: TEdit;
-    pnlDivCEP: TPanel;
+    pnlDivHoraChegada: TPanel;
+    edtDataChegada: TMaskEdit;
+    edtHoraChegada: TMaskEdit;
     edtDataOrigem: TMaskEdit;
     edtHoraOrigem: TMaskEdit;
     pnlDivHoraOrigem: TPanel;
+    pnlLateral: TPanel;
+    pnlCadastrar: TPanel;
+    imgCadastrarGreen: TImage;
+    imgCadastrarWhite: TImage;
+    pnlStatus: TPanel;
+    imgStatusRed: TImage;
+    imgStatusWhite: TImage;
+    pnlEditar: TPanel;
+    imgEditarYellow: TImage;
+    imgEditarWhite: TImage;
+    pnlMainFrame: TPanel;
+    DBGridVoos: TDBGrid;
+    pnlHeader: TPanel;
+    pnlSearch: TPanel;
+    imgSearch: TImage;
+    edtSearch: TEdit;
+    pnlDiv1: TPanel;
+    edtNumeroVoo: TMaskEdit;
+    pnlDivNumeroVoo: TPanel;
+    cbxAeronave: TComboBox;
+    pnlDivCargo: TPanel;
     procedure edtDataOrigemEnter(Sender: TObject);
     procedure edtHoraOrigemEnter(Sender: TObject);
-    procedure edtDataDestinoEnter(Sender: TObject);
-    procedure edtHoraDestinoEnter(Sender: TObject);
+    procedure edtDataChegadaEnter(Sender: TObject);
+    procedure edtHoraChegadaEnter(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure edtSearchChange(Sender: TObject);
+    procedure imgCadastrarGreenMouseEnter(Sender: TObject);
+    procedure imgCadastrarWhiteMouseLeave(Sender: TObject);
+    procedure imgCadastrarWhiteClick(Sender: TObject);
+    procedure imgEditarWhiteClick(Sender: TObject);
   private
     { Private declarations }
     operacao: String;
+    idVooGrid: Integer;
     procedure loadGrid(searchBar: String);
+    procedure loadEditsFromGrid;
   public
     { Public declarations }
   end;
@@ -67,32 +80,37 @@ uses UVooController, UConn;
 
 {$R *.dfm}
 
-procedure TFormGestorVoo.edtDataDestinoEnter(Sender: TObject);
+procedure TFormGestorVoo.edtDataChegadaEnter(Sender: TObject);
 begin
-  edtDataDestino.EditMask := '00/00/0000';
+  edtDataDestino.EditMask := '99/99/9999';
   edtDataDestino.SelStart := 0;
   edtDataDestino.SelLength := 0;
 end;
 
 procedure TFormGestorVoo.edtDataOrigemEnter(Sender: TObject);
 begin
-  edtDataOrigem.EditMask := '00/00/0000';
+  edtDataOrigem.EditMask := '99/99/9999';
   edtDataOrigem.SelStart := 0;
   edtDataOrigem.SelLength := 0;
 end;
 
-procedure TFormGestorVoo.edtHoraDestinoEnter(Sender: TObject);
+procedure TFormGestorVoo.edtHoraChegadaEnter(Sender: TObject);
 begin
-  edtHoraDestino.EditMask := '00:00:00';
+  edtHoraDestino.EditMask := '99:99:99';
   edtHoraDestino.SelStart := 0;
   edtHoraDestino.SelLength := 0;
 end;
 
 procedure TFormGestorVoo.edtHoraOrigemEnter(Sender: TObject);
 begin
-  edtHoraOrigem.EditMask := '00:00:00';
+  edtHoraOrigem.EditMask := '99:99:99';
   edtHoraOrigem.SelStart := 0;
   edtHoraOrigem.SelLength := 0;
+end;
+
+procedure TFormGestorVoo.edtSearchChange(Sender: TObject);
+begin
+  loadGrid(edtSearch.Text);
 end;
 
 procedure TFormGestorVoo.FormCreate(Sender: TObject);
@@ -100,6 +118,50 @@ begin
   operacao := 'Inserir';
   cardGestorVoo.ActiveCard := cardMainVoo;
   loadGrid(edtSearch.Text);
+end;
+
+procedure TFormGestorVoo.imgCadastrarGreenMouseEnter(Sender: TObject);
+begin
+  imgCadastrarWhite.Visible := true;
+  imgCadastrarGreen.Visible := false;
+end;
+
+procedure TFormGestorVoo.imgCadastrarWhiteClick(Sender: TObject);
+begin
+  operacao := 'Inserir';
+  cardGestorVoo.ActiveCard := cardAddOrUpdateVoo;
+end;
+
+procedure TFormGestorVoo.imgCadastrarWhiteMouseLeave(Sender: TObject);
+begin
+  imgCadastrarWhite.Visible := false;
+  imgCadastrarGreen.Visible := true;
+end;
+
+procedure TFormGestorVoo.imgEditarWhiteClick(Sender: TObject);
+begin
+  if DBGridVoos.DataSource.DataSet.IsEmpty then begin
+    ShowMessage('Nenhum registro selecionado');
+    exit;
+  end;
+  operacao := 'Atualizar';
+  loadEditsFromGrid;
+  cardGestorVoo.ActiveCard := cardAddOrUpdateVoo;
+end;
+
+procedure TFormGestorVoo.loadEditsFromGrid;
+var
+  ds: TDataSet;
+  cargo: String;
+begin
+  ds := DBGridVoos.DataSource.DataSet;
+  idVooGrid := ds.FieldByName('id').AsInteger;
+  edt.Text := ds.FieldByName('nome').AsString;
+  edtEmail.Text := ds.FieldByName('email').AsString;
+  edtTelefone.Text := ds.FieldByName('telefone').AsString;
+  cargo := ds.FieldByName('cargo').AsString;
+  edtCPF.Text := ds.FieldByName('cpf').AsString;
+  edtPassaporte.Text := ds.FieldByName('passaporte').AsString;
 end;
 
 procedure TFormGestorVoo.loadGrid(searchBar: String);

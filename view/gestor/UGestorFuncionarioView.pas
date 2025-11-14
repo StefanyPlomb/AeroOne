@@ -16,9 +16,6 @@ type
     pnlLateral: TPanel;
     cardAddOrUpdateFuncionario: TCard;
     cardMainFuncionarios: TCard;
-    imgCadastrar: TImage;
-    imgStatus: TImage;
-    imgEditar: TImage;
     pnlHeader: TPanel;
     pnlSearch: TPanel;
     edtSearch: TEdit;
@@ -42,6 +39,15 @@ type
     edtPassaporte: TMaskEdit;
     edtCPF: TMaskEdit;
     Image1: TImage;
+    pnlCadastrar: TPanel;
+    imgCadastrarGreen: TImage;
+    imgCadastrarWhite: TImage;
+    pnlStatus: TPanel;
+    pnlEditar: TPanel;
+    imgEditarYellow: TImage;
+    imgEditarWhite: TImage;
+    imgStatusRed: TImage;
+    imgStatusWhite: TImage;
     procedure edtTelefoneEnter(Sender: TObject);
     procedure edtTelefoneExit(Sender: TObject);
     procedure edtPassaporteExit(Sender: TObject);
@@ -50,12 +56,18 @@ type
     procedure edtCPFExit(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnVoltarClick(Sender: TObject);
-    procedure imgCadastrarClick(Sender: TObject);
-    procedure imgEditarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure cardAddOrUpdateFuncionarioEnter(Sender: TObject);
     procedure edtSearchChange(Sender: TObject);
-    procedure imgStatusClick(Sender: TObject);
+    procedure imgCadastrarWhiteClick(Sender: TObject);
+    procedure imgCadastrarWhiteMouseLeave(Sender: TObject);
+    procedure imgCadastrarGreenMouseEnter(Sender: TObject);
+    procedure imgEditarWhiteClick(Sender: TObject);
+    procedure imgEditarWhiteMouseLeave(Sender: TObject);
+    procedure imgEditarYellowMouseEnter(Sender: TObject);
+    procedure imgStatusWhiteClick(Sender: TObject);
+    procedure imgStatusWhiteMouseLeave(Sender: TObject);
+    procedure imgStatusRedMouseEnter(Sender: TObject);
   private
     { Private declarations }
     usuario: TUsuario;
@@ -78,13 +90,25 @@ uses UFuncionarioController, UUsuarioController, UConn;
 
 {$R *.dfm}
 
-procedure TFormGestorFuncionario.imgCadastrarClick(Sender: TObject);
+procedure TFormGestorFuncionario.imgCadastrarGreenMouseEnter(Sender: TObject);
+begin
+  imgCadastrarWhite.Visible := true;
+  imgCadastrarGreen.Visible := false;
+end;
+
+procedure TFormGestorFuncionario.imgCadastrarWhiteClick(Sender: TObject);
 begin
   operacao := 'Inserir';
   cardGestorFuncionario.ActiveCard := cardAddOrUpdateFuncionario;
 end;
 
-procedure TFormGestorFuncionario.imgEditarClick(Sender: TObject);
+procedure TFormGestorFuncionario.imgCadastrarWhiteMouseLeave(Sender: TObject);
+begin
+  imgCadastrarWhite.Visible := false;
+  imgCadastrarGreen.Visible := true;
+end;
+
+procedure TFormGestorFuncionario.imgEditarWhiteClick(Sender: TObject);
 begin
   if DBGridFuncionarios.DataSource.DataSet.IsEmpty then begin
     ShowMessage('Nenhum registro selecionado');
@@ -95,7 +119,25 @@ begin
   cardGestorFuncionario.ActiveCard := cardAddOrUpdateFuncionario;
 end;
 
-procedure TFormGestorFuncionario.imgStatusClick(Sender: TObject);
+procedure TFormGestorFuncionario.imgEditarWhiteMouseLeave(Sender: TObject);
+begin
+  imgEditarWhite.Visible := false;
+  imgEditarYellow.Visible := true;
+end;
+
+procedure TFormGestorFuncionario.imgEditarYellowMouseEnter(Sender: TObject);
+begin
+  imgEditarWhite.Visible := true;
+  imgEditarYellow.Visible := false;
+end;
+
+procedure TFormGestorFuncionario.imgStatusRedMouseEnter(Sender: TObject);
+begin
+  imgStatusWhite.Visible := true;
+  imgStatusRed.Visible := false;
+end;
+
+procedure TFormGestorFuncionario.imgStatusWhiteClick(Sender: TObject);
 var
   novoUsuario: TUsuario;
 begin
@@ -108,13 +150,7 @@ begin
       novoUsuario.setEmail(edtEmail.Text);
       novoUsuario.setSenha(edtSenha.Text);
       novoUsuario.setTelefone(edtTelefone.Text);
-      if cbxCargo.ItemIndex = 0 then begin
-        novoUsuario.setCargo('Gestor');
-      end else if cbxCargo.ItemIndex = 1 then begin
-        novoUsuario.setCargo('Piloto');
-      end else begin
-        novoUsuario.setCargo('Aeromoco');
-      end;
+      novoUsuario.setCargo(cbxCargo.Text);
       novoUsuario.setCPF(edtCPF.Text);
       novoUsuario.setPassaporte(edtPassaporte.Text);
       if statusUsuarioGrid = 'A' then begin
@@ -135,6 +171,12 @@ begin
       ShowMessage(e.Message);
     end;
   end;
+end;
+
+procedure TFormGestorFuncionario.imgStatusWhiteMouseLeave(Sender: TObject);
+begin
+  imgStatusWhite.Visible := false;
+  imgStatusRed.Visible := true;
 end;
 
 procedure TFormGestorFuncionario.limparEdits;
@@ -158,13 +200,7 @@ begin
     novoUsuario.setEmail(edtEmail.Text);
     novoUsuario.setSenha(edtSenha.Text);
     novoUsuario.setTelefone(edtTelefone.Text);
-    if cbxCargo.ItemIndex = 0 then begin
-      novoUsuario.setCargo('Gestor');
-    end else if cbxCargo.ItemIndex = 1 then begin
-      novoUsuario.setCargo('Piloto');
-    end else begin
-      novoUsuario.setCargo('Aeromoco');
-    end;
+    novoUsuario.setCargo(cbxCargo.Text);
     novoUsuario.setCPF(edtCPF.Text);
     novoUsuario.setPassaporte(edtPassaporte.Text);
     if operacao = 'Inserir' then begin
@@ -216,14 +252,7 @@ begin
   edtNome.Text := ds.FieldByName('nome').AsString;
   edtEmail.Text := ds.FieldByName('email').AsString;
   edtTelefone.Text := ds.FieldByName('telefone').AsString;
-  cargo := ds.FieldByName('cargo').AsString;
-  if cargo = 'Gestor' then begin
-    cbxCargo.ItemIndex := 0;
-  end else if cargo = 'Piloto' then begin
-    cbxCargo.ItemIndex := 1;
-  end else begin
-    cbxCargo.ItemIndex := 2;
-  end;
+  cbxCargo.Text := ds.FieldByName('cargo').AsString;
   edtCPF.Text := ds.FieldByName('cpf').AsString;
   edtPassaporte.Text := ds.FieldByName('passaporte').AsString;
   statusUsuarioGrid := ds.FieldByName('status').AsString;

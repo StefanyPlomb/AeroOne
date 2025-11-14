@@ -7,6 +7,7 @@ type
   private
     Fid: Integer;
     FnumeroVoo: String;
+    FidAeronave: Integer;
     Forigem: String;
     Fdestino: String;
     FdataPartida: String;
@@ -19,6 +20,8 @@ type
     procedure setId(const Value: Integer);
     function getNumeroVoo: String;
     procedure setNumeroVoo(const Value: String);
+    function getIdAeronave: Integer;
+    procedure setIdAeronave(const Value: Integer);
     function getOrigem: String;
     procedure setOrigem(const Value: String);
     function getDestino: String;
@@ -57,6 +60,16 @@ end;
 procedure TVoo.setNumeroVoo(const Value: String);
 begin
   FnumeroVoo := Value;
+end;
+
+function TVoo.getIdAeronave: Integer;
+begin
+  Result := FidAeronave;
+end;
+
+procedure TVoo.setIdAeronave(const Value: Integer);
+begin
+  FidAeronave := Value;
 end;
 
 function TVoo.getOrigem: String;

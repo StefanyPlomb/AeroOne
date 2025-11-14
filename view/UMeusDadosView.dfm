@@ -22,19 +22,25 @@ object FormMeusDados: TFormMeusDados
     BevelOuter = bvNone
     TabOrder = 0
     object pnlForm: TPanel
-      Left = 0
+      AlignWithMargins = True
+      Left = 8
       Top = 0
-      Width = 944
+      Width = 928
       Height = 512
+      Margins.Left = 8
+      Margins.Top = 0
+      Margins.Right = 8
+      Margins.Bottom = 0
       Align = alClient
       BevelOuter = bvNone
       Color = 15791343
       ParentBackground = False
       TabOrder = 0
+      ExplicitLeft = 16
       object edtCidade: TEdit
         AlignWithMargins = True
-        Left = 269
-        Top = 310
+        Left = 264
+        Top = 308
         Width = 235
         Height = 28
         Margins.Left = 70
@@ -57,8 +63,8 @@ object FormMeusDados: TFormMeusDados
       end
       object edtBairro: TEdit
         AlignWithMargins = True
-        Left = 5
-        Top = 310
+        Left = 0
+        Top = 308
         Width = 235
         Height = 28
         Margins.Left = 70
@@ -81,9 +87,9 @@ object FormMeusDados: TFormMeusDados
       end
       object edtRua: TEdit
         AlignWithMargins = True
-        Left = 269
-        Top = 262
-        Width = 670
+        Left = 264
+        Top = 260
+        Width = 672
         Height = 28
         Margins.Left = 70
         Margins.Top = 120
@@ -105,8 +111,8 @@ object FormMeusDados: TFormMeusDados
       end
       object edtCEP: TMaskEdit
         AlignWithMargins = True
-        Left = 5
-        Top = 262
+        Left = 0
+        Top = 260
         Width = 235
         Height = 28
         Margins.Left = 70
@@ -130,8 +136,8 @@ object FormMeusDados: TFormMeusDados
       end
       object edtNome: TEdit
         AlignWithMargins = True
-        Left = 5
-        Top = 48
+        Left = 0
+        Top = 46
         Width = 235
         Height = 28
         Margins.Left = 70
@@ -152,8 +158,8 @@ object FormMeusDados: TFormMeusDados
       end
       object pnlDivNome: TPanel
         AlignWithMargins = True
-        Left = 5
-        Top = 76
+        Left = 0
+        Top = 74
         Width = 235
         Height = 3
         Margins.Left = 70
@@ -168,7 +174,7 @@ object FormMeusDados: TFormMeusDados
       object pnlHeader: TPanel
         Left = 0
         Top = 0
-        Width = 944
+        Width = 928
         Height = 49
         Align = alTop
         BevelOuter = bvNone
@@ -177,7 +183,7 @@ object FormMeusDados: TFormMeusDados
         TabOrder = 13
         object Panel3: TPanel
           AlignWithMargins = True
-          Left = 579
+          Left = 574
           Top = 5
           Width = 117
           Height = 39
@@ -202,11 +208,11 @@ object FormMeusDados: TFormMeusDados
         end
         object Panel2: TPanel
           AlignWithMargins = True
-          Left = 5
+          Left = 0
           Top = 5
           Width = 564
           Height = 39
-          Margins.Left = 5
+          Margins.Left = 0
           Margins.Top = 5
           Margins.Right = 5
           Margins.Bottom = 5
@@ -237,7 +243,7 @@ object FormMeusDados: TFormMeusDados
         TabOrder = 14
         object imgEnderecoAlerta: TImage
           AlignWithMargins = True
-          Left = 88
+          Left = 107
           Top = 2
           Width = 20
           Height = 47
@@ -267,16 +273,50 @@ object FormMeusDados: TFormMeusDados
             AE426082}
           ShowHint = True
           Visible = False
+          ExplicitLeft = 88
+          ExplicitTop = 0
+          ExplicitHeight = 49
+        end
+        object imgEnderecoExcluir: TImage
+          AlignWithMargins = True
+          Left = 87
+          Top = 2
+          Width = 20
+          Height = 47
+          Hint = 'Nenhum endere'#231'o cadastrado'
+          Margins.Left = 0
+          Margins.Top = 2
+          Margins.Right = 0
+          Margins.Bottom = 0
+          Align = alLeft
+          Center = True
+          ParentShowHint = False
+          Picture.Data = {
+            0954506E67496D61676589504E470D0A1A0A0000000D49484452000000140000
+            001408060000008D891D0D000000097048597300000B1300000B1301009A9C18
+            000001134944415478DA6364A03260A4B9815339F94CB9BE7FBA9CC8C0F0039F
+            C6F90C0C1CDF38F974B3BF7F3A8DD3C069DCFC058C8C8CFDFFFFFF3FF48F8BCD
+            3BE7F5EB2FD80CEB6590E1E4E2F9B209C874F9CFC05899F5E57D078681209731
+            31339D82F1FF3330EC65FEC2E997CEF0FC1BB261331924B9FEF27CDF04D4E80C
+            13FBF7F79F19CCA57003415EF8CE23B0055921BAA1D80C03A9E1FCF2C1071644
+            285E46F60A5CF0FFFFC37FB9D8BC585FB3FCC3300C18343C3C1C5E712F5F7EC5
+            1929B85C01558CD3F5380DC4E95224802FD270A6435C86124A01380DC4E675E4
+            3025C9409C861161286D23055BB8C1C2ECE76BF6BFB8E4905D4ABB844DF5AC07
+            02C885037A0EC01534380B07649752ADF8A206A0BA81006B15E3153C54FAFB00
+            00000049454E44AE426082}
+          ShowHint = True
+          Visible = False
+          ExplicitLeft = 88
           ExplicitTop = 0
           ExplicitHeight = 49
         end
         object pnlEnderecoText: TPanel
           AlignWithMargins = True
-          Left = 5
+          Left = 0
           Top = 5
-          Width = 78
+          Width = 82
           Height = 39
-          Margins.Left = 5
+          Margins.Left = 0
           Margins.Top = 5
           Margins.Right = 5
           Margins.Bottom = 5
@@ -298,8 +338,8 @@ object FormMeusDados: TFormMeusDados
       end
       object pnlDivCPF: TPanel
         AlignWithMargins = True
-        Left = 579
-        Top = 76
+        Left = 574
+        Top = 74
         Width = 235
         Height = 3
         Margins.Left = 70
@@ -313,8 +353,8 @@ object FormMeusDados: TFormMeusDados
       end
       object pnlDivCEP: TPanel
         AlignWithMargins = True
-        Left = 5
-        Top = 289
+        Left = 0
+        Top = 287
         Width = 235
         Height = 3
         Margins.Left = 70
@@ -328,8 +368,8 @@ object FormMeusDados: TFormMeusDados
       end
       object edtUF: TEdit
         AlignWithMargins = True
-        Left = 533
-        Top = 310
+        Left = 528
+        Top = 308
         Width = 84
         Height = 28
         Margins.Left = 70
@@ -353,8 +393,8 @@ object FormMeusDados: TFormMeusDados
       end
       object pnlDivBairro: TPanel
         AlignWithMargins = True
-        Left = 5
-        Top = 337
+        Left = 0
+        Top = 335
         Width = 235
         Height = 3
         Margins.Left = 70
@@ -368,8 +408,8 @@ object FormMeusDados: TFormMeusDados
       end
       object pnlDivCidade: TPanel
         AlignWithMargins = True
-        Left = 269
-        Top = 337
+        Left = 264
+        Top = 335
         Width = 235
         Height = 3
         Margins.Left = 70
@@ -383,9 +423,9 @@ object FormMeusDados: TFormMeusDados
       end
       object pnlDivRua: TPanel
         AlignWithMargins = True
-        Left = 269
-        Top = 289
-        Width = 670
+        Left = 264
+        Top = 287
+        Width = 672
         Height = 3
         Margins.Left = 70
         Margins.Top = 0
@@ -398,8 +438,8 @@ object FormMeusDados: TFormMeusDados
       end
       object pnlDivUF: TPanel
         AlignWithMargins = True
-        Left = 533
-        Top = 337
+        Left = 528
+        Top = 335
         Width = 84
         Height = 3
         Margins.Left = 70
@@ -413,8 +453,8 @@ object FormMeusDados: TFormMeusDados
       end
       object edtSenha: TEdit
         AlignWithMargins = True
-        Left = 5
-        Top = 144
+        Left = 0
+        Top = 142
         Width = 235
         Height = 28
         Margins.Left = 70
@@ -435,8 +475,8 @@ object FormMeusDados: TFormMeusDados
       end
       object edtEmail: TEdit
         AlignWithMargins = True
-        Left = 5
-        Top = 96
+        Left = 0
+        Top = 94
         Width = 499
         Height = 28
         Margins.Left = 70
@@ -457,8 +497,8 @@ object FormMeusDados: TFormMeusDados
       end
       object pnlDivSenha: TPanel
         AlignWithMargins = True
-        Left = 5
-        Top = 172
+        Left = 0
+        Top = 170
         Width = 235
         Height = 3
         Margins.Left = 70
@@ -472,8 +512,8 @@ object FormMeusDados: TFormMeusDados
       end
       object pnlDivEmail: TPanel
         AlignWithMargins = True
-        Left = 5
-        Top = 124
+        Left = 0
+        Top = 122
         Width = 499
         Height = 3
         Margins.Left = 70
@@ -487,8 +527,8 @@ object FormMeusDados: TFormMeusDados
       end
       object pnlDivPassaporte: TPanel
         AlignWithMargins = True
-        Left = 579
-        Top = 124
+        Left = 574
+        Top = 122
         Width = 235
         Height = 3
         Margins.Left = 70
@@ -502,8 +542,8 @@ object FormMeusDados: TFormMeusDados
       end
       object pnlDivTelefone: TPanel
         AlignWithMargins = True
-        Left = 269
-        Top = 76
+        Left = 264
+        Top = 74
         Width = 235
         Height = 3
         Margins.Left = 70
@@ -517,8 +557,8 @@ object FormMeusDados: TFormMeusDados
       end
       object edtNumero: TEdit
         AlignWithMargins = True
-        Left = 644
-        Top = 310
+        Left = 639
+        Top = 308
         Width = 84
         Height = 28
         Margins.Left = 70
@@ -541,8 +581,8 @@ object FormMeusDados: TFormMeusDados
       end
       object pnlDivNumero: TPanel
         AlignWithMargins = True
-        Left = 644
-        Top = 337
+        Left = 639
+        Top = 335
         Width = 84
         Height = 3
         Margins.Left = 70
@@ -556,8 +596,8 @@ object FormMeusDados: TFormMeusDados
       end
       object edtCPF: TMaskEdit
         AlignWithMargins = True
-        Left = 579
-        Top = 48
+        Left = 574
+        Top = 46
         Width = 236
         Height = 28
         Margins.Left = 70
@@ -581,8 +621,8 @@ object FormMeusDados: TFormMeusDados
       end
       object edtPassaporte: TMaskEdit
         AlignWithMargins = True
-        Left = 579
-        Top = 96
+        Left = 574
+        Top = 94
         Width = 236
         Height = 28
         Margins.Left = 70
@@ -606,8 +646,8 @@ object FormMeusDados: TFormMeusDados
       end
       object edtTelefone: TMaskEdit
         AlignWithMargins = True
-        Left = 269
-        Top = 48
+        Left = 264
+        Top = 46
         Width = 235
         Height = 28
         Margins.Left = 70
@@ -705,6 +745,7 @@ object FormMeusDados: TFormMeusDados
         Visible = False
         StyleElements = [seClient, seBorder]
         OnClick = btnSalvarClick
+        ExplicitLeft = 512
       end
       object btnEditar: TPanel
         AlignWithMargins = True
