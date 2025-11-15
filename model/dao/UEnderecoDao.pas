@@ -8,9 +8,10 @@ type
   TEnderecoDao = class
   private
   public
-    procedure cadastrar(endereco: TEndereco);
+    function cadastrar(endereco: TEndereco): Integer;
     procedure update(endereco: TEndereco);
     function getEndereco(idUsuario: Integer): TEndereco;
+    procedure deletar(id: Integer);
   end;
 
 implementation
@@ -19,7 +20,7 @@ uses System.SysUtils, UConn, FireDAC.Comp.Client;
 
 { UEnderecoDao }
 
-procedure TEnderecoDao.cadastrar(endereco: TEndereco);
+function TEnderecoDao.cadastrar(endereco: TEndereco): Integer;
 var
   query: TFDQuery;
 begin
@@ -28,6 +29,7 @@ begin
   query.SQL.Clear;
   query.SQL.Add('INSERT INTO enderecos (idUsuario, cep, rua, bairro, cidade, uf, numero)');
   query.SQL.Add('VALUES (:idUsuario, :cep, :rua, :bairro, :cidade, :uf, :numero)');
+  query.SQL.Add('RETURNING id');
   query.ParamByName('idUsuario').AsInteger := endereco.getIdUsuario;
   query.ParamByName('cep').AsString := endereco.getCep;
   query.ParamByName('rua').AsString := endereco.getRua;
@@ -35,7 +37,8 @@ begin
   query.ParamByName('cidade').AsString := endereco.getCidade;
   query.ParamByName('uf').AsString := endereco.getUF;
   query.ParamByName('numero').AsString := endereco.getNumero;
-  query.ExecSQL;
+  query.Open;
+  result := query.FieldByName('id').AsInteger;
 end;
 
 procedure TEnderecoDao.update(endereco: TEndereco);
@@ -92,6 +95,18 @@ begin
     query.ParamByName('numero').AsString := endereco.getNumero;
   end;
 
+  query.ExecSQL;
+end;
+
+procedure TEnderecoDao.deletar(id: Integer);
+var
+  query: TFDQuery;
+begin
+  query := DataModuleConn.FDQueryEndereco;
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('DELETE FROM enderecos WHERE id = :id');
+  query.ParamByName('id').AsInteger := id;
   query.ExecSQL;
 end;
 

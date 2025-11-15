@@ -11,9 +11,10 @@ type
   private
   public
     class function buscarCEP(const cep: string): TEndereco;
-    class procedure cadastrar(Endereco: TEndereco);
+    class function cadastrar(Endereco: TEndereco): Integer;
     class procedure update(novoEndereco, endereco: TEndereco);
     class function getEndereco(idUsuario: Integer): TEndereco;
+    class procedure deletar(endereco: TEndereco);
   end;
 
 implementation
@@ -62,7 +63,7 @@ begin
   end;
 end;
 
-class procedure TEnderecoController.cadastrar(endereco: TEndereco);
+class function TEnderecoController.cadastrar(endereco: TEndereco): Integer;
 var
   dao: TEnderecoDao;
 begin
@@ -71,11 +72,20 @@ begin
   end;
 
   if Trim(endereco.getNumero) = '' then begin
-    raise Exception.Create('CEP não pode ser vazio');
+    raise Exception.Create('Número não pode ser vazio');
   end;
 
   dao := TEnderecoDao.Create;
-  dao.cadastrar(endereco);
+  result := dao.cadastrar(endereco);
+  dao.Free;
+end;
+
+class procedure TEnderecoController.deletar(endereco: TEndereco);
+var
+  dao: TEnderecoDao;
+begin
+  dao := TEnderecoDao.Create;
+  dao.deletar(endereco.getId);
   dao.Free;
 end;
 

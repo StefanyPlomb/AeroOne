@@ -239,7 +239,7 @@ begin
 
   if novoUsuario.getEndereco <> nil then begin
     if usuario.getEndereco = nil then begin
-      TEnderecoController.cadastrar(novoUsuario.getEndereco);
+      novoUsuario.getEndereco.setId(TEnderecoController.cadastrar(novoUsuario.getEndereco));
     end else begin
       TEnderecoController.update(novoUsuario.getEndereco, usuario.getEndereco);
     end;

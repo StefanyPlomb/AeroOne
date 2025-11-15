@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.ComCtrls,
-  Vcl.Imaging.jpeg;
+  Vcl.Imaging.jpeg, Vcl.WinXPanels;
 
 type
   TFormLogin = class(TForm)
@@ -22,6 +22,10 @@ type
     pnlDiv2: TPanel;
     imgOlhoAberto: TImage;
     imgOlhoFechado: TImage;
+    pnlCadastrese: TPanel;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    cardFormLogin: TCardPanel;
     procedure btnEntrarClick(Sender: TObject);
     procedure edtLoginSenhaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure imgOlhoFechadoClick(Sender: TObject);

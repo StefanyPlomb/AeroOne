@@ -36,7 +36,6 @@ object FormMeusDados: TFormMeusDados
       Color = 15791343
       ParentBackground = False
       TabOrder = 0
-      ExplicitLeft = 16
       object edtCidade: TEdit
         AlignWithMargins = True
         Left = 264
@@ -244,12 +243,12 @@ object FormMeusDados: TFormMeusDados
         object imgEnderecoAlerta: TImage
           AlignWithMargins = True
           Left = 107
-          Top = 2
+          Top = 4
           Width = 20
-          Height = 47
+          Height = 45
           Hint = 'Nenhum endere'#231'o cadastrado'
           Margins.Left = 0
-          Margins.Top = 2
+          Margins.Top = 4
           Margins.Right = 0
           Margins.Bottom = 0
           Align = alLeft
@@ -280,12 +279,13 @@ object FormMeusDados: TFormMeusDados
         object imgEnderecoExcluir: TImage
           AlignWithMargins = True
           Left = 87
-          Top = 2
+          Top = 4
           Width = 20
-          Height = 47
+          Height = 45
+          Cursor = crHandPoint
           Hint = 'Nenhum endere'#231'o cadastrado'
           Margins.Left = 0
-          Margins.Top = 2
+          Margins.Top = 4
           Margins.Right = 0
           Margins.Bottom = 0
           Align = alLeft
@@ -306,6 +306,7 @@ object FormMeusDados: TFormMeusDados
             00000049454E44AE426082}
           ShowHint = True
           Visible = False
+          OnClick = imgEnderecoExcluirClick
           ExplicitLeft = 88
           ExplicitTop = 0
           ExplicitHeight = 49
@@ -745,7 +746,6 @@ object FormMeusDados: TFormMeusDados
         Visible = False
         StyleElements = [seClient, seBorder]
         OnClick = btnSalvarClick
-        ExplicitLeft = 512
       end
       object btnEditar: TPanel
         AlignWithMargins = True

@@ -59,11 +59,14 @@ type
     procedure btnSalvarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure imgEnderecoExcluirClick(Sender: TObject);
   private
     { Private declarations }
     usuario: TUsuario;
+    emEdicao: Boolean;
     procedure carregarEdits;
     procedure limparEdits;
+    procedure limparEditsEndereco;
     procedure bloquearEdits;
     procedure desbloquearEdits;
     procedure verificarEndereco;
@@ -96,11 +99,20 @@ procedure TFormMeusDados.verificarEndereco;
 begin
   if usuario.getEndereco = nil then begin
     imgEnderecoAlerta.Visible := true;
+  end else begin
+    imgEnderecoAlerta.Visible := false;
+    if emEdicao then begin
+      imgEnderecoExcluir.Visible := true;
+    end else begin
+      imgEnderecoExcluir.Visible := false;
+    end;
   end;
 end;
 
 procedure TFormMeusDados.btnEditarClick(Sender: TObject);
 begin
+  emEdicao := true;
+  verificarEndereco;
   mudarParaEdicao;
   edtNome.SetFocus;
 end;
@@ -179,9 +191,27 @@ end;
 
 procedure TFormMeusDados.FormCreate(Sender: TObject);
 begin
+  emEdicao := false;
   carregarEdits;
   bloquearEdits;
   verificarEndereco;
+end;
+
+procedure TFormMeusDados.imgEnderecoExcluirClick(Sender: TObject);
+
+begin
+  try
+    TEnderecoController.deletar(usuario.getEndereco);
+    usuario.getEndereco.Free;
+    usuario.setEndereco(nil);
+    limparEditsEndereco;
+    verificarEndereco;
+    imgEnderecoExcluir.Visible := false;
+  except
+    on e: Exception do begin
+      ShowMessage(e.Message);
+    end;
+  end;
 end;
 
 procedure TFormMeusDados.limparEdits;
@@ -198,6 +228,16 @@ begin
   edtCidade.Clear;
   edtUF.Clear;
   edtNumero.Clear;
+end;
+
+procedure TFormMeusDados.limparEditsEndereco;
+begin
+  edtCEP.Text := '';
+  edtRua.Text := edtRua.TextHint;
+  edtBairro.Text := edtBairro.TextHint;
+  edtCidade.Text := edtCidade.TextHint;
+  edtUF.Text := edtUF.TextHint;
+  edtNumero.Text := '';
 end;
 
 procedure TFormMeusDados.mudarParaEdicao;
@@ -335,6 +375,7 @@ var
 begin
   edtNome.SetFocus;
   novoUsuario := TUsuario.Create;
+  novoUsuario.setId(usuario.getId);
   novoUsuario.setNome(edtNome.Text);
   novoUsuario.setTelefone(edtTelefone.Text);
   novoUsuario.setEmail(edtEmail.Text);
@@ -361,10 +402,11 @@ begin
   try
     TUsuarioController.update(novoUsuario, usuario);
     usuario.AssignFrom(novoUsuario);
-    verificarEndereco;
     edtSenha.Text := '';
     carregarEdits;
     bloquearEdits;
+    emEdicao := false;
+    verificarEndereco;
     mudarParaVisualizacao;
   except
     on e: Exception do begin
@@ -377,8 +419,10 @@ end;
 
 procedure TFormMeusDados.btnCancelarClick(Sender: TObject);
 begin
+  emEdicao := false;
   edtNome.SetFocus;
   mudarParaVisualizacao;
+  verificarEndereco;
   carregarEdits;
 end;
 
