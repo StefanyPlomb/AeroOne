@@ -18,6 +18,7 @@ type
     imgSearch: TImage;
     pnlInfoUsuarioName: TPanel;
     procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
     usuario: TUsuario;
@@ -39,6 +40,11 @@ constructor TFormPassageiro.create(aUsuario: TUsuario);
 begin
   inherited create(nil);
   usuario := aUsuario;
+end;
+
+procedure TFormPassageiro.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Application.Terminate;
 end;
 
 procedure TFormPassageiro.FormCreate(Sender: TObject);

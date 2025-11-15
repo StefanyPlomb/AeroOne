@@ -292,7 +292,7 @@ end;
 
 procedure TFormGestorFuncionario.edtCPFEnter(Sender: TObject);
 begin
-  edtCPF.EditMask := '000.000.000-00';
+  edtCPF.EditMask := '999.999.999-99';
   edtCPF.SelStart := 0;
   edtCPF.SelLength := 0;
 end;
@@ -304,7 +304,7 @@ end;
 
 procedure TFormGestorFuncionario.edtPassaporteEnter(Sender: TObject);
 begin
-  edtPassaporte.EditMask := '>LL000000;1;_';
+  edtPassaporte.EditMask := '>??999999;1;_';
   edtPassaporte.SelStart := 0;
   edtPassaporte.SelLength := 0;
 end;
@@ -321,7 +321,7 @@ end;
 
 procedure TFormGestorFuncionario.edtTelefoneEnter(Sender: TObject);
 begin
-  edtTelefone.EditMask := '(00) 00000-0000';
+  edtTelefone.EditMask := '(99) 99999-9999';
   edtTelefone.SelStart := 0;
   edtTelefone.SelLength := 0;
 end;

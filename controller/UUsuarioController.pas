@@ -13,7 +13,7 @@ type
     class function getUsuario(id: Integer): TUsuario;
     class function getUsuarioByEmail(email: String): TUsuario;
     class function login(email, senha: String): TUsuario;
-    class procedure cadastrar(usuario: TUsuario);
+    class function cadastrar(usuario: TUsuario): Integer;
     class procedure update(novoUsuario, usuario: TUsuario);
   end;
 
@@ -23,7 +23,7 @@ uses UUsuarioDao, UEnderecoController;
 
 { TUsuarioController }
 
-class procedure TUsuarioController.cadastrar(usuario: TUsuario);
+class function TUsuarioController.cadastrar(usuario: TUsuario): Integer;
 var
   dao: TUsuarioDao;
   usuarioEmail: TUsuario;
@@ -44,6 +44,8 @@ begin
 
   if Trim(usuario.getSenha) = '' then begin
     usuario.setSenha(THashSHA2.GetHashString('senha123'));
+  end else begin
+    usuario.setSenha(THashSHA2.GetHashString(usuario.getSenha));
   end;
 
   if Length(usuario.getSenha) < 8 then begin
@@ -54,12 +56,18 @@ begin
     raise Exception.Create('CPF não pode ser vazio');
   end;
 
-  if Trim(usuario.getPassaporte) = '' then begin
-    raise Exception.Create('Passaporte não pode ser vazio');
+  if Length(usuario.getCPF) < 11  then begin
+    raise Exception.Create('CPF deve conter 11 digitos');
+  end;
+
+  if Trim(usuario.getPassaporte) <> '' then begin
+    if Length(usuario.getPassaporte) < 8  then begin
+      raise Exception.Create('Passaporte deve conter 8 digitos');
+    end;
   end;
 
   dao := TUsuarioDao.Create;
-  dao.cadastrar(usuario);
+  result := dao.cadastrar(usuario);
   dao.Free;
 end;
 
@@ -217,6 +225,10 @@ begin
   end;
 
   if Trim(novoUsuario.getPassaporte) <> '' then begin
+    if Length(novoUsuario.getPassaporte) < 8  then begin
+      raise Exception.Create('Passaporte deve conter 8 digitos');
+    end;
+
     if novoUsuario.getPassaporte <> usuario.getPassaporte then begin
       temAlteracao := true;
       alterado.setPassaporte(novoUsuario.getPassaporte);

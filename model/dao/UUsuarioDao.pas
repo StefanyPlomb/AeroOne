@@ -11,7 +11,7 @@ type
     function getUsuario(id: Integer): TUsuario;
     function getUsuarioByEmail(email: String): TUsuario;
     function login(email: String): TUsuario;
-    procedure cadastrar(usuario: TUsuario);
+    function cadastrar(usuario: TUsuario): Integer;
     procedure update(usuario: TUsuario);
   end;
 
@@ -21,7 +21,7 @@ uses UConn, FireDAC.Comp.Client, System.SysUtils;
 
 { TUsuarioDao }
 
-procedure TUsuarioDao.cadastrar(usuario: TUsuario);
+function TUsuarioDao.cadastrar(usuario: TUsuario): Integer;
 var
   query: TFDQuery;
 begin
@@ -31,7 +31,7 @@ begin
   query.SQL.Clear;
   query.SQL.Add('INSERT INTO usuarios (nome, email, senha, telefone, cargo, cpf, passaporte, status)');
   query.SQL.Add('VALUES (:nome, :email, :senha, :telefone, :cargo, :cpf, :passaporte, :status)');
-
+  query.SQL.Add('RETURNING id');
   query.ParamByName('nome').AsString := usuario.getNome;
   query.ParamByName('email').AsString := usuario.getEmail;
   query.ParamByName('senha').AsString := usuario.getSenha;
@@ -40,8 +40,8 @@ begin
   query.ParamByName('cpf').AsString := usuario.getCPF;
   query.ParamByName('passaporte').AsString := usuario.getPassaporte;
   query.ParamByName('status').AsString := 'A';
-
-  query.ExecSQL;
+  query.Open;
+  result := query.FieldByName('id').AsInteger;
 end;
 
 function TUsuarioDao.getUsuario(id: Integer): TUsuario;
