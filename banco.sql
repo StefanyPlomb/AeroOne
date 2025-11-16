@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS aeronaves (
     modelo VARCHAR(50) NOT NULL,
     passageirosMax INT NOT NULL,
     pilotosMax INT NOT NULL,
-    comissariosMax INT NOT NULL
+    comissariosMax INT NOT NULL,
 );
 
 INSERT INTO aeronaves (fabricante, modelo, passageirosMax, pilotosMax, comissariosMax) VALUES
@@ -169,3 +169,18 @@ INSERT INTO voos (
 (4, 'AD9999', 'São Paulo (GRU)', 'Rio de Janeiro (GIG)', '01/11/2025', '10:00', '01/11/2025', '11:10', 'F'),
 (5, 'TP2001', 'Lisboa (LIS)', 'Paris (ORY)', '05/11/2025', '06:00', '05/11/2025', '08:25', 'F'),
 (13, 'G30000', 'Brasília (BSB)', 'São Paulo (GRU)', '10/11/2025', '18:45', '10/11/2025', '20:10', 'C');
+
+CREATE TABLE usuarioVoo (
+    id SERIAL PRIMARY KEY,
+    idUsuario INTEGER NOT NULL,
+    idVoo INTEGER NOT NULL,
+    funcao VARCHAR(100) NOT NULL,  
+    assento VARCHAR(5),
+    
+    CONSTRAINT fk_usuario_voo_usuario
+        FOREIGN KEY (idUsuario) REFERENCES usuarios(id),
+        
+    CONSTRAINT fk_usuario_voo_voo
+        FOREIGN KEY (idVoo) REFERENCES voos(id)
+);
+
