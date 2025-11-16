@@ -638,12 +638,11 @@ object FormMeusDados: TFormMeusDados
         Font.Height = 20
         Font.Name = 'Segoe UI'
         Font.Style = []
+        MaxLength = 8
         ParentFont = False
         TabOrder = 5
         Text = ''
         TextHint = ' Passaporte'
-        OnEnter = edtPassaporteEnter
-        OnExit = edtPassaporteExit
       end
       object edtTelefone: TMaskEdit
         AlignWithMargins = True

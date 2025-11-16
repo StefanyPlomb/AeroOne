@@ -53,8 +53,6 @@ type
     procedure edtCPFExit(Sender: TObject);
     procedure edtTelefoneEnter(Sender: TObject);
     procedure edtTelefoneExit(Sender: TObject);
-    procedure edtPassaporteEnter(Sender: TObject);
-    procedure edtPassaporteExit(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
@@ -163,18 +161,6 @@ end;
 procedure TFormMeusDados.edtCPFExit(Sender: TObject);
 begin
   edtCPF.EditMask := '';
-end;
-
-procedure TFormMeusDados.edtPassaporteEnter(Sender: TObject);
-begin
-  edtPassaporte.EditMask := '>??999999;1;_';
-  edtPassaporte.SelStart := 0;
-  edtPassaporte.SelLength := 0;
-end;
-
-procedure TFormMeusDados.edtPassaporteExit(Sender: TObject);
-begin
-  edtPassaporte.EditMask := '';
 end;
 
 procedure TFormMeusDados.edtTelefoneEnter(Sender: TObject);
