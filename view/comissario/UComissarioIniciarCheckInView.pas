@@ -5,27 +5,44 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Data.DB, Vcl.Grids,
-  Vcl.DBGrids, Vcl.StdCtrls, UConn;
+  Vcl.DBGrids, Vcl.StdCtrls, UConn, Vcl.Imaging.pngimage;
 
 type
   TFormCheckInIniciado = class(TForm)
-    PanelCentral: TPanel;
-    LabelOrigem: TLabel;
-    LabelDestino: TLabel;
-    Label3: TLabel;
-    LabelHoraPartida: TLabel;
-    Label5: TLabel;
+    pnlLateral: TPanel;
+    pnlVoltar: TPanel;
+    imgVoltarWhite: TImage;
+    pnlMainFrame: TPanel;
+    pnlVoosAtribuidos: TPanel;
+    DBGridVoosAtribuidos: TDBGrid;
     Panel2: TPanel;
-    Panel3: TPanel;
+    pnlHeader: TPanel;
+    pnlSearch: TPanel;
+    imgSearch: TImage;
+    edtSearch: TEdit;
+    pnlDiv1: TPanel;
     Panel4: TPanel;
-    Edit1: TEdit;
-    Button1: TButton;
-    Label6: TLabel;
-    DBGrid1: TDBGrid;
+    pnlLiberar: TPanel;
+    imgLiberarWhite: TImage;
+    imgLiberarGreen: TImage;
     Panel5: TPanel;
-    Button2: TButton;
-    Button3: TButton;
-    PanelSuperiorTitulos: TPanel;
+    Panel6: TPanel;
+    Panel8: TPanel;
+    Panel11: TPanel;
+    Panel13: TPanel;
+    Panel1: TPanel;
+    Panel7: TPanel;
+    Panel10: TPanel;
+    Panel14: TPanel;
+    Panel15: TPanel;
+    Panel16: TPanel;
+    Panel3: TPanel;
+    Panel9: TPanel;
+    Panel12: TPanel;
+    Panel18: TPanel;
+    Panel19: TPanel;
+    Panel17: TPanel;
+    imgVoltarRed: TImage;
     procedure Edit1Change(Sender: TObject);
   private
     { Private declarations }

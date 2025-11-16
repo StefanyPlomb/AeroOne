@@ -5,26 +5,35 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  Data.DB, Vcl.Grids, Vcl.DBGrids, UComissarioIniciarCheckInView, UConn;
+  Data.DB, Vcl.Grids, Vcl.DBGrids, UComissarioIniciarCheckInView, UConn, UUsuario,
+  Vcl.Imaging.pngimage;
+
 type
-  TFormCheckIn = class(TForm)
-    PaneleCentral_AeroMo: TPanel;
-    LabelSubtituloCheck: TLabel;
-    LabelTituloCheck: TLabel;
-    DBGridAtribuidos: TDBGrid;
-    Edit1: TEdit;
-    ButBuscar_Aeromo: TPanel;
-    ButtonIniciar: TButton;
-    PanelAbrir: TPanel;
+  TFormComissarioCheckIn = class(TForm)
+    pnlLateral: TPanel;
+    pnlInciar: TPanel;
+    imgIniciarGreen: TImage;
+    imgIniciarWhite: TImage;
+    pnlMainFrame: TPanel;
+    DBGridVoos: TDBGrid;
+    pnlHeader: TPanel;
+    pnlSearch: TPanel;
+    imgSearch: TImage;
+    edtSearch: TEdit;
+    pnlDiv1: TPanel;
+    pnlVoosDisponiveis: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure ButtonIniciarClick(Sender: TObject);
   private
-    procedure AbrirDash(AFormClass: TFormClass);
+    { Private declarations }
+    usuario: TUsuario;
   public
+    { Public declarations }
+    constructor create(owner: TForm; aUsuario: TUsuario);
   end;
 
 var
-  FormCheckIn: TFormCheckIn;
+  FormComissarioCheckIn: TFormComissarioCheckIn;
 
 implementation
 
@@ -33,21 +42,7 @@ uses
 
 {$R *.dfm}
 
-procedure TFormCheckIn.AbrirDash(AFormClass: TFormClass);
-var
-  Frm: TForm;
-begin
-  if PanelAbrir.ControlCount > 0 then
-    PanelAbrir.Controls[0].Free;
-
-  Frm := AFormClass.Create(Self);
-  Frm.BorderStyle := bsNone;
-  Frm.Align := alClient;
-  Frm.Parent := PanelAbrir;
-  Frm.Show;
-end;
-
-procedure TFormCheckIn.ButtonIniciarClick(Sender: TObject);
+procedure TFormComissarioCheckIn.ButtonIniciarClick(Sender: TObject);
 var
   Form2: TFormCheckInIniciado;
   VooID: Integer;
@@ -73,7 +68,13 @@ begin
 end;
 
 
-procedure TFormCheckIn.FormCreate(Sender: TObject);
+constructor TFormComissarioCheckIn.create(owner: TForm; aUsuario: TUsuario);
+begin
+  inherited create(owner);
+  usuario := aUsuario;
+end;
+
+procedure TFormComissarioCheckIn.FormCreate(Sender: TObject);
 begin
   DBGridAtribuidos.DataSource := DataModuleConn.DataSourceAtribuidos;
 

@@ -29,11 +29,15 @@ uses
   UAeronave in 'model\UAeronave.pas',
   UComissarioDao in 'model\dao\UComissarioDao.pas',
   UComissarioController in 'controller\UComissarioController.pas',
-  UComissarioCheckInView in 'view\comissario\UComissarioCheckInView.pas' {FormCheckIn},
+  UComissarioCheckInView in 'view\comissario\UComissarioCheckInView.pas' {FormComissarioCheckIn},
   UComissarioIniciarCheckInView in 'view\comissario\UComissarioIniciarCheckInView.pas' {FormCheckInIniciado},
   UComissarioMapaAcentosView in 'view\comissario\UComissarioMapaAcentosView.pas' {FormMapaAcentos},
-  UComissarioView in 'view\comissario\UComissarioView.pas' {FormAeroMoc},
-  UComissarioVooView in 'view\comissario\UComissarioVooView.pas' {FormVoosAeroMo};
+  UComissarioView in 'view\comissario\UComissarioView.pas' {FormComissario},
+  UComissarioVooView in 'view\comissario\UComissarioVooView.pas' {FormComissarioVoo},
+  UComissarioHomeView in 'view\comissario\UComissarioHomeView.pas' {FormComissarioHome},
+  UAeronaveController in 'controller\UAeronaveController.pas',
+  UAeronaveDao in 'model\dao\UAeronaveDao.pas',
+  UGestorAeronaveView in 'view\gestor\UGestorAeronaveView.pas' {FormGestorAeronaves};
 
 {$R *.res}
 

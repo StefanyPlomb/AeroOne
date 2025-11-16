@@ -190,7 +190,7 @@
         <DCCReference Include="model\dao\UComissarioDao.pas"/>
         <DCCReference Include="controller\UComissarioController.pas"/>
         <DCCReference Include="view\comissario\UComissarioCheckInView.pas">
-            <Form>FormCheckIn</Form>
+            <Form>FormComissarioCheckIn</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="view\comissario\UComissarioIniciarCheckInView.pas">
@@ -202,11 +202,21 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="view\comissario\UComissarioView.pas">
-            <Form>FormAeroMoc</Form>
+            <Form>FormComissario</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="view\comissario\UComissarioVooView.pas">
-            <Form>FormVoosAeroMo</Form>
+            <Form>FormComissarioVoo</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="view\comissario\UComissarioHomeView.pas">
+            <Form>FormComissarioHome</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="controller\UAeronaveController.pas"/>
+        <DCCReference Include="model\dao\UAeronaveDao.pas"/>
+        <DCCReference Include="view\gestor\UGestorAeronaveView.pas">
+            <Form>FormGestorAeronaves</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">
