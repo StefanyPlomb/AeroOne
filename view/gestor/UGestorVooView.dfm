@@ -32,7 +32,6 @@ object FormGestorVoo: TFormGestorVoo
       BevelOuter = bvNone
       Caption = 'cardGestorVoo'
       TabOrder = 0
-      ExplicitWidth = 878
       object cardMainVoo: TCard
         Left = 0
         Top = 0
@@ -41,7 +40,6 @@ object FormGestorVoo: TFormGestorVoo
         Caption = 'cardMain'
         CardIndex = 0
         TabOrder = 0
-        ExplicitWidth = 878
         object pnlLateral: TPanel
           Left = 878
           Top = 0
@@ -195,6 +193,7 @@ object FormGestorVoo: TFormGestorVoo
                 64B27BD94888396434A1F9FD6FA9A7C7715DE4FFB9CA0EF01B6B2C352888B6D4
                 FD0000000049454E44AE426082}
               ShowHint = True
+              OnMouseEnter = imgStatusRedMouseEnter
               ExplicitLeft = 28
               ExplicitTop = 16
               ExplicitWidth = 26
@@ -236,10 +235,9 @@ object FormGestorVoo: TFormGestorVoo
                 E387F1FFAFE907FDE5BE17BEF4388A0000000049454E44AE426082}
               ShowHint = True
               Visible = False
-              ExplicitLeft = 28
-              ExplicitTop = 16
-              ExplicitWidth = 26
-              ExplicitHeight = 25
+              OnClick = imgStatusWhiteClick
+              OnMouseLeave = imgStatusWhiteMouseLeave
+              ExplicitTop = -1
             end
           end
           object pnlEditar: TPanel
@@ -280,6 +278,7 @@ object FormGestorVoo: TFormGestorVoo
                 4CC45F02A6E2A580C97801F814976FA816C023874CC6BF00F4E28A807E5C01A8
                 162F00BF18FF0F5C00B5669A19F1B345480000000049454E44AE426082}
               ShowHint = True
+              OnMouseEnter = imgEditarYellowMouseEnter
               ExplicitLeft = 10
               ExplicitTop = 6
               ExplicitWidth = 56
@@ -314,10 +313,8 @@ object FormGestorVoo: TFormGestorVoo
               ShowHint = True
               Visible = False
               OnClick = imgEditarWhiteClick
-              ExplicitLeft = 10
-              ExplicitTop = 6
-              ExplicitWidth = 56
-              ExplicitHeight = 35
+              OnMouseLeave = imgEditarWhiteMouseLeave
+              ExplicitTop = -1
             end
           end
         end
@@ -331,7 +328,6 @@ object FormGestorVoo: TFormGestorVoo
           Color = 15791343
           ParentBackground = False
           TabOrder = 1
-          ExplicitLeft = 8
           object DBGridVoos: TDBGrid
             AlignWithMargins = True
             Left = 5
@@ -632,7 +628,6 @@ object FormGestorVoo: TFormGestorVoo
         Color = 15791343
         ParentBackground = False
         TabOrder = 1
-        ExplicitTop = -32
         object pnlFooter: TPanel
           Left = 0
           Top = 512
@@ -642,7 +637,7 @@ object FormGestorVoo: TFormGestorVoo
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 2
+          TabOrder = 8
           object pnlSeparador: TPanel
             Left = 435
             Top = 0
@@ -678,6 +673,7 @@ object FormGestorVoo: TFormGestorVoo
             ParentFont = False
             TabOrder = 1
             StyleElements = [seClient, seBorder]
+            OnClick = btnVoltarClick
           end
           object btnSalvar: TPanel
             AlignWithMargins = True
@@ -703,6 +699,7 @@ object FormGestorVoo: TFormGestorVoo
             ParentFont = False
             TabOrder = 2
             StyleElements = [seClient, seBorder]
+            OnClick = btnSalvarClick
           end
         end
         object pnlDivDataChegada: TPanel
@@ -719,8 +716,7 @@ object FormGestorVoo: TFormGestorVoo
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 3
-          ExplicitTop = 287
+          TabOrder = 9
         end
         object edtDestino: TEdit
           AlignWithMargins = True
@@ -741,12 +737,11 @@ object FormGestorVoo: TFormGestorVoo
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
-          TabOrder = 1
+          TabOrder = 3
           TextHint = ' Destino'
           StyleElements = [seClient, seBorder]
-          ExplicitTop = 123
         end
-        object pnlDivDataOrigem: TPanel
+        object pnlDivDataPartida: TPanel
           AlignWithMargins = True
           Left = 70
           Top = 287
@@ -760,8 +755,7 @@ object FormGestorVoo: TFormGestorVoo
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 4
-          ExplicitTop = 164
+          TabOrder = 10
         end
         object edtOrigem: TEdit
           AlignWithMargins = True
@@ -782,10 +776,9 @@ object FormGestorVoo: TFormGestorVoo
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
-          TabOrder = 0
+          TabOrder = 2
           TextHint = ' Origem'
           StyleElements = [seClient, seBorder]
-          ExplicitTop = 148
         end
         object pnlDivDestino: TPanel
           AlignWithMargins = True
@@ -801,8 +794,7 @@ object FormGestorVoo: TFormGestorVoo
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 5
-          ExplicitTop = 151
+          TabOrder = 11
         end
         object pnlDivOrigem: TPanel
           AlignWithMargins = True
@@ -818,9 +810,7 @@ object FormGestorVoo: TFormGestorVoo
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 6
-          ExplicitLeft = 86
-          ExplicitTop = 120
+          TabOrder = 12
         end
         object pnlDivHoraChegada: TPanel
           AlignWithMargins = True
@@ -836,8 +826,7 @@ object FormGestorVoo: TFormGestorVoo
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 7
-          ExplicitTop = 328
+          TabOrder = 13
         end
         object edtDataChegada: TMaskEdit
           AlignWithMargins = True
@@ -858,11 +847,10 @@ object FormGestorVoo: TFormGestorVoo
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
-          TabOrder = 8
+          TabOrder = 6
           Text = ''
           TextHint = ' Data chegada'
           OnEnter = edtDataChegadaEnter
-          ExplicitTop = 259
         end
         object edtHoraChegada: TMaskEdit
           AlignWithMargins = True
@@ -883,13 +871,12 @@ object FormGestorVoo: TFormGestorVoo
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
-          TabOrder = 9
+          TabOrder = 7
           Text = ''
           TextHint = ' Hora chegada'
           OnEnter = edtHoraChegadaEnter
-          ExplicitTop = 300
         end
-        object edtDataOrigem: TMaskEdit
+        object edtDataPartida: TMaskEdit
           AlignWithMargins = True
           Left = 70
           Top = 259
@@ -908,13 +895,12 @@ object FormGestorVoo: TFormGestorVoo
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
-          TabOrder = 10
+          TabOrder = 4
           Text = ''
-          TextHint = ' Data origem'
-          OnEnter = edtDataOrigemEnter
-          ExplicitTop = 136
+          TextHint = ' Data partida'
+          OnEnter = edtDataPartidaEnter
         end
-        object edtHoraOrigem: TMaskEdit
+        object edtHoraPartida: TMaskEdit
           AlignWithMargins = True
           Left = 70
           Top = 300
@@ -933,13 +919,12 @@ object FormGestorVoo: TFormGestorVoo
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
-          TabOrder = 11
+          TabOrder = 5
           Text = ''
-          TextHint = ' Hora origem'
-          OnEnter = edtHoraOrigemEnter
-          ExplicitTop = 177
+          TextHint = ' Hora partida'
+          OnEnter = edtHoraPartidaEnter
         end
-        object pnlDivHoraOrigem: TPanel
+        object pnlDivHoraPartida: TPanel
           AlignWithMargins = True
           Left = 70
           Top = 328
@@ -953,8 +938,7 @@ object FormGestorVoo: TFormGestorVoo
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 12
-          ExplicitTop = 205
+          TabOrder = 14
         end
         object edtNumeroVoo: TMaskEdit
           AlignWithMargins = True
@@ -974,13 +958,11 @@ object FormGestorVoo: TFormGestorVoo
           Font.Height = 20
           Font.Name = 'Segoe UI'
           Font.Style = []
+          MaxLength = 6
           ParentFont = False
-          TabOrder = 13
+          TabOrder = 0
           Text = ''
-          TextHint = 'N'#250'meroVoo'
-          OnEnter = edtNumeroVooEnter
-          OnExit = edtNumeroVooExit
-          ExplicitTop = -10
+          TextHint = ' N'#250'mero Voo'
         end
         object pnlDivNumeroVoo: TPanel
           AlignWithMargins = True
@@ -996,8 +978,7 @@ object FormGestorVoo: TFormGestorVoo
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 14
-          ExplicitTop = 120
+          TabOrder = 15
         end
         object cbxAeronave: TComboBox
           AlignWithMargins = True
@@ -1021,11 +1002,10 @@ object FormGestorVoo: TFormGestorVoo
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
-          TabOrder = 15
-          TextHint = ' Cargo'
-          ExplicitTop = 123
+          TabOrder = 1
+          TextHint = ' Aeronave'
         end
-        object pnlDivCargo: TPanel
+        object pnlDivAeronave: TPanel
           AlignWithMargins = True
           Left = 70
           Top = 164
@@ -1040,7 +1020,6 @@ object FormGestorVoo: TFormGestorVoo
           Color = 6310948
           ParentBackground = False
           TabOrder = 16
-          ExplicitTop = 151
         end
       end
     end

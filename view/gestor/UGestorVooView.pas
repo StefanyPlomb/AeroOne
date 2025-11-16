@@ -19,15 +19,16 @@ type
     btnVoltar: TPanel;
     btnSalvar: TPanel;
     pnlDivDataChegada: TPanel;
-    pnlDivDataOrigem: TPanel;
+    pnlDivDataPartida: TPanel;
     edtOrigem: TEdit;
+    edtDestino: TEdit;
     pnlDivOrigem: TPanel;
     pnlDivHoraChegada: TPanel;
     edtDataChegada: TMaskEdit;
     edtHoraChegada: TMaskEdit;
-    edtDataOrigem: TMaskEdit;
-    edtHoraOrigem: TMaskEdit;
-    pnlDivHoraOrigem: TPanel;
+    edtDataPartida: TMaskEdit;
+    edtHoraPartida: TMaskEdit;
+    pnlDivHoraPartida: TPanel;
     pnlLateral: TPanel;
     pnlCadastrar: TPanel;
     imgCadastrarGreen: TImage;
@@ -48,9 +49,9 @@ type
     edtNumeroVoo: TMaskEdit;
     pnlDivNumeroVoo: TPanel;
     cbxAeronave: TComboBox;
-    pnlDivCargo: TPanel;
-    procedure edtDataOrigemEnter(Sender: TObject);
-    procedure edtHoraOrigemEnter(Sender: TObject);
+    pnlDivAeronave: TPanel;
+    procedure edtDataPartidaEnter(Sender: TObject);
+    procedure edtHoraPartidaEnter(Sender: TObject);
     procedure edtDataChegadaEnter(Sender: TObject);
     procedure edtHoraChegadaEnter(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -59,14 +60,22 @@ type
     procedure imgCadastrarWhiteMouseLeave(Sender: TObject);
     procedure imgCadastrarWhiteClick(Sender: TObject);
     procedure imgEditarWhiteClick(Sender: TObject);
-    procedure edtNumeroVooEnter(Sender: TObject);
-    procedure edtNumeroVooExit(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
+    procedure btnVoltarClick(Sender: TObject);
+    procedure imgEditarWhiteMouseLeave(Sender: TObject);
+    procedure imgEditarYellowMouseEnter(Sender: TObject);
+    procedure imgStatusWhiteMouseLeave(Sender: TObject);
+    procedure imgStatusRedMouseEnter(Sender: TObject);
+    procedure imgStatusWhiteClick(Sender: TObject);
   private
     { Private declarations }
     operacao: String;
     idVooGrid: Integer;
+    statusVooGrid: String;
     procedure loadGrid(searchBar: String);
+    procedure loadAeronaves;
     procedure loadEditsFromGrid;
+    procedure limparEdits;
   public
     { Public declarations }
   end;
@@ -76,9 +85,46 @@ var
 
 implementation
 
-uses UVooController, UConn;
+uses UVooController, UVoo, UAeronaveController, UAeronave, UConn, System.Generics.Collections, System.StrUtils;
 
 {$R *.dfm}
+
+procedure TFormGestorVoo.btnSalvarClick(Sender: TObject);
+var
+  novoVoo: TVoo;
+begin
+  try
+    novoVoo := TVoo.Create;
+    novoVoo.setNumeroVoo(edtNumeroVoo.Text);
+    novoVoo.setIdAeronave(TAeronave(cbxAeronave.Items.Objects[cbxAeronave.ItemIndex]).getId);
+    novoVoo.setOrigem(edtOrigem.Text);
+    novoVoo.setDestino(edtDestino.Text);
+    novoVoo.setDataPartida(edtDataPartida.Text);
+    novoVoo.setHoraPartida(edtHoraPartida.Text);
+    novoVoo.setDataChegada(edtDataChegada.Text);
+    novoVoo.setHoraChegada(edtHoraChegada.Text);
+    if operacao = 'Inserir' then begin
+      TVooController.cadastrar(novoVoo);
+    end else begin
+      edtNumeroVoo.SetFocus;
+      TVooController.update(novoVoo, TVooController.getVoo(idVooGrid));
+    end;
+    limparEdits;
+    loadGrid(edtSearch.Text);
+    cardGestorVoo.ActiveCard := cardMainVoo;
+    novoVoo.Free;
+  except
+    on E: Exception do begin
+      ShowMessage(e.Message);
+    end;
+  end;
+end;
+
+procedure TFormGestorVoo.btnVoltarClick(Sender: TObject);
+begin
+  cardGestorVoo.ActiveCard := cardMainVoo;
+  limparEdits;
+end;
 
 procedure TFormGestorVoo.edtDataChegadaEnter(Sender: TObject);
 begin
@@ -87,11 +133,11 @@ begin
   edtDataChegada.SelLength := 0;
 end;
 
-procedure TFormGestorVoo.edtDataOrigemEnter(Sender: TObject);
+procedure TFormGestorVoo.edtDataPartidaEnter(Sender: TObject);
 begin
-  edtDataOrigem.EditMask := '99/99/9999';
-  edtDataOrigem.SelStart := 0;
-  edtDataOrigem.SelLength := 0;
+  edtDataPartida.EditMask := '99/99/9999';
+  edtDataPartida.SelStart := 0;
+  edtDataPartida.SelLength := 0;
 end;
 
 procedure TFormGestorVoo.edtHoraChegadaEnter(Sender: TObject);
@@ -101,23 +147,11 @@ begin
   edtHoraChegada.SelLength := 0;
 end;
 
-procedure TFormGestorVoo.edtHoraOrigemEnter(Sender: TObject);
+procedure TFormGestorVoo.edtHoraPartidaEnter(Sender: TObject);
 begin
-  edtHoraOrigem.EditMask := '99:99:99';
-  edtHoraOrigem.SelStart := 0;
-  edtHoraOrigem.SelLength := 0;
-end;
-
-procedure TFormGestorVoo.edtNumeroVooEnter(Sender: TObject);
-begin
-  edtNumeroVoo.EditMask := '??9999';
-  edtNumeroVoo.SelStart := 0;
-  edtNumeroVoo.SelLength := 0;
-end;
-
-procedure TFormGestorVoo.edtNumeroVooExit(Sender: TObject);
-begin
-   edtNumeroVoo.EditMask := '';
+  edtHoraPartida.EditMask := '99:99:99';
+  edtHoraPartida.SelStart := 0;
+  edtHoraPartida.SelLength := 0;
 end;
 
 procedure TFormGestorVoo.edtSearchChange(Sender: TObject);
@@ -130,6 +164,7 @@ begin
   operacao := 'Inserir';
   cardGestorVoo.ActiveCard := cardMainVoo;
   loadGrid(edtSearch.Text);
+  loadAeronaves;
 end;
 
 procedure TFormGestorVoo.imgCadastrarGreenMouseEnter(Sender: TObject);
@@ -161,19 +196,132 @@ begin
   cardGestorVoo.ActiveCard := cardAddOrUpdateVoo;
 end;
 
+procedure TFormGestorVoo.imgEditarWhiteMouseLeave(Sender: TObject);
+begin
+  imgEditarWhite.Visible := false;
+  imgEditarYellow.Visible := true;
+end;
+
+procedure TFormGestorVoo.imgEditarYellowMouseEnter(Sender: TObject);
+begin
+  imgEditarWhite.Visible := true;
+  imgEditarYellow.Visible := false;
+end;
+
+procedure TFormGestorVoo.imgStatusRedMouseEnter(Sender: TObject);
+begin
+  imgStatusWhite.Visible := true;
+  imgStatusRed.Visible := false;
+end;
+
+procedure TFormGestorVoo.imgStatusWhiteClick(Sender: TObject);
+var
+  novoVoo: TVoo;
+begin
+  try
+    loadEditsFromGrid;
+
+    if (statusVooGrid = 'E') then begin
+      raise Exception.Create('Não permitido ativar/desativar um voo que ainda está em andamento');
+      limparEdits;
+      exit;
+    end;
+
+    if (statusVooGrid = 'F') then begin
+      raise Exception.Create('Não permitido ativar/desativar um voo que já foi finalizado');
+      limparEdits;
+      exit;
+    end;
+
+    novoVoo := TVoo.Create;
+    novoVoo.setNumeroVoo(edtNumeroVoo.Text);
+    novoVoo.setOrigem(edtOrigem.Text);
+    novoVoo.setDestino(edtDestino.Text);
+    novoVoo.setDataPartida(edtDataPartida.Text);
+    novoVoo.setHoraPartida(edtHoraPartida.Text);
+    novoVoo.setDataChegada(edtDataChegada.Text);
+    novoVoo.setHoraChegada(edtHoraChegada.Text);
+
+    if statusVooGrid = 'A' then begin
+      novoVoo.setStatus('C');
+    end else begin
+      novoVoo.setStatus('A');
+    end;
+
+    if cbxAeronave.ItemIndex >= 0 then begin
+      novoVoo.setIdAeronave(TAeronave(cbxAeronave.Items.Objects[cbxAeronave.ItemIndex]).getId);
+    end;
+
+    TVooController.update(novoVoo, TVooController.getVoo(idVooGrid));
+
+    limparEdits;
+    loadGrid(edtSearch.Text);
+    novoVoo.Free;
+  except
+    on E: Exception do begin
+      ShowMessage(E.Message);
+    end;
+  end;
+end;
+
+procedure TFormGestorVoo.imgStatusWhiteMouseLeave(Sender: TObject);
+begin
+  imgStatusWhite.Visible := false;
+  imgStatusRed.Visible := true;
+end;
+
+procedure TFormGestorVoo.limparEdits;
+begin
+  edtNumeroVoo.Text := '';
+  cbxAeronave.Text := '';
+  edtOrigem.Text := '';
+  edtDestino.Text := '';
+  edtDataPartida.Text := '';
+  edtHoraPartida.Text := '';
+  edtDataChegada.Text := '';
+  edtHoraChegada.Text := '';
+end;
+
+procedure TFormGestorVoo.loadAeronaves;
+var
+  lista: TObjectList<TAeronave>;
+  aeronave: TAeronave;
+begin
+  lista := TAeronaveController.getAeronaves;
+  for aeronave in lista do begin
+    cbxAeronave.Items.AddObject(aeronave.getFabricante + ' - ' + aeronave.getModelo, aeronave);
+  end;
+end;
+
 procedure TFormGestorVoo.loadEditsFromGrid;
 var
   ds: TDataSet;
-  cargo: String;
+  idAeronave, i: Integer;
+  aeronave: TAeronave;
 begin
   ds := DBGridVoos.DataSource.DataSet;
   idVooGrid := ds.FieldByName('id').AsInteger;
-//  edt.Text := ds.FieldByName('nome').AsString;
-//  edtEmail.Text := ds.FieldByName('email').AsString;
-//  edtTelefone.Text := ds.FieldByName('telefone').AsString;
-//  cargo := ds.FieldByName('cargo').AsString;
-//  edtCPF.Text := ds.FieldByName('cpf').AsString;
-//  edtPassaporte.Text := ds.FieldByName('passaporte').AsString;
+  statusVooGrid := ds.FieldByName('status').AsString;
+  edtNumeroVoo.Text := ds.FieldByName('numeroVoo').AsString;
+
+  idAeronave := ds.FieldByName('idAeronave').AsInteger;
+  for i := 0 to cbxAeronave.Items.Count - 1 do
+  begin
+    aeronave := TAeronave(cbxAeronave.Items.Objects[i]);
+
+    if aeronave.getId = idAeronave then
+    begin
+      cbxAeronave.ItemIndex := i;
+      Break;
+    end;
+  end;
+
+  edtOrigem.Text := ds.FieldByName('origem').AsString;
+  edtDestino.Text := ds.FieldByName('destino').AsString;
+  edtDataPartida.Text := ReplaceStr(ds.FieldByName('dataPartida').AsString, '/', '');
+  edtHoraPartida.Text := ReplaceStr(ds.FieldByName('horaPartida').AsString, ':', '');
+  edtDataChegada.Text := ReplaceStr(ds.FieldByName('dataChegada').AsString, '/', '');
+  edtHoraChegada.Text := ReplaceStr(ds.FieldByName('horaChegada').AsString, ':', '');
 end;
 
 procedure TFormGestorVoo.loadGrid(searchBar: String);
@@ -192,9 +340,13 @@ begin
 
   status := '';
   if (searchBar.ToUpper.Contains('INATIVO')) or (searchBar.ToUpper.Contains('CANCELADO')) then begin
-    status := 'I';
+    status := 'C';
   end else if searchBar.ToUpper.Contains('ATIVO') then begin
     status := 'A';
+  end else if searchBar.ToUpper.Contains('EM ANDAMENTO') then begin
+    status := 'E';
+  end else if searchBar.ToUpper.Contains('FINALIZADO') then begin
+    status := 'F';
   end;
 
   TVooController.getVoos(id, numeroVoo, status);
