@@ -112,10 +112,7 @@ begin
   query.Close;
   query.SQL.Clear;
   query.SQL.Add('SELECT * FROM usuarios');
-
-  if (id <> 0) or (nome <> '') or (status <> '') then begin
-    query.SQL.Add('WHERE 1=1');
-  end;
+  query.SQL.Add('WHERE cargo IN (' + QuotedStr('Gestor(a)') + ', ' + QuotedStr('Piloto(a)') + ', ' + QuotedStr('Comissário(a)') + ')');
 
   if id <> 0 then begin
     query.SQL.Add('AND id = :id');
@@ -170,6 +167,7 @@ begin
     usuario.setCargo(query.FieldByName('cargo').AsString);
     usuario.setCPF(query.FieldByName('cpf').AsString);
     usuario.setPassaporte(query.FieldByName('passaporte').AsString);
+
     result := usuario;
   end else begin
     result := nil;

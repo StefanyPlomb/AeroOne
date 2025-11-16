@@ -2,17 +2,19 @@ unit UVooDao;
 
 interface
 
+uses UVoo;
+
 type
   TVooDao = class
   public
     procedure getVoos(id: Integer; numeroVoo, status: String);
-    class procedure ConectarVoo(const VooID, UsuarioID: Integer; acesso: string);
-    class procedure DesconectarVoo(const VOOID,UsuarioID:Integer; acesso: string);
-    class procedure FiltrodeBusca(  const Filtro: String);
-    class procedure AbrirVoos (const TipoUsuario: string);
-    class procedure AbrirAtribuidos(const TipoUsuario: string; UsuarioID: Integer);
-    class function ContarDisponiveis(const TipoUsuario: string): Integer;
-    class function ContarAtribuidos(const TipoUsuario: string; UsuarioID: Integer): Integer;
+    function getVoo(id: Integer): TVoo;
+    function getVooByNumeroVoo(numeroVoo: String): TVoo;
+    function cadastrar(voo: TVoo): Integer;
+    procedure update(voo: TVoo);
+    procedure conectar(idUsuario, idVoo: Integer; funcao, assento: String);
+    function usuarioJaConectado(idUsuario, idVoo: Integer): Boolean;
+    function countConectados(idVoo: Integer; funcao: String): Integer;
   end;
 
 implementation
@@ -21,125 +23,127 @@ uses UConn, FireDAC.Comp.Client, System.SysUtils;
 
 { TVooDao }
 
-class procedure TVooDao.AbrirAtribuidos(const TipoUsuario: string; UsuarioID: Integer);
+function TVooDao.cadastrar(voo: TVoo): Integer;
 var
-  TipodeAcesso:string;
-
+  query: TFDQuery;
 begin
-  if TipoUsuario = 'AeroMoço(a)' then
-    TipodeAcesso := 'id_aeromoca'
-  else
-    TipodeAcesso := 'id_piloto';
+  query := DataModuleConn.FDQueryVoos;
 
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('INSERT INTO voos (numeroVoo, idAeronave, origem, destino, dataPartida, horaPartida, dataChegada, horaChegada, status)');
+  query.SQL.Add('VALUES (:numeroVoo, :idAeronave, :origem, :destino, :dataPartida, :horaPartida, :dataChegada, :horaChegada, :status)');
+  query.SQL.Add('RETURNING id');
 
-  with DataModuleConn.FDQueryAtribuidos do
-  begin
-    Close;
-    SQL.Text := Format('SELECT * FROM voos WHERE %s = :id_usuario ORDER BY data_partida, hora_partida', [TipodeAcesso]);
-    ParamByName('id_usuario').AsInteger := UsuarioID;
-    Open;
-  end;
+  query.ParamByName('numeroVoo').AsString   := voo.getNumeroVoo;
+  query.ParamByName('idAeronave').AsInteger := voo.getIdAeronave;
+  query.ParamByName('origem').AsString      := voo.getOrigem;
+  query.ParamByName('destino').AsString     := voo.getDestino;
+  query.ParamByName('dataPartida').AsString := voo.getDataPartida;
+  query.ParamByName('horaPartida').AsString := voo.getHoraPartida;
+  query.ParamByName('dataChegada').AsString := voo.getDataChegada;
+  query.ParamByName('horaChegada').AsString := voo.getHoraChegada;
+  query.ParamByName('status').AsString      := voo.getStatus;
 
+  query.Open;
+
+  result := query.FieldByName('id').AsInteger;
 end;
 
-class procedure TVooDao.AbrirVoos (const TipoUsuario: string);
+procedure TVooDao.conectar(idUsuario, idVoo: Integer; funcao, assento: String);
 var
-  TipodeAcesso: string;
+  query: TFDQuery;
 begin
+  query := DataModuleConn.FDQueryVoos;
 
-  if TipoUsuario = 'AeroMoço(a)' then
-    TipodeAcesso := 'id_aeromoca'
-  else
-    TipodeAcesso := 'id_piloto';
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('INSERT INTO usuarioVoo (idUsuario, idVoo, funcao, assento)');
+  query.SQL.Add('VALUES (:idUsuario, :idVoo, :funcao, :assento)');
 
-  with DataModuleConn.FDQueryVoos do
-  begin
-    Close;
-    SQL.Text := Format('SELECT * FROM voos WHERE %s IS NULL ORDER BY data_partida, hora_partida', [TipodeAcesso]);
-    Open;
-  end;
+  query.ParamByName('idUsuario').AsInteger := idUsuario;
+  query.ParamByName('idVoo').AsInteger := idVoo;
+  query.ParamByName('funcao').AsString := funcao;
+  query.ParamByName('assento').AsString := assento;
+
+  query.ExecSQL;
 end;
 
-class procedure TVooDao.ConectarVoo(const VooID, UsuarioID: Integer; acesso: string);
-begin
-  with DataModuleConn.FDQueryVoos do
-  begin
-    if Locate('id', VooID, []) then
-    begin
-      Edit;
-       FieldByName(acesso).AsInteger := UsuarioID;
-      Post;
-    end
-    else
-      raise Exception.Create('Voo não encontrado.');
-  end;
-end;
-
-class function TVooDao.ContarAtribuidos(const TipoUsuario: string;  UsuarioID: Integer): Integer;
+function TVooDAO.countConectados(idVoo: Integer; funcao: String): Integer;
 var
-  TipodeAcesso: string;
+  query: TFDQuery;
 begin
+  query := DataModuleConn.FDQueryVoos;
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('SELECT COUNT(*) AS qtd FROM usuarioVoo');
+  query.SQL.Add('WHERE idVoo = :idVoo AND funcao = :funcao');
+  query.ParamByName('idVoo').AsInteger := idVoo;
+  query.ParamByName('funcao').AsString := funcao;
 
-  if TipoUsuario = 'AeroMoço(a)' then
-    TipodeAcesso := 'id_aeromoca'
-  else
-    TipodeAcesso := 'id_piloto';
-
-  with DataModuleConn.FDQueryQuantidade do
-  begin
-    Close;
-    SQL.Text := Format('SELECT COUNT(*) AS total FROM voos WHERE %s =: id', [TipodeAcesso]);
-    ParamByName('id').AsInteger := UsuarioID;
-    Open;
-    Result := FieldByName('total').AsInteger;
-    Close;
-  end
+  query.Open;
+  result := query.FieldByName('qtd').AsInteger;
 end;
 
-class function TVooDao.ContarDisponiveis(const TipoUsuario: string): Integer;
+function TVooDao.getVoo(id: Integer): TVoo;
 var
-  TipodeAcesso: string;
+  query: TFDQuery;
+  voo: TVoo;
 begin
+  query := DataModuleConn.FDQueryVoos;
 
-  if TipoUsuario = 'AeroMoço(a)' then
-    TipodeAcesso := 'id_aeromoca'
-  else
-    TipodeAcesso := 'id_piloto';
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('SELECT * FROM voos WHERE id = :id');
+  query.ParamByName('id').AsInteger := id;
+  query.Open;
 
-  with DataModuleConn.FDQueryQuantidade do
-  begin
-    Close;
-    SQL.Text := Format('SELECT COUNT(*) AS total FROM voos WHERE %s IS NULL', [TipodeAcesso]);
-    Open;
-    Result := FieldByName('total').AsInteger;
-    Close;
+  if not query.IsEmpty then begin
+    voo := TVoo.Create;
+    voo.setId(query.FieldByName('id').AsInteger);
+    voo.setNumeroVoo(query.FieldByName('numeroVoo').AsString);
+    voo.setIdAeronave(query.FieldByName('idAeronave').AsInteger);
+    voo.setOrigem(query.FieldByName('origem').AsString);
+    voo.setDestino(query.FieldByName('destino').AsString);
+    voo.setDataPartida(query.FieldByName('dataPartida').AsString);
+    voo.setHoraPartida(query.FieldByName('horaPartida').AsString);
+    voo.setDataChegada(query.FieldByName('dataChegada').AsString);
+    voo.setHoraChegada(query.FieldByName('horaChegada').AsString);
+    voo.setStatus(query.FieldByName('status').AsString);
+    result := voo;
+  end else begin
+    result := nil;
   end;
 end;
 
-class procedure TVooDao.DesconectarVoo(const VOOID, UsuarioID: Integer; acesso: string);
+function TVooDao.getVooByNumeroVoo(numeroVoo: String): TVoo;
+var
+  query: TFDQuery;
+  voo: TVoo;
 begin
-   with DataModuleConn.FDQueryVoos do
-  begin
-    if Locate('id', VooID, []) then
-    begin
-      Edit;
-      FieldByName(acesso).Clear;
-      DataModuleConn.FDQueryVoos.Refresh;
-      Post;
-    end
-    else
-      raise Exception.Create('Voo não encontrado.');
-  end;
-end;
+  query := DataModuleConn.FDQueryVoos;
 
-class procedure TVooDao.FiltrodeBusca(const Filtro: String);
-begin
-  with DataModuleConn.FDQueryVoos do
-  begin
-    Close;
-    SQL.Text := 'SELECT * FROM voos WHERE (origem ILIKE :filtro OR destino ILIKE :filtro OR CAST(data_partida AS VARCHAR) ILIKE :filtro) AND id_aeromoca IS NULL ORDER BY data_partida, hora_partida';
-    ParamByName('filtro').AsString := '%' + Filtro + '%';
-    Open;
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('SELECT * FROM voos WHERE UPPER(numeroVoo) = :numeroVoo');
+  query.ParamByName('numeroVoo').AsString := numeroVoo.ToUpper;
+  query.Open;
+
+  if not query.IsEmpty then begin
+    voo := TVoo.Create;
+    voo.setId(query.FieldByName('id').AsInteger);
+    voo.setNumeroVoo(query.FieldByName('numeroVoo').AsString);
+    voo.setIdAeronave(query.FieldByName('idAeronave').AsInteger);
+    voo.setOrigem(query.FieldByName('origem').AsString);
+    voo.setDestino(query.FieldByName('destino').AsString);
+    voo.setDataPartida(query.FieldByName('dataPartida').AsString);
+    voo.setHoraPartida(query.FieldByName('horaPartida').AsString);
+    voo.setDataChegada(query.FieldByName('dataChegada').AsString);
+    voo.setHoraChegada(query.FieldByName('horaChegada').AsString);
+    voo.setStatus(query.FieldByName('status').AsString);
+    result := voo;
+  end else begin
+    result := nil;
   end;
 end;
 
@@ -186,6 +190,118 @@ begin
   end;
 
   query.Open;
+end;
+
+procedure TVooDao.update(voo: TVoo);
+var
+  query: TFDQuery;
+  sql: String;
+begin
+  query := DataModuleConn.FDQueryVoos;
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('UPDATE voos SET');
+
+  if voo.getNumeroVoo <> '' then begin
+    query.SQL.Add(' numeroVoo = :numeroVoo, ');
+  end;
+
+  if voo.getOrigem <> '' then begin
+    query.SQL.Add(' origem = :origem, ');
+  end;
+
+  if voo.getDestino <> '' then begin
+    query.SQL.Add(' destino = :destino, ');
+  end;
+
+  if voo.getDataPartida <> '' then begin
+    query.SQL.Add(' dataPartida = :dataPartida, ');
+  end;
+
+  if voo.getHoraPartida <> '' then begin
+    query.SQL.Add(' horaPartida = :horaPartida, ');
+  end;
+
+  if voo.getDataChegada <> '' then begin
+    query.SQL.Add(' dataChegada = :dataChegada, ');
+  end;
+
+  if voo.getHoraChegada <> '' then begin
+    query.SQL.Add(' horaChegada = :horaChegada, ');
+  end;
+
+  if voo.getStatus <> '' then begin
+    query.SQL.Add(' status = :status, ');
+  end;
+
+  if (voo.getIdAeronave > 0) then begin
+    query.SQL.Add(' idAeronave = :idAeronave, ');
+  end;
+
+  sql := Trim(query.SQL.Text);
+  if sql.EndsWith(',') then begin
+    Delete(sql, Length(sql), 1);
+  end;
+
+  query.SQL.Text := sql + sLineBreak + 'WHERE id = :id';
+
+  query.ParamByName('id').AsInteger := voo.getId;
+
+  if voo.getNumeroVoo <> '' then begin
+    query.ParamByName('numeroVoo').AsString := voo.getNumeroVoo;
+  end;
+
+  if voo.getOrigem <> '' then begin
+    query.ParamByName('origem').AsString := voo.getOrigem;
+  end;
+
+  if voo.getDestino <> '' then begin
+    query.ParamByName('Destino').AsString := voo.getDestino;
+  end;
+
+  if voo.getDataPartida <> '' then begin
+    query.ParamByName('dataPartida').AsString := voo.getDataPartida;
+  end;
+
+  if voo.getHoraPartida <> '' then begin
+    query.ParamByName('horaPartida').AsString := voo.getHoraPartida;
+  end;
+
+  if voo.getDataChegada <> '' then begin
+    query.ParamByName('dataChegada').AsString := voo.getDataChegada;
+  end;
+
+  if voo.getHoraChegada <> '' then begin
+    query.ParamByName('horaChegada').AsString := voo.getHoraChegada;
+  end;
+
+  if voo.getStatus <> '' then begin
+    query.ParamByName('status').AsString := voo.getStatus;
+  end;
+
+  if (voo.getIdAeronave > 0) then begin
+    query.ParamByName('idAeronave').AsInteger := voo.getIdAeronave;
+  end;
+
+  query.ExecSQL;
+end;
+
+function TVooDAO.usuarioJaConectado(idUsuario, idVoo: Integer): Boolean;
+var
+  query: TFDQuery;
+begin
+  query := DataModuleConn.FDQueryVoos;
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('SELECT id FROM usuarioVoo');
+  query.SQL.Add('WHERE idUsuario = :idUsuario AND idVoo = :idVoo');
+
+  query.ParamByName('idUsuario').AsInteger := idUsuario;
+  query.ParamByName('idVoo').AsInteger := idVoo;
+
+  query.Open;
+
+  result := not query.IsEmpty;
 end;
 
 end.

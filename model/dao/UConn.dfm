@@ -78,4 +78,14 @@ object DataModuleConn: TDataModuleConn
     Left = 288
     Top = 16
   end
+  object DataSourceAeronave: TDataSource
+    DataSet = FDQueryAeronave
+    Left = 288
+    Top = 88
+  end
+  object FDQueryAeronave: TFDQuery
+    Connection = FDConnection
+    Left = 288
+    Top = 160
+  end
 end

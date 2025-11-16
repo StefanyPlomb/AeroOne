@@ -27,6 +27,8 @@ type
     DataSourceEndereco: TDataSource;
     FDQueryEndereco: TFDQuery;
     FDQueryGestor: TFDQuery;
+    DataSourceAeronave: TDataSource;
+    FDQueryAeronave: TFDQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
