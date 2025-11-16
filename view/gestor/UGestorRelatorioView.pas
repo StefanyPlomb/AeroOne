@@ -10,15 +10,11 @@ uses
 type
   TFormGestorRelatorio = class(TForm)
     pnlMain: TPanel;
-    cardGestorRelatorios: TCardPanel;
-    cardMainRelatorios: TCard;
-    pnlMainFrame: TPanel;
-    DBGridRelatorios: TDBGrid;
-    pnlHeader: TPanel;
-    pnlPesquisar: TPanel;
-    edtSearch: TEdit;
-    pnlDiv1: TPanel;
-    imgSearch: TImage;
+    scrollBox: TScrollBox;
+    pnlDivBottom: TPanel;
+    pnlRelatorioQtdVoosOrigemCanceladosPorCidade: TPanel;
+    pnlRelatorioQtdVoosOrigemPorCidade: TPanel;
+    pnlRelatorioMediaTempoVoosPorRota: TPanel;
   private
     { Private declarations }
   public
