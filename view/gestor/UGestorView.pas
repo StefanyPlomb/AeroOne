@@ -37,15 +37,22 @@ type
     pnlMainFrame: TPanel;
     pnlMeusDados: TPanel;
     imgUsuario: TImage;
+    pnlAeronaves: TPanel;
+    imgAeronaves: TImage;
+    pnlAeronavesText: TPanel;
+    pnlRotas: TPanel;
+    imgRotas: TImage;
+    pnlRotasText: TPanel;
     procedure pnlLogoutTextClick(Sender: TObject);
     procedure imgLogoutClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure pnlFuncionariosTextClick(Sender: TObject);
     procedure pnlRelatoriosTextClick(Sender: TObject);
-    procedure pnlVoosTextClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure imgUsuarioClick(Sender: TObject);
     procedure pnlHomeTextClick(Sender: TObject);
+    procedure pnlAeronavesTextClick(Sender: TObject);
+    procedure pnlVoosTextClick(Sender: TObject);
   private
     { Private declarations }
     usuario: TUsuario;
@@ -66,7 +73,7 @@ var
 
 implementation
 
-uses ULoginView, UGestorHomeView, UGestorFuncionarioView, UGestorRelatorioView, UGestorVooView, UMeusDadosView;
+uses ULoginView, UGestorHomeView, UGestorFuncionarioView, UGestorVooView, UGestorAeronaveView, UGestorRelatorioView, UMeusDadosView;
 
 {$R *.dfm}
 
@@ -160,6 +167,11 @@ var
 begin
   form := TFormGestor.Create(aUsuario);
   form.Show;
+end;
+
+procedure TFormGestor.pnlAeronavesTextClick(Sender: TObject);
+begin
+  mudarPagina(TFormGestorAeronaves, pnlAeronaves);
 end;
 
 procedure TFormGestor.pnlFuncionariosTextClick(Sender: TObject);

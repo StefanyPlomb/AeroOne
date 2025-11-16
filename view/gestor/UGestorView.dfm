@@ -243,8 +243,6 @@ object FormGestor: TFormGestor
       ParentFont = False
       TabOrder = 1
       StyleElements = [seClient, seBorder]
-      ExplicitLeft = 5
-      ExplicitWidth = 156
       object imgFuncionarios: TImage
         AlignWithMargins = True
         Left = 5
@@ -300,15 +298,12 @@ object FormGestor: TFormGestor
         TabOrder = 0
         StyleElements = [seClient, seBorder]
         OnClick = pnlFuncionariosTextClick
-        ExplicitLeft = 33
-        ExplicitWidth = 123
-        ExplicitHeight = 37
       end
     end
     object pnlRelatorios: TPanel
       AlignWithMargins = True
       Left = 0
-      Top = 170
+      Top = 308
       Width = 166
       Height = 41
       Cursor = crHandPoint
@@ -327,9 +322,8 @@ object FormGestor: TFormGestor
       ParentBackground = False
       ParentFont = False
       TabOrder = 2
+      Visible = False
       StyleElements = [seClient, seBorder]
-      ExplicitLeft = 5
-      ExplicitWidth = 156
       object imgRelatorios: TImage
         AlignWithMargins = True
         Left = 5
@@ -381,15 +375,12 @@ object FormGestor: TFormGestor
         TabOrder = 0
         StyleElements = [seClient, seBorder]
         OnClick = pnlRelatoriosTextClick
-        ExplicitLeft = 33
-        ExplicitWidth = 123
-        ExplicitHeight = 37
       end
     end
     object pnlVoos: TPanel
       AlignWithMargins = True
       Left = 0
-      Top = 216
+      Top = 170
       Width = 166
       Height = 41
       Cursor = crHandPoint
@@ -409,8 +400,6 @@ object FormGestor: TFormGestor
       ParentFont = False
       TabOrder = 3
       StyleElements = [seClient, seBorder]
-      ExplicitLeft = 5
-      ExplicitWidth = 156
       object imgVoos: TImage
         AlignWithMargins = True
         Left = 5
@@ -427,21 +416,18 @@ object FormGestor: TFormGestor
         Picture.Data = {
           0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
           00180806000000E0773DF8000000097048597300000B1300000B1301009A9C18
-          000001BD4944415478DAD5954D2844511886EF952621D4249294981192507616
-          36B352F25736B391ACC548D94CD94991A58515B1A128652C9425167E67353514
-          596922692CFC8CE73477718D73CE9D99C6626E3DBDCD39DFF99E3BE7CCBD631A
-          FF7C9979234824123544DC34CD979C0A68EC265661083E2180642527029AF710
-          9B506B1B16926A2431A9804593C4047CC0159CC3858045AF564D013107412894
-          B8EBA87DF82360A18F3854DD3044210CF5D0AEA8DBA5F980748B103413EBD095
-          E5AE3D42078227E5192011637E58107B9941F36FF0D1FCC83EA83C644425C40C
-          CC42511A8220CDE753071D7F45883CC4013468CAAEA113C15736823E620F0A34
-          65BF0E366D01CDBDC4295438DC4714416346029A971227D0EAF42D8DE44FD88D
-          E4592BB09AF61BC9876C14645F5BECF32D7852C67B111C2B05342F27CEC0ABB9
-          D39825BE871B70D9E6A6112CE904A23824EE44D1FC1206697267D52F1201DBFC
-          06737EA72D2A26F625922D18A741DC565B4644A0CA1A0A33DFA6156824C32CDE
-          91D48E116BD6C708354D8E02856484C5DB923AF16C887313EFAE296A96D312A4
-          482AA19BC5EF8ABA1623F97A0EC9E69D1E3471F02E16BF19595EF9F3A7AFBA7E
-          0029CC95199C9BCF470000000049454E44AE426082}
+          0000015B4944415478DAED93B14B02511CC7EFCAC9252AC710A27FC0C9252208
+          6B68B32617C14585B0089C221A1A5CA56C488970109ACCAD21C53FE0E85FB0E6
+          C0881A5AACCECFC52F8AC75D5E77D720F4E0C397F7DEEF7E1F7D774FD7FE78E8
+          BF29364D33F1F190AE770217D03C439CCB3483A41EB4E094C8C9B48A201FB4A0
+          4A64655A439073F3DCBF604C04349F25AE202E4B06AC2379F02DA0F932D18039
+          65EB1ED248AE3D09681C22F68549A732A84011D1C0B580E651F9D54B6E8E508E
+          2C85E476A480E649E20C665C36FF1CCF904772612BA07198286B5F5FCAF7D183
+          099897F91DBCC3824D6D0D7611BDA88263A220D327E882F502DB14F7EC3E53D6
+          2CC12AACC10A4CC97E85FD6D55B0434C4B53838257E5E87EBC07F251C445F6C8
+          FE91ED3B701A637F93ADBA262465A9059B484CDF029AC788135854B66E600B89
+          E15940F343624F73BEC96F504272E055B0414446FCC93E824BCF47E4770C0175
+          729219F8CBFD2E0000000049454E44AE426082}
         ExplicitLeft = 0
         ExplicitHeight = 49
       end
@@ -469,9 +455,6 @@ object FormGestor: TFormGestor
         TabOrder = 0
         StyleElements = [seClient, seBorder]
         OnClick = pnlVoosTextClick
-        ExplicitLeft = 33
-        ExplicitWidth = 123
-        ExplicitHeight = 37
       end
     end
     object pnlHome: TPanel
@@ -497,8 +480,6 @@ object FormGestor: TFormGestor
       ParentFont = False
       TabOrder = 4
       StyleElements = [seClient, seBorder]
-      ExplicitLeft = 5
-      ExplicitWidth = 156
       object imgHome: TImage
         AlignWithMargins = True
         Left = 5
@@ -552,9 +533,175 @@ object FormGestor: TFormGestor
         TabOrder = 0
         StyleElements = [seClient, seBorder]
         OnClick = pnlHomeTextClick
-        ExplicitLeft = 33
-        ExplicitWidth = 123
-        ExplicitHeight = 37
+      end
+    end
+    object pnlAeronaves: TPanel
+      AlignWithMargins = True
+      Left = 0
+      Top = 216
+      Width = 166
+      Height = 41
+      Cursor = crHandPoint
+      Margins.Left = 0
+      Margins.Top = 5
+      Margins.Right = 0
+      Margins.Bottom = 0
+      Align = alTop
+      BevelOuter = bvNone
+      Color = 6310948
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -20
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 5
+      StyleElements = [seClient, seBorder]
+      object imgAeronaves: TImage
+        AlignWithMargins = True
+        Left = 5
+        Top = 0
+        Width = 33
+        Height = 41
+        Cursor = crHandPoint
+        Margins.Left = 5
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        Center = True
+        Picture.Data = {
+          0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
+          00180806000000E0773DF8000000097048597300000B1300000B1301009A9C18
+          0000016F4944415478DA6364A031601C5E16FCFFFFDF1B48CD04626932CD7B02
+          C4698C8C8CDB7159F01848C950E8E8C7400BE47059F01FCA5C0CC4CC2021A81A
+          62E928B0A14040C8028A003116C07C1005E52F457621163E08EC04E21B401C03
+          345F84DA3E6803E2B9406C09C4278016DCA5561C44410D07A9DF0FC412403C01
+          684121B57C806C3848EF0E204E44B684DC3840379C1F888D8086DE001AD10F64
+          17007137905F46AE0FD00DE704E27AA0814D40233481ECB340FC14C85725350E
+          D0C31C24EE04C46140FC91019292F643CD7004F988541FA047E87CA0214950BD
+          1AE886931207F822541F887F61331C9F0584C21C16A17A40F66F20DE07331C88
+          E3807255842C40F601BE0845091690E1405C494A59B40B883381F828A1088519
+          0E36148F05E8C5F5040648925B8C2F42910D6720505C7B02A9594896BC056273
+          20CE6180649E0950F97DB80C678054383BB05A800F20E5D0EFD02042492DB800
+          497532D0924E201504C4BEC4184EB205E400005016C8193FCCCBDC0000000049
+          454E44AE426082}
+        ExplicitLeft = 0
+        ExplicitHeight = 49
+      end
+      object pnlAeronavesText: TPanel
+        AlignWithMargins = True
+        Left = 38
+        Top = 0
+        Width = 128
+        Height = 38
+        Cursor = crHandPoint
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 0
+        Align = alClient
+        Alignment = taLeftJustify
+        BevelOuter = bvNone
+        Caption = 'Aeronaves'
+        Color = 6310948
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -20
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 0
+        StyleElements = [seClient, seBorder]
+        OnClick = pnlAeronavesTextClick
+      end
+    end
+    object pnlRotas: TPanel
+      AlignWithMargins = True
+      Left = 0
+      Top = 262
+      Width = 166
+      Height = 41
+      Cursor = crHandPoint
+      Margins.Left = 0
+      Margins.Top = 5
+      Margins.Right = 0
+      Margins.Bottom = 0
+      Align = alTop
+      BevelOuter = bvNone
+      Color = 6310948
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -20
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 6
+      Visible = False
+      StyleElements = [seClient, seBorder]
+      object imgRotas: TImage
+        AlignWithMargins = True
+        Left = 5
+        Top = 0
+        Width = 33
+        Height = 41
+        Cursor = crHandPoint
+        Margins.Left = 5
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        Center = True
+        Picture.Data = {
+          0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
+          00180806000000E0773DF8000000097048597300000B1300000B1301009A9C18
+          0000025E4944415478DACD964B48945114C7EF2DA17C9499928251844ABA2919
+          13251235320417B59176AE14525C888B8256424430E2260C24220DA1459B40F1
+          1109893D257A8029882226093E2871511649D3EFF01DE1328C331F3842033FFE
+          E7DEEFDCF39FB9F7DC4FADD9E58FFDEF0D42A150155206B3F0C85ABB1937038A
+          B7214DD00FA5B0045598FCDDB101C553903528A4E024E344E2696860FC341E06
+          39C814A450F08FCE3D477A193F8887C11EE433F45030C8F82CF1081430FEB263
+          0335294646A116EE4227C53BDC9C7874D175E4360C430D06215F062C4C22F9A7
+          CFAD6A8587E4AF863FB761C927905B7009926019BAE1662433F28F2043709EE7
+          EB91BE8075920B9031904EB803725085521C7E4365B8096B8E2157986FDFEE17
+          BA066F918F243712A7124B1B4E806CC1380CF2EC86935F8F4C31F73ADA165A4D
+          CE375ECBA52B523003DE4039544317C5B21D8367488B5C323F0652405A2C9758
+          0ECC6DB52290C35B8044727E917390B882B82F56136C199C425EE8B72FD1B390
+          AD59813C90F319A06086E61F45DE8B39735FFD182418EFDA0759705F6FA5183D
+          613CCFB8570E9AB8DED9A2BDC821C8657EDCCF215F467A20C082B9B07969D5D3
+          CC2FB88B7916305ED765CAD64535D00572DDCFC0397981313E4EFC011A193F8E
+          54402EA4F1EE4C1A3933B10CF623D2AED221D292A330C1C2ABD1F6997535C83D
+          B7CB221A68F249E41DBC025950C2C20D13E3A3B75AFED058F79561B749AE433A
+          8D77D0D774FF03CCCB767D8266E37598FCCA97FAAB2FEAF65E20B73AAAC1D676
+          69CF2733DC47FC9DF8B0F1BAE9077116F1373D2B69DB45AD77C07D2FEDFA7F15
+          FF00F5E6FB19771F3F080000000049454E44AE426082}
+        ExplicitLeft = 0
+        ExplicitHeight = 49
+      end
+      object pnlRotasText: TPanel
+        AlignWithMargins = True
+        Left = 38
+        Top = 0
+        Width = 128
+        Height = 38
+        Cursor = crHandPoint
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 0
+        Align = alClient
+        Alignment = taLeftJustify
+        BevelOuter = bvNone
+        Caption = 'Rotas'
+        Color = 6310948
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -20
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 0
+        StyleElements = [seClient, seBorder]
       end
     end
   end
@@ -694,7 +841,6 @@ object FormGestor: TFormGestor
         Color = 6310948
         ParentBackground = False
         TabOrder = 2
-        ExplicitLeft = 759
         object imgUsuario: TImage
           Left = 0
           Top = 0
