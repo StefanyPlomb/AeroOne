@@ -143,7 +143,7 @@ begin
     novoUsuario.setEmail(edtCadastroEmail.Text);
     novoUsuario.setCPF(edtCadastroCPF.Text);
     novoUsuario.setSenha(edtCadastroSenha.Text);
-    novoUsuario.setCargo('Passageiro');
+    novoUsuario.setCargo('Passageiro(a)');
     novoUsuario.setId(TUsuarioController.cadastrar(novoUsuario));
     self.Hide;
     edtCadastroNome.Text := '';
@@ -178,9 +178,11 @@ begin
       end else if cargo = 'Piloto(a)' then begin
         TFormPiloto.open(usuario);
       end else if cargo = 'Comissário(a)' then begin
-        TFormAeroMoc.open(usuario);
-      end else begin
+        TFormComissario.open(usuario);
+      end else if cargo = 'Passageiro(a)' then begin
         TFormPassageiro.open(usuario);
+      end else begin
+        raise Exception.Create('Função do usuário no sistema não identificada. favor contatar suporte');
       end;
     end;
   except
