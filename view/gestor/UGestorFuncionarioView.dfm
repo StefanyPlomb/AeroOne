@@ -524,10 +524,7 @@ object FormGestorFuncionario: TFormGestorFuncionario
               Visible = False
               OnClick = imgStatusWhiteClick
               OnMouseLeave = imgStatusWhiteMouseLeave
-              ExplicitLeft = 28
-              ExplicitTop = 16
-              ExplicitWidth = 26
-              ExplicitHeight = 25
+              ExplicitTop = -1
             end
           end
           object pnlEditar: TPanel
@@ -604,10 +601,7 @@ object FormGestorFuncionario: TFormGestorFuncionario
               Visible = False
               OnClick = imgEditarWhiteClick
               OnMouseLeave = imgEditarWhiteMouseLeave
-              ExplicitLeft = 10
-              ExplicitTop = 6
-              ExplicitWidth = 56
-              ExplicitHeight = 35
+              ExplicitTop = -1
             end
           end
         end
@@ -632,7 +626,7 @@ object FormGestorFuncionario: TFormGestorFuncionario
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 4
+          TabOrder = 7
           object pnlSeparador: TPanel
             Left = 435
             Top = 0
@@ -711,7 +705,7 @@ object FormGestorFuncionario: TFormGestorFuncionario
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 5
+          TabOrder = 8
         end
         object pnlDivCargo: TPanel
           AlignWithMargins = True
@@ -727,7 +721,7 @@ object FormGestorFuncionario: TFormGestorFuncionario
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 6
+          TabOrder = 9
         end
         object edtSenha: TEdit
           AlignWithMargins = True
@@ -766,7 +760,7 @@ object FormGestorFuncionario: TFormGestorFuncionario
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 7
+          TabOrder = 10
         end
         object edtEmail: TEdit
           AlignWithMargins = True
@@ -805,7 +799,7 @@ object FormGestorFuncionario: TFormGestorFuncionario
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 8
+          TabOrder = 11
         end
         object edtNome: TEdit
           AlignWithMargins = True
@@ -844,7 +838,7 @@ object FormGestorFuncionario: TFormGestorFuncionario
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 9
+          TabOrder = 12
         end
         object pnlDivNome: TPanel
           AlignWithMargins = True
@@ -860,7 +854,7 @@ object FormGestorFuncionario: TFormGestorFuncionario
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 10
+          TabOrder = 13
         end
         object pnlDivCPF: TPanel
           AlignWithMargins = True
@@ -876,7 +870,7 @@ object FormGestorFuncionario: TFormGestorFuncionario
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 11
+          TabOrder = 14
         end
         object cbxCargo: TComboBox
           AlignWithMargins = True
@@ -900,7 +894,7 @@ object FormGestorFuncionario: TFormGestorFuncionario
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
-          TabOrder = 3
+          TabOrder = 4
           TextHint = ' Cargo'
           Items.Strings = (
             'Gestor(a)'
@@ -926,7 +920,7 @@ object FormGestorFuncionario: TFormGestorFuncionario
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
-          TabOrder = 12
+          TabOrder = 3
           Text = ''
           TextHint = ' Telefone'
           OnEnter = edtTelefoneEnter
@@ -950,12 +944,11 @@ object FormGestorFuncionario: TFormGestorFuncionario
           Font.Height = 20
           Font.Name = 'Segoe UI'
           Font.Style = []
+          MaxLength = 8
           ParentFont = False
-          TabOrder = 13
+          TabOrder = 6
           Text = ''
           TextHint = ' Passaporte'
-          OnEnter = edtPassaporteEnter
-          OnExit = edtPassaporteExit
         end
         object edtCPF: TMaskEdit
           AlignWithMargins = True
@@ -976,7 +969,7 @@ object FormGestorFuncionario: TFormGestorFuncionario
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
-          TabOrder = 14
+          TabOrder = 5
           Text = ''
           TextHint = ' CPF'
           OnEnter = edtCPFEnter

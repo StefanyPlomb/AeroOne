@@ -50,8 +50,6 @@ type
     imgStatusWhite: TImage;
     procedure edtTelefoneEnter(Sender: TObject);
     procedure edtTelefoneExit(Sender: TObject);
-    procedure edtPassaporteExit(Sender: TObject);
-    procedure edtPassaporteEnter(Sender: TObject);
     procedure edtCPFEnter(Sender: TObject);
     procedure edtCPFExit(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
@@ -72,7 +70,6 @@ type
     { Private declarations }
     usuario: TUsuario;
     operacao: String;
-    status: String;
     idUsuarioGrid: Integer;
     statusUsuarioGrid: String;
     procedure limparEdits;
@@ -160,7 +157,7 @@ begin
       end;
       TUsuarioController.update(novoUsuario, TUsuarioCOntroller.getUsuario(idUsuarioGrid));
     end else begin
-      raise Exception.Create('Não permitido desativar o usuário atualmente logado');
+      raise Exception.Create('Não permitido ativar/desativar o usuário atualmente logado');
     end;
 
     limparEdits;
@@ -222,7 +219,8 @@ end;
 
 procedure TFormGestorFuncionario.btnVoltarClick(Sender: TObject);
 begin
- cardGestorFuncionario.ActiveCard := cardMainFuncionarios;
+  cardGestorFuncionario.ActiveCard := cardMainFuncionarios;
+  limparEdits;
 end;
 
 procedure TFormGestorFuncionario.cardAddOrUpdateFuncionarioEnter(Sender: TObject);
@@ -302,18 +300,6 @@ begin
   edtCPF.EditMask := '';
 end;
 
-procedure TFormGestorFuncionario.edtPassaporteEnter(Sender: TObject);
-begin
-  edtPassaporte.EditMask := '>??999999;1;_';
-  edtPassaporte.SelStart := 0;
-  edtPassaporte.SelLength := 0;
-end;
-
-procedure TFormGestorFuncionario.edtPassaporteExit(Sender: TObject);
-begin
-  edtPassaporte.EditMask := '';
-end;
-
 procedure TFormGestorFuncionario.edtSearchChange(Sender: TObject);
 begin
   loadGrid(edtSearch.Text);
@@ -334,7 +320,6 @@ end;
 procedure TFormGestorFuncionario.FormCreate(Sender: TObject);
 begin
   operacao := 'Inserir';
-  status := '';
   cardGestorFuncionario.ActiveCard := cardMainFuncionarios;
   loadGrid(edtSearch.Text);
 end;
