@@ -193,14 +193,6 @@
             <Form>FormComissarioCheckIn</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="view\comissario\UComissarioIniciarCheckInView.pas">
-            <Form>FormCheckInIniciado</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="view\comissario\UComissarioMapaAcentosView.pas">
-            <Form>FormMapaAcentos</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="view\comissario\UComissarioView.pas">
             <Form>FormComissario</Form>
             <FormType>dfm</FormType>
@@ -217,6 +209,18 @@
         <DCCReference Include="model\dao\UAeronaveDao.pas"/>
         <DCCReference Include="view\gestor\UGestorAeronaveView.pas">
             <Form>FormGestorAeronaves</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="view\piloto\UPilotoVooView.pas">
+            <Form>FormPilotoVoo</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="view\piloto\UPilotoIniciarVooView.pas">
+            <Form>FormPilotoIniciarVoo</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="view\piloto\UPilotoHomeView.pas">
+            <Form>FormPilotoHome</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

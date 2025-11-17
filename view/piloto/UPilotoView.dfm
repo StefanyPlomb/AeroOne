@@ -11,6 +11,8 @@ object FormPiloto: TFormPiloto
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poScreenCenter
+  OnClose = FormClose
   OnCreate = FormCreate
   TextHeight = 15
   object pnlLateral: TPanel
@@ -20,7 +22,7 @@ object FormPiloto: TFormPiloto
     Height = 649
     Align = alLeft
     BevelOuter = bvNone
-    Color = clBlue
+    Color = 6310948
     ParentBackground = False
     TabOrder = 0
     object imgLogo: TImage
@@ -139,9 +141,9 @@ object FormPiloto: TFormPiloto
     object pnlLogout: TPanel
       AlignWithMargins = True
       Left = 0
-      Top = 608
+      Top = 585
       Width = 166
-      Height = 41
+      Height = 64
       Cursor = crHandPoint
       Margins.Left = 0
       Margins.Top = 0
@@ -149,7 +151,7 @@ object FormPiloto: TFormPiloto
       Margins.Bottom = 0
       Align = alBottom
       BevelOuter = bvNone
-      Color = clNavy
+      Color = 4733212
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -20
@@ -164,7 +166,7 @@ object FormPiloto: TFormPiloto
         Left = 5
         Top = 0
         Width = 33
-        Height = 41
+        Height = 64
         Cursor = crHandPoint
         Margins.Left = 5
         Margins.Top = 0
@@ -195,7 +197,7 @@ object FormPiloto: TFormPiloto
         Left = 38
         Top = 0
         Width = 128
-        Height = 37
+        Height = 60
         Cursor = crHandPoint
         Margins.Left = 0
         Margins.Top = 0
@@ -205,7 +207,7 @@ object FormPiloto: TFormPiloto
         Alignment = taLeftJustify
         BevelOuter = bvNone
         Caption = 'Logout'
-        Color = clNavy
+        Color = 4733212
         Font.Charset = ANSI_CHARSET
         Font.Color = clWhite
         Font.Height = -20
@@ -218,20 +220,20 @@ object FormPiloto: TFormPiloto
         OnClick = pnlLogoutTextClick
       end
     end
-    object pnlCheckIn: TPanel
+    object pnlIniciarVoo: TPanel
       AlignWithMargins = True
-      Left = 5
-      Top = 132
-      Width = 156
+      Left = 0
+      Top = 170
+      Width = 166
       Height = 41
       Cursor = crHandPoint
-      Margins.Left = 5
+      Margins.Left = 0
       Margins.Top = 5
-      Margins.Right = 5
+      Margins.Right = 0
       Margins.Bottom = 0
       Align = alTop
       BevelOuter = bvNone
-      Color = clBlue
+      Color = 6310948
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -20
@@ -241,78 +243,78 @@ object FormPiloto: TFormPiloto
       ParentFont = False
       TabOrder = 1
       StyleElements = [seClient, seBorder]
-      object imgCheckIn: TImage
-        Left = 0
+      object imgIniciarVoo: TImage
+        AlignWithMargins = True
+        Left = 5
         Top = 0
         Width = 33
         Height = 41
         Cursor = crHandPoint
+        Margins.Left = 5
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
         Align = alLeft
         Center = True
         Picture.Data = {
           0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
           00180806000000E0773DF8000000097048597300000B1300000B1301009A9C18
-          0000020A4944415478DACD945B28655118C7F776794088078D4B39B9476A848C
-          7229638AE6691E680849F1A244F33091F2A05332B9BD4844E9CCC33C4E1EC69B
-          E88487512EB944D328223A8D686A1471E6F77596DA9D7076F65156FDFAEFF5ED
-          6F7DFFBDD65E6BE9DA3337FD451BB8DDEE40A41C0A211B22C0AEEBFABC65038A
-          BF411C9002D77005619089C18E25038AC723EB70069F611686E1234463706BD5
-          A00D1981548AFD52B155E40FFD7263EE530D9A917128A1A0937E28CF17F0857E
-          973F0CC211F9E24828803870C2070CBEFBC32007A9870E90E50A860188C5E0E4
-          C906142E564B93A1429BF01EFA219FE2C9DE634C1B503C09D9804318841F143C
-          52EF0E9005FAF5560CDA9121EF65206E43F6A195F8A81583266452336C4D15AF
-          D33C072E87F89A4F03B5436A200AE4C0B84096C0A60CDE5268CE903F86D44A3E
-          F19B470D480E429621EF8189ECC16B0A5D1AC66C21C7C4DEDD37C0DB400AFF84
-          46064CD39759C85E4F84105824FE977835CF9D9AE7A29319F612EF316390A87E
-          981DFAA054D65CE5C9323929E4222F8167B9ECE4929383D54DDCEED340994CC9
-          0CE09FE6B91D8D4DFEC9127C8519F5110D6A6645660DE43FC82DB90D72AFC8CE
-          909F9705955005E9862172165E410C2667660CD2905D6861C0C47D5F454E2E52
-          02BFE154F36C8C1AF2BF9931B8BB2957E05CF3DD02A00C1C18349831F8845498
-          28ECDD5C18D4FA34F0777B7683FFB21BBC1982227B8D0000000049454E44AE42
-          6082}
+          000001834944415478DADD943F2C03511CC7EF195890088930483A088958EC86
+          26920E8218D48030D46032341A7F62119262E92231B81A2C521B9DBA102683CD
+          C22088CD629090489DCF8B9FE4B4D75E4FEE24BCE4936FDFBBF77B9F7BEF5EAA
+          8C809BFABF02CBB23A887578819452EADC6F4137918536193A8624A29CC3DC10
+          118331C8C310F32E5D8F88C256E2087A74174E214EF105CFAAF93D08D3D00755
+          B6D24DE6245C0522A92566E090A22BFAEDF2B693D0EC50A28F34C2DCB38A0422
+          A92186E56DC325EA1E60174C16BF2BFA062C3245ACC13C13F664ACD3F6B64D0E
+          8BBEC911EE408EBA7CE104BBA081B8853AD8862EE875D9E5028B26CBEDFE5B31
+          925562A9C4DC67B8363E3FB86EEF104270EF45D048DC40BD6D58DF7F13F66102
+          B664FC84C5C3864B2BDA3E920811077D8FD35FF7599E2D132BD28DF1CCF42C28
+          D710A48859788516044F7E0BF4ED1A870C8B8F5652E355A0FF3AFA6100413608
+          81BEEF8FB088C0F25DF093F67B02B61F25E67C90EAA3DBE0080F0A0523442230
+          41E047F467051F784880194C1CBDF90000000049454E44AE426082}
+        ExplicitLeft = 0
         ExplicitHeight = 49
       end
-      object pnlCheckInText: TPanel
+      object pnlIniciarVooText: TPanel
         AlignWithMargins = True
-        Left = 33
+        Left = 38
         Top = 0
-        Width = 123
-        Height = 37
+        Width = 128
+        Height = 38
         Cursor = crHandPoint
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 0
-        Margins.Bottom = 4
         Align = alClient
         Alignment = taLeftJustify
         BevelOuter = bvNone
-        Caption = 'Check-In'
-        Color = clBlue
+        Caption = 'Iniciar Voo'
+        Color = 6310948
         Font.Charset = ANSI_CHARSET
         Font.Color = clWhite
         Font.Height = -20
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
-        ParentBackground = False
         ParentFont = False
         TabOrder = 0
         StyleElements = [seClient, seBorder]
+        OnClick = pnlIniciarVooTextClick
       end
     end
-    object pnlVoos: TPanel
+    object pnlHome: TPanel
       AlignWithMargins = True
-      Left = 5
-      Top = 186
-      Width = 156
+      Left = 0
+      Top = 78
+      Width = 166
       Height = 41
       Cursor = crHandPoint
-      Margins.Left = 5
+      Margins.Left = 0
       Margins.Top = 5
-      Margins.Right = 5
+      Margins.Right = 0
       Margins.Bottom = 0
       Align = alTop
       BevelOuter = bvNone
-      Color = clBlue
+      Color = 6310948
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -20
@@ -322,122 +324,17 @@ object FormPiloto: TFormPiloto
       ParentFont = False
       TabOrder = 2
       StyleElements = [seClient, seBorder]
-      object imgVoos: TImage
-        Left = 0
+      object imgHome: TImage
+        AlignWithMargins = True
+        Left = 5
         Top = 0
         Width = 33
         Height = 41
         Cursor = crHandPoint
-        Align = alLeft
-        Center = True
-        Picture.Data = {
-          0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
-          00180806000000E0773DF8000000097048597300000B1300000B1301009A9C18
-          000001BD4944415478DAD5954D2844511886EF952621D4249294981192507616
-          36B352F25736B391ACC548D94CD94991A58515B1A128652C9425167E67353514
-          596922692CFC8CE73477718D73CE9D99C6626E3DBDCD39DFF99E3BE7CCBD631A
-          FF7C9979234824123544DC34CD979C0A68EC265661083E2180642527029AF710
-          9B506B1B16926A2431A9804593C4047CC0159CC3858045AF564D013107412894
-          B8EBA87DF82360A18F3854DD3044210CF5D0AEA8DBA5F980748B103413EBD095
-          E5AE3D42078227E5192011637E58107B9941F36FF0D1FCC83EA83C644425C40C
-          CC42511A8220CDE753071D7F45883CC4013468CAAEA113C15736823E620F0A34
-          65BF0E366D01CDBDC4295438DC4714416346029A971227D0EAF42D8DE44FD88D
-          E4592BB09AF61BC9876C14645F5BECF32D7852C67B111C2B05342F27CEC0ABB9
-          D39825BE871B70D9E6A6112CE904A23824EE44D1FC1206697267D52F1201DBFC
-          06737EA72D2A26F625922D18A741DC565B4644A0CA1A0A33DFA6156824C32CDE
-          91D48E116BD6C708354D8E02856484C5DB923AF16C887313EFAE296A96D312A4
-          482AA19BC5EF8ABA1623F97A0EC9E69D1E3471F02E16BF19595EF9F3A7AFBA7E
-          0029CC95199C9BCF470000000049454E44AE426082}
-        ExplicitHeight = 49
-      end
-      object pnlVoosText: TPanel
-        AlignWithMargins = True
-        Left = 33
-        Top = 0
-        Width = 123
-        Height = 37
-        Cursor = crHandPoint
-        Margins.Left = 0
+        Margins.Left = 5
         Margins.Top = 0
         Margins.Right = 0
-        Margins.Bottom = 4
-        Align = alClient
-        Alignment = taLeftJustify
-        BevelOuter = bvNone
-        Caption = 'Voos'
-        Color = clBlue
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWhite
-        Font.Height = -20
-        Font.Name = 'Segoe UI Semibold'
-        Font.Style = [fsBold]
-        ParentBackground = False
-        ParentFont = False
-        TabOrder = 0
-        StyleElements = [seClient, seBorder]
-      end
-    end
-    object pnlDiv2: TPanel
-      AlignWithMargins = True
-      Left = 7
-      Top = 178
-      Width = 152
-      Height = 3
-      Margins.Left = 7
-      Margins.Top = 5
-      Margins.Right = 7
-      Margins.Bottom = 0
-      Align = alTop
-      BevelOuter = bvNone
-      Color = clNavy
-      ParentBackground = False
-      TabOrder = 3
-    end
-    object pnlDiv1: TPanel
-      AlignWithMargins = True
-      Left = 7
-      Top = 124
-      Width = 152
-      Height = 3
-      Margins.Left = 7
-      Margins.Top = 5
-      Margins.Right = 7
-      Margins.Bottom = 0
-      Align = alTop
-      BevelOuter = bvNone
-      Color = clNavy
-      ParentBackground = False
-      TabOrder = 4
-    end
-    object pnlHome: TPanel
-      AlignWithMargins = True
-      Left = 5
-      Top = 78
-      Width = 156
-      Height = 41
-      Cursor = crHandPoint
-      Margins.Left = 5
-      Margins.Top = 5
-      Margins.Right = 5
-      Margins.Bottom = 0
-      Align = alTop
-      BevelOuter = bvNone
-      Color = clBlue
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -20
-      Font.Name = 'Segoe UI'
-      Font.Style = [fsBold]
-      ParentBackground = False
-      ParentFont = False
-      TabOrder = 5
-      StyleElements = [seClient, seBorder]
-      object imgHome: TImage
-        Left = 0
-        Top = 0
-        Width = 33
-        Height = 41
-        Cursor = crHandPoint
+        Margins.Bottom = 0
         Align = alLeft
         Center = True
         Picture.Data = {
@@ -453,50 +350,138 @@ object FormPiloto: TFormPiloto
           9A48513B6A01C916BC05524258F4BC05EA1121472DBA056640CA8F01B5B0FB03
           C49B809A4E91A376F054FAE402008567851943522F170000000049454E44AE42
           6082}
-        ExplicitHeight = 49
+        ExplicitLeft = 2
+        ExplicitTop = -3
       end
       object pnlHomeText: TPanel
         AlignWithMargins = True
-        Left = 33
+        Left = 38
         Top = 0
-        Width = 123
-        Height = 37
+        Width = 128
+        Height = 38
         Cursor = crHandPoint
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 0
-        Margins.Bottom = 4
         Align = alClient
         Alignment = taLeftJustify
         BevelOuter = bvNone
         Caption = 'Home'
-        Color = clBlue
+        Color = 6310948
         Font.Charset = ANSI_CHARSET
         Font.Color = clWhite
         Font.Height = -20
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
-        ParentBackground = False
         ParentFont = False
         TabOrder = 0
         StyleElements = [seClient, seBorder]
+        OnClick = pnlHomeTextClick
       end
     end
-    object pnlDiv3: TPanel
+    object pnlCheckOut: TPanel
       AlignWithMargins = True
-      Left = 7
-      Top = 232
-      Width = 152
-      Height = 3
-      Margins.Left = 7
+      Left = 0
+      Top = 216
+      Width = 166
+      Height = 41
+      Cursor = crHandPoint
+      Margins.Left = 0
       Margins.Top = 5
-      Margins.Right = 7
+      Margins.Right = 0
       Margins.Bottom = 0
       Align = alTop
       BevelOuter = bvNone
-      Color = clNavy
+      Color = 6310948
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -20
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
       ParentBackground = False
-      TabOrder = 6
+      ParentFont = False
+      TabOrder = 3
+      StyleElements = [seClient, seBorder]
+    end
+    object pnlVoos: TPanel
+      AlignWithMargins = True
+      Left = 0
+      Top = 124
+      Width = 166
+      Height = 41
+      Cursor = crHandPoint
+      Margins.Left = 0
+      Margins.Top = 5
+      Margins.Right = 0
+      Margins.Bottom = 0
+      Align = alTop
+      BevelOuter = bvNone
+      Color = 6310948
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -20
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 4
+      StyleElements = [seClient, seBorder]
+      object imgVoos: TImage
+        AlignWithMargins = True
+        Left = 5
+        Top = 0
+        Width = 33
+        Height = 41
+        Cursor = crHandPoint
+        Margins.Left = 5
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        Center = True
+        Picture.Data = {
+          0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
+          00180806000000E0773DF8000000097048597300000B1300000B1301009A9C18
+          0000015B4944415478DAED93B14B02511CC7EFCAC9252AC710A27FC0C9252208
+          6B68B32617C14585B0089C221A1A5CA56C488970109ACCAD21C53FE0E85FB0E6
+          C0881A5AACCECFC52F8AC75D5E77D720F4E0C397F7DEEF7E1F7D774FD7FE78E8
+          BF29364D33F1F190AE770217D03C439CCB3483A41EB4E094C8C9B48A201FB4A0
+          4A64655A439073F3DCBF604C04349F25AE202E4B06AC2379F02DA0F932D18039
+          65EB1ED248AE3D09681C22F68549A732A84011D1C0B580E651F9D54B6E8E508E
+          2C85E476A480E649E20C665C36FF1CCF904772612BA07198286B5F5FCAF7D183
+          099897F91DBCC3824D6D0D7611BDA88263A220D327E882F502DB14F7EC3E53D6
+          2CC12AACC10A4CC97E85FD6D55B0434C4B53838257E5E87EBC07F251C445F6C8
+          FE91ED3B701A637F93ADBA262465A9059B484CDF029AC788135854B66E600B89
+          E15940F343624F73BEC96F504272E055B0414446FCC93E824BCF47E4770C0175
+          729219F8CBFD2E0000000049454E44AE426082}
+        ExplicitLeft = 0
+        ExplicitHeight = 49
+      end
+      object pnlVoosText: TPanel
+        AlignWithMargins = True
+        Left = 38
+        Top = 0
+        Width = 128
+        Height = 38
+        Cursor = crHandPoint
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 0
+        Align = alClient
+        Alignment = taLeftJustify
+        BevelOuter = bvNone
+        Caption = 'Voos'
+        Color = 6310948
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -20
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 0
+        StyleElements = [seClient, seBorder]
+        OnClick = pnlVoosTextClick
+      end
     end
   end
   object pnlMain: TPanel
@@ -516,44 +501,9 @@ object FormPiloto: TFormPiloto
       Height = 73
       Align = alTop
       BevelOuter = bvNone
-      Color = clBlue
+      Color = 6310948
       ParentBackground = False
       TabOrder = 0
-      object imgUsuario: TImage
-        Left = 878
-        Top = 0
-        Width = 66
-        Height = 73
-        Cursor = crHandPoint
-        Hint = 'Meus dados'
-        ParentCustomHint = False
-        Align = alRight
-        Center = True
-        ParentShowHint = False
-        Picture.Data = {
-          0954506E67496D61676589504E470D0A1A0A0000000D49484452000000300000
-          003008060000005702F987000000097048597300000B1300000B1301009A9C18
-          0000020D4944415478DAED98414B54511886CF3528B04CC26D8B5C59D6D83E5D
-          14D1A2C18510F9070A1C89CA6684FE43E0E8C4442DC6BD81BB5041A416216D5B
-          4C6AAB5CB40DA6197061D8F41CEE1D18A18B73CE3DE37707CE0B2F2F889FBCCF
-          BD1FC73313A81E57205DC0034817F000D2055207D06C3633C4637C175F897EBC
-          8FB7702508826A2A01287E8E58C433B82FE6D78EF03B9C07E430350051F90D7C
-          A7C3918FF8BE0B0857006F899CE1581980A7E200D1CE7F55F16B1327BD4E3781
-          F8260D50229E598E2F02909706D04F70D472BC0A40461AA0415CB01C6F007051
-          1AA04E0C588ED701189406E8F9155A229E5B8E1701284803DC50E1317AC67054
-          1FA36300EC8802441065E289E1D86BCADBBE39E700678975155EE03A91BED865
-          01F8930A803688053CABE2D749AFCD1B3CEFA2BC53803690EBC4237C4F1DBF4E
-          6FE2E5A43BDF7580D39607909607909607E0D8D47FE31A1E57E1A56E040FE321
-          DCBA2AEB1BEB2FFC037FC7FA28DDC6BB1CABCD5307A0F47962123FC4B7A3B236
-          D2509FF02AFE00CC415701287E957889A771BFED538B912EFF1EBF0264CF2900
-          C52F1345FC40997F7837D55F15BE9102203F1303507E8AA828FB35B1D56F9C03
-          62C51A80F22F54F8E425350744C91880F2B788CFAAFB2B7392F44A4D00F1C514
-          608DC80A976F690D804953801A91E81B0387AA0170C91420D13F18D702E0BF5D
-          3D8007F0003D2E0F202D0F20AD9E07F8073E10AC31130E0B740000000049454E
-          44AE426082}
-        ShowHint = True
-        ExplicitLeft = 872
-      end
       object pnlSuperiorDivisoria: TPanel
         AlignWithMargins = True
         Left = 0
@@ -577,22 +527,26 @@ object FormPiloto: TFormPiloto
         Height = 73
         Align = alLeft
         BevelOuter = bvNone
-        Color = clBlue
+        Color = 6310948
         ParentBackground = False
         TabOrder = 1
         object lblCargo: TLabel
           Left = 0
           Top = 41
-          Width = 57
-          Height = 20
+          Width = 801
+          Height = 32
           Align = alClient
           Caption = 'Piloto(a)'
+          Color = 6310948
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -15
           Font.Name = 'Segoe UI'
           Font.Style = []
+          ParentColor = False
           ParentFont = False
+          ExplicitWidth = 57
+          ExplicitHeight = 20
         end
         object pnlInfoUsuarioLabels: TPanel
           Left = 0
@@ -601,7 +555,7 @@ object FormPiloto: TFormPiloto
           Height = 41
           Align = alTop
           BevelOuter = bvNone
-          Color = clBlue
+          Color = 6310948
           ParentBackground = False
           TabOrder = 0
           object pnlInfoUsuarioBemVindo: TPanel
@@ -618,7 +572,7 @@ object FormPiloto: TFormPiloto
             Alignment = taLeftJustify
             BevelOuter = bvNone
             Caption = 'Bem Vindo(a)!'
-            Color = clBlue
+            Color = 6310948
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
             Font.Height = -19
@@ -633,17 +587,17 @@ object FormPiloto: TFormPiloto
             AlignWithMargins = True
             Left = 128
             Top = 0
-            Width = 144
+            Width = 668
             Height = 41
             Margins.Left = 0
             Margins.Top = 0
             Margins.Right = 5
             Margins.Bottom = 0
-            Align = alLeft
+            Align = alClient
             Alignment = taLeftJustify
             BevelOuter = bvNone
             Caption = 'Usuario'
-            Color = clBlue
+            Color = 6310948
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
             Font.Height = -19
@@ -656,6 +610,65 @@ object FormPiloto: TFormPiloto
           end
         end
       end
+      object pnlMeusDados: TPanel
+        Left = 878
+        Top = 0
+        Width = 66
+        Height = 73
+        Align = alRight
+        BevelOuter = bvNone
+        Color = 6310948
+        ParentBackground = False
+        TabOrder = 2
+        object imgUsuario: TImage
+          Left = 0
+          Top = 0
+          Width = 66
+          Height = 73
+          Cursor = crHandPoint
+          Hint = 'Meus dados'
+          ParentCustomHint = False
+          Align = alRight
+          Center = True
+          ParentShowHint = False
+          Picture.Data = {
+            0954506E67496D61676589504E470D0A1A0A0000000D49484452000000300000
+            003008060000005702F987000000097048597300000B1300000B1301009A9C18
+            0000020D4944415478DAED98414B54511886CF3528B04CC26D8B5C59D6D83E5D
+            14D1A2C18510F9070A1C89CA6684FE43E0E8C4442DC6BD81BB5041A416216D5B
+            4C6AAB5CB40DA6197061D8F41CEE1D18A18B73CE3DE37707CE0B2F2F889FBCCF
+            BD1FC73313A81E57205DC0034817F000D2055207D06C3633C4637C175F897EBC
+            8FB7702508826A2A01287E8E58C433B82FE6D78EF03B9C07E430350051F90D7C
+            A7C3918FF8BE0B0857006F899CE1581980A7E200D1CE7F55F16B1327BD4E3781
+            F8260D50229E598E2F02909706D04F70D472BC0A40461AA0415CB01C6F007051
+            1AA04E0C588ED701189406E8F9155A229E5B8E1701284803DC50E1317AC67054
+            1FA36300EC8802441065E289E1D86BCADBBE39E700678975155EE03A91BED865
+            01F8930A803688053CABE2D749AFCD1B3CEFA2BC53803690EBC4237C4F1DBF4E
+            6FE2E5A43BDF7580D39607909607909607E0D8D47FE31A1E57E1A56E040FE321
+            DCBA2AEB1BEB2FFC037FC7FA28DDC6BB1CABCD5307A0F47962123FC4B7A3B236
+            D2509FF02AFE00CC415701287E957889A771BFED538B912EFF1EBF0264CF2900
+            C52F1345FC40997F7837D55F15BE9102203F1303507E8AA828FB35B1D56F9C03
+            62C51A80F22F54F8E425350744C91880F2B788CFAAFB2B7392F44A4D00F1C514
+            608DC80A976F690D804953801A91E81B0387AA0170C91420D13F18D702E0BF5D
+            3D8007F0003D2E0F202D0F20AD9E07F8073E10AC31130E0B740000000049454E
+            44AE426082}
+          ShowHint = True
+          OnClick = imgUsuarioClick
+          ExplicitLeft = 878
+          ExplicitTop = -6
+        end
+      end
+    end
+    object pnlMainFrame: TPanel
+      Left = 0
+      Top = 73
+      Width = 944
+      Height = 576
+      Align = alClient
+      BevelOuter = bvNone
+      Color = 15791343
+      ParentBackground = False
+      TabOrder = 1
     end
   end
 end

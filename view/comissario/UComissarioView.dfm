@@ -242,7 +242,6 @@ object FormComissario: TFormComissario
       ParentBackground = False
       ParentFont = False
       TabOrder = 1
-      Visible = False
       StyleElements = [seClient, seBorder]
       object imgCheckIn: TImage
         AlignWithMargins = True
@@ -300,6 +299,7 @@ object FormComissario: TFormComissario
         TabOrder = 0
         StyleElements = [seClient, seBorder]
         OnClick = pnlCheckInTextClick
+        ExplicitLeft = 35
       end
     end
     object pnlHome: TPanel

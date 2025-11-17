@@ -343,6 +343,8 @@ begin
     status := 'C';
   end else if searchBar.ToUpper.Contains('ATIVO') then begin
     status := 'A';
+  end else if searchBar.ToUpper.Contains('CHECK-IN') then begin
+    status := 'I';
   end else if searchBar.ToUpper.Contains('EM ANDAMENTO') then begin
     status := 'E';
   end else if searchBar.ToUpper.Contains('FINALIZADO') then begin

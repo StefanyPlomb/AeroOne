@@ -11,6 +11,7 @@ object FormComissarioVoo: TFormComissarioVoo
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
   object pnlLateral: TPanel
     Left = 878
@@ -104,6 +105,7 @@ object FormComissarioVoo: TFormComissarioVoo
           0000000049454E44AE426082}
         ShowHint = True
         Visible = False
+        OnClick = imgConectarDesconectarWhiteClick
         OnMouseLeave = imgConectarDesconectarWhiteMouseLeave
         ExplicitLeft = 10
         ExplicitTop = 6
@@ -122,13 +124,13 @@ object FormComissarioVoo: TFormComissarioVoo
     Color = 15791343
     ParentBackground = False
     TabOrder = 1
-    ExplicitLeft = 32
-    object DBGridVoos: TDBGrid
+    ExplicitLeft = 8
+    object DBGridVoosDisponiveis: TDBGrid
       AlignWithMargins = True
       Left = 5
       Top = 116
       Width = 868
-      Height = 292
+      Height = 167
       Margins.Left = 5
       Margins.Top = 0
       Margins.Right = 5
@@ -155,6 +157,7 @@ object FormComissarioVoo: TFormComissarioVoo
       TitleFont.Name = 'Segoe UI'
       TitleFont.Style = []
       StyleElements = [seBorder]
+      OnEnter = DBGridVoosDisponiveisEnter
       Columns = <
         item
           Alignment = taRightJustify
@@ -302,7 +305,7 @@ object FormComissarioVoo: TFormComissarioVoo
           Title.Font.Height = -16
           Title.Font.Name = 'Segoe UI Semibold'
           Title.Font.Style = [fsBold]
-          Width = 40
+          Width = 90
           Visible = True
         end>
     end
@@ -316,8 +319,6 @@ object FormComissarioVoo: TFormComissarioVoo
       Color = 15791343
       ParentBackground = False
       TabOrder = 1
-      ExplicitLeft = -3
-      ExplicitTop = -3
       object pnlSearch: TPanel
         AlignWithMargins = True
         Left = 60
@@ -393,6 +394,7 @@ object FormComissarioVoo: TFormComissarioVoo
           ParentFont = False
           TabOrder = 0
           TextHint = ' Pesquise por ID, N'#250'mero Voo ou status'
+          OnChange = edtSearchChange
         end
         object pnlDiv1: TPanel
           AlignWithMargins = True
@@ -415,7 +417,7 @@ object FormComissarioVoo: TFormComissarioVoo
     object pnlVoosAtribuidos: TPanel
       AlignWithMargins = True
       Left = 5
-      Top = 413
+      Top = 369
       Width = 873
       Height = 35
       Margins.Left = 5
@@ -440,9 +442,9 @@ object FormComissarioVoo: TFormComissarioVoo
     object DBGridVoosAtribuidos: TDBGrid
       AlignWithMargins = True
       Left = 5
-      Top = 448
+      Top = 404
       Width = 868
-      Height = 123
+      Height = 167
       Margins.Left = 5
       Margins.Top = 0
       Margins.Right = 5
@@ -469,6 +471,7 @@ object FormComissarioVoo: TFormComissarioVoo
       TitleFont.Name = 'Segoe UI'
       TitleFont.Style = []
       StyleElements = [seBorder]
+      OnEnter = DBGridVoosAtribuidosEnter
       Columns = <
         item
           Alignment = taRightJustify
@@ -644,7 +647,111 @@ object FormComissarioVoo: TFormComissarioVoo
       ParentFont = False
       TabOrder = 4
       StyleElements = [seClient, seBorder]
-      ExplicitLeft = 2
+    end
+    object pnlHeaderVoosAtribuidos: TPanel
+      Left = 0
+      Top = 288
+      Width = 878
+      Height = 81
+      Align = alBottom
+      BevelOuter = bvNone
+      Color = 15791343
+      ParentBackground = False
+      TabOrder = 5
+      object pnlSearchVoosAtribuidos: TPanel
+        AlignWithMargins = True
+        Left = 60
+        Top = 25
+        Width = 758
+        Height = 31
+        Margins.Left = 60
+        Margins.Top = 25
+        Margins.Right = 60
+        Margins.Bottom = 25
+        Align = alClient
+        BevelOuter = bvNone
+        Color = 15791343
+        ParentBackground = False
+        TabOrder = 0
+        object imgSearchVoosAtribuidos: TImage
+          AlignWithMargins = True
+          Left = 726
+          Top = 3
+          Width = 32
+          Height = 22
+          Cursor = crHandPoint
+          Margins.Left = 0
+          Margins.Right = 0
+          Align = alRight
+          Center = True
+          Picture.Data = {
+            0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
+            00180806000000E0773DF8000000097048597300000B1300000B1301009A9C18
+            000002804944415478DACD944D48146118C79FE7DD2571EDD0553A68EE6EE4A5
+            2F4A4482E820B5BB9306D12D9D51A13C5497EDD00744104150114997346C6C0B
+            02214A664D09A228B4BA180551B66341A2141151EC16E6CCD3DF4CB0B6662751
+            E885E165DE79DEFFEFF91CA6055EFC5F012A62CDEB9472B7094B25138744649C
+            48EEB0E35CCFF45DF934674034D1B8544875C03A264213CC324CC29F85A91C02
+            A500BD27E683B6655EF867C0724D5FE110DF66A162BC1E25E7DBC5D9DE2ED38C
+            F54AE43833D7E2F574C632F7FB06ACACDD59922B0A0CC1EB12D77537BDBA991A
+            FE5BAA239A71127B92845A3269B3D31720ACE98791EB63E2D206BBD71C28102C
+            87137A3F1457F3E46464264A6F40C21881C533E456F359AB2A61F550481A6DAB
+            2BE509288F37970595FB1A05DC6DA7BBDAFD007EA66A0C805E005A3C0191AD7A
+            353A6510F9DF62A7CD7E9F80A9A80799E9238A1DF30444134DABD0EF8FD9A5ED
+            2F7BCD6B7E01114D7F2A44CF11C10E4FC054076517053F10CB19181FF0235E56
+            AF2F093AF40EB22750B7239E801FE16A8645226B725C141DB7DA7385D3A32731
+            0FA748396B333DA9A1C280B85183A9BD87903B50E8562FDB68BCA1D255810770
+            E82E6CEB66CE0B4D32BA42BF8FAD06DD74BE64C2493EB975399B9FF7A68DF827
+            5D85234E50A9AA173D9D637E0053E26DD8F6E0F20026B45A98DFE23CC5248F5C
+            929C222EC3F77A9C6D8603C398F6BADFA79D7D889FCB585DFBC25A03DA561DC2
+            8D5A4C77D18C21BCB6F19FEAF81ACAB68D76777FC913F2233EAD33BD4AB55DA1
+            626722CC0167310502A3F60DF38D678EF3C58DB3D8F7E269C7B0B4CE169FCB9A
+            0D9877F15F00150923AE98D27F4ACB7C4540155A636CC4BAD4375FE279808558
+            0B0EF80EAC181728D666FBC20000000049454E44AE426082}
+          ExplicitLeft = 864
+          ExplicitWidth = 20
+          ExplicitHeight = 75
+        end
+        object edtSearchVoosAtribuidos: TEdit
+          AlignWithMargins = True
+          Left = 0
+          Top = 0
+          Width = 726
+          Height = 28
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          Align = alClient
+          BorderStyle = bsNone
+          Color = 15791343
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clGray
+          Font.Height = 20
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
+          TextHint = ' Pesquise por ID, N'#250'mero Voo ou status'
+          OnChange = edtSearchVoosAtribuidosChange
+        end
+        object pnlDiv2: TPanel
+          AlignWithMargins = True
+          Left = 0
+          Top = 28
+          Width = 758
+          Height = 3
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          Align = alBottom
+          BevelOuter = bvNone
+          Color = 6310948
+          ParentBackground = False
+          TabOrder = 1
+        end
+      end
     end
   end
 end

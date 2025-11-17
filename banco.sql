@@ -183,4 +183,3 @@ CREATE TABLE usuarioVoo (
     CONSTRAINT fk_usuario_voo_voo
         FOREIGN KEY (idVoo) REFERENCES voos(id)
 );
-

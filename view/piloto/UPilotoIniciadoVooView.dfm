@@ -1,0 +1,445 @@
+object FormPilotoIniciadoVooView: TFormPilotoIniciadoVooView
+  Left = 0
+  Top = 0
+  BorderStyle = bsSingle
+  Caption = 'FormPilotoIniciadoVooView'
+  ClientHeight = 329
+  ClientWidth = 485
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Position = poMainFormCenter
+  TextHeight = 15
+  object pnlLateral: TPanel
+    Left = 419
+    Top = 0
+    Width = 66
+    Height = 329
+    Align = alRight
+    BevelOuter = bvNone
+    Color = 6310948
+    ParentBackground = False
+    TabOrder = 0
+    object pnlVoltar: TPanel
+      Left = 0
+      Top = 82
+      Width = 66
+      Height = 41
+      Align = alTop
+      BevelOuter = bvNone
+      Color = 6310948
+      ParentBackground = False
+      TabOrder = 0
+      object imgVoltarRed: TImage
+        AlignWithMargins = True
+        Left = 0
+        Top = 0
+        Width = 66
+        Height = 41
+        Cursor = crHandPoint
+        Hint = 'Conectar/Desconectar voo '#224' comiss'#225'rio'
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alClient
+        Center = True
+        ParentShowHint = False
+        Picture.Data = {
+          0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
+          00180806000000E0773DF8000000097048597300000B1300000B1301009A9C18
+          000003024944415478DAB5554D485451147EE73DE74D8CA691B68EC86523D4AA
+          A86D2064CD8FCC2677B54925FF88CCA044428BC44A278B36B55109066774D210
+          5C67AB82B4760611D44623D452DFBC9FDB77DF5C87F770E6395A3D18EE3D77EE
+          F9BE73BE73EEBD24FDE78F76B399D5D555D94E5353CBFF8480C5628774D3BCCC
+          242904F33836FBED7549D230BC27C6267D2525CF299158DA1501EBEE96F58585
+          4E007561C37ECF20185BC59E3E5F4D4D3FF5F4583B1220EA32DD30C624A2F302
+          6009F3515992662DC6BEF235CC0F03E92CD61B0050255CD33E45694036BF0A12
+          D891CFCF4FE4C025E9916A18B7299D5ECB1B7D6D6D792610B80390961C493018
+          7166E222C844A35D18FA44EE57D454EA593185845F238627C2EC5493C9FBDB08
+          784133A6F9996BCE23F72793EDAE68C3E14A9A98F85188448B4687E07B1592AE
+          A8BA5EBDD569E488E20686BB5C737563A39A666656854C84FFE2D8D80CB30DD1
+          0DE6952B16AB40808BA226B92CC811C15B18279DD1DBE091C83011350AD93A20
+          DB438F2C06793D10E49C3F953A9D2310516EF03EC7EF9C2F997C2DD61EC36E12
+          FE2F4D45B92599A6AB152D45D14A13896F7CAE87C3754C965F8160138104E0CB
+          B20438A1BAAADA8785111DF38F8F7F027807CC81628A8CCC5A0138A485424152
+          9479BEE4B3AC2A5E33DA2AA02ECBCBD9BD2C88F43E429A76B4EB8322095A4010
+          D7EAEB6B70BA3FD8049A7690A6A77F7A4B140EC749969B3D25328CCDD274FABB
+          A744A24073304EE1CF4164D0B6C7226FB5EA1B609C71B76924D20949EE017459
+          5D5F3F9AB74D85D679550A850E641485B76925CCEB68D37E17817DD00C6311D1
+          96037408ADDAEA02D8F9A00DF38E2B78D09C5908B309513C2DA6C6F06B82DFB0
+          3073D16F2310D7740AD30B429EB88AC2E2865CF190A5D771562671D9450B5E76
+          42AA323C32A30E129EEA986C59B316D1177B8DE808F1EB5A922E0ACDB3E08140
+          038D8CFC76E2793D38D7A0E74DD4A4C24B1EAE39F6F422F281A21E1C9773F684
+          5F02087F324F00689F00DDC4F00EF6A42F9379E1F546EFEED14727D94E1EDDF4
+          57047BF9FE00B61B9E28707D7BFF0000000049454E44AE426082}
+        ShowHint = True
+        ExplicitLeft = 10
+        ExplicitTop = 6
+        ExplicitWidth = 56
+        ExplicitHeight = 35
+      end
+      object imgVoltarWhite: TImage
+        AlignWithMargins = True
+        Left = 0
+        Top = 0
+        Width = 66
+        Height = 41
+        Cursor = crHandPoint
+        Hint = 'Conectar/Desconectar voo '#224' comiss'#225'rio'
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alClient
+        Center = True
+        ParentShowHint = False
+        Picture.Data = {
+          0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
+          00180806000000E0773DF8000000097048597300000B1300000B1301009A9C18
+          0000024D4944415478DAB5953B4C54511086EFD2680C8A81A536064B31914AA2
+          AD952291123A6D648DBC62404CB0313E0241D9E5151AAC30760A2434D662A589
+          463A4C8C893468C82244685CBFD9FD2F9E5CB88F453CC99FB977CECCFC67E6CC
+          3927E5FDE7912AC7B85028A48B4EA9D4F7032120602DE23A680667C1214D6D83
+          F760164C43B85A1601812B107DA01F1C8D59E43A78088620FA1D4B40F04AC473
+          D02495AD6E06BC065FA53B012E823690966ECEFE21D90825D0CA5F39C147C03D
+          9C7E86647A0C711F74382457DD4C8204FD4AD7C60D0CA7BC0403BF76C4847EFB
+          F01BDC45A00DFDAC9A8F60D41D085283EE4704490E710BE4C129BFD35C823B88
+          47AAB919AC4B6F36A3E026E8429F0D21A8422C6B4F76B27009DE22CEB9AB57F0
+          71D02EB31EE69E466491D57E2C62777E8740817E79A53EBFC4E48274632023FF
+          176000045B711BFB6F8A7319310FB6C011F4059F20ADD2D838CDC412BA1EBE87
+          936C32A3139F1C3EF57C7F942E6D7BE613D420FCE35FCFC4277456A62709093A
+          F019C5E70CDF1FA4AB46B71657227F73A34AB485FD4A648934B98868045926BA
+          F6B9C97EABBEC1EE42B08BECEE79AC52D585B469B1D621C18F7BA536B572F762
+          371424A895811DFF1C069D81007107CD32B58EDBFBA005B2B091C16832C90EE3
+          9751293D77F57B11D865F7125C91CA4A3380433EA22C0FBCBF67C5DE8796D0CB
+          4E4E765DCF382496AA5DDF765D7F91EEA457BAAE5B55733FB85DD79B6EBCA807
+          E736B80BAA622A945716C3891E9C00919DF06B5EE9C96C008735657DFE4EAB7E
+          16F54697FBE817CB11D54DFF44B09FF1073A450628E9C0B3560000000049454E
+          44AE426082}
+        ShowHint = True
+        ExplicitTop = -24
+      end
+    end
+    object pnlIniciar: TPanel
+      Left = 0
+      Top = 41
+      Width = 66
+      Height = 41
+      Align = alTop
+      BevelOuter = bvNone
+      Color = 6310948
+      ParentBackground = False
+      TabOrder = 1
+      object imgIniciarGreen: TImage
+        AlignWithMargins = True
+        Left = 0
+        Top = 0
+        Width = 66
+        Height = 41
+        Cursor = crHandPoint
+        Hint = 'Conectar/Desconectar voo '#224' comiss'#225'rio'
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alClient
+        Center = True
+        ParentShowHint = False
+        Picture.Data = {
+          0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
+          00180806000000E0773DF8000000097048597300000B1300000B1301009A9C18
+          000002064944415478DAE595BF4FDB5010C7EFEC10606958200B120B8D449C18
+          2A98D8BA752A30D044552594118642FB5F30B41248949105A1A4190A5B471698
+          0005DB01412B3180448105061A48F03BCE945F766CE30A9090B8C54FEFDDBBCF
+          BDAFBF7A0FE191039F0F20A1A5A35823355B63AA881D43CDEEDD1BD0B2355017
+          393E1922C00C22246C8B443ACF4F95C287DF7EC77E9EFE37A0BD985608609687
+          AD7E4D10D12F19446F21915F0B0CB08A0B8205EE3A124406223892C1EC768354
+          012E64F97BAA3B3BE72225FE84192A7B4036592ED52957154035529F01F18B43
+          865DA95217C770B9D1249143C457AE10A0115DC98DF9029246CAE0028A7D23CC
+          EB4AF6F5D5095F1C9F8C72CE471784A629B9764F80654549863FD59DDD00AE73
+          8D771904698225ABB725574251AD637ADF15905C7FDF89422C0501FC3B6DFA2D
+          03E66CB992D4A5B7CD2C3F0CA098EA41C0595B2E8A4E3DFE7DE5D124926ACCA6
+          422C7FE00AB0825DA4B18B925E00BF9FCC2E2AB08B6C0E737151FA1377F5D5B6
+          916D0A42563064369280AC974D398635253BEE0B68DD7C535B5F8EE85CE4A51D
+          022504AAE5D349AEA50936CEC054D712F9B22FC08A0EA33F6E82BC18F8AA003A
+          1402BA8BC9DCBA73CDF3B2BB84FC6048EC8EEA1B26519F5B715FC0B55C670D83
+          4894E154D5B1BCCA9D4FF1D531E9942530E076A8850F4D142E5F3C387288B66F
+          5BD12F9ECE93F96401E7CFE9E8195FFF1D360000000049454E44AE426082}
+        ShowHint = True
+        ExplicitLeft = 10
+        ExplicitTop = 6
+        ExplicitWidth = 56
+        ExplicitHeight = 35
+      end
+      object ImgIniciarWhite: TImage
+        AlignWithMargins = True
+        Left = 0
+        Top = 0
+        Width = 66
+        Height = 41
+        Cursor = crHandPoint
+        Hint = 'Conectar/Desconectar voo '#224' comiss'#225'rio'
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alClient
+        Center = True
+        ParentShowHint = False
+        Picture.Data = {
+          0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
+          00180806000000E0773DF8000000097048597300000B1300000B1301009A9C18
+          000001764944415478DAE5953B2F444114C767483C2A95DD4689C2B222ABD2F9
+          021E1F4149E1F52D14242428B554F8061A2A84DD0D4149E2D55009CDF59BCC84
+          EB98B9F70A9B6C62927F4EEE9C33E737F7DC3373B5AAF1D0FF071045511ED3E1
+          1E6FB4D6F7BF0690B40533852650AF7057D0065A03F6FA6300C90B981DD499B2
+          C92B3406E42C33C025DF476D192BF88C867C906F0057968A67E72FA809350620
+          97A828CBE503CC6316C5F42DEA41ED680B0D0420B30096D300554C414CEFB170
+          38F6860B68DA032813D71F04B856BCF32CFC00C4624D67ADA256119B27F62104
+          28610EB3005CFC0866574C0F127BF4578051655B393E4AC41ED7B24439621FBD
+          00B7B08CE90B01523EF209715F3ACC0798C32C8969D3A6A6B34C9B6EAA709BCE
+          00584903342B7BD0BA84CB1C34E36B0824BF50F6A0BD25021CC41CAA0395FDAA
+          7852F6AA38978EA4CBCE40B651774A72B3F3715FF24440AC5C93CA5ED745E13E
+          55F6BA5E9765C90C10B09CFAFCE15CC75B3169D4CF2FB36E01EF42D68819C4B2
+          CD100000000049454E44AE426082}
+        ShowHint = True
+        ExplicitTop = -24
+      end
+    end
+    object pnlParar: TPanel
+      Left = 0
+      Top = 0
+      Width = 66
+      Height = 41
+      Align = alTop
+      BevelOuter = bvNone
+      Color = 6310948
+      ParentBackground = False
+      TabOrder = 2
+      object imgPararRed: TImage
+        AlignWithMargins = True
+        Left = 0
+        Top = 0
+        Width = 66
+        Height = 41
+        Cursor = crHandPoint
+        Hint = 'Conectar/Desconectar voo '#224' comiss'#225'rio'
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alClient
+        Center = True
+        ParentShowHint = False
+        Picture.Data = {
+          0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
+          00180806000000E0773DF8000000097048597300000B1300000B1301009A9C18
+          000001B24944415478DAC595C94E02411086ABC7E5247AE9E6643CB805124F6A
+          223C85A01135D1A710B73790E531DC4533BC8470504FC68871B97862E6249C5C
+          68FF098B0CC33630864A60A67B6AEAEBFAAB6B9AD13F1BEB29E09E6830C77990
+          185BC47096A41C2DBEC5DEF17F27A55487755D9D21FAB40D4809B18C8051C6D8
+          78D3254AF92219DBF16BDA555B8073A2BE312122B8DDB22305B289FB747D1701
+          0B4D016921E276835741A27E401A020C593091E824F85F4416F465B3AA056014
+          34CFF9031C26BA898F2CDE5CBAEE2917BE024871BE8A829ED67BC9A769AC249F
+          AC37B62441145AD0B40B1300CE27B8AC3901801DC167A316F084CB9413004C66
+          B06D3D6600E739E83FE4480652E6B1655DFF06C0E4073218311759880C06D30E
+          D5E0113EDE5AC03106EB0E49740889364D806BCE430A63670E65B0029F840970
+          4334F05D6CB449EAC2D068AF6834AFA5D14A322D61E2B21B001618C0A7225919
+          D63E4747C7D0D1E10E971F81F67B269EC58748C1963D0064DBA6345104DF6FF9
+          B92E5BDAED0E50A1106B5913299F4951C2D5B2B40530CC28FC8F100164651C99
+          733547E62D7E6ABFA625E789BE1AC5E8EDA1EF84FD02AC5EDD19A49A64CC0000
+          000049454E44AE426082}
+        ShowHint = True
+        ExplicitLeft = 10
+        ExplicitTop = 6
+        ExplicitWidth = 56
+        ExplicitHeight = 35
+      end
+      object ImgPararWhite: TImage
+        AlignWithMargins = True
+        Left = 0
+        Top = 0
+        Width = 66
+        Height = 41
+        Cursor = crHandPoint
+        Hint = 'Conectar/Desconectar voo '#224' comiss'#225'rio'
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alClient
+        Center = True
+        ParentShowHint = False
+        Picture.Data = {
+          0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
+          00180806000000E0773DF8000000097048597300000B1300000B1301009A9C18
+          000001504944415478DAC5955D4EC24014856734FAA471033E891878D585081A
+          10125D0522BA034196E16F04020B914723C69F1756A03E6162FD264C49194A4A
+          DB21DCE4E484F672BECE4CDA2BC59C4B2E14E038CE2A9645FB68176DEA5B7DD4
+          456D2529E5203480F043AC86B6021EF21D9D0169CD04207819ABA252C8DDA8A3
+          0AA0BF20403D42B85B350095A900BD2D8D88E16E6581B42700FA409F512226E0
+          13A5DC83F7028EB07BBF7FD02C758FE3F7DBA7F2B43C9A803BAC60097043CBB1
+          0978C59296003D5A5226E01B5BB304F8A1657D9E802F5A364C400FDBB10478A1
+          256D026EB1A225C0352D2726208F3D5802E46869988015317CD1B645BCFA40E9
+          89174D430EB0664C4086F0CE68F5E65D2057D869C4F02AE1E7DE0B7E8025EC12
+          954386ABD97111F8B9F68032985A4DD099BCA9157BB765268086A88357203532
+          F7C4F8C87C12C391D921FC775AC66287BE8DFA0767F3B0191A3D37A400000000
+          49454E44AE426082}
+        ShowHint = True
+        ExplicitTop = -24
+      end
+    end
+  end
+  object pnlMainFrame: TPanel
+    Left = 0
+    Top = 0
+    Width = 419
+    Height = 329
+    Align = alClient
+    BevelOuter = bvNone
+    Color = 15791343
+    ParentBackground = False
+    TabOrder = 1
+    object Label1: TLabel
+      Left = 192
+      Top = 65
+      Width = 28
+      Height = 45
+      Caption = #8594
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -33
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Panel1: TPanel
+      Left = 40
+      Top = 56
+      Width = 129
+      Height = 73
+      TabOrder = 0
+      object Panel4: TPanel
+        Left = 1
+        Top = 40
+        Width = 127
+        Height = 32
+        Align = alBottom
+        BevelOuter = bvNone
+        Caption = 'Origem'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 0
+      end
+      object Panel5: TPanel
+        Left = 1
+        Top = 1
+        Width = 127
+        Height = 39
+        Align = alClient
+        BevelOuter = bvNone
+        Caption = 'S'#227'o Paulo'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -15
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 1
+        object Panel17: TPanel
+          AlignWithMargins = True
+          Left = 0
+          Top = 36
+          Width = 127
+          Height = 3
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          Align = alBottom
+          BevelOuter = bvNone
+          Color = 1051799
+          ParentBackground = False
+          TabOrder = 0
+        end
+      end
+    end
+    object pnlTimer: TPanel
+      Left = 144
+      Top = 192
+      Width = 129
+      Height = 73
+      Caption = 'Timer'
+      TabOrder = 1
+    end
+    object Panel2: TPanel
+      Left = 240
+      Top = 52
+      Width = 120
+      Height = 81
+      TabOrder = 2
+      object Panel6: TPanel
+        Left = 1
+        Top = 48
+        Width = 118
+        Height = 32
+        Align = alBottom
+        BevelOuter = bvNone
+        Caption = 'Destino'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 0
+      end
+      object Panel7: TPanel
+        Left = 1
+        Top = 1
+        Width = 118
+        Height = 47
+        Align = alClient
+        BevelOuter = bvNone
+        Caption = 'Curitiba'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -15
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 1
+        object Panel8: TPanel
+          AlignWithMargins = True
+          Left = 0
+          Top = 44
+          Width = 118
+          Height = 3
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          Align = alBottom
+          BevelOuter = bvNone
+          Color = 1051799
+          ParentBackground = False
+          TabOrder = 0
+        end
+      end
+    end
+  end
+  object Timer1: TTimer
+    Enabled = False
+    OnTimer = Timer1Timer
+    Left = 200
+    Top = 272
+  end
+end

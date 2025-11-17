@@ -25,43 +25,33 @@ object DataModuleConn: TDataModuleConn
   end
   object FDPhysPgDriverLink: TFDPhysPgDriverLink
     VendorLib = 'C:\AeroOne\Win32\lib\libpq.dll'
-    Left = 144
+    Left = 132
     Top = 8
   end
   object FDQueryFuncionario: TFDQuery
     Connection = FDConnection
-    Left = 417
-    Top = 136
+    Left = 426
+    Top = 160
   end
   object DataSourceFuncionario: TDataSource
     DataSet = FDQueryFuncionario
-    Left = 416
-    Top = 83
+    Left = 423
+    Top = 80
   end
   object FDQueryVoos: TFDQuery
     Connection = FDConnection
-    Left = 416
-    Top = 256
-  end
-  object DataSourceAtribuidos: TDataSource
-    DataSet = FDQueryAtribuidos
-    Left = 557
-    Top = 136
-  end
-  object FDQueryAtribuidos: TFDQuery
-    Connection = FDConnection
-    Left = 558
-    Top = 198
+    Left = 283
+    Top = 160
   end
   object FDQueryQuantidade: TFDQuery
     Connection = FDConnection
-    Left = 416
-    Top = 16
+    Left = 333
+    Top = 8
   end
   object DataSourceVoos: TDataSource
     DataSet = FDQueryVoos
-    Left = 416
-    Top = 199
+    Left = 311
+    Top = 80
   end
   object DataSourceEndereco: TDataSource
     DataSet = FDQueryEndereco
@@ -75,17 +65,37 @@ object DataModuleConn: TDataModuleConn
   end
   object FDQueryGestor: TFDQuery
     Connection = FDConnection
-    Left = 288
-    Top = 16
+    Left = 232
+    Top = 8
   end
   object DataSourceAeronave: TDataSource
     DataSet = FDQueryAeronave
-    Left = 288
-    Top = 88
+    Left = 560
+    Top = 136
   end
   object FDQueryAeronave: TFDQuery
     Connection = FDConnection
-    Left = 288
+    Left = 560
+    Top = 200
+  end
+  object DataSourceVoosAtribuidos: TDataSource
+    DataSet = FDQueryVoosAtribuidos
+    Left = 191
+    Top = 80
+  end
+  object DataSourceVoosDisponiveis: TDataSource
+    DataSet = FDQueryVoosDisponiveis
+    Left = 40
+    Top = 80
+  end
+  object FDQueryVoosAtribuidos: TFDQuery
+    Connection = FDConnection
+    Left = 177
+    Top = 160
+  end
+  object FDQueryVoosDisponiveis: TFDQuery
+    Connection = FDConnection
+    Left = 40
     Top = 160
   end
 end

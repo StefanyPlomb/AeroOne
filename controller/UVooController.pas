@@ -11,14 +11,23 @@ type
     class procedure conectarPiloto(usuario: TUsuario; voo: TVoo);
     class procedure conectarComissario(usuario: TUsuario; voo: TVoo);
     class procedure conectarPassageiro(usuario: TUsuario; voo: TVoo);
+    class procedure desconectarPiloto(usuario: TUsuario; voo: TVoo);
+    class procedure desconectarComissario(usuario: TUsuario; voo: TVoo);
+    class procedure desconectarPassageiro(usuario: TUsuario; voo: TVoo);
     class function removeWordIgnoreCase(const Text, WordToRemove: String): String;
   public
     class procedure getVoos(id: Integer; numeroVoo, status: String);
+    class procedure getVoosDisponiveis(id, idUsuario: Integer; numeroVoo, status: String);
+    class procedure getVoosAtribuidos(id, idUsuario: Integer; numeroVoo, status: String);
+    class function getVooEmAndamento(idUsuario: Integer): TVoo;
     class function getVoo(id: Integer): TVoo;
     class function getVooByNumeroVoo(numeroVoo: String): TVoo;
     class function cadastrar(voo: TVoo): Integer;
     class procedure update(novoVoo, voo: TVoo);
     class procedure conectar(usuario: TUsuario; voo: TVoo);
+    class procedure desconectar(usuario: TUsuario; voo: TVoo);
+    class procedure iniciarVoo(id: Integer);
+    class procedure finalizarVoo(id: Integer);
   end;
 
 implementation
@@ -106,7 +115,7 @@ begin
   end else if usuario.getCargo = 'Comissário(a)' then begin
     conectarComissario(usuario, voo);
   end else if usuario.getCargo = 'Passageiro(a)' then begin
-    conectarPiloto(usuario, voo);
+    conectarPassageiro(usuario, voo);
   end else begin
     raise Exception.Create('Não foi possível identificar usuário para se conectar ao voo');
   end;
@@ -181,6 +190,46 @@ begin
 
   dao.conectar(usuario.getId, voo.getId, 'Piloto(a)', '');
 
+  dao.Free;
+end;
+
+class procedure TVooController.desconectar(usuario: TUsuario; voo: TVoo);
+begin
+  if usuario.getCargo = 'Piloto(a)' then begin
+    desconectarPiloto(usuario, voo);
+  end else if usuario.getCargo = 'Comissário(a)' then begin
+    desconectarComissario(usuario, voo);
+  end else if usuario.getCargo = 'Passageiro(a)' then begin
+    desconectarPiloto(usuario, voo);
+  end else begin
+    raise Exception.Create('Não foi possível identificar usuário para se conectar ao voo');
+  end;
+end;
+
+class procedure TVooController.desconectarComissario(usuario: TUsuario; voo: TVoo);
+var
+  dao: TVooDao;
+begin
+  dao := TVooDao.Create;
+  dao.desconectar(usuario.getId, voo.getId);
+  dao.Free;
+end;
+
+class procedure TVooController.desconectarPassageiro(usuario: TUsuario; voo: TVoo);
+var
+  dao: TVooDao;
+begin
+  dao := TVooDao.Create;
+  dao.desconectar(usuario.getId, voo.getId);
+  dao.Free;
+end;
+
+class procedure TVooController.desconectarPiloto(usuario: TUsuario; voo: TVoo);
+var
+  dao: TVooDao;
+begin
+  dao := TVooDao.Create;
+  dao.desconectar(usuario.getId, voo.getId);
   dao.Free;
 end;
 
@@ -314,18 +363,81 @@ begin
   dao.Free;
 end;
 
+class function TVooController.getVooEmAndamento(idUsuario: Integer): TVoo;
+var
+  dao: TVooDao;
+begin
+  dao := TVooDao.Create;
+  result := dao.getVooEmAndamento(idUsuario);
+  dao.Free;
+end;
+
 class procedure TVooController.getVoos(id: Integer; numeroVoo, status: String);
 var
   dao: TVooDao;
 begin
   dao := TVooDao.Create;
+
   numeroVoo := removeWordIgnoreCase(numeroVoo, 'ativo');
   numeroVoo := removeWordIgnoreCase(numeroVoo, 'inativo');
   numeroVoo := removeWordIgnoreCase(numeroVoo, 'cancelado');
+  numeroVoo := removeWordIgnoreCase(numeroVoo, 'check-in');
   numeroVoo := removeWordIgnoreCase(numeroVoo, 'em andamento');
   numeroVoo := removeWordIgnoreCase(numeroVoo, 'finalizado');
 
   dao.getVoos(id, numeroVoo, status);
+  dao.Free;
+end;
+
+class procedure TVooController.getVoosAtribuidos(id, idUsuario: Integer; numeroVoo, status: String);
+var
+  dao: TVooDao;
+begin
+  dao := TVooDao.Create;
+
+  numeroVoo := removeWordIgnoreCase(numeroVoo, 'ativo');
+  numeroVoo := removeWordIgnoreCase(numeroVoo, 'inativo');
+  numeroVoo := removeWordIgnoreCase(numeroVoo, 'cancelado');
+  numeroVoo := removeWordIgnoreCase(numeroVoo, 'check-in');
+  numeroVoo := removeWordIgnoreCase(numeroVoo, 'em andamento');
+  numeroVoo := removeWordIgnoreCase(numeroVoo, 'finalizado');
+
+  dao.getVoosAtribuidos(id, idUsuario, numeroVoo, status);
+  dao.Free;
+end;
+
+class procedure TVooController.getVoosDisponiveis(id, idUsuario: Integer; numeroVoo, status: String);
+var
+  dao: TVooDao;
+begin
+  dao := TVooDao.Create;
+
+  numeroVoo := removeWordIgnoreCase(numeroVoo, 'ativo');
+  numeroVoo := removeWordIgnoreCase(numeroVoo, 'inativo');
+  numeroVoo := removeWordIgnoreCase(numeroVoo, 'cancelado');
+  numeroVoo := removeWordIgnoreCase(numeroVoo, 'check-in');
+  numeroVoo := removeWordIgnoreCase(numeroVoo, 'em andamento');
+  numeroVoo := removeWordIgnoreCase(numeroVoo, 'finalizado');
+
+  dao.getVoosDisponiveis(id, idUsuario, numeroVoo, status);
+  dao.Free;
+end;
+
+class procedure TVooController.finalizarVoo(id: Integer);
+var
+  dao: TVooDao;
+begin
+  dao := TVooDao.Create;
+  dao.finalizarVoo(id);
+  dao.Free;
+end;
+
+class procedure TVooController.iniciarVoo(id: Integer);
+var
+  dao: TVooDao;
+begin
+  dao := TVooDao.Create;
+  dao.iniciarVoo(id);
   dao.Free;
 end;
 

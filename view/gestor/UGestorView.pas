@@ -126,6 +126,7 @@ begin
   mudarPagina(TFormGestorHome, pnlHome);
 end;
 
+
 procedure TFormGestor.imgLogoutClick(Sender: TObject);
 begin
   logout;

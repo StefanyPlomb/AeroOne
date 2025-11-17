@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.pngimage,
-  Vcl.ExtCtrls, UUsuario;
+  Vcl.ExtCtrls, UUsuario, Data.DB, Vcl.Grids, Vcl.DBGrids;
 
 type
   TFormPassageiro = class(TForm)
@@ -17,6 +17,15 @@ type
     edtSearch: TEdit;
     imgSearch: TImage;
     pnlInfoUsuarioName: TPanel;
+    pnlLateral: TPanel;
+    pnlConectarDesconectar: TPanel;
+    imgConectarDesconectarGreen: TImage;
+    imgConectarDesconectarWhite: TImage;
+    pnlMainFrame: TPanel;
+    DBGridVoos: TDBGrid;
+    pnlVoosAtribuidos: TPanel;
+    DBGridVoosAtribuidos: TDBGrid;
+    pnlVoosDisponiveis: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private

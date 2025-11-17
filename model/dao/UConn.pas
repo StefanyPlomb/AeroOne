@@ -20,8 +20,6 @@ type
     FDQueryFuncionario: TFDQuery;
     DataSourceFuncionario: TDataSource;
     FDQueryVoos: TFDQuery;
-    DataSourceAtribuidos: TDataSource;
-    FDQueryAtribuidos: TFDQuery;
     FDQueryQuantidade: TFDQuery;
     DataSourceVoos: TDataSource;
     DataSourceEndereco: TDataSource;
@@ -29,6 +27,10 @@ type
     FDQueryGestor: TFDQuery;
     DataSourceAeronave: TDataSource;
     FDQueryAeronave: TFDQuery;
+    DataSourceVoosAtribuidos: TDataSource;
+    DataSourceVoosDisponiveis: TDataSource;
+    FDQueryVoosAtribuidos: TFDQuery;
+    FDQueryVoosDisponiveis: TFDQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

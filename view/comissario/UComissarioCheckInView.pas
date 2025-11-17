@@ -5,11 +5,13 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  Data.DB, Vcl.Grids, Vcl.DBGrids, UComissarioIniciarCheckInView, UConn, UUsuario,
-  Vcl.Imaging.pngimage;
+  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.Imaging.pngimage, Vcl.WinXPanels,
+  UUsuario, UVoo;
 
 type
   TFormComissarioCheckIn = class(TForm)
+    cardComissarioCheckIn: TCardPanel;
+    cardVoos: TCard;
     pnlLateral: TPanel;
     pnlInciar: TPanel;
     imgIniciarGreen: TImage;
@@ -22,14 +24,56 @@ type
     edtSearch: TEdit;
     pnlDiv1: TPanel;
     pnlVoosDisponiveis: TPanel;
+    cardCheckIn: TCard;
+    Panel1: TPanel;
+    pnlVoltar: TPanel;
+    imgVoltarRed: TImage;
+    imgVoltarWhite: TImage;
+    pnlLiberar: TPanel;
+    imgLiberarGreen: TImage;
+    imgLiberarWhite: TImage;
+    Panel2: TPanel;
+    pnlVoosAtribuidos: TPanel;
+    DBGridVoosAtribuidos: TDBGrid;
+    Panel3: TPanel;
+    Panel8: TPanel;
+    Panel11: TPanel;
+    Panel4: TPanel;
+    Panel5: TPanel;
+    Image1: TImage;
+    Edit1: TEdit;
+    Panel6: TPanel;
+    Panel7: TPanel;
+    Panel9: TPanel;
+    Panel10: TPanel;
+    Panel13: TPanel;
+    Panel12: TPanel;
+    Panel14: TPanel;
+    Panel17: TPanel;
+    Panel15: TPanel;
+    Panel16: TPanel;
+    Panel18: TPanel;
+    Panel19: TPanel;
+    Panel20: TPanel;
+    Panel21: TPanel;
+    Panel22: TPanel;
+    Panel23: TPanel;
+    Panel24: TPanel;
     procedure FormCreate(Sender: TObject);
-    procedure ButtonIniciarClick(Sender: TObject);
+    procedure imgVoltarWhiteMouseLeave(Sender: TObject);
+    procedure imgVoltarRedMouseEnter(Sender: TObject);
+    procedure imgLiberarWhiteMouseLeave(Sender: TObject);
   private
     { Private declarations }
     usuario: TUsuario;
+    voo: TVoo;
+    procedure loadGrid(searchBar: String);
+    procedure loadVooEmAndamento;
+    procedure mudarParaVooEmAndamento;
+    procedure mudarParaVoosAtribuidos;
   public
     { Public declarations }
-    constructor create(owner: TForm; aUsuario: TUsuario);
+  constructor create(owner: TForm; aUsuario: TUsuario);
   end;
 
 var
@@ -37,36 +81,9 @@ var
 
 implementation
 
-uses
-  UComissarioView;
+uses UVooController, UConn;
 
 {$R *.dfm}
-
-procedure TFormComissarioCheckIn.ButtonIniciarClick(Sender: TObject);
-var
-  Form2: TFormCheckInIniciado;
-  VooID: Integer;
-begin
-
-  if not DBGridAtribuidos.DataSource.DataSet.IsEmpty then
-  begin
-
-    VooID := DBGridAtribuidos.DataSource.DataSet.FieldByName('id').AsInteger;
-
-
-    Form2 := TFormCheckInIniciado.Create(Self);
-    try
-      Form2.VooID := VooID;
-      Form2.CarregarDadosDoBanco;
-      Form2.ShowModal;
-    finally
-      Form2.Free;
-    end;
-  end
-  else
-    ShowMessage('Nenhum voo selecionado!');
-end;
-
 
 constructor TFormComissarioCheckIn.create(owner: TForm; aUsuario: TUsuario);
 begin
@@ -75,34 +92,89 @@ begin
 end;
 
 procedure TFormComissarioCheckIn.FormCreate(Sender: TObject);
+var
+  vooBD: TVoo;
 begin
-  DBGridAtribuidos.DataSource := DataModuleConn.DataSourceAtribuidos;
-
-  with DBGridAtribuidos.Columns.Add do
-  begin
-    FieldName := 'origem'; Title.Caption := 'Partida'; Title.Font.Style := [fsBold]; Title.Font.Size := 15;
-  end;
-  with DBGridAtribuidos.Columns.Add do
-  begin
-    FieldName := 'destino'; Title.Caption := 'Destino'; Title.Font.Style := [fsBold]; Title.Font.Size := 15;
-  end;
-  with DBGridAtribuidos.Columns.Add do
-  begin
-    FieldName := 'status'; Title.Caption := 'Status do Voo'; Title.Font.Style := [fsBold]; Title.Font.Size := 15;
-  end;
-  with DBGridAtribuidos.Columns.Add do
-  begin
-    FieldName := 'data_partida'; Title.Caption := 'Data Partida'; Title.Font.Style := [fsBold]; Title.Font.Size := 15;
-  end;
-  with DBGridAtribuidos.Columns.Add do
-  begin
-    FieldName := 'data_chegada'; Title.Caption := 'Data Chegada'; Title.Font.Style := [fsBold]; Title.Font.Size := 15;
-  end;
-  with DBGridAtribuidos.Columns.Add do
-  begin
-    FieldName := 'hora_partida'; Title.Caption := 'Hora Partida'; Title.Font.Style := [fsBold]; Title.Font.Size := 15;
+  vooBD := TVooController.getVooEmAndamento(usuario.getId);
+  if vooBD <> nil then begin
+    cardComissarioCheckIn.ActiveCard := cardCheckIn;
+    voo := vooBD;
+    loadVooEmAndamento;
+  end else begin
+    cardComissarioCheckIn.ActiveCard := cardVoos;
+    loadGrid(edtSearch.Text);
   end;
 end;
 
-end.
+procedure TFormComissarioCheckIn.imgLiberarWhiteMouseLeave(Sender: TObject);
+begin
+  imgLiberarWhite.Visible := false;
+  imgLiberarGreen.Visible := true;
+end;
 
+procedure TFormComissarioCheckIn.imgVoltarRedMouseEnter(Sender: TObject);
+begin
+  imgVoltarWhite.Visible := true;
+  imgVoltarRed.Visible := false;
+end;
+
+procedure TFormComissarioCheckIn.imgVoltarWhiteMouseLeave(Sender: TObject);
+begin
+  imgVoltarWhite.Visible := false;
+  imgVoltarRed.Visible := true;
+end;
+
+procedure TFormComissarioCheckIn.loadGrid(searchBar: String);
+var
+  id: Integer;
+  numeroVoo, status: String;
+begin
+  DBGridVoos.DataSource := DataModuleConn.DataSourceVoosAtribuidos;
+
+  try
+    id := StrToInt(searchBar);
+  except
+    id := 0;
+    numeroVoo := searchBar;
+  end;
+
+  status := '';
+  if (searchBar.ToUpper.Contains('INATIVO')) or (searchBar.ToUpper.Contains('CANCELADO')) then begin
+    status := 'C';
+  end else if searchBar.ToUpper.Contains('ATIVO') then begin
+    status := 'A';
+  end else if searchBar.ToUpper.Contains('CHECK-IN') then begin
+    status := 'I';
+  end else if searchBar.ToUpper.Contains('EM ANDAMENTO') then begin
+    status := 'E';
+  end else if searchBar.ToUpper.Contains('FINALIZADO') then begin
+    status := 'F';
+  end;
+
+  TVooController.getVoosAtribuidos(id, usuario.getId, numeroVoo, status);
+end;
+
+procedure TFormComissarioCheckIn.loadVooEmAndamento;
+begin
+
+end;
+
+procedure TFormComissarioCheckIn.mudarParaVooEmAndamento;
+var
+  vooBD: TVoo;
+begin
+  vooBD := TVooController.getVooEmAndamento(usuario.getId);
+  if vooBD <> nil then begin
+    voo := vooBD;
+    loadVooEmAndamento;
+    cardComissarioCheckIn.ActiveCard := cardCheckIn;
+  end;
+end;
+
+procedure TFormComissarioCheckIn.mudarParaVoosAtribuidos;
+begin
+  cardComissarioCheckIn.ActiveCard := cardVoos;
+  loadGrid(edtSearch.Text);
+end;
+
+end.

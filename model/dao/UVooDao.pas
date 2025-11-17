@@ -8,13 +8,19 @@ type
   TVooDao = class
   public
     procedure getVoos(id: Integer; numeroVoo, status: String);
+    procedure getVoosDisponiveis(id, idUsuario: Integer; numeroVoo, status: String);
+    procedure getVoosAtribuidos(id, idUsuario: Integer; numeroVoo, status: String);
     function getVoo(id: Integer): TVoo;
     function getVooByNumeroVoo(numeroVoo: String): TVoo;
+    function getVooEmAndamento(idUsuario: Integer): TVoo;
     function cadastrar(voo: TVoo): Integer;
     procedure update(voo: TVoo);
     procedure conectar(idUsuario, idVoo: Integer; funcao, assento: String);
+    procedure desconectar(idUsuario, idVoo: Integer);
     function usuarioJaConectado(idUsuario, idVoo: Integer): Boolean;
     function countConectados(idVoo: Integer; funcao: String): Integer;
+    procedure iniciarVoo(id: Integer);
+    procedure finalizarVoo(id: Integer);
   end;
 
 implementation
@@ -85,6 +91,22 @@ begin
   result := query.FieldByName('qtd').AsInteger;
 end;
 
+procedure TVooDao.desconectar(idUsuario, idVoo: Integer);
+var
+  query: TFDQuery;
+begin
+  query := DataModuleConn.FDQueryVoos;
+
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('DELETE FROM usuarioVoo WHERE idUsuario = :idUsuario AND idVoo = :idVoo');
+
+  query.ParamByName('idUsuario').AsInteger := idUsuario;
+  query.ParamByName('idVoo').AsInteger := idVoo;
+
+  query.ExecSQL;
+end;
+
 function TVooDao.getVoo(id: Integer): TVoo;
 var
   query: TFDQuery;
@@ -127,6 +149,38 @@ begin
   query.SQL.Clear;
   query.SQL.Add('SELECT * FROM voos WHERE UPPER(numeroVoo) = :numeroVoo');
   query.ParamByName('numeroVoo').AsString := numeroVoo.ToUpper;
+  query.Open;
+
+  if not query.IsEmpty then begin
+    voo := TVoo.Create;
+    voo.setId(query.FieldByName('id').AsInteger);
+    voo.setNumeroVoo(query.FieldByName('numeroVoo').AsString);
+    voo.setIdAeronave(query.FieldByName('idAeronave').AsInteger);
+    voo.setOrigem(query.FieldByName('origem').AsString);
+    voo.setDestino(query.FieldByName('destino').AsString);
+    voo.setDataPartida(query.FieldByName('dataPartida').AsString);
+    voo.setHoraPartida(query.FieldByName('horaPartida').AsString);
+    voo.setDataChegada(query.FieldByName('dataChegada').AsString);
+    voo.setHoraChegada(query.FieldByName('horaChegada').AsString);
+    voo.setStatus(query.FieldByName('status').AsString);
+    result := voo;
+  end else begin
+    result := nil;
+  end;
+end;
+
+function TVooDao.getVooEmAndamento(idUsuario: Integer): TVoo;
+var
+  query: TFDQuery;
+  voo: TVoo;
+begin
+  query := DataModuleConn.FDQueryVoos;
+
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('SELECT voos.* FROM voos LEFT JOIN usuarioVoo ON usuarioVoo.idVoo = voos.id WHERE usuarioVoo.idUsuario = :idUsuario AND usuarioVoo.idVoo IS NOT NULL AND voos.status IN (' + QuotedStr('E') + ', ' + QuotedStr('I') + ')');
+
+  query.ParamByName('idUsuario').AsInteger := idUsuario;
   query.Open;
 
   if not query.IsEmpty then begin
@@ -190,6 +244,118 @@ begin
   end;
 
   query.Open;
+end;
+
+procedure TVooDao.getVoosAtribuidos(id, idUsuario: Integer; numeroVoo, status: String);
+var
+  query: TFDQuery;
+  sql: String;
+begin
+  query := DataModuleConn.FDQueryVoosAtribuidos;
+
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('SELECT * FROM voos LEFT JOIN usuarioVoo ON usuarioVoo.idVoo = voos.id WHERE usuarioVoo.idUsuario = :idUsuario AND usuarioVoo.idVoo IS NOT NULL AND voos.status = ' + QuotedStr('A'));
+
+  if id <> 0 then begin
+    query.SQL.Add('AND voos.id = :id');
+  end;
+
+  if numeroVoo <> '' then begin
+    query.SQL.Add('AND numeroVoo ilike :numeroVoo');
+  end;
+
+  if status <> '' then begin
+    query.SQL.Add('AND status = :status');
+  end;
+
+  query.SQL.Add('ORDER BY voos.id');
+
+  query.ParamByName('idUsuario').AsInteger := idUsuario;
+
+  if id <> 0 then begin
+    query.ParamByName('id').AsInteger := id;
+  end;
+
+  if numeroVoo <> '' then begin
+    numeroVoo := '%' + numeroVoo + '%';
+    query.ParamByName('numeroVoo').AsString := numeroVoo;
+  end;
+
+  if status <> '' then begin
+    query.ParamByName('status').AsString := status;
+  end;
+
+  query.Open;
+end;
+
+procedure TVooDao.getVoosDisponiveis(id, idUsuario: Integer; numeroVoo, status: String);
+var
+  query: TFDQuery;
+  sql: String;
+begin
+  query := DataModuleConn.FDQueryVoosDisponiveis;
+
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('SELECT * FROM voos LEFT JOIN usuarioVoo ON usuarioVoo.idVoo = voos.id AND usuarioVoo.idUsuario = :idUsuario WHERE usuarioVoo.idVoo IS NULL AND voos.status = ' + QuotedStr('A'));
+
+  if id <> 0 then begin
+    query.SQL.Add('AND voos.id = :id');
+  end;
+
+  if numeroVoo <> '' then begin
+    query.SQL.Add('AND numeroVoo ilike :numeroVoo');
+  end;
+
+  if status <> '' then begin
+    query.SQL.Add('AND status = :status');
+  end;
+
+  query.SQL.Add('ORDER BY voos.id');
+
+  query.ParamByName('idUsuario').AsInteger := idUsuario;
+
+  if id <> 0 then begin
+    query.ParamByName('id').AsInteger := id;
+  end;
+
+  if numeroVoo <> '' then begin
+    numeroVoo := '%' + numeroVoo + '%';
+    query.ParamByName('numeroVoo').AsString := numeroVoo;
+  end;
+
+  if status <> '' then begin
+    query.ParamByName('status').AsString := status;
+  end;
+
+  query.Open;
+end;
+
+procedure TVooDao.iniciarVoo(id: Integer);
+var
+  query: TFDQuery;
+  sql: String;
+begin
+  query := DataModuleConn.FDQueryVoos;
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('UPDATE voos SET status = ' + QuotedStr('E') + ' WHERE id = :id');
+  query.ParamByName('id').AsInteger := id;
+  query.ExecSQL;
+end;
+
+procedure TVooDao.finalizarVoo(id: Integer);
+var
+  query: TFDQuery;
+  sql: String;
+begin
+  query := DataModuleConn.FDQueryVoos;
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('UPDATE voos SET status = ' + QuotedStr('F') + ' WHERE id = :id');
+  query.ParamByName('id').AsInteger := id;
+  query.ExecSQL;
 end;
 
 procedure TVooDao.update(voo: TVoo);
