@@ -10,7 +10,9 @@ CREATE TABLE usuarios (
     status VARCHAR(1)
 );
 
-INSERT INTO usuarios (nome, email, senha, telefone, cargo, cpf, passaporte, status) VALUES ('Stefany Diniz Plombon', 'admin@gestor.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '11900000000', 'Gestor(a)', '12345678900', 'AB123456', 'A');
+select * from usuarios
+
+INSERT INTO usuarios (nome, email, senha, telefone, cargo, cpf, passaporte, status) VALUES ('Stefany Diniz Plombon', 'admin@gestor.com', 'ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270', '11900000000', 'Gestor(a)', '12345678900', 'AB123456', 'A');
 
 CREATE TABLE enderecos (
     id SERIAL PRIMARY KEY,
@@ -183,3 +185,5 @@ CREATE TABLE usuarioVoo (
     CONSTRAINT fk_usuario_voo_voo
         FOREIGN KEY (idVoo) REFERENCES voos(id)
 );
+
+select * from usuarioVoo

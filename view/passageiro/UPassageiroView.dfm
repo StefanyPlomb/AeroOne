@@ -25,8 +25,6 @@ object FormPassageiro: TFormPassageiro
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 1108
-    ExplicitHeight = 641
     object pnlSuperior: TPanel
       Left = 0
       Top = 0
@@ -37,7 +35,6 @@ object FormPassageiro: TFormPassageiro
       Color = 6310948
       ParentBackground = False
       TabOrder = 0
-      ExplicitWidth = 1108
       object imgUsuario: TImage
         AlignWithMargins = True
         Left = 1044
@@ -201,7 +198,6 @@ object FormPassageiro: TFormPassageiro
         Color = 6310948
         ParentBackground = False
         TabOrder = 0
-        ExplicitWidth = 865
         object imgSearch: TImage
           AlignWithMargins = True
           Left = 665
@@ -264,7 +260,7 @@ object FormPassageiro: TFormPassageiro
           Align = alRight
           Alignment = taRightJustify
           BevelOuter = bvNone
-          Caption = 'Stefany'
+          Caption = 'Usu'#225'rio'
           Color = 6310948
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
@@ -275,8 +271,6 @@ object FormPassageiro: TFormPassageiro
           ParentFont = False
           TabOrder = 1
           StyleElements = [seClient, seBorder]
-          ExplicitLeft = 740
-          ExplicitTop = 3
         end
       end
     end
@@ -290,8 +284,6 @@ object FormPassageiro: TFormPassageiro
       Color = 6310948
       ParentBackground = False
       TabOrder = 1
-      ExplicitLeft = 878
-      ExplicitTop = 0
       object pnlConectarDesconectar: TPanel
         Left = 0
         Top = 0
@@ -379,6 +371,61 @@ object FormPassageiro: TFormPassageiro
           ExplicitHeight = 35
         end
       end
+      object pnlLogout: TPanel
+        AlignWithMargins = True
+        Left = 0
+        Top = 512
+        Width = 66
+        Height = 64
+        Cursor = crHandPoint
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alBottom
+        BevelOuter = bvNone
+        Color = 4733212
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -20
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 1
+        StyleElements = [seClient, seBorder]
+        object imgLogout: TImage
+          AlignWithMargins = True
+          Left = 0
+          Top = 0
+          Width = 66
+          Height = 64
+          Cursor = crHandPoint
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          Align = alClient
+          Center = True
+          Picture.Data = {
+            0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
+            00180806000000E0773DF8000000097048597300000B1300000B1301009A9C18
+            0000012B4944415478DA6364A03160A4BB05FFFFFF1700529380D81F88F98834
+            E713106F04E25C4646C68F842C5804A462C974F022A005F1842CF80875F97120
+            3E44A4C176406C09C41F81160810B2E03F94D90854DC408CE9402D7520F540FC
+            0FA8879916169802A9ED200CD48312BC145B0054AE03A49E02D5BEC7264F9105
+            40A581406A1D103F066247A0FABBB4B200049E00B103BA2544590014E2075246
+            40CC8CC59E4A2076C26509B1165C06523A84E2030A6E00F569926AC12520A54B
+            A405D781FAB448B50094F18C8908228CC8A634924381D42A5C8653C3821020B5
+            1A881F817C41F5640A550F0AEFA7E8A528D52C80EA316340141531B4B080A4C2
+            0E565C1F06E2ADC4580004DE406CCB4064714DF30A07542C80AACC0006E2AB4C
+            90AF4155661EC12A93DA80E61600008D1BB819460466380000000049454E44AE
+            426082}
+          OnClick = imgLogoutClick
+          ExplicitWidth = 33
+          ExplicitHeight = 49
+        end
+      end
     end
     object pnlMainFrame: TPanel
       Left = 0
@@ -390,14 +437,12 @@ object FormPassageiro: TFormPassageiro
       Color = 15791343
       ParentBackground = False
       TabOrder = 2
-      ExplicitTop = 0
-      ExplicitWidth = 878
-      object DBGridVoos: TDBGrid
+      object DBGridVoosDisponiveis: TDBGrid
         AlignWithMargins = True
         Left = 5
         Top = 35
         Width = 1034
-        Height = 293
+        Height = 237
         Margins.Left = 5
         Margins.Top = 0
         Margins.Right = 5
@@ -474,7 +519,7 @@ object FormPassageiro: TFormPassageiro
             Title.Font.Height = -16
             Title.Font.Name = 'Segoe UI Semibold'
             Title.Font.Style = [fsBold]
-            Width = 90
+            Width = 150
             Visible = True
           end
           item
@@ -491,7 +536,7 @@ object FormPassageiro: TFormPassageiro
             Title.Font.Height = -16
             Title.Font.Name = 'Segoe UI Semibold'
             Title.Font.Style = [fsBold]
-            Width = 90
+            Width = 150
             Visible = True
           end
           item
@@ -578,7 +623,7 @@ object FormPassageiro: TFormPassageiro
       object pnlVoosAtribuidos: TPanel
         AlignWithMargins = True
         Left = 5
-        Top = 333
+        Top = 277
         Width = 1039
         Height = 35
         Margins.Left = 5
@@ -588,7 +633,7 @@ object FormPassageiro: TFormPassageiro
         Align = alBottom
         Alignment = taLeftJustify
         BevelOuter = bvNone
-        Caption = 'Voos que est'#225' conectado'
+        Caption = 'Voos atribu'#237'dos'
         Color = 15791343
         Font.Charset = ANSI_CHARSET
         Font.Color = 6310948
@@ -599,14 +644,13 @@ object FormPassageiro: TFormPassageiro
         ParentFont = False
         TabOrder = 1
         StyleElements = [seClient, seBorder]
-        ExplicitLeft = 2
       end
       object DBGridVoosAtribuidos: TDBGrid
         AlignWithMargins = True
         Left = 5
-        Top = 368
+        Top = 312
         Width = 1034
-        Height = 203
+        Height = 259
         Margins.Left = 5
         Margins.Top = 0
         Margins.Right = 5
@@ -683,7 +727,7 @@ object FormPassageiro: TFormPassageiro
             Title.Font.Height = -16
             Title.Font.Name = 'Segoe UI Semibold'
             Title.Font.Style = [fsBold]
-            Width = 90
+            Width = 150
             Visible = True
           end
           item
@@ -700,7 +744,7 @@ object FormPassageiro: TFormPassageiro
             Title.Font.Height = -16
             Title.Font.Name = 'Segoe UI Semibold'
             Title.Font.Style = [fsBold]
-            Width = 90
+            Width = 150
             Visible = True
           end
           item
@@ -808,7 +852,6 @@ object FormPassageiro: TFormPassageiro
         ParentFont = False
         TabOrder = 3
         StyleElements = [seClient, seBorder]
-        ExplicitTop = 81
       end
     end
   end

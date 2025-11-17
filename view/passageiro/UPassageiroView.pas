@@ -22,15 +22,21 @@ type
     imgConectarDesconectarGreen: TImage;
     imgConectarDesconectarWhite: TImage;
     pnlMainFrame: TPanel;
-    DBGridVoos: TDBGrid;
+    DBGridVoosDisponiveis: TDBGrid;
     pnlVoosAtribuidos: TPanel;
     DBGridVoosAtribuidos: TDBGrid;
     pnlVoosDisponiveis: TPanel;
+    pnlLogout: TPanel;
+    imgLogout: TImage;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure imgLogoutClick(Sender: TObject);
   private
     { Private declarations }
     usuario: TUsuario;
+    isLogout: Boolean;
+    formAberto: TForm;
+    procedure logout;
     procedure updateInfoUsuario;
   public
     { Public declarations }
@@ -43,6 +49,8 @@ var
 
 implementation
 
+uses ULoginView;
+
 {$R *.dfm}
 
 constructor TFormPassageiro.create(aUsuario: TUsuario);
@@ -53,7 +61,10 @@ end;
 
 procedure TFormPassageiro.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  Application.Terminate;
+  Action := caFree;
+  if not isLogout then begin
+    Application.Terminate;
+  end;
 end;
 
 procedure TFormPassageiro.FormCreate(Sender: TObject);
@@ -65,6 +76,21 @@ begin
   exStyle := exStyle and not WS_EX_TOOLWINDOW;
   SetWindowLong(Handle, GWL_EXSTYLE, exStyle);
   ShowWindow(Handle, SW_SHOW);
+  isLogout := false;
+  formAberto := nil;
+  updateInfoUsuario;
+end;
+
+procedure TFormPassageiro.imgLogoutClick(Sender: TObject);
+begin
+  logout;
+end;
+
+procedure TFormPassageiro.logout;
+begin
+  isLogout := true;
+  FormLogin.Show;
+  self.Close;
 end;
 
 class procedure TFormPassageiro.open(aUsuario: TUsuario);
@@ -76,8 +102,15 @@ begin
 end;
 
 procedure TFormPassageiro.updateInfoUsuario;
+var
+  nome: String;
 begin
-  pnlInfoUsuarioName.Caption := self.usuario.getNome;
+  nome := Trim(usuario.getNome);
+  if nome.Contains(' ') then begin
+    nome.Substring(0, nome.IndexOf(' '));
+  end;
+
+  pnlInfoUsuarioName.Caption := nome;
 end;
 
 end.
