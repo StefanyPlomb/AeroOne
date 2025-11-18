@@ -11,6 +11,7 @@ type
     FpassageirosMax: Integer;
     FpilotosMax: Integer;
     FcomissariosMax: Integer;
+    Fstatus: String;
   public
     function getId: Integer;
     procedure setId(const Value: Integer);
@@ -24,6 +25,8 @@ type
     procedure setPilotosMax(const Value: Integer);
     function getComissariosMax: Integer;
     procedure setComissariosMax(const Value: Integer);
+    function getStatus: String;
+    procedure setStatus(const Value: String);
   end;
 
 implementation
@@ -88,6 +91,16 @@ end;
 procedure TAeronave.setComissariosMax(const Value: Integer);
 begin
   FcomissariosMax := Value;
+end;
+
+function TAeronave.getStatus: String;
+begin
+  Result := Fstatus;
+end;
+
+procedure TAeronave.setStatus(const Value: String);
+begin
+  Fstatus := Value;
 end;
 
 end.

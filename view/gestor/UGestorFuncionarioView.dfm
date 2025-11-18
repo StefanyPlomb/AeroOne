@@ -886,7 +886,6 @@ object FormGestorFuncionario: TFormGestorFuncionario
           BevelEdges = []
           BevelInner = bvNone
           BevelOuter = bvNone
-          Style = csDropDownList
           Color = 15791343
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clGray
@@ -898,7 +897,7 @@ object FormGestorFuncionario: TFormGestorFuncionario
           TextHint = ' Cargo'
           Items.Strings = (
             'Gestor(a)'
-            'Pilloto(a)'
+            'Piloto(a)'
             'Comiss'#225'rio(a)')
         end
         object edtTelefone: TMaskEdit

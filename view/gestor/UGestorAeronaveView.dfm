@@ -50,6 +50,7 @@ object FormGestorAeronaves: TFormGestorAeronaves
           Color = 6310948
           ParentBackground = False
           TabOrder = 0
+          ExplicitLeft = 881
           object pnlCadastrar: TPanel
             Left = 0
             Top = 0
@@ -218,6 +219,104 @@ object FormGestorAeronaves: TFormGestorAeronaves
               ExplicitTop = -1
             end
           end
+          object pnlStatus: TPanel
+            Left = 0
+            Top = 82
+            Width = 66
+            Height = 41
+            Align = alTop
+            BevelOuter = bvNone
+            Color = 6310948
+            ParentBackground = False
+            TabOrder = 2
+            object imgStatusRed: TImage
+              AlignWithMargins = True
+              Left = 0
+              Top = 0
+              Width = 66
+              Height = 41
+              Cursor = crHandPoint
+              Hint = 'Ativar/Desativar funcion'#225'rio selecionado'
+              Margins.Left = 0
+              Margins.Top = 0
+              Margins.Right = 0
+              Margins.Bottom = 0
+              Align = alClient
+              Center = True
+              ParentShowHint = False
+              Picture.Data = {
+                0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
+                00180806000000E0773DF8000000097048597300000B1300000B1301009A9C18
+                000002B54944415478DAC5555D481451149E333FBBAB6221BD5560081185B621
+                24115410BD84067BEFB64F0541901286D80F3E663E85888954F4033DF8166D3B
+                E382944F913E844120226B61D00646812248C5B63BB333B76F6D5DB575DB1D69
+                F1C2E59E3BE79EF39DF39DC31992CABC684B00444B4BA5A9690CA22924292513
+                2D698B8B6F686C2CBDAC0F8514339DF67B54758AC261DB35408AB110113D5BFB
+                CD719CA06F7858CFC849C6184033F257EC7E2D91B84FA3A3A992019281C07E59
+                966756531231CDB29A68642491CDC063A5D39724A2365C1BA09FB489CE56E8FA
+                A7A20009CE6B55215EC1B8EE8F6FF113BB09D1BFCFA3B2BB5BB6A6A7AF42DF8B
+                8CBFD98A72BC221C8E1704C8723B01F120B83F07A3CB307EE0338CE7FFE2D90A
+                044E3BB26C9010339AAA1E415DCC0D014CC63A11F900C2EEF018C65DC9C5826D
+                3B6CEF41BCEED1F53B790088982CC6E278F443539443C5BAA3005D5308AE0659
+                D4AED8E700CC60F01894E3D8D710FD801BE7391F9C5FC191C9FC04B2185F0FC0
+                5807A21F1444F5DE4824E6D6F92FCEEB14216EC2C7055C9FA27E8FB448E4750E
+                20C5791F2E37D0D3DBD1D3DF5D47CF581B9C3FCC5186EE0313DBD6020CE2D2A1
+                D9760D45A34B6E014473738DE9F57E818FCA2C408FD7306EAD52C479178E5E50
+                D4088A26375503C69E208B8B1067B5EA6A3F0D0D25573360AC11BC451D493AE9
+                D3F58F9B01808F7AF87801F17C5E91CBB5B60620C97940166217949F6D558D7B
+                E7E7675746F5460BDC1F7684D88979152D0900061F50AC7DB90F420CA3E5D8DF
+                EF32B30B53B51D53A00FDCCF82F7865201D6F7B424BD044897A7AA2A2EA55284
+                81B80786A7A0CA8CEC0368C977B6E3F0CA6874AE2400D1DAAA590B0B3118EF85
+                31463D2905D8C9FC706E63763D5E3B418B0264EB700675E877889A71EE00D851
+                64B27BD94888396434A1F9FD6FA9A7C7715DE4FFB9CA0EF01B6B2C352888B6D4
+                FD0000000049454E44AE426082}
+              ShowHint = True
+              OnClick = imgStatusRedClick
+              ExplicitLeft = 28
+              ExplicitTop = 16
+              ExplicitWidth = 26
+              ExplicitHeight = 25
+            end
+            object imgStatusWhite: TImage
+              AlignWithMargins = True
+              Left = 0
+              Top = 0
+              Width = 66
+              Height = 41
+              Cursor = crHandPoint
+              Hint = 'Ativar/Desativar funcion'#225'rio selecionado'
+              Margins.Left = 0
+              Margins.Top = 0
+              Margins.Right = 0
+              Margins.Bottom = 0
+              Align = alClient
+              Center = True
+              ParentShowHint = False
+              Picture.Data = {
+                0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
+                00180806000000E0773DF8000000097048597300000B1300000B1301009A9C18
+                000001E34944415478DAD5954B28445118C7EF251616243B1429890C52248592
+                8DA43C57945292485E598A953421218FB297E4B16127CD4294928547148AD80A
+                0961FCBEEE51A7E19A995B9253BFFEB7F39DEFFBDF73E6CC774DE39787F92706
+                5EAF3702A9841778865BD8324DF355C543914CD867EECD89412DB2E0335D4DB1
+                2515177379BE86619824F61C8C412A72A84D1D402E451E553C1C69826670C11E
+                D4103FF36B407202B201496AEA41153FFA666D08D20943700385AC3BB7355067
+                BB0D1950072D3045D2E24FE74C5E29B2AC769DC7FA173B830E6414DA59346E04
+                31C86D4526A09BDC912F062C9067D9DE3D64F9BB1D36C7B50FD190F099AF1B14
+                201EE822381A4C71AD461B223B2FA286C7D7A01D19837482070E8ACBA5E88306
+                988719EA6CEA066EA407A208DC3930902B3BAD4DC9ED8BD40DE4ED6517D118DC
+                3A3090B3BF82083535409D7EDDA0D7B0EE7336813D87BFC11CD2082790499D27
+                DD201B59856202A70E0DD29135A8FFF223FFD6F8B3765D81C4C18561FDF94E3E
+                5BB5CDFA1C249635AB811A1C2329DAD40AC995DFAC93DE252DC2AD5EC215A881
+                EF9D5E875EB51BC9498412C36AD969B00B55185C066A106658DF8064909E126A
+                733AF2C1198459BD83FA355026E586F5B52A8318C8877815963795B6BE43E177
+                E387F1FFAFE907FDE5BE17BEF4388A0000000049454E44AE426082}
+              ShowHint = True
+              Visible = False
+              OnMouseLeave = imgStatusWhiteMouseLeave
+              ExplicitTop = 3
+            end
+          end
         end
         object pnlMainFrame: TPanel
           Left = 0
@@ -362,6 +461,17 @@ object FormGestorAeronaves: TFormGestorAeronaves
                 Title.Font.Height = -16
                 Title.Font.Name = 'Segoe UI Semibold'
                 Title.Font.Style = [fsBold]
+                Width = 150
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'Status'
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -16
+                Font.Name = 'Segoe UI'
+                Font.Style = []
                 Width = 150
                 Visible = True
               end>

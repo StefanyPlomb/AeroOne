@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Mask,
-  Vcl.Grids, Vcl.DBGrids, Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.WinXPanels;
+  Vcl.Grids, Vcl.DBGrids, Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.WinXPanels,UAeronave;
 
 type
   TFormGestorAeronaves = class(TForm)
@@ -41,20 +41,28 @@ type
     edtPassageirosMax: TEdit;
     pnlDivPassageirosMax: TPanel;
     edtFabricante: TEdit;
+    pnlStatus: TPanel;
+    imgStatusRed: TImage;
+    imgStatusWhite: TImage;
     procedure imgCadastrarWhiteMouseLeave(Sender: TObject);
     procedure imgCadastrarGreenMouseEnter(Sender: TObject);
     procedure imgEditarWhiteMouseLeave(Sender: TObject);
     procedure imgEditarYellowMouseEnter(Sender: TObject);
+   // procedure imgStatusWhiteClick(Sender: TObject);
+    procedure imgStatusWhiteMouseLeave(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure edtSearchChange(Sender: TObject);
     procedure imgCadastrarWhiteClick(Sender: TObject);
     procedure imgEditarWhiteClick(Sender: TObject);
     procedure btnVoltarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
+    procedure imgStatusRedClick(Sender: TObject);
   private
     { Private declarations }
     operacao: String;
     idAeronaveGrid: Integer;
+    aeronave: TAeronave;
+    statusAeronaveGrid: String;
     procedure loadGrid(searchBar: String);
     procedure loadEditsFromGrid;
     procedure limparEdits;
@@ -67,7 +75,7 @@ var
 
 implementation
 
-uses UAeronaveController, UAeronave, UConn;
+uses UAeronaveController, UConn;
 
 {$R *.dfm}
 
@@ -109,6 +117,7 @@ begin
   cardGestorAeronave.ActiveCard := cardMainAeronave;
   limparEdits;
 end;
+
 
 procedure TFormGestorAeronaves.edtSearchChange(Sender: TObject);
 begin
@@ -161,6 +170,50 @@ procedure TFormGestorAeronaves.imgEditarYellowMouseEnter(Sender: TObject);
 begin
   imgEditarWhite.Visible := true;
   imgEditarYellow.Visible := false;
+end;
+
+
+
+
+
+
+// ================================= Arrumando ================================
+procedure TFormGestorAeronaves.imgStatusRedClick(Sender: TObject);
+var
+  novaAeronave: TAeronave;
+begin
+  try
+    loadEditsFromGrid;
+    if aeronave.getId <> idAeronaveGrid then
+    begin
+      novaAeronave := TAeronave.Create;
+      novaAeronave.setFabricante(edtFabricante.Text);
+      novaAeronave.setModelo(edtModelo.Text);
+     // novaAeronave.setPassageirosMax(edtPassageirosMax.Text);
+     // novaAeronave.setPilotosMax(edtPilotosMax.Text);
+     // novaAeronave.setComissariosMax(edtComissariosMax.Text);
+      if statusAeronaveGrid = 'A' then
+        novaAeronave.setStatus('I')
+      else
+        novaAeronave.setStatus('A');
+       TAeronaveController.update(novaAeronave, TAeronaveController.getAeronave(idAeronaveGrid));
+
+      novaAeronave.Free;
+    end;
+
+    limparEdits;
+    loadGrid(edtSearch.Text);
+
+  except
+    on E: Exception do
+      ShowMessage('Erro: ' + E.Message);
+  end;
+end;
+
+procedure TFormGestorAeronaves.imgStatusWhiteMouseLeave(Sender: TObject);
+begin
+  imgStatusWhite.Visible := false;
+  imgStatusRed.Visible := true;
 end;
 
 procedure TFormGestorAeronaves.limparEdits;

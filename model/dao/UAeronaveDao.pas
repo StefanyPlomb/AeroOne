@@ -201,6 +201,10 @@ begin
     Delete(sql, Length(sql), 1);
   end;
 
+  if aeronave.getStatus <> '' then begin
+    query.SQL.Add('status = :status, ');
+  end;
+
   query.SQL.Text := sql + sLineBreak + 'WHERE id = :id';
 
   query.ParamByName('id').AsInteger := aeronave.getId;
@@ -223,6 +227,10 @@ begin
 
   if aeronave.getComissariosMax <> 0 then begin
     query.ParamByName('comissariosMax').AsInteger := aeronave.getComissariosMax;
+  end;
+
+  if aeronave.getStatus <> '' then begin
+    query.ParamByName('status').AsString := aeronave.getStatus;
   end;
 
   query.ExecSQL;

@@ -155,6 +155,13 @@ begin
     raise Exception.Create('Quantidade de comissários inválida');
   end;
 
+  if Trim(novaaeronave.getStatus) <> '' then begin
+    if novaaeronave.getStatus <> aeronave.getStatus then begin
+      temAlteracao := true;
+      alterado.setStatus(novaaeronave.getStatus);
+    end;
+  end;
+
   if temAlteracao then begin
     dao := TAeronaveDao.Create;
     dao.update(alterado);
