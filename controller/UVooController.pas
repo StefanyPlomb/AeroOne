@@ -3,7 +3,7 @@ unit UVooController;
 interface
 
 uses
-  System.SysUtils, StrUtils, UVoo, UUsuario, UConn;
+  System.SysUtils, StrUtils, UVoo, UUsuario, UConn,UAeronave;
 
 type
   TVooController = class
@@ -28,11 +28,12 @@ type
     class procedure desconectar(usuario: TUsuario; voo: TVoo);
     class procedure iniciarVoo(id: Integer);
     class procedure finalizarVoo(id: Integer);
+
   end;
 
 implementation
 
-uses UVooDao, UAeronaveController, UAeronave;
+uses UVooDao, UAeronaveController;
 
 { TVooController }
 
@@ -40,6 +41,7 @@ class function TVooController.cadastrar(voo: TVoo): Integer;
 var
   dao: TVooDao;
   vooNum: TVoo;
+  aer: TAeronave;
 begin
   if Trim(voo.getNumeroVoo) = '' then begin
     raise Exception.Create('Número do voo não pode ser vazio');
@@ -92,6 +94,10 @@ begin
       raise Exception.Create('Hora da chegada deve conter 8 dígitos');
     end;
   end;
+
+    if aer.getStatus = 'I' then begin
+      raise Exception.Create('A aeronave selecionada está INATIVA e não pode ser usada.');
+   end;
 
   vooNum := TVooController.getVooByNumeroVoo(voo.getNumeroVoo);
   if vooNum <> nil then begin

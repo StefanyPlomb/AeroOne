@@ -14,7 +14,7 @@ type
     pnlDivBottom: TPanel;
     pnlRelatorioQtdVoosOrigemCanceladosPorCidade: TPanel;
     pnlRelatorioQtdVoosOrigemPorCidade: TPanel;
-    pnlRelatorioMediaTempoVoosPorRota: TPanel;
+    pnlRelatorioTempoVoos: TPanel;
   private
     { Private declarations }
   public

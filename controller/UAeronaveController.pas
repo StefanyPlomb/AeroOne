@@ -12,6 +12,8 @@ type
     class function getAeronave(id: Integer): TAeronave;
     class function getByModelo(modelo: String): TAeronave;
     class function cadastrar(aeronave: TAeronave): Integer;
+    class function desativar(idAeronave: Integer): Boolean;
+    class function ativar( idAeronave: Integer): Boolean;
     class procedure update(novaAeronave, aeronave: TAeronave);
   end;
 
@@ -169,6 +171,30 @@ begin
   end;
 
   alterado.Free;
+end;
+
+class function TAeronaveController.desativar(idAeronave: Integer): Boolean;
+var
+  dao: TAeronaveDAO;
+begin
+  dao := TAeronaveDAO.Create;
+  try
+    Result := dao.desativarDao(idAeronave);
+  finally
+    dao.Free;
+  end;
+end;
+
+class function TAeronaveController.ativar(idAeronave: Integer): Boolean;
+var
+  dao: TAeronaveDAO;
+begin
+  dao := TAeronaveDAO.Create;
+  try
+    Result := dao.ativarDao(idAeronave);
+  finally
+    dao.Free;
+  end;
 end;
 
 end.

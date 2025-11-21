@@ -50,7 +50,6 @@ object FormGestorAeronaves: TFormGestorAeronaves
           Color = 6310948
           ParentBackground = False
           TabOrder = 0
-          ExplicitLeft = 881
           object pnlCadastrar: TPanel
             Left = 0
             Top = 0
@@ -271,7 +270,7 @@ object FormGestorAeronaves: TFormGestorAeronaves
                 64B27BD94888396434A1F9FD6FA9A7C7715DE4FFB9CA0EF01B6B2C352888B6D4
                 FD0000000049454E44AE426082}
               ShowHint = True
-              OnClick = imgStatusRedClick
+              OnMouseEnter = imgStatusRedMouseEnter
               ExplicitLeft = 28
               ExplicitTop = 16
               ExplicitWidth = 26
@@ -313,8 +312,10 @@ object FormGestorAeronaves: TFormGestorAeronaves
                 E387F1FFAFE907FDE5BE17BEF4388A0000000049454E44AE426082}
               ShowHint = True
               Visible = False
+              OnClick = imgStatusWhiteClick
               OnMouseLeave = imgStatusWhiteMouseLeave
-              ExplicitTop = 3
+              ExplicitLeft = 16
+              ExplicitTop = 32
             end
           end
         end

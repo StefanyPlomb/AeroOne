@@ -36,6 +36,7 @@ object FormGestorRelatorio: TFormGestorRelatorio
       BevelOuter = bvNone
       BorderStyle = bsNone
       TabOrder = 0
+      ExplicitLeft = 282
       object pnlDivBottom: TPanel
         AlignWithMargins = True
         Left = 0
@@ -59,7 +60,6 @@ object FormGestorRelatorio: TFormGestorRelatorio
         ParentFont = False
         TabOrder = 0
         StyleElements = [seClient, seBorder]
-        ExplicitTop = 392
       end
       object pnlRelatorioQtdVoosOrigemCanceladosPorCidade: TPanel
         AlignWithMargins = True
@@ -85,7 +85,6 @@ object FormGestorRelatorio: TFormGestorRelatorio
         ParentFont = False
         TabOrder = 1
         StyleElements = [seClient, seBorder]
-        ExplicitTop = 410
       end
       object pnlRelatorioQtdVoosOrigemPorCidade: TPanel
         AlignWithMargins = True
@@ -111,9 +110,8 @@ object FormGestorRelatorio: TFormGestorRelatorio
         ParentFont = False
         TabOrder = 2
         StyleElements = [seClient, seBorder]
-        ExplicitTop = 20
       end
-      object pnlRelatorioMediaTempoVoosPorRota: TPanel
+      object pnlRelatorioTempoVoos: TPanel
         AlignWithMargins = True
         Left = 20
         Top = 20
@@ -126,7 +124,7 @@ object FormGestorRelatorio: TFormGestorRelatorio
         Margins.Bottom = 0
         Align = alTop
         BevelOuter = bvNone
-        Caption = 'M'#233'dia de tempo dos voos por rota'
+        Caption = 'Tempo dos voos por rota'
         Color = 6310948
         Font.Charset = ANSI_CHARSET
         Font.Color = clWhite

@@ -12,6 +12,9 @@ type
     function getAeronave(id: Integer): TAeronave;
     function getByModelo(modelo: String): TAeronave;
     function cadastrar(aeronave: TAeronave): Integer;
+    function desativarDao(idAeronave: Integer): Boolean;
+    function ativarDao(idAeronave: Integer): Boolean;
+
     procedure update(aeronave: TAeronave);
   end;
 
@@ -234,6 +237,58 @@ begin
   end;
 
   query.ExecSQL;
+end;
+
+function TAeronaveDao.desativarDao(idAeronave: Integer): Boolean;
+var
+  query: TFDQuery;
+  voosAtivos: Integer;
+begin
+  Result := False;
+  query := TFDQuery.Create(nil);
+
+  try
+    query.Connection := DataModuleConn.FDConnection;
+    query.SQL.Text :=
+      'SELECT COUNT(*) AS total ' + 'FROM voos ' + 'WHERE idAeronave = :idAeronave ' + 'AND status NOT IN (''F'', ''C'')';
+
+    query.ParamByName('idAeronave').AsInteger := idAeronave;
+    query.Open;
+
+    voosAtivos := query.FieldByName('total').AsInteger;
+    if voosAtivos > 0 then
+      raise Exception.Create('Esta aeronave não pode ser desativada, pois possui voos pendentes ou em andamento.' );
+
+    query.SQL.Text := 'UPDATE aeronaves SET status = ''I'' WHERE id = :idAeronave';
+
+    query.ParamByName('idAeronave').AsInteger := idAeronave;
+    query.ExecSQL;
+
+    Result := True;
+  finally
+    query.Free;
+  end;
+end;
+
+
+function TAeronaveDao.ativarDao(idAeronave: Integer): Boolean;
+var
+  query: TFDQuery;
+begin
+  Result := False;
+  query := TFDQuery.Create(nil);
+
+  try
+    query.Connection := DataModuleConn.FDConnection;
+    query.SQL.Text :=
+      'UPDATE aeronaves SET status = ''A'' WHERE id = :idAeronave';
+    query.ParamByName('idAeronave').AsInteger := idAeronave;
+    query.ExecSQL;
+
+    Result := True;
+  finally
+    query.Free;
+  end;
 end;
 
 end.

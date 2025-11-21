@@ -40,9 +40,6 @@ type
     pnlAeronaves: TPanel;
     imgAeronaves: TImage;
     pnlAeronavesText: TPanel;
-    pnlRotas: TPanel;
-    imgRotas: TImage;
-    pnlRotasText: TPanel;
     procedure pnlLogoutTextClick(Sender: TObject);
     procedure imgLogoutClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);

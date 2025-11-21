@@ -48,7 +48,6 @@ type
     procedure imgCadastrarGreenMouseEnter(Sender: TObject);
     procedure imgEditarWhiteMouseLeave(Sender: TObject);
     procedure imgEditarYellowMouseEnter(Sender: TObject);
-   // procedure imgStatusWhiteClick(Sender: TObject);
     procedure imgStatusWhiteMouseLeave(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure edtSearchChange(Sender: TObject);
@@ -56,7 +55,8 @@ type
     procedure imgEditarWhiteClick(Sender: TObject);
     procedure btnVoltarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
-    procedure imgStatusRedClick(Sender: TObject);
+    procedure imgStatusRedMouseEnter(Sender: TObject);
+    procedure imgStatusWhiteClick(Sender: TObject);
   private
     { Private declarations }
     operacao: String;
@@ -173,47 +173,46 @@ begin
 end;
 
 
-
-
-
-
-// ================================= Arrumando ================================
-procedure TFormGestorAeronaves.imgStatusRedClick(Sender: TObject);
-var
-  novaAeronave: TAeronave;
+procedure TFormGestorAeronaves.imgStatusRedMouseEnter(Sender: TObject);
 begin
-  try
-    loadEditsFromGrid;
-    if aeronave.getId <> idAeronaveGrid then
-    begin
-      novaAeronave := TAeronave.Create;
-      novaAeronave.setFabricante(edtFabricante.Text);
-      novaAeronave.setModelo(edtModelo.Text);
-     // novaAeronave.setPassageirosMax(edtPassageirosMax.Text);
-     // novaAeronave.setPilotosMax(edtPilotosMax.Text);
-     // novaAeronave.setComissariosMax(edtComissariosMax.Text);
-      if statusAeronaveGrid = 'A' then
-        novaAeronave.setStatus('I')
-      else
-        novaAeronave.setStatus('A');
-       TAeronaveController.update(novaAeronave, TAeronaveController.getAeronave(idAeronaveGrid));
+  imgStatusWhite.Visible := true;
+  imgStatusRed.Visible := false;
+end;
 
-      novaAeronave.Free;
+procedure TFormGestorAeronaves.imgStatusWhiteClick(Sender: TObject);
+begin
+  var
+  novaAeronave: TAeronave;
+
+  try
+  loadEditsFromGrid;
+
+    if statusAeronaveGrid = 'A' then
+    begin
+      if TAeronaveController.Desativar(idAeronaveGrid) then
+        ShowMessage('Aeronave desativada com sucesso!');
+    end
+    else
+    begin
+      if TAeronaveController.Ativar(idAeronaveGrid) then
+        ShowMessage('Aeronave ativada com sucesso!');
     end;
 
-    limparEdits;
-    loadGrid(edtSearch.Text);
+  limparEdits;
+  loadGrid(edtSearch.Text);
 
   except
-    on E: Exception do
-      ShowMessage('Erro: ' + E.Message);
+  on E: Exception do
+  ShowMessage('Erro: ' + E.Message);
   end;
+
+
 end;
 
 procedure TFormGestorAeronaves.imgStatusWhiteMouseLeave(Sender: TObject);
 begin
-  imgStatusWhite.Visible := false;
-  imgStatusRed.Visible := true;
+  imgStatusWhite.Visible := true;
+  imgStatusRed.Visible := false;
 end;
 
 procedure TFormGestorAeronaves.limparEdits;
@@ -237,6 +236,7 @@ begin
   edtPassageirosMax.Text := ds.FieldByName('passageirosMax').AsString;
   edtPilotosMax.Text := ds.FieldByName('pilotosMax').AsString;
   edtComissariosMax.Text := ds.FieldByName('comissariosMax').AsString;
+  statusAeronaveGrid := ds.FieldByName('status').AsString;
 end;
 
 procedure TFormGestorAeronaves.loadGrid(searchBar: String);
@@ -247,7 +247,15 @@ begin
   DBGridAeronaves.DataSource := DataModuleConn.DataSourceAeronave;
 
   try
-    id := StrToInt(searchBar);
+     if searchBar <> '' then
+     begin
+       id := StrToInt(searchBar);
+      end
+      else
+      begin
+        id := 0;
+        modelo := searchBar;
+      end;
   except
     id := 0;
     modelo := searchBar;
