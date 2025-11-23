@@ -886,6 +886,7 @@ object FormGestorFuncionario: TFormGestorFuncionario
           BevelEdges = []
           BevelInner = bvNone
           BevelOuter = bvNone
+          Style = csDropDownList
           Color = 15791343
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clGray

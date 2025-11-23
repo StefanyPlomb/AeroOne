@@ -30,6 +30,10 @@ type
     class procedure finalizarVoo(id: Integer);
     class function temVooEmAndamentoOuAtivo(idAeronave: Integer): Boolean;
     class function getPoltronasOcupadas(id: Integer): TStringList;
+    class procedure getPassageiros(nome, assento: String);
+    class function getQtdePassageiros(id: Integer): Integer;
+    class function getQtdePassageirosLiberados(id: Integer): Integer;
+    class procedure liberarPassageiro(idUsuario, id: Integer);
   end;
 
 implementation
@@ -359,12 +363,39 @@ begin
   alterado.Free;
 end;
 
+class procedure TVooController.getPassageiros(nome, assento: String);
+var
+  dao: TVooDao;
+begin
+  dao := TVooDao.Create;
+  dao.getPassageiros(nome, assento);
+  dao.Free;
+end;
+
 class function TVooController.getPoltronasOcupadas(id: Integer): TStringList;
 var
   dao: TVooDao;
 begin
   dao := TVooDao.Create;
   result := dao.getPoltronasOcupadas(id);
+  dao.Free;
+end;
+
+class function TVooController.getQtdePassageiros(id: Integer): Integer;
+var
+  dao: TVooDao;
+begin
+  dao := TVooDao.Create;
+  result := dao.getQtdePassageiros(id);
+  dao.Free;
+end;
+
+class function TVooController.getQtdePassageirosLiberados(id: Integer): Integer;
+var
+  dao: TVooDao;
+begin
+  dao := TVooDao.Create;
+  result := dao.getQtdePassageirosLiberados(id);
   dao.Free;
 end;
 
@@ -461,6 +492,15 @@ var
 begin
   dao := TVooDao.Create;
   dao.iniciarVoo(id);
+  dao.Free;
+end;
+
+class procedure TVooController.liberarPassageiro(idUsuario, id: Integer);
+var
+  dao: TVooDao;
+begin
+  dao := TVooDao.Create;
+  dao.liberarPassageiro(idUsuario, id);
   dao.Free;
 end;
 

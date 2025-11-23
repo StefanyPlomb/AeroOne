@@ -23,6 +23,10 @@ type
     procedure finalizarVoo(id: Integer);
     function temVooEmAndamentoOuAtivo(idAeronave: Integer): Boolean;
     function getPoltronasOcupadas(id: Integer): TStringList;
+    procedure getPassageiros(nome, assento: String);
+    function getQtdePassageiros(id: Integer): Integer;
+    function getQtdePassageirosLiberados(id: Integer): Integer;
+    procedure liberarPassageiro(idUsuario, id: Integer);
   end;
 
 implementation
@@ -109,6 +113,40 @@ begin
   query.ExecSQL;
 end;
 
+procedure TVooDao.getPassageiros(nome, assento: String);
+var
+  query: TFDQuery;
+  sql: String;
+begin
+  query := DataModuleConn.FDQueryVoos;
+
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('SELECT usuarios.id AS idUsuario, usuarios.nome, usuarios.cpf, usuarioVoo.assento FROM usuarioVoo LEFT JOIN usuarios on usuarioVoo.idUsuario = usuarios.id WHERE liberado IS NULL AND funcao = ' + QuotedStr('Passageiro(a)'));
+
+  if nome <> '' then begin
+    query.SQL.Add('AND nome ilike :nome');
+  end;
+
+  if assento <> '' then begin
+    query.SQL.Add('AND assento ilike :assento');
+  end;
+
+  query.SQL.Add('ORDER BY nome');
+
+  if nome <> '' then begin
+    nome := '%' + nome + '%';
+    query.ParamByName('nome').AsString := nome;
+  end;
+
+  if assento <> '' then begin
+    assento := '%' + assento + '%';
+    query.ParamByName('assento').AsString := assento;
+  end;
+
+  query.Open;
+end;
+
 function TVooDao.getPoltronasOcupadas(id: Integer): TStringList;
 var
   query: TFDQuery;
@@ -129,6 +167,38 @@ begin
       query.Next;
     end;
   end;
+end;
+
+function TVooDao.getQtdePassageiros(id: Integer): Integer;
+var
+  query: TFDQuery;
+  voo: TVoo;
+begin
+  query := DataModuleConn.FDQueryVoos;
+
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('SELECT COUNT(*) FROM usuarioVoo WHERE idVoo = :idVoo AND funcao = ' + QuotedStr('Passageiro(a)'));
+  query.ParamByName('idVoo').AsInteger := id;
+  query.Open;
+
+  result := query.FieldByName('count').AsInteger;
+end;
+
+function TVooDao.getQtdePassageirosLiberados(id: Integer): Integer;
+var
+  query: TFDQuery;
+  voo: TVoo;
+begin
+  query := DataModuleConn.FDQueryVoos;
+
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('SELECT COUNT(*) FROM usuarioVoo WHERE idVoo = :idVoo AND funcao = ' + QuotedStr('Passageiro(a)') + ' AND liberado = ' + QuotedStr('S'));
+  query.ParamByName('idVoo').AsInteger := id;
+  query.Open;
+
+  result := query.FieldByName('count').AsInteger;
 end;
 
 function TVooDao.getVoo(id: Integer): TVoo;
@@ -362,6 +432,19 @@ begin
   query.SQL.Clear;
   query.SQL.Add('UPDATE voos SET status = ' + QuotedStr('E') + ' WHERE id = :id');
   query.ParamByName('id').AsInteger := id;
+  query.ExecSQL;
+end;
+
+procedure TVooDao.liberarPassageiro(idUsuario, id: Integer);
+var
+  query: TFDQuery;
+begin
+  query := DataModuleConn.FDQueryVoos;
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('UPDATE usuarioVoo SET liberado = ' + QuotedStr('S') + ' WHERE idUsuario = :idUsuario AND idVoo = :idVoo');
+  query.ParamByName('idUsuario').AsInteger := idUsuario;
+  query.ParamByName('idVoo').AsInteger := id;
   query.ExecSQL;
 end;
 
