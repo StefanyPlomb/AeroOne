@@ -38,7 +38,8 @@ uses
   UGestorAeronaveView in 'view\gestor\UGestorAeronaveView.pas' {FormGestorAeronaves},
   UPilotoVooView in 'view\piloto\UPilotoVooView.pas' {FormPilotoVoo},
   UPilotoIniciarVooView in 'view\piloto\UPilotoIniciarVooView.pas' {FormPilotoIniciarVoo},
-  UPilotoHomeView in 'view\piloto\UPilotoHomeView.pas' {FormPilotoHome};
+  UPilotoHomeView in 'view\piloto\UPilotoHomeView.pas' {FormPilotoHome},
+  USelecionarPoltronaView in 'view\passageiro\USelecionarPoltronaView.pas' {FormSelecionarPoltrona};
 
 {$R *.res}
 
@@ -47,6 +48,5 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFormLogin, FormLogin);
   Application.CreateForm(TDataModuleConn, DataModuleConn);
-  Application.CreateForm(TFormPilotoHome, FormPilotoHome);
   Application.Run;
 end.

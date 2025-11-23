@@ -2,7 +2,7 @@ unit UVooDao;
 
 interface
 
-uses UVoo;
+uses System.Classes, UVoo;
 
 type
   TVooDao = class
@@ -21,6 +21,8 @@ type
     function countConectados(idVoo: Integer; funcao: String): Integer;
     procedure iniciarVoo(id: Integer);
     procedure finalizarVoo(id: Integer);
+    function temVooEmAndamentoOuAtivo(idAeronave: Integer): Boolean;
+    function getPoltronasOcupadas(id: Integer): TStringList;
   end;
 
 implementation
@@ -105,6 +107,28 @@ begin
   query.ParamByName('idVoo').AsInteger := idVoo;
 
   query.ExecSQL;
+end;
+
+function TVooDao.getPoltronasOcupadas(id: Integer): TStringList;
+var
+  query: TFDQuery;
+  voo: TVoo;
+begin
+  query := DataModuleConn.FDQueryVoos;
+
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('SELECT * FROM usuarioVoo WHERE idVoo = :id AND funcao = ' + QuotedStr('Passageiro(a)'));
+  query.ParamByName('id').AsInteger := id;
+  query.Open;
+
+  result := TStringList.Create;
+  if not query.IsEmpty then begin
+    while not query.eof do begin
+      result.Add(query.FieldByName('assento').AsString);
+      query.Next;
+    end;
+  end;
 end;
 
 function TVooDao.getVoo(id: Integer): TVoo;
@@ -204,7 +228,6 @@ end;
 procedure TVooDao.getVoos(id: Integer; numeroVoo, status: String);
 var
   query: TFDQuery;
-  sql: String;
 begin
   query := DataModuleConn.FDQueryVoos;
 
@@ -249,7 +272,6 @@ end;
 procedure TVooDao.getVoosAtribuidos(id, idUsuario: Integer; numeroVoo, status: String);
 var
   query: TFDQuery;
-  sql: String;
 begin
   query := DataModuleConn.FDQueryVoosAtribuidos;
 
@@ -292,7 +314,6 @@ end;
 procedure TVooDao.getVoosDisponiveis(id, idUsuario: Integer; numeroVoo, status: String);
 var
   query: TFDQuery;
-  sql: String;
 begin
   query := DataModuleConn.FDQueryVoosDisponiveis;
 
@@ -335,7 +356,6 @@ end;
 procedure TVooDao.iniciarVoo(id: Integer);
 var
   query: TFDQuery;
-  sql: String;
 begin
   query := DataModuleConn.FDQueryVoos;
   query.Close;
@@ -345,10 +365,26 @@ begin
   query.ExecSQL;
 end;
 
+function TVooDao.temVooEmAndamentoOuAtivo(idAeronave: Integer): Boolean;
+var
+  query: TFDQuery;
+begin
+  query := DataModuleConn.FDQueryVoos;
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('SELECT * FROM voos WHERE idAeronave = :idAeronave AND status IN(' + QuotedStr('E') + QuotedStr('A') + ')');
+  query.ParamByName('idAeronave').AsInteger := idAeronave;
+  query.Open;
+
+  result := true;
+  if query.IsEmpty then begin
+    result := false;
+  end;
+end;
+
 procedure TVooDao.finalizarVoo(id: Integer);
 var
   query: TFDQuery;
-  sql: String;
 begin
   query := DataModuleConn.FDQueryVoos;
   query.Close;

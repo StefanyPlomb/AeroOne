@@ -223,6 +223,10 @@
             <Form>FormPilotoHome</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="view\passageiro\USelecionarPoltronaView.pas">
+            <Form>FormSelecionarPoltrona</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

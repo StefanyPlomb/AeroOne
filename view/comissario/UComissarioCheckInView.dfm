@@ -19,7 +19,7 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
     Width = 944
     Height = 576
     Align = alClient
-    ActiveCard = cardVoos
+    ActiveCard = cardCheckIn
     BevelOuter = bvNone
     Caption = 'cardComissarioCheckIn'
     TabOrder = 0
@@ -31,10 +31,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
       Caption = 'cardVoos'
       CardIndex = 0
       TabOrder = 0
-      ExplicitLeft = 1
-      ExplicitTop = 1
-      ExplicitWidth = 942
-      ExplicitHeight = 574
       object pnlLateral: TPanel
         Left = 878
         Top = 0
@@ -45,8 +41,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
         Color = 6310948
         ParentBackground = False
         TabOrder = 0
-        ExplicitLeft = 876
-        ExplicitHeight = 574
         object pnlInciar: TPanel
           Left = 0
           Top = 0
@@ -151,8 +145,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
         Color = 15791343
         ParentBackground = False
         TabOrder = 1
-        ExplicitWidth = 876
-        ExplicitHeight = 574
         object DBGridVoos: TDBGrid
           AlignWithMargins = True
           Left = 5
@@ -346,7 +338,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
           Color = 15791343
           ParentBackground = False
           TabOrder = 1
-          ExplicitWidth = 876
           object pnlSearch: TPanel
             AlignWithMargins = True
             Left = 60
@@ -362,7 +353,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
             Color = 15791343
             ParentBackground = False
             TabOrder = 0
-            ExplicitWidth = 756
             object imgSearch: TImage
               AlignWithMargins = True
               Left = 726
@@ -423,7 +413,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
               ParentFont = False
               TabOrder = 0
               TextHint = ' Pesquise por ID, N'#250'mero Voo ou status'
-              ExplicitWidth = 724
             end
             object pnlDiv1: TPanel
               AlignWithMargins = True
@@ -440,7 +429,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
               Color = 6310948
               ParentBackground = False
               TabOrder = 1
-              ExplicitWidth = 756
             end
           end
         end
@@ -468,7 +456,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
           ParentFont = False
           TabOrder = 2
           StyleElements = [seClient, seBorder]
-          ExplicitWidth = 871
         end
       end
     end
@@ -480,10 +467,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
       Caption = 'cardCheckIn'
       CardIndex = 1
       TabOrder = 1
-      ExplicitLeft = 1
-      ExplicitTop = 1
-      ExplicitWidth = 942
-      ExplicitHeight = 574
       object Panel1: TPanel
         Left = 878
         Top = 0
@@ -494,8 +477,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
         Color = 6310948
         ParentBackground = False
         TabOrder = 0
-        ExplicitLeft = 876
-        ExplicitHeight = 574
         object pnlVoltar: TPanel
           Left = 0
           Top = 41
@@ -655,6 +636,7 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
               49454E44AE426082}
             ShowHint = True
             Visible = False
+            OnMouseEnter = imgLiberarGreenMouseEnter
             ExplicitLeft = 3
             ExplicitTop = 16
           end
@@ -711,8 +693,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
         Color = 15791343
         ParentBackground = False
         TabOrder = 1
-        ExplicitWidth = 876
-        ExplicitHeight = 574
         object pnlVoosAtribuidos: TPanel
           AlignWithMargins = True
           Left = 8
@@ -737,8 +717,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
           ParentFont = False
           TabOrder = 0
           StyleElements = [seClient, seBorder]
-          ExplicitTop = 234
-          ExplicitWidth = 868
         end
         object DBGridVoosAtribuidos: TDBGrid
           AlignWithMargins = True
@@ -890,8 +868,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
           Color = 15791343
           ParentBackground = False
           TabOrder = 3
-          ExplicitTop = 269
-          ExplicitWidth = 876
           object Panel5: TPanel
             AlignWithMargins = True
             Left = 60
@@ -907,7 +883,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
             Color = 15791343
             ParentBackground = False
             TabOrder = 0
-            ExplicitWidth = 756
             object Image1: TImage
               AlignWithMargins = True
               Left = 726
@@ -968,7 +943,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
               ParentFont = False
               TabOrder = 0
               TextHint = ' Pesquise pelo Nome ou C'#243'digo do acento'
-              ExplicitWidth = 724
             end
             object Panel6: TPanel
               AlignWithMargins = True
@@ -985,7 +959,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
               Color = 6310948
               ParentBackground = False
               TabOrder = 1
-              ExplicitWidth = 756
             end
           end
         end
@@ -1012,10 +985,9 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
           ParentFont = False
           TabOrder = 4
           StyleElements = [seClient, seBorder]
-          ExplicitWidth = 868
           object Panel9: TPanel
             AlignWithMargins = True
-            Left = 54
+            Left = 48
             Top = 0
             Width = 363
             Height = 35
@@ -1037,13 +1009,13 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
             ParentFont = False
             TabOrder = 0
             StyleElements = [seClient, seBorder]
-            ExplicitLeft = 134
+            ExplicitLeft = 54
           end
           object Panel10: TPanel
             AlignWithMargins = True
             Left = 5
             Top = 0
-            Width = 44
+            Width = 38
             Height = 35
             Margins.Left = 5
             Margins.Top = 0
@@ -1081,8 +1053,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
           Color = 15791343
           ParentBackground = False
           TabOrder = 5
-          ExplicitWidth = 876
-          ExplicitHeight = 139
           object Panel12: TPanel
             AlignWithMargins = True
             Left = 80
@@ -1099,7 +1069,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
             Color = 15791343
             ParentBackground = False
             TabOrder = 0
-            ExplicitHeight = 129
             object Panel14: TPanel
               AlignWithMargins = True
               Left = 5
@@ -1123,7 +1092,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
               ParentFont = False
               TabOrder = 0
               StyleElements = [seClient, seBorder]
-              ExplicitTop = 97
               object Panel17: TPanel
                 AlignWithMargins = True
                 Left = 0
@@ -1164,7 +1132,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
               ParentFont = False
               TabOrder = 1
               StyleElements = [seClient, seBorder]
-              ExplicitHeight = 97
             end
           end
           object Panel16: TPanel
@@ -1182,8 +1149,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
             Color = 15791343
             ParentBackground = False
             TabOrder = 1
-            ExplicitWidth = 336
-            ExplicitHeight = 129
             object Panel18: TPanel
               AlignWithMargins = True
               Left = 5
@@ -1207,8 +1172,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
               ParentFont = False
               TabOrder = 0
               StyleElements = [seClient, seBorder]
-              ExplicitTop = 97
-              ExplicitWidth = 331
               object Panel19: TPanel
                 AlignWithMargins = True
                 Left = 0
@@ -1224,7 +1187,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
                 Color = 1051799
                 ParentBackground = False
                 TabOrder = 0
-                ExplicitWidth = 331
               end
             end
             object Panel20: TPanel
@@ -1250,8 +1212,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
               ParentFont = False
               TabOrder = 1
               StyleElements = [seClient, seBorder]
-              ExplicitWidth = 331
-              ExplicitHeight = 97
             end
           end
           object Panel21: TPanel
@@ -1269,8 +1229,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
             Color = 15791343
             ParentBackground = False
             TabOrder = 2
-            ExplicitLeft = 611
-            ExplicitHeight = 129
             object Panel22: TPanel
               AlignWithMargins = True
               Left = 5
@@ -1294,7 +1252,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
               ParentFont = False
               TabOrder = 0
               StyleElements = [seClient, seBorder]
-              ExplicitTop = 97
               object Panel23: TPanel
                 AlignWithMargins = True
                 Left = 0
@@ -1335,7 +1292,6 @@ object FormComissarioCheckIn: TFormComissarioCheckIn
               ParentFont = False
               TabOrder = 1
               StyleElements = [seClient, seBorder]
-              ExplicitHeight = 97
             end
           end
         end

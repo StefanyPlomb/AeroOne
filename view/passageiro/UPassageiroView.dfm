@@ -35,46 +35,6 @@ object FormPassageiro: TFormPassageiro
       Color = 6310948
       ParentBackground = False
       TabOrder = 0
-      object imgUsuario: TImage
-        AlignWithMargins = True
-        Left = 1044
-        Top = 0
-        Width = 66
-        Height = 73
-        Cursor = crHandPoint
-        Hint = 'Meus dados'
-        Margins.Left = 0
-        Margins.Top = 0
-        Margins.Right = 0
-        Margins.Bottom = 0
-        ParentCustomHint = False
-        Align = alRight
-        Center = True
-        ParentShowHint = False
-        Picture.Data = {
-          0954506E67496D61676589504E470D0A1A0A0000000D49484452000000300000
-          003008060000005702F987000000097048597300000B1300000B1301009A9C18
-          0000020D4944415478DAED98414B54511886CF3528B04CC26D8B5C59D6D83E5D
-          14D1A2C18510F9070A1C89CA6684FE43E0E8C4442DC6BD81BB5041A416216D5B
-          4C6AAB5CB40DA6197061D8F41CEE1D18A18B73CE3DE37707CE0B2F2F889FBCCF
-          BD1FC73313A81E57205DC0034817F000D2055207D06C3633C4637C175F897EBC
-          8FB7702508826A2A01287E8E58C433B82FE6D78EF03B9C07E430350051F90D7C
-          A7C3918FF8BE0B0857006F899CE1581980A7E200D1CE7F55F16B1327BD4E3781
-          F8260D50229E598E2F02909706D04F70D472BC0A40461AA0415CB01C6F007051
-          1AA04E0C588ED701189406E8F9155A229E5B8E1701284803DC50E1317AC67054
-          1FA36300EC8802441065E289E1D86BCADBBE39E700678975155EE03A91BED865
-          01F8930A803688053CABE2D749AFCD1B3CEFA2BC53803690EBC4237C4F1DBF4E
-          6FE2E5A43BDF7580D39607909607909607E0D8D47FE31A1E57E1A56E040FE321
-          DCBA2AEB1BEB2FFC037FC7FA28DDC6BB1CABCD5307A0F47962123FC4B7A3B236
-          D2509FF02AFE00CC415701287E957889A771BFED538B912EFF1EBF0264CF2900
-          C52F1345FC40997F7837D55F15BE9102203F1303507E8AA828FB35B1D56F9C03
-          62C51A80F22F54F8E425350744C91880F2B788CFAAFB2B7392F44A4D00F1C514
-          608DC80A976F690D804953801A91E81B0387AA0170C91420D13F18D702E0BF5D
-          3D8007F0003D2E0F202D0F20AD9E07F8073E10AC31130E0B740000000049454E
-          44AE426082}
-        ShowHint = True
-        ExplicitLeft = 872
-      end
       object imgLogo: TImage
         Left = 0
         Top = 0
@@ -250,7 +210,8 @@ object FormPassageiro: TFormPassageiro
           Font.Style = []
           ParentFont = False
           TabOrder = 0
-          TextHint = 'Pesquise por lugares com voos dispon'#237'veis (Ex: Pequim)'
+          TextHint = ' Pesquise por ID, N'#250'mero Voo ou status'
+          OnChange = edtSearchChange
         end
         object pnlInfoUsuarioName: TPanel
           Left = 756
@@ -271,6 +232,97 @@ object FormPassageiro: TFormPassageiro
           ParentFont = False
           TabOrder = 1
           StyleElements = [seClient, seBorder]
+        end
+      end
+      object pnlMeusDados: TPanel
+        Left = 1044
+        Top = 0
+        Width = 66
+        Height = 73
+        Align = alRight
+        BevelOuter = bvNone
+        Color = 6310948
+        ParentBackground = False
+        TabOrder = 1
+        object imgClose: TImage
+          AlignWithMargins = True
+          Left = 0
+          Top = 0
+          Width = 66
+          Height = 73
+          Cursor = crHandPoint
+          Hint = 'Meus dados'
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          ParentCustomHint = False
+          Align = alClient
+          Center = True
+          ParentShowHint = False
+          Picture.Data = {
+            0954506E67496D61676589504E470D0A1A0A0000000D49484452000000300000
+            003008060000005702F987000000097048597300000B1300000B1301009A9C18
+            000001BC4944415478DAED99BD4AC4401485937D1E3B4BDD42B0132C05417077
+            112CB415DF61B156C4C51F6C56B0B5F607B1B3F55D2C349EC08C8824997BEFDC
+            712638170E03D970EEF9924D7666B62C7A5E65EC00192076800C103B4006A09E
+            5855D500C3045A806ECBB27CD60C02FF150C6BD02B7403FF4F350013FE1CDAB6
+            87A07D3439560A5F5F983368600ECDA12DF87F78033484FFFE4803A221BC2D12
+            44274047785BF56DDE45939930FC0E86D386F0B6AEA049D7D7C9053036005D25
+            822084B73586F7A514608AE180908705C1085FD714BE875280250C4FC4462408
+            66F8DA7308CF17118069D8F690359E0EEDA1E149682F328056E310E1C900BE01
+            42856701488340EFA1C2B3010C04F7212C18E7B25FC7A2C91CF34E902C0BE695
+            F70250861087F7025082F00AEF0DE009E11D5E054008A1123E0308C3AB42FCDF
+            87B8D7AFD15EFF90F57A2AF1479339D64641AAD3693244CA0B1A1244EA4B4A27
+            846B51BF8CE191D830D4A27E159EF7528014B6558EE0DB9AC10530C270A1195E
+            00B109EFB914A0DF5B8B0E0895C958D0CDDD0E08B5E9700B84DEF6FA2F880D68
+            11BA83F98346F81FFEF536E63AF4065DABFEC191726580D89501625706885D5F
+            E2F446407D06BCF90000000049454E44AE426082}
+          ShowHint = True
+          Visible = False
+          OnClick = imgCloseClick
+          ExplicitLeft = 1047
+        end
+        object imgUsuario: TImage
+          AlignWithMargins = True
+          Left = 0
+          Top = 0
+          Width = 66
+          Height = 73
+          Cursor = crHandPoint
+          Hint = 'Meus dados'
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          ParentCustomHint = False
+          Align = alClient
+          Center = True
+          ParentShowHint = False
+          Picture.Data = {
+            0954506E67496D61676589504E470D0A1A0A0000000D49484452000000300000
+            003008060000005702F987000000097048597300000B1300000B1301009A9C18
+            0000020D4944415478DAED98414B54511886CF3528B04CC26D8B5C59D6D83E5D
+            14D1A2C18510F9070A1C89CA6684FE43E0E8C4442DC6BD81BB5041A416216D5B
+            4C6AAB5CB40DA6197061D8F41CEE1D18A18B73CE3DE37707CE0B2F2F889FBCCF
+            BD1FC73313A81E57205DC0034817F000D2055207D06C3633C4637C175F897EBC
+            8FB7702508826A2A01287E8E58C433B82FE6D78EF03B9C07E430350051F90D7C
+            A7C3918FF8BE0B0857006F899CE1581980A7E200D1CE7F55F16B1327BD4E3781
+            F8260D50229E598E2F02909706D04F70D472BC0A40461AA0415CB01C6F007051
+            1AA04E0C588ED701189406E8F9155A229E5B8E1701284803DC50E1317AC67054
+            1FA36300EC8802441065E289E1D86BCADBBE39E700678975155EE03A91BED865
+            01F8930A803688053CABE2D749AFCD1B3CEFA2BC53803690EBC4237C4F1DBF4E
+            6FE2E5A43BDF7580D39607909607909607E0D8D47FE31A1E57E1A56E040FE321
+            DCBA2AEB1BEB2FFC037FC7FA28DDC6BB1CABCD5307A0F47962123FC4B7A3B236
+            D2509FF02AFE00CC415701287E957889A771BFED538B912EFF1EBF0264CF2900
+            C52F1345FC40997F7837D55F15BE9102203F1303507E8AA828FB35B1D56F9C03
+            62C51A80F22F54F8E425350744C91880F2B788CFAAFB2B7392F44A4D00F1C514
+            608DC80A976F690D804953801A91E81B0387AA0170C91420D13F18D702E0BF5D
+            3D8007F0003D2E0F202D0F20AD9E07F8073E10AC31130E0B740000000049454E
+            44AE426082}
+          ShowHint = True
+          OnClick = imgUsuarioClick
+          ExplicitLeft = 1047
         end
       end
     end
@@ -301,7 +353,7 @@ object FormPassageiro: TFormPassageiro
           Width = 66
           Height = 41
           Cursor = crHandPoint
-          Hint = 'Cadastrar funcion'#225'rio'
+          Hint = 'Conectar/Desconectar-se '#224' voo'
           Margins.Left = 0
           Margins.Top = 0
           Margins.Right = 0
@@ -328,6 +380,7 @@ object FormPassageiro: TFormPassageiro
             3D7BC1569402A845F311116765B36D1BC0FDFFC09F9EC60FAE13E62D6FD08DD1
             75C037685F2928A8841F720000000049454E44AE426082}
           ShowHint = True
+          OnMouseEnter = imgConectarDesconectarGreenMouseEnter
           ExplicitLeft = 10
           ExplicitTop = 6
           ExplicitWidth = 56
@@ -340,7 +393,7 @@ object FormPassageiro: TFormPassageiro
           Width = 66
           Height = 41
           Cursor = crHandPoint
-          Hint = 'Conectar/Desconectar voo '#224' comiss'#225'rio'
+          Hint = 'Conectar/Desconectar-se '#224' voo'
           Margins.Left = 0
           Margins.Top = 0
           Margins.Right = 0
@@ -365,10 +418,9 @@ object FormPassageiro: TFormPassageiro
             0000000049454E44AE426082}
           ShowHint = True
           Visible = False
-          ExplicitLeft = 10
-          ExplicitTop = 6
-          ExplicitWidth = 56
-          ExplicitHeight = 35
+          OnClick = imgConectarDesconectarWhiteClick
+          OnMouseLeave = imgConectarDesconectarWhiteMouseLeave
+          ExplicitTop = 3
         end
       end
       object pnlLogout: TPanel
@@ -469,6 +521,7 @@ object FormPassageiro: TFormPassageiro
         TitleFont.Name = 'Segoe UI'
         TitleFont.Style = []
         StyleElements = [seBorder]
+        OnEnter = DBGridVoosDisponiveisEnter
         Columns = <
           item
             Alignment = taRightJustify
@@ -677,6 +730,7 @@ object FormPassageiro: TFormPassageiro
         TitleFont.Name = 'Segoe UI'
         TitleFont.Style = []
         StyleElements = [seBorder]
+        OnEnter = DBGridVoosAtribuidosEnter
         Columns = <
           item
             Alignment = taRightJustify

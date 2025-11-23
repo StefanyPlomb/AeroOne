@@ -8,7 +8,6 @@ object DataModuleConn: TDataModuleConn
       'Password=root'
       'Server=localhost'
       'DriverID=PG')
-    Connected = True
     LoginPrompt = False
     Left = 34
     Top = 8
@@ -24,7 +23,7 @@ object DataModuleConn: TDataModuleConn
     Top = 77
   end
   object FDPhysPgDriverLink: TFDPhysPgDriverLink
-    VendorLib = 'C:\AeroOne\Win32\lib\libpq.dll'
+    VendorLib = 'C:\projects\stefany\AeroOne\Win32\lib\libpq.dll'
     Left = 132
     Top = 8
   end

@@ -93,6 +93,7 @@ begin
     novaAeronave.setComissariosMax(StrToIntDef(edtComissariosMax.Text, 0));
 
     if operacao = 'Inserir' then begin
+      novaAeronave.setStatus('A');
       TAeronaveController.cadastrar(novaAeronave);
     end else begin
       edtFabricante.SetFocus;
@@ -180,39 +181,38 @@ begin
 end;
 
 procedure TFormGestorAeronaves.imgStatusWhiteClick(Sender: TObject);
-begin
-  var
+var
   novaAeronave: TAeronave;
-
+begin
   try
-  loadEditsFromGrid;
-
-    if statusAeronaveGrid = 'A' then
-    begin
-      if TAeronaveController.Desativar(idAeronaveGrid) then
-        ShowMessage('Aeronave desativada com sucesso!');
-    end
-    else
-    begin
-      if TAeronaveController.Ativar(idAeronaveGrid) then
-        ShowMessage('Aeronave ativada com sucesso!');
+    loadEditsFromGrid;
+    novaAeronave := TAeronave.Create;
+    novaAeronave.setFabricante(edtFabricante.Text);
+    novaAeronave.setModelo(edtModelo.Text);
+    novaAeronave.setComissariosMax(StrToInt(edtComissariosMax.Text));
+    novaAeronave.setPassageirosMax(StrToInt(edtPassageirosMax.Text));
+    novaAeronave.setPilotosMax(StrToInt(edtPilotosMax.Text));
+    if statusAeronaveGrid = 'A' then begin
+      novaAeronave.setStatus('I');
+    end else begin
+      novaAeronave.setStatus('A');
     end;
+    TAeronaveController.update(novaAeronave, TAeronaveController.getAeronave(idAeronaveGrid));
 
-  limparEdits;
-  loadGrid(edtSearch.Text);
-
+    limparEdits;
+    loadGrid(edtSearch.Text);
+    novaAeronave.Free;
   except
-  on E: Exception do
-  ShowMessage('Erro: ' + E.Message);
+    on E: Exception do begin
+      ShowMessage(e.Message);
+    end;
   end;
-
-
 end;
 
 procedure TFormGestorAeronaves.imgStatusWhiteMouseLeave(Sender: TObject);
 begin
-  imgStatusWhite.Visible := true;
-  imgStatusRed.Visible := false;
+  imgStatusWhite.Visible := false;
+  imgStatusRed.Visible := true;
 end;
 
 procedure TFormGestorAeronaves.limparEdits;
@@ -245,22 +245,17 @@ var
   modelo: String;
 begin
   DBGridAeronaves.DataSource := DataModuleConn.DataSourceAeronave;
-
   try
-     if searchBar <> '' then
-     begin
-       id := StrToInt(searchBar);
-      end
-      else
-      begin
-        id := 0;
-        modelo := searchBar;
-      end;
+    if searchBar <> '' then begin
+      id := StrToInt(searchBar);
+    end else begin
+      id := 0;
+      modelo := searchBar;
+    end;
   except
     id := 0;
     modelo := searchBar;
   end;
-
   TAeronaveController.getAeronaves(id, modelo);
 end;
 

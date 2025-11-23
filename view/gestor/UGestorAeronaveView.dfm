@@ -469,10 +469,15 @@ object FormGestorAeronaves: TFormGestorAeronaves
                 Expanded = False
                 FieldName = 'Status'
                 Font.Charset = DEFAULT_CHARSET
-                Font.Color = clWindowText
-                Font.Height = -16
+                Font.Color = 6310948
+                Font.Height = -13
                 Font.Name = 'Segoe UI'
                 Font.Style = []
+                Title.Font.Charset = ANSI_CHARSET
+                Title.Font.Color = clWhite
+                Title.Font.Height = -16
+                Title.Font.Name = 'Segoe UI Semibold'
+                Title.Font.Style = [fsBold]
                 Width = 150
                 Visible = True
               end>
@@ -603,7 +608,7 @@ object FormGestorAeronaves: TFormGestorAeronaves
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 2
+          TabOrder = 5
           object pnlSeparador: TPanel
             Left = 435
             Top = 0
@@ -688,7 +693,7 @@ object FormGestorAeronaves: TFormGestorAeronaves
           Font.Style = []
           NumbersOnly = True
           ParentFont = False
-          TabOrder = 1
+          TabOrder = 4
           TextHint = ' M'#225'ximo de comiss'#225'rios'
           StyleElements = [seClient, seBorder]
         end
@@ -711,7 +716,7 @@ object FormGestorAeronaves: TFormGestorAeronaves
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
-          TabOrder = 0
+          TabOrder = 1
           TextHint = ' Modelo'
           StyleElements = [seClient, seBorder]
         end
@@ -729,7 +734,7 @@ object FormGestorAeronaves: TFormGestorAeronaves
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 3
+          TabOrder = 6
         end
         object pnlDivModelo: TPanel
           AlignWithMargins = True
@@ -745,7 +750,7 @@ object FormGestorAeronaves: TFormGestorAeronaves
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 4
+          TabOrder = 7
         end
         object pnlDivFabricante: TPanel
           AlignWithMargins = True
@@ -761,7 +766,7 @@ object FormGestorAeronaves: TFormGestorAeronaves
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 5
+          TabOrder = 8
         end
         object edtPilotosMax: TEdit
           AlignWithMargins = True
@@ -783,7 +788,7 @@ object FormGestorAeronaves: TFormGestorAeronaves
           Font.Style = []
           NumbersOnly = True
           ParentFont = False
-          TabOrder = 6
+          TabOrder = 3
           TextHint = ' M'#225'ximo de pilotos'
           StyleElements = [seClient, seBorder]
         end
@@ -801,7 +806,7 @@ object FormGestorAeronaves: TFormGestorAeronaves
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 7
+          TabOrder = 9
         end
         object edtPassageirosMax: TEdit
           AlignWithMargins = True
@@ -823,7 +828,7 @@ object FormGestorAeronaves: TFormGestorAeronaves
           Font.Style = []
           NumbersOnly = True
           ParentFont = False
-          TabOrder = 8
+          TabOrder = 2
           TextHint = ' M'#225'ximo de passageiros'
           StyleElements = [seClient, seBorder]
         end
@@ -841,7 +846,7 @@ object FormGestorAeronaves: TFormGestorAeronaves
           BevelOuter = bvNone
           Color = 6310948
           ParentBackground = False
-          TabOrder = 9
+          TabOrder = 10
         end
         object edtFabricante: TEdit
           AlignWithMargins = True
@@ -862,7 +867,7 @@ object FormGestorAeronaves: TFormGestorAeronaves
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
-          TabOrder = 10
+          TabOrder = 0
           TextHint = ' Fabricante'
           StyleElements = [seClient, seBorder]
         end

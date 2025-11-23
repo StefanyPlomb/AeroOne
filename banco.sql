@@ -10,8 +10,6 @@ CREATE TABLE usuarios (
     status VARCHAR(1)
 );
 
-select * from usuarios
-
 INSERT INTO usuarios (nome, email, senha, telefone, cargo, cpf, passaporte, status) VALUES ('Stefany Diniz Plombon', 'admin@gestor.com', 'ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270', '11900000000', 'Gestor(a)', '12345678900', 'AB123456', 'A');
 
 CREATE TABLE enderecos (
@@ -36,49 +34,46 @@ CREATE TABLE IF NOT EXISTS aeronaves (
     passageirosMax INT NOT NULL,
     pilotosMax INT NOT NULL,
     comissariosMax INT NOT NULL,
+	status VARCHAR(1) NOT NULL
 );
 
-INSERT INTO aeronaves (fabricante, modelo, passageirosMax, pilotosMax, comissariosMax) VALUES
-('Airbus', 'A220', 150, 2, 4),
-('Airbus', 'A318', 132, 2, 3),
-('Airbus', 'A319', 156, 2, 3),
-('Airbus', 'A320', 186, 2, 4),
-('Airbus', 'A321', 244, 2, 5),
-('Airbus', 'A330', 440, 2, 10),
-('Airbus', 'A340', 475, 2, 12),
-('Airbus', 'A350-900', 350, 2, 12),
-('Airbus', 'A350-1000', 440, 2, 12),
-('Airbus', 'A380', 853, 2, 24);
+INSERT INTO aeronaves (fabricante, modelo, passageirosMax, pilotosMax, comissariosMax, status) VALUES
+('Airbus', 'A220', 150, 2, 4, 'A'),
+('Airbus', 'A318', 132, 2, 3, 'A'),
+('Airbus', 'A319', 156, 2, 3, 'A'),
+('Airbus', 'A320', 186, 2, 4, 'A'),
+('Airbus', 'A321', 244, 2, 5, 'A'),
+('Airbus', 'A330', 440, 2, 10, 'A'),
+('Airbus', 'A340', 475, 2, 12, 'A'),
+('Airbus', 'A350-900', 350, 2, 12, 'A'),
+('Airbus', 'A350-1000', 440, 2, 12, 'A'),
+('Airbus', 'A380', 853, 2, 24, 'A'),
 
-INSERT INTO aeronaves (fabricante, modelo, passageirosMax, pilotosMax, comissariosMax) VALUES
-('Boeing', '737 Classic', 188, 2, 4),
-('Boeing', '737 NG', 215, 2, 5),
-('Boeing', '737 MAX', 230, 2, 5),
-('Boeing', '747-400', 605, 2, 16),
-('Boeing', '747-8', 605, 2, 16),
-('Boeing', '767', 375, 2, 10),
-('Boeing', '777-200', 440, 2, 14),
-('Boeing', '777-300', 550, 2, 14),
-('Boeing', '777-300ER', 550, 2, 14),
-('Boeing', '777X', 426, 2, 12),
-('Boeing', '787-8', 242, 2, 10),
-('Boeing', '787-9', 290, 2, 10),
-('Boeing', '787-10', 330, 2, 10);
+('Boeing', '737 Classic', 188, 2, 4, 'A'),
+('Boeing', '737 NG', 215, 2, 5, 'A'),
+('Boeing', '737 MAX', 230, 2, 5, 'A'),
+('Boeing', '747-400', 605, 2, 16, 'A'),
+('Boeing', '747-8', 605, 2, 16, 'A'),
+('Boeing', '767', 375, 2, 10, 'A'),
+('Boeing', '777-200', 440, 2, 14, 'A'),
+('Boeing', '777-300', 550, 2, 14, 'A'),
+('Boeing', '777-300ER', 550, 2, 14, 'A'),
+('Boeing', '777X', 426, 2, 12, 'A'),
+('Boeing', '787-8', 242, 2, 10, 'A'),
+('Boeing', '787-9', 290, 2, 10, 'A'),
+('Boeing', '787-10', 330, 2, 10, 'A'),
 
-INSERT INTO aeronaves (fabricante, modelo, passageirosMax, pilotosMax, comissariosMax) VALUES
-('Embraer', 'E170', 78, 2, 2),
-('Embraer', 'E175', 88, 2, 2),
-('Embraer', 'E190', 114, 2, 3),
-('Embraer', 'E195', 132, 2, 3),
-('Embraer', 'E190-E2', 114, 2, 3),
-('Embraer', 'E195-E2', 146, 2, 4);
+('Embraer', 'E170', 78, 2, 2, 'A'),
+('Embraer', 'E175', 88, 2, 2, 'A'),
+('Embraer', 'E190', 114, 2, 3, 'A'),
+('Embraer', 'E195', 132, 2, 3, 'A'),
+('Embraer', 'E190-E2', 114, 2, 3, 'A'),
+('Embraer', 'E195-E2', 146, 2, 4, 'A'),
 
-INSERT INTO aeronaves (fabricante, modelo, passageirosMax, pilotosMax, comissariosMax) VALUES
-('ATR', 'ATR 42', 50, 2, 2),
-('ATR', 'ATR 72', 78, 2, 3);
+('ATR', 'ATR 42', 50, 2, 2, 'A'),
+('ATR', 'ATR 72', 78, 2, 3, 'A'),
 
-INSERT INTO aeronaves (fabricante, modelo, passageirosMax, pilotosMax, comissariosMax) VALUES
-('Bombardier', 'Dash 8 Q400', 90, 2, 3);
+('Bombardier', 'Dash 8 Q400', 90, 2, 3, 'A');
 
 CREATE TABLE IF NOT EXISTS voos (
     id SERIAL PRIMARY KEY,
@@ -91,7 +86,6 @@ CREATE TABLE IF NOT EXISTS voos (
     dataChegada VARCHAR(10) NOT NULL,
     horaChegada VARCHAR(8) NOT NULL,
     status VARCHAR(1),
-
     CONSTRAINT fk_voo_aeronave
         FOREIGN KEY (idAeronave)
         REFERENCES aeronaves(id)
@@ -178,12 +172,30 @@ CREATE TABLE usuarioVoo (
     idVoo INTEGER NOT NULL,
     funcao VARCHAR(100) NOT NULL,  
     assento VARCHAR(5),
-    
     CONSTRAINT fk_usuario_voo_usuario
         FOREIGN KEY (idUsuario) REFERENCES usuarios(id),
-        
     CONSTRAINT fk_usuario_voo_voo
         FOREIGN KEY (idVoo) REFERENCES voos(id)
 );
 
 select * from usuarioVoo
+
+select * from voos
+
+select * from usuarioVoo left join usuarios on usuarioVoo.idUsuario = usuarios.id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

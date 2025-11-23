@@ -12,16 +12,24 @@ type
     class function getAeronave(id: Integer): TAeronave;
     class function getByModelo(modelo: String): TAeronave;
     class function cadastrar(aeronave: TAeronave): Integer;
-    class function desativar(idAeronave: Integer): Boolean;
-    class function ativar( idAeronave: Integer): Boolean;
     class procedure update(novaAeronave, aeronave: TAeronave);
+    class function aeronaveInativa(id: Integer): Boolean;
   end;
 
 implementation
 
-uses UAeronaveDao;
+uses UVooController, UAeronaveDao;
 
 { TAeronaveController }
+
+class function TAeronaveController.aeronaveInativa(id: Integer): Boolean;
+var
+  dao: TAeronaveDao;
+begin
+  dao := TAeronaveDao.Create;
+  result := dao.aeronaveInativa(id);
+  dao.Free;
+end;
 
 class function TAeronaveController.cadastrar(aeronave: TAeronave): Integer;
 var
@@ -158,7 +166,14 @@ begin
   end;
 
   if Trim(novaaeronave.getStatus) <> '' then begin
-    if novaaeronave.getStatus <> aeronave.getStatus then begin
+    if novaAeronave.getStatus <> aeronave.getStatus then begin
+
+      if novaAeronave.getStatus = 'I' then begin
+        if TVooController.temVooEmAndamentoOuAtivo(novaAeronave.getId) then begin
+          raise Exception.Create('Não pode inativar uma aeronave com voos ativos e em andamento vinculados');
+        end;
+      end;
+
       temAlteracao := true;
       alterado.setStatus(novaaeronave.getStatus);
     end;
@@ -171,30 +186,6 @@ begin
   end;
 
   alterado.Free;
-end;
-
-class function TAeronaveController.desativar(idAeronave: Integer): Boolean;
-var
-  dao: TAeronaveDAO;
-begin
-  dao := TAeronaveDAO.Create;
-  try
-    Result := dao.desativarDao(idAeronave);
-  finally
-    dao.Free;
-  end;
-end;
-
-class function TAeronaveController.ativar(idAeronave: Integer): Boolean;
-var
-  dao: TAeronaveDAO;
-begin
-  dao := TAeronaveDAO.Create;
-  try
-    Result := dao.ativarDao(idAeronave);
-  finally
-    dao.Free;
-  end;
 end;
 
 end.

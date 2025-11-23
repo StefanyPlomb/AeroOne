@@ -3,14 +3,13 @@ unit UVooController;
 interface
 
 uses
-  System.SysUtils, StrUtils, UVoo, UUsuario, UConn,UAeronave;
+  System.SysUtils, System.Classes, StrUtils, UVoo, UUsuario, UConn,UAeronave;
 
 type
   TVooController = class
   private
     class procedure conectarPiloto(usuario: TUsuario; voo: TVoo);
     class procedure conectarComissario(usuario: TUsuario; voo: TVoo);
-    class procedure conectarPassageiro(usuario: TUsuario; voo: TVoo);
     class procedure desconectarPiloto(usuario: TUsuario; voo: TVoo);
     class procedure desconectarComissario(usuario: TUsuario; voo: TVoo);
     class procedure desconectarPassageiro(usuario: TUsuario; voo: TVoo);
@@ -25,10 +24,12 @@ type
     class function cadastrar(voo: TVoo): Integer;
     class procedure update(novoVoo, voo: TVoo);
     class procedure conectar(usuario: TUsuario; voo: TVoo);
+    class procedure conectarPassageiro(usuario: TUsuario; voo: TVoo; assento: String);
     class procedure desconectar(usuario: TUsuario; voo: TVoo);
     class procedure iniciarVoo(id: Integer);
     class procedure finalizarVoo(id: Integer);
-
+    class function temVooEmAndamentoOuAtivo(idAeronave: Integer): Boolean;
+    class function getPoltronasOcupadas(id: Integer): TStringList;
   end;
 
 implementation
@@ -120,8 +121,6 @@ begin
     conectarPiloto(usuario, voo);
   end else if usuario.getCargo = 'Comissário(a)' then begin
     conectarComissario(usuario, voo);
-  end else if usuario.getCargo = 'Passageiro(a)' then begin
-    conectarPassageiro(usuario, voo);
   end else begin
     raise Exception.Create('Não foi possível identificar usuário para se conectar ao voo');
   end;
@@ -151,7 +150,7 @@ begin
   dao.Free;
 end;
 
-class procedure TVooController.conectarPassageiro(usuario: TUsuario; voo: TVoo);
+class procedure TVooController.conectarPassageiro(usuario: TUsuario; voo: TVoo; assento: String);
 var
   dao: TVooDao;
   qtdConectados: Integer;
@@ -170,7 +169,7 @@ begin
     raise Exception.Create('Limite de passageiros atingido para este voo');
   end;
 
-  dao.conectar(usuario.getId, voo.getId, 'Passageiro(a)', '');
+  dao.conectar(usuario.getId, voo.getId, 'Passageiro(a)', assento);
 
   dao.Free;
 end;
@@ -327,6 +326,15 @@ begin
   begin
     if novoVoo.getStatus <> voo.getStatus then
     begin
+
+      if novoVoo.getStatus = 'A' then
+      begin
+        if TAeronaveController.aeronaveInativa(novoVoo.getIdAeronave) then
+        begin
+          raise Exception.Create('Não pode ativar um voo com uma aeronave inativa vinculada');
+        end;
+      end;
+
       temAlteracao := True;
       alterado.setStatus(novoVoo.getStatus);
     end;
@@ -349,6 +357,15 @@ begin
   end;
 
   alterado.Free;
+end;
+
+class function TVooController.getPoltronasOcupadas(id: Integer): TStringList;
+var
+  dao: TVooDao;
+begin
+  dao := TVooDao.Create;
+  result := dao.getPoltronasOcupadas(id);
+  dao.Free;
 end;
 
 class function TVooController.getVoo(id: Integer): TVoo;
@@ -462,6 +479,15 @@ begin
       Result := Result + Words[i];
     end;
   end;
+end;
+
+class function TVooController.temVooEmAndamentoOuAtivo(idAeronave: Integer): Boolean;
+var
+  dao: TVooDao;
+begin
+  dao := TVooDao.Create;
+  result := dao.temVooEmAndamentoOuAtivo(idAeronave);
+  dao.Free;
 end;
 
 end.

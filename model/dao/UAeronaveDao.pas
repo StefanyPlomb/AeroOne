@@ -12,10 +12,8 @@ type
     function getAeronave(id: Integer): TAeronave;
     function getByModelo(modelo: String): TAeronave;
     function cadastrar(aeronave: TAeronave): Integer;
-    function desativarDao(idAeronave: Integer): Boolean;
-    function ativarDao(idAeronave: Integer): Boolean;
-
     procedure update(aeronave: TAeronave);
+    function aeronaveInativa(id: Integer): Boolean;
   end;
 
 implementation
@@ -23,6 +21,24 @@ implementation
 uses UConn, FireDAC.Comp.Client;
 
 { TAeronaveDao }
+
+function TAeronaveDao.aeronaveInativa(id: Integer): Boolean;
+var
+  query: TFDQuery;
+begin
+  query := DataModuleConn.FDQueryAeronave;
+
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('SELECT * FROM aeronaves WHERE id = :id AND status = ' + QuotedStr('I'));
+  query.ParamByName('id').AsInteger := id;
+  query.Open;
+
+  result := true;
+  if query.IsEmpty then begin
+    result := false;
+  end;
+end;
 
 function TAeronaveDao.cadastrar(aeronave: TAeronave): Integer;
 var
@@ -32,8 +48,8 @@ begin
 
   query.Close;
   query.SQL.Clear;
-  query.SQL.Add('INSERT INTO aeronaves (fabricante, modelo, passageirosMax, pilotosMax, comissariosMax)');
-  query.SQL.Add('VALUES (:fabricante, :modelo, :passageirosMax, :pilotosMax, :comissariosMax)');
+  query.SQL.Add('INSERT INTO aeronaves (fabricante, modelo, passageirosMax, pilotosMax, comissariosMax, status)');
+  query.SQL.Add('VALUES (:fabricante, :modelo, :passageirosMax, :pilotosMax, :comissariosMax, :status)');
   query.SQL.Add('RETURNING id');
 
   query.ParamByName('fabricante').AsString := aeronave.getFabricante;
@@ -41,6 +57,7 @@ begin
   query.ParamByName('passageirosMax').AsInteger := aeronave.getPassageirosMax;
   query.ParamByName('pilotosMax').AsInteger := aeronave.getPilotosMax;
   query.ParamByName('comissariosMax').AsInteger := aeronave.getComissariosMax;
+  query.ParamByName('status').AsString := aeronave.getStatus;
 
   query.Open;
   Result := query.FieldByName('id').AsInteger;
@@ -199,13 +216,13 @@ begin
     query.SQL.Add('comissariosMax = :comissariosMax, ');
   end;
 
+  if aeronave.getStatus <> '' then begin
+    query.SQL.Add('status = :status, ');
+  end;
+
   sql := Trim(query.SQL.Text);
   if sql.EndsWith(',') then begin
     Delete(sql, Length(sql), 1);
-  end;
-
-  if aeronave.getStatus <> '' then begin
-    query.SQL.Add('status = :status, ');
   end;
 
   query.SQL.Text := sql + sLineBreak + 'WHERE id = :id';
@@ -237,58 +254,6 @@ begin
   end;
 
   query.ExecSQL;
-end;
-
-function TAeronaveDao.desativarDao(idAeronave: Integer): Boolean;
-var
-  query: TFDQuery;
-  voosAtivos: Integer;
-begin
-  Result := False;
-  query := TFDQuery.Create(nil);
-
-  try
-    query.Connection := DataModuleConn.FDConnection;
-    query.SQL.Text :=
-      'SELECT COUNT(*) AS total ' + 'FROM voos ' + 'WHERE idAeronave = :idAeronave ' + 'AND status NOT IN (''F'', ''C'')';
-
-    query.ParamByName('idAeronave').AsInteger := idAeronave;
-    query.Open;
-
-    voosAtivos := query.FieldByName('total').AsInteger;
-    if voosAtivos > 0 then
-      raise Exception.Create('Esta aeronave não pode ser desativada, pois possui voos pendentes ou em andamento.' );
-
-    query.SQL.Text := 'UPDATE aeronaves SET status = ''I'' WHERE id = :idAeronave';
-
-    query.ParamByName('idAeronave').AsInteger := idAeronave;
-    query.ExecSQL;
-
-    Result := True;
-  finally
-    query.Free;
-  end;
-end;
-
-
-function TAeronaveDao.ativarDao(idAeronave: Integer): Boolean;
-var
-  query: TFDQuery;
-begin
-  Result := False;
-  query := TFDQuery.Create(nil);
-
-  try
-    query.Connection := DataModuleConn.FDConnection;
-    query.SQL.Text :=
-      'UPDATE aeronaves SET status = ''A'' WHERE id = :idAeronave';
-    query.ParamByName('idAeronave').AsInteger := idAeronave;
-    query.ExecSQL;
-
-    Result := True;
-  finally
-    query.Free;
-  end;
 end;
 
 end.

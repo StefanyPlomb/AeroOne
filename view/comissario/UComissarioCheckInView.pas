@@ -63,6 +63,7 @@ type
     procedure imgVoltarWhiteMouseLeave(Sender: TObject);
     procedure imgVoltarRedMouseEnter(Sender: TObject);
     procedure imgLiberarWhiteMouseLeave(Sender: TObject);
+    procedure imgLiberarGreenMouseEnter(Sender: TObject);
   private
     { Private declarations }
     usuario: TUsuario;
@@ -104,6 +105,12 @@ begin
     cardComissarioCheckIn.ActiveCard := cardVoos;
     loadGrid(edtSearch.Text);
   end;
+end;
+
+procedure TFormComissarioCheckIn.imgLiberarGreenMouseEnter(Sender: TObject);
+begin
+  imgLiberarWhite.Visible := true;
+  imgLiberarGreen.Visible := false;
 end;
 
 procedure TFormComissarioCheckIn.imgLiberarWhiteMouseLeave(Sender: TObject);
