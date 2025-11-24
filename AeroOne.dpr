@@ -39,7 +39,9 @@ uses
   UPilotoVooView in 'view\piloto\UPilotoVooView.pas' {FormPilotoVoo},
   UPilotoIniciarVooView in 'view\piloto\UPilotoIniciarVooView.pas' {FormPilotoIniciarVoo},
   UPilotoHomeView in 'view\piloto\UPilotoHomeView.pas' {FormPilotoHome},
-  USelecionarPoltronaView in 'view\passageiro\USelecionarPoltronaView.pas' {FormSelecionarPoltrona};
+  USelecionarPoltronaView in 'view\passageiro\USelecionarPoltronaView.pas' {FormSelecionarPoltrona},
+  URelatorioOrigem in 'view\gestor\Relatorios\URelatorioOrigem.pas' {FormRelatorioOrigem},
+  URelatorioCanceladosOrigem in 'view\gestor\Relatorios\URelatorioCanceladosOrigem.pas' {FormRelatorioCanceladoOrigem};
 
 {$R *.res}
 
@@ -48,5 +50,7 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFormLogin, FormLogin);
   Application.CreateForm(TDataModuleConn, DataModuleConn);
+  Application.CreateForm(TFormRelatorioOrigem, FormRelatorioOrigem);
+  Application.CreateForm(TFormRelatorioCanceladoOrigem, FormRelatorioCanceladoOrigem);
   Application.Run;
 end.

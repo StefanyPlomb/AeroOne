@@ -322,9 +322,7 @@ object FormGestor: TFormGestor
       ParentBackground = False
       ParentFont = False
       TabOrder = 2
-      Visible = False
       StyleElements = [seClient, seBorder]
-      ExplicitTop = 308
       object imgRelatorios: TImage
         AlignWithMargins = True
         Left = 5
@@ -376,6 +374,7 @@ object FormGestor: TFormGestor
         TabOrder = 0
         StyleElements = [seClient, seBorder]
         OnClick = pnlRelatoriosTextClick
+        ExplicitTop = -5
       end
     end
     object pnlVoos: TPanel
@@ -803,6 +802,8 @@ object FormGestor: TFormGestor
       Color = 15791343
       ParentBackground = False
       TabOrder = 1
+      ExplicitLeft = 3
+      ExplicitTop = 76
     end
   end
 end

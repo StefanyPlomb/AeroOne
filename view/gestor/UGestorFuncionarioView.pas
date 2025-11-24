@@ -52,6 +52,9 @@ type
     procedure edtTelefoneExit(Sender: TObject);
     procedure edtCPFEnter(Sender: TObject);
     procedure edtCPFExit(Sender: TObject);
+    procedure edtPassaporteEnter(Sender: TObject);
+    procedure edtpassaporteExit(Sender: TObject);
+
     procedure btnSalvarClick(Sender: TObject);
     procedure btnVoltarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -66,6 +69,7 @@ type
     procedure imgStatusWhiteClick(Sender: TObject);
     procedure imgStatusWhiteMouseLeave(Sender: TObject);
     procedure imgStatusRedMouseEnter(Sender: TObject);
+
   private
     { Private declarations }
     usuario: TUsuario;
@@ -300,6 +304,11 @@ begin
   edtCPF.EditMask := '';
 end;
 
+procedure TFormGestorFuncionario.edtpassaporteExit(Sender: TObject);
+begin
+  edtTelefone.EditMask := '';
+end;
+
 procedure TFormGestorFuncionario.edtSearchChange(Sender: TObject);
 begin
   loadGrid(edtSearch.Text);
@@ -310,6 +319,13 @@ begin
   edtTelefone.EditMask := '(99) 99999-9999';
   edtTelefone.SelStart := 0;
   edtTelefone.SelLength := 0;
+end;
+
+procedure TFormGestorFuncionario.edtPassaporteEnter(Sender: TObject);
+begin
+  edtPassaporte.EditMask := 'LL000000;1;_';
+  edtPassaporte.SelStart := 0;
+  edtPassaporte.SelLength := 0;
 end;
 
 procedure TFormGestorFuncionario.edtTelefoneExit(Sender: TObject);

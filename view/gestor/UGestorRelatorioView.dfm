@@ -36,7 +36,6 @@ object FormGestorRelatorio: TFormGestorRelatorio
       BevelOuter = bvNone
       BorderStyle = bsNone
       TabOrder = 0
-      ExplicitLeft = 282
       object pnlDivBottom: TPanel
         AlignWithMargins = True
         Left = 0
@@ -110,6 +109,7 @@ object FormGestorRelatorio: TFormGestorRelatorio
         ParentFont = False
         TabOrder = 2
         StyleElements = [seClient, seBorder]
+        OnClick = pnlRelatorioQtdVoosOrigemPorCidadeClick
       end
       object pnlRelatorioTempoVoos: TPanel
         AlignWithMargins = True

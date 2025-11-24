@@ -31,6 +31,8 @@ type
     DataSourceVoosDisponiveis: TDataSource;
     FDQueryVoosAtribuidos: TFDQuery;
     FDQueryVoosDisponiveis: TFDQuery;
+    FDQueryRelatorioOrigem: TFDQuery;
+    DataSourceRelatorioOrigem: TDataSource;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

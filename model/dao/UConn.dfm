@@ -8,6 +8,7 @@ object DataModuleConn: TDataModuleConn
       'Password=root'
       'Server=localhost'
       'DriverID=PG')
+    Connected = True
     LoginPrompt = False
     Left = 34
     Top = 8
@@ -23,7 +24,7 @@ object DataModuleConn: TDataModuleConn
     Top = 77
   end
   object FDPhysPgDriverLink: TFDPhysPgDriverLink
-    VendorLib = 'C:\projects\stefany\AeroOne\Win32\lib\libpq.dll'
+    VendorLib = 'C:\AeroOne\Win32\lib\libpq.dll'
     Left = 132
     Top = 8
   end
@@ -96,5 +97,27 @@ object DataModuleConn: TDataModuleConn
     Connection = FDConnection
     Left = 40
     Top = 160
+  end
+  object FDQueryRelatorioOrigem: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'SELECT'
+      '  TRIM(UPPER(origem))   AS origem,'
+      '  TRIM(UPPER(destino))  AS destino,'
+      '  COUNT(*) AS total_voos'
+      'FROM voos'
+      'GROUP BY'
+      '  TRIM(UPPER(origem)),'
+      '  TRIM(UPPER(destino))'
+      'ORDER BY'
+      '  TRIM(UPPER(origem)),'
+      '  TRIM(UPPER(destino));')
+    Left = 74
+    Top = 376
+  end
+  object DataSourceRelatorioOrigem: TDataSource
+    DataSet = FDQueryRelatorioOrigem
+    Left = 71
+    Top = 296
   end
 end

@@ -227,6 +227,14 @@
             <Form>FormSelecionarPoltrona</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="view\gestor\Relatorios\URelatorioOrigem.pas">
+            <Form>FormRelatorioOrigem</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="view\gestor\Relatorios\URelatorioCanceladosOrigem.pas">
+            <Form>FormRelatorioCanceladoOrigem</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -9,9 +9,7 @@ uses
 type
   TFormPilotoHome = class(TForm)
     Image1: TImage;
-    Panel1: TPanel;
-    Panel2: TPanel;
-    Panel3: TPanel;
+    Image2: TImage;
   private
     { Private declarations }
   public
