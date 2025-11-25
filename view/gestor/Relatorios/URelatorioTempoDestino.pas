@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RLReport, Vcl.Imaging.pngimage;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RLReport, Vcl.Imaging.pngimage, UConn;
 
 type
   TFormRelatorioTempodeVoo = class(TForm)
@@ -13,7 +13,6 @@ type
     RLDrawTitle: TRLDraw;
     RLLabelTtitleAeroOne: TRLLabel;
     RLLabelTitleRelatorio: TRLLabel;
-    RLDrawLineTitle: TRLDraw;
     RLGroupCenter: TRLGroup;
     RLBandHeaderGroup: TRLBand;
     RLDBTextOrigem: TRLDBText;
@@ -21,6 +20,11 @@ type
     RLDBTextOrigemDetail: TRLDBText;
     RLImage1: TRLImage;
     RLDBText1: TRLDBText;
+    RLDBText2: TRLDBText;
+    RLBand1: TRLBand;
+    RLLabel2: TRLLabel;
+    RLLabel1: TRLLabel;
+    RLLabel3: TRLLabel;
     RLBandFooter: TRLBand;
     RLSystemInfoDataFooter: TRLSystemInfo;
     RLImageLogoFooter: TRLImage;

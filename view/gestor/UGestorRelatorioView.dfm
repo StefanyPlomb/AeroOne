@@ -84,6 +84,7 @@ object FormGestorRelatorio: TFormGestorRelatorio
         ParentFont = False
         TabOrder = 1
         StyleElements = [seClient, seBorder]
+        OnClick = pnlRelatorioQtdVoosOrigemCanceladosPorCidadeClick
       end
       object pnlRelatorioQtdVoosOrigemPorCidade: TPanel
         AlignWithMargins = True
@@ -135,6 +136,7 @@ object FormGestorRelatorio: TFormGestorRelatorio
         ParentFont = False
         TabOrder = 3
         StyleElements = [seClient, seBorder]
+        OnClick = pnlRelatorioTempoVoosClick
       end
     end
   end

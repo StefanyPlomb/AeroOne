@@ -33,6 +33,10 @@ type
     FDQueryVoosDisponiveis: TFDQuery;
     FDQueryRelatorioOrigem: TFDQuery;
     DataSourceRelatorioOrigem: TDataSource;
+    FDQueryRelatorioCancelados: TFDQuery;
+    DataSourceRelatorioCancelados: TDataSource;
+    FDQueryRelatorioTempo: TFDQuery;
+    DataSourceRelatorioTempo: TDataSource;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

@@ -1,6 +1,7 @@
 object DataModuleConn: TDataModuleConn
-  Height = 480
-  Width = 640
+  Height = 600
+  Width = 800
+  PixelsPerInch = 120
   object FDConnection: TFDConnection
     Params.Strings = (
       'Database=AeroOne'
@@ -10,93 +11,93 @@ object DataModuleConn: TDataModuleConn
       'DriverID=PG')
     Connected = True
     LoginPrompt = False
-    Left = 34
-    Top = 8
+    Left = 43
+    Top = 10
   end
   object FDQueryLogin: TFDQuery
     Connection = FDConnection
-    Left = 558
-    Top = 16
+    Left = 698
+    Top = 20
   end
   object DataSourceLogin: TDataSource
     DataSet = FDQueryLogin
-    Left = 558
-    Top = 77
+    Left = 698
+    Top = 96
   end
   object FDPhysPgDriverLink: TFDPhysPgDriverLink
     VendorLib = 'C:\AeroOne\Win32\lib\libpq.dll'
-    Left = 132
-    Top = 8
+    Left = 165
+    Top = 10
   end
   object FDQueryFuncionario: TFDQuery
     Connection = FDConnection
-    Left = 426
-    Top = 160
+    Left = 533
+    Top = 200
   end
   object DataSourceFuncionario: TDataSource
     DataSet = FDQueryFuncionario
-    Left = 423
-    Top = 80
+    Left = 529
+    Top = 100
   end
   object FDQueryVoos: TFDQuery
     Connection = FDConnection
-    Left = 283
-    Top = 160
+    Left = 354
+    Top = 200
   end
   object FDQueryQuantidade: TFDQuery
     Connection = FDConnection
-    Left = 333
-    Top = 8
+    Left = 416
+    Top = 10
   end
   object DataSourceVoos: TDataSource
     DataSet = FDQueryVoos
-    Left = 311
-    Top = 80
+    Left = 389
+    Top = 100
   end
   object DataSourceEndereco: TDataSource
     DataSet = FDQueryEndereco
-    Left = 558
-    Top = 256
+    Left = 698
+    Top = 320
   end
   object FDQueryEndereco: TFDQuery
     Connection = FDConnection
-    Left = 558
-    Top = 312
+    Left = 698
+    Top = 390
   end
   object FDQueryGestor: TFDQuery
     Connection = FDConnection
-    Left = 232
-    Top = 8
+    Left = 290
+    Top = 10
   end
   object DataSourceAeronave: TDataSource
     DataSet = FDQueryAeronave
-    Left = 560
-    Top = 136
+    Left = 700
+    Top = 170
   end
   object FDQueryAeronave: TFDQuery
     Connection = FDConnection
-    Left = 560
-    Top = 200
+    Left = 700
+    Top = 250
   end
   object DataSourceVoosAtribuidos: TDataSource
     DataSet = FDQueryVoosAtribuidos
-    Left = 191
-    Top = 80
+    Left = 239
+    Top = 100
   end
   object DataSourceVoosDisponiveis: TDataSource
     DataSet = FDQueryVoosDisponiveis
-    Left = 40
-    Top = 80
+    Left = 50
+    Top = 100
   end
   object FDQueryVoosAtribuidos: TFDQuery
     Connection = FDConnection
-    Left = 177
-    Top = 160
+    Left = 221
+    Top = 200
   end
   object FDQueryVoosDisponiveis: TFDQuery
     Connection = FDConnection
-    Left = 40
-    Top = 160
+    Left = 50
+    Top = 200
   end
   object FDQueryRelatorioOrigem: TFDQuery
     Connection = FDConnection
@@ -112,12 +113,57 @@ object DataModuleConn: TDataModuleConn
       'ORDER BY'
       '  TRIM(UPPER(origem)),'
       '  TRIM(UPPER(destino));')
-    Left = 74
-    Top = 376
+    Left = 93
+    Top = 470
   end
   object DataSourceRelatorioOrigem: TDataSource
     DataSet = FDQueryRelatorioOrigem
-    Left = 71
-    Top = 296
+    Left = 89
+    Top = 370
+  end
+  object FDQueryRelatorioCancelados: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'SELECT'
+      '    origem,'
+      '    destino,'
+      '    COUNT(*) AS total_cancelamentos'
+      'FROM voos'
+      'WHERE status = '#39'C'#39
+      'GROUP BY origem, destino'
+      'ORDER BY origem, total_cancelamentos DESC;')
+    Left = 299
+    Top = 478
+  end
+  object DataSourceRelatorioCancelados: TDataSource
+    DataSet = FDQueryRelatorioCancelados
+    Left = 302
+    Top = 370
+  end
+  object FDQueryRelatorioTempo: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'SELECT'
+      '  origem,'
+      '  destino,'
+      '  TO_CHAR('
+      '    AVG(horaChegada::time - horaPartida::time),'
+      '    '#39'HH24:MI'#39
+      '  ) AS tempo_medio'
+      'FROM voos'
+      'WHERE'
+      '    status = '#39'F'#39
+      '    AND horaPartida ~ '#39'^[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?$'#39
+      '    AND horaChegada ~ '#39'^[0-2][0-9]:[0-5][0-9](:[0-5][0-9])?$'#39
+      'GROUP BY origem, destino'
+      'ORDER BY origem;'
+      '')
+    Left = 510
+    Top = 478
+  end
+  object DataSourceRelatorioTempo: TDataSource
+    DataSet = FDQueryRelatorioTempo
+    Left = 513
+    Top = 370
   end
 end
