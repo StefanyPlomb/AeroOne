@@ -18,12 +18,16 @@ type
     RLBandFooter: TRLBand;
     RLSystemInfoDataFooter: TRLSystemInfo;
     RLImageLogoFooter: TRLImage;
-    RLDBTextOrigem: TRLDBText;
-    RLDrawLineTitle: TRLDraw;
     RLBandDetailGroup: TRLBand;
     RLDBTextOrigemDetail: TRLDBText;
     RLImage1: TRLImage;
     RLDBText1: TRLDBText;
+    RLDBTextOrigem: TRLDBText;
+    RLDBText2: TRLDBText;
+    RLBand1: TRLBand;
+    RLLabel2: TRLLabel;
+    RLLabel1: TRLLabel;
+    RLLabel3: TRLLabel;
     procedure RLReportMainBeforePrint(Sender: TObject; var PrintIt: Boolean);
   private
     { Private declarations }

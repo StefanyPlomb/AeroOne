@@ -3,7 +3,7 @@ object FormRelatorioCanceladoOrigem: TFormRelatorioCanceladoOrigem
   Top = 0
   Caption = 'FormRelatorioCanceladoOrigem'
   ClientHeight = 737
-  ClientWidth = 907
+  ClientWidth = 792
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,8 +12,8 @@ object FormRelatorioCanceladoOrigem: TFormRelatorioCanceladoOrigem
   Font.Style = []
   TextHeight = 15
   object RLReportMain: TRLReport
-    Left = 0
-    Top = 8
+    Left = -1
+    Top = -1
     Width = 794
     Height = 1123
     Borders.Sides = sdCustom

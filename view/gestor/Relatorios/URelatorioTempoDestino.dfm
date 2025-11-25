@@ -3,7 +3,7 @@ object FormRelatorioTempodeVoo: TFormRelatorioTempodeVoo
   Top = 0
   Caption = 'FormRelatorioTempodeVoo'
   ClientHeight = 735
-  ClientWidth = 804
+  ClientWidth = 792
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,8 +12,8 @@ object FormRelatorioTempodeVoo: TFormRelatorioTempodeVoo
   Font.Style = []
   TextHeight = 15
   object RLReportMain: TRLReport
-    Left = 0
-    Top = 8
+    Left = -1
+    Top = -1
     Width = 794
     Height = 1123
     Borders.Sides = sdCustom

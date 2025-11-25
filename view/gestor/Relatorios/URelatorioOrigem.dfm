@@ -3,7 +3,7 @@ object FormRelatorioOrigem: TFormRelatorioOrigem
   Top = 0
   Caption = 'FormRelatorioOrigem'
   ClientHeight = 713
-  ClientWidth = 805
+  ClientWidth = 792
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,8 +12,8 @@ object FormRelatorioOrigem: TFormRelatorioOrigem
   Font.Style = []
   TextHeight = 15
   object RLReportMain: TRLReport
-    Left = -16
-    Top = 24
+    Left = -1
+    Top = -1
     Width = 794
     Height = 1123
     Borders.Sides = sdCustom
@@ -34,36 +34,48 @@ object FormRelatorioOrigem: TFormRelatorioOrigem
       Left = 38
       Top = 39
       Width = 718
-      Height = 155
+      Height = 122
       BandType = btHeader
       Transparent = False
       object RLDrawTitle: TRLDraw
-        Left = 16
-        Top = 8
-        Width = 689
-        Height = 48
+        Left = 0
+        Top = 0
+        Width = 718
+        Height = 65
+        Align = faTop
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = False
+        Borders.DrawRight = False
+        Borders.DrawBottom = False
+        Brush.Color = 6310948
+        Color = 6310948
+        ParentColor = False
         Transparent = False
       end
       object RLLabelTtitleAeroOne: TRLLabel
-        Left = 280
-        Top = 8
-        Width = 145
+        Left = 286
+        Top = 11
+        Width = 146
         Height = 38
+        Alignment = taCenter
         Caption = 'Aero One'
+        Color = 6310948
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
+        Font.Color = clWhite
         Font.Height = -27
         Font.Name = 'Arial Black'
         Font.Style = [fsBold]
+        ParentColor = False
         ParentFont = False
         Transparent = False
       end
       object RLLabelTitleRelatorio: TRLLabel
-        Left = 152
-        Top = 71
-        Width = 420
+        Left = 156
+        Top = 79
+        Width = 406
         Height = 27
-        Caption = 'Quantidade de Voos Por Origem'
+        Caption = 'Quantidade de Voos Por Rota '
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -27
@@ -72,20 +84,12 @@ object FormRelatorioOrigem: TFormRelatorioOrigem
         ParentFont = False
         Transparent = False
       end
-      object RLDrawLineTitle: TRLDraw
-        Left = 32
-        Top = 104
-        Width = 657
-        Height = 48
-        DrawKind = dkLine
-        Transparent = False
-      end
     end
     object RLGroupCenter: TRLGroup
       Left = 38
-      Top = 194
+      Top = 161
       Width = 718
-      Height = 191
+      Height = 152
       Borders.Sides = sdCustom
       Borders.DrawLeft = False
       Borders.DrawTop = True
@@ -93,15 +97,16 @@ object FormRelatorioOrigem: TFormRelatorioOrigem
       Borders.DrawBottom = False
       Borders.FixedTop = True
       Color = clWhite
-      DataFields = 'destino'
+      DataFields = 'origem'
       ParentColor = False
       Transparent = False
       object RLBandHeaderGroup: TRLBand
         Left = 0
         Top = 1
         Width = 718
-        Height = 56
-        Color = clWhite
+        Height = 48
+        BandType = btHeader
+        Color = 6310948
         Font.Charset = ANSI_CHARSET
         Font.Color = clBlack
         Font.Height = -13
@@ -111,12 +116,12 @@ object FormRelatorioOrigem: TFormRelatorioOrigem
         ParentFont = False
         Transparent = False
         object RLDBTextOrigem: TRLDBText
-          Left = 40
-          Top = 17
-          Width = 70
-          Height = 33
+          Left = 16
+          Top = 7
+          Width = 67
+          Height = 35
           Color = clWhite
-          DataField = 'destino'
+          DataField = 'origem'
           DataSource = DataModuleConn.DataSourceRelatorioOrigem
           Font.Charset = ANSI_CHARSET
           Font.Color = clBlack
@@ -131,30 +136,31 @@ object FormRelatorioOrigem: TFormRelatorioOrigem
       end
       object RLBandDetailGroup: TRLBand
         Left = 0
-        Top = 57
+        Top = 86
         Width = 718
-        Height = 128
+        Height = 67
         object RLDBTextOrigemDetail: TRLDBText
-          Left = 224
-          Top = 62
-          Width = 77
+          Left = 282
+          Top = 24
+          Width = 80
           Height = 19
-          DataField = 'origem'
+          DataField = 'destino'
           DataSource = DataModuleConn.DataSourceRelatorioOrigem
           Font.Charset = ANSI_CHARSET
           Font.Color = clBlack
           Font.Height = -19
           Font.Name = '@SimSun'
-          Font.Style = [fsBold]
+          Font.Style = []
           ParentFont = False
           Text = ''
           Transparent = False
         end
         object RLImage1: TRLImage
-          Left = 53
-          Top = 54
-          Width = 57
-          Height = 55
+          Left = 214
+          Top = 24
+          Width = 52
+          Height = 19
+          Center = True
           Picture.Data = {
             0954506E67496D61676589504E470D0A1A0A0000000D49484452000000320000
             003208060000001E3F88B1000000097048597300000B1300000B1301009A9C18
@@ -183,9 +189,9 @@ object FormRelatorioOrigem: TFormRelatorioOrigem
             454E44AE426082}
         end
         object RLDBText1: TRLDBText
-          Left = 488
-          Top = 62
-          Width = 121
+          Left = 532
+          Top = 24
+          Width = 110
           Height = 19
           DataField = 'total_voos'
           DataSource = DataModuleConn.DataSourceRelatorioOrigem
@@ -193,23 +199,97 @@ object FormRelatorioOrigem: TFormRelatorioOrigem
           Font.Color = clBlack
           Font.Height = -19
           Font.Name = '@SimSun'
-          Font.Style = [fsBold]
+          Font.Style = []
           ParentFont = False
           Text = ''
+          Transparent = False
+        end
+        object RLDBText2: TRLDBText
+          Left = 36
+          Top = 24
+          Width = 70
+          Height = 19
+          DataField = 'origem'
+          DataSource = DataModuleConn.DataSourceRelatorioOrigem
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -19
+          Font.Name = '@SimSun'
+          Font.Style = []
+          ParentFont = False
+          Text = ''
+          Transparent = False
+        end
+      end
+      object RLBand1: TRLBand
+        Left = 0
+        Top = 49
+        Width = 718
+        Height = 37
+        BandType = btColumnHeader
+        Color = clWhite
+        ParentColor = False
+        Transparent = False
+        object RLLabel2: TRLLabel
+          Left = 532
+          Top = 4
+          Width = 165
+          Height = 20
+          Caption = 'N'#250'mero de Voos'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 6310948
+          Font.Height = -20
+          Font.Name = '@SimSun'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+          Transparent = False
+        end
+        object RLLabel1: TRLLabel
+          Left = 282
+          Top = 4
+          Width = 88
+          Height = 20
+          Caption = 'Destino'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 6310948
+          Font.Height = -20
+          Font.Name = '@SimSun'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+          Transparent = False
+        end
+        object RLLabel3: TRLLabel
+          Left = 36
+          Top = 4
+          Width = 77
+          Height = 20
+          Caption = 'Origem'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 6310948
+          Font.Height = -20
+          Font.Name = '@SimSun'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
           Transparent = False
         end
       end
     end
     object RLBandFooter: TRLBand
       Left = 38
-      Top = 385
+      Top = 313
       Width = 718
-      Height = 97
+      Height = 102
       BandType = btFooter
       Transparent = False
       object RLSystemInfoDataFooter: TRLSystemInfo
         Left = 16
-        Top = 40
+        Top = 47
         Width = 60
         Height = 16
         Info = itFullDate
@@ -218,9 +298,10 @@ object FormRelatorioOrigem: TFormRelatorioOrigem
       end
       object RLImageLogoFooter: TRLImage
         Left = 568
-        Top = 3
+        Top = 21
         Width = 129
-        Height = 81
+        Height = 60
+        Center = True
         Picture.Data = {
           0954506E67496D61676589504E470D0A1A0A0000000D49484452000000780000
           005A0806000000730092EF000000017352474201D9C92C7F0000000970485973
