@@ -47,13 +47,18 @@ type
     pnlDivEmail: TPanel;
     edtCadastroCPF: TMaskEdit;
     procedure btnEntrarClick(Sender: TObject);
-    procedure edtLoginSenhaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure imgOlhoFechadoClick(Sender: TObject);
+    procedure edtLoginSenhaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);  //3
+
+    procedure imgOlhoFechadoClick(Sender: TObject);//4
     procedure imgOlhoAbertoClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
+
+    procedure FormCreate(Sender: TObject);  //1
+
     procedure pnlCadastrarseLinkClick(Sender: TObject);
-    procedure edtCadastroCPFEnter(Sender: TObject);
+
+    procedure edtCadastroCPFEnter(Sender: TObject); //2
     procedure edtCadastroCPFExit(Sender: TObject);
+
     procedure btnCadastrarClick(Sender: TObject);
     procedure pnlEntrarLinkClick(Sender: TObject);
     procedure edtCadastroConfirmarSenhaKeyDown(Sender: TObject; var Key: Word;
@@ -73,6 +78,9 @@ implementation
 
 uses UUsuarioController, UUsuario, UEnderecoController, UGestorView, UComissarioView, UPilotoView, UPassageiroView;
 
+
+// Aqui
+
 procedure TFormLogin.edtCadastroConfirmarSenhaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   if Key = VK_RETURN then begin
@@ -80,11 +88,17 @@ begin
   end;
 end;
 
+procedure TFormLogin.FormCreate(Sender: TObject);
+begin
+  cardFormLogin.ActiveCard := cardLogin;
+end;
+
+
 procedure TFormLogin.edtCadastroCPFEnter(Sender: TObject);
 begin
   edtCadastroCPF.EditMask := '999.999.999-99';
-  edtCadastroCPF.SelStart := 0;
-  edtCadastroCPF.SelLength := 0;
+  edtCadastroCPF.SelStart := 0;  // onde
+  edtCadastroCPF.SelLength := 0;  // marcado
 end;
 
 procedure TFormLogin.edtCadastroCPFExit(Sender: TObject);
@@ -95,13 +109,8 @@ end;
 procedure TFormLogin.edtLoginSenhaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   if Key = VK_RETURN then begin
-   Self.btnEntrarClick(nil);
+   Self.btnEntrarClick(nil); //
   end;
-end;
-
-procedure TFormLogin.FormCreate(Sender: TObject);
-begin
-  cardFormLogin.ActiveCard := cardLogin;
 end;
 
 procedure TFormLogin.imgOlhoAbertoClick(Sender: TObject);

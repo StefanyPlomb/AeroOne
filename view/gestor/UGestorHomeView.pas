@@ -9,6 +9,7 @@ uses
 type
   TFormGestorHome = class(TForm)
     Image1: TImage;
+    Image2: TImage;
   private
     { Private declarations }
   public

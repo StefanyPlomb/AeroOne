@@ -344,18 +344,18 @@ begin
     end;
   end;
 
-  if novoVoo.getIdAeronave > 0 then
-  begin
-    if novoVoo.getIdAeronave <> voo.getIdAeronave then
-    begin
-      if TAeronaveController.aeronaveInativa(voo.getIdAeronave) then begin
-        raise Exception.Create('A aeronave selecionada está INATIVA e não pode ser usada');
-      end;
 
-      temAlteracao := True;
-      alterado.setIdAeronave(novoVoo.getIdAeronave);
-    end;
+  if novoVoo.getIdAeronave > 0 then
+begin
+  if novoVoo.getIdAeronave <> voo.getIdAeronave then
+  begin
+    if TAeronaveController.aeronaveInativa(novoVoo.getIdAeronave) then
+      raise Exception.Create('A aeronave selecionada está INATIVA e não pode ser usada');
+
+    temAlteracao := True;
+    alterado.setIdAeronave(novoVoo.getIdAeronave);
   end;
+end;
 
   if temAlteracao then
   begin

@@ -9,6 +9,7 @@ uses
 type
   TFormComissarioHome = class(TForm)
     imgFundo: TImage;
+    Image1: TImage;
   private
     { Private declarations }
   public
