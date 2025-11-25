@@ -100,9 +100,9 @@ begin
     end;
   end;
 
-    if aer.getStatus = 'I' then begin
-      raise Exception.Create('A aeronave selecionada está INATIVA e não pode ser usada.');
-   end;
+  if TAeronaveController.aeronaveInativa(voo.getIdAeronave) then begin
+    raise Exception.Create('A aeronave selecionada está INATIVA e não pode ser usada');
+  end;
 
   vooNum := TVooController.getVooByNumeroVoo(voo.getNumeroVoo);
   if vooNum <> nil then begin
@@ -348,6 +348,10 @@ begin
   begin
     if novoVoo.getIdAeronave <> voo.getIdAeronave then
     begin
+      if TAeronaveController.aeronaveInativa(voo.getIdAeronave) then begin
+        raise Exception.Create('A aeronave selecionada está INATIVA e não pode ser usada');
+      end;
+
       temAlteracao := True;
       alterado.setIdAeronave(novoVoo.getIdAeronave);
     end;

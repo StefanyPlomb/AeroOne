@@ -4,12 +4,15 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, UVoo, UUsuario;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, UVoo, UUsuario,
+  Vcl.Imaging.jpeg;
 
 type
   TFormSelecionarPoltrona = class(TForm)
-    cbxAssento: TComboBox;
+    imgAssentos: TImage;
+    pnlMain: TPanel;
     cbxZona: TComboBox;
+    cbxAssento: TComboBox;
     pnlConfirmar: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

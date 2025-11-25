@@ -200,13 +200,13 @@ begin
     TAeronaveController.update(novaAeronave, TAeronaveController.getAeronave(idAeronaveGrid));
 
     limparEdits;
-    loadGrid(edtSearch.Text);
     novaAeronave.Free;
   except
     on E: Exception do begin
       ShowMessage(e.Message);
     end;
   end;
+  loadGrid(edtSearch.Text);
 end;
 
 procedure TFormGestorAeronaves.imgStatusWhiteMouseLeave(Sender: TObject);

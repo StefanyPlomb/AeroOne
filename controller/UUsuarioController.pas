@@ -13,6 +13,7 @@ type
     class function getUsuario(id: Integer): TUsuario;
     class function getUsuarioByEmail(email: String): TUsuario;
     class function login(email, senha: String): TUsuario;
+    class function usuarioInativo(email, senha: String): Boolean;
     class function cadastrar(usuario: TUsuario): Integer;
     class procedure update(novoUsuario, usuario: TUsuario);
   end;
@@ -122,10 +123,15 @@ begin
   usuario := dao.login(email);
   dao.Free;
 
-  if (usuario = nil) or (THashSHA2.GetHashString(senha) <> usuario.getSenha) then begin
+  senhaHash := THashSHA2.GetHashString(senha);
+
+  if (usuario = nil) or (senhaHash <> usuario.getSenha) then begin
     raise Exception.create('Email ou senha incorretos');
   end;
 
+  if TUsuarioController.usuarioInativo(email, senhaHash) then begin
+    raise Exception.Create('Seu acesso está inativo. Favor contatar equipe de suporte');
+  end;
   result := usuario;
 end;
 
@@ -256,6 +262,15 @@ begin
       TEnderecoController.update(novoUsuario.getEndereco, usuario.getEndereco);
     end;
   end;
+end;
+
+class function TUsuarioController.usuarioInativo(email, senha: String): Boolean;
+var
+  dao: TUsuarioDao;
+begin
+  dao := TUsuarioDao.Create;
+  result := dao.usuarioInativo(email, senha);
+  dao.Free;
 end;
 
 end.

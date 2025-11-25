@@ -11,6 +11,7 @@ type
     function getUsuario(id: Integer): TUsuario;
     function getUsuarioByEmail(email: String): TUsuario;
     function login(email: String): TUsuario;
+    function usuarioInativo(email, senha: String): Boolean;
     function cadastrar(usuario: TUsuario): Integer;
     procedure update(usuario: TUsuario);
   end;
@@ -153,7 +154,7 @@ begin
 
   query.Close;
   query.SQL.Clear;
-  query.SQL.Add('SELECT * FROM usuarios WHERE email = :email AND status = ' + QuotedStr('A') + '');
+  query.SQL.Add('SELECT * FROM usuarios WHERE email = :email ');
   query.ParamByName('email').AsString := email;
   query.Open;
 
@@ -242,6 +243,26 @@ begin
   end;
 
   query.ExecSQL;
+end;
+
+function TUsuarioDao.usuarioInativo(email, senha: String): Boolean;
+var
+  query: TFDQuery;
+  usuario: TUsuario;
+begin
+  query := DataModuleConn.FDQueryLogin;
+
+  query.Close;
+  query.SQL.Clear;
+  query.SQL.Add('SELECT * FROM usuarios WHERE email = :email AND senha = :senha AND status = ' + QuotedStr('I') + '');
+  query.ParamByName('email').AsString := email;
+  query.ParamByName('senha').AsString := senha;
+  query.Open;
+
+  result := true;
+  if query.IsEmpty then begin
+    result := false;
+  end;
 end;
 
 end.

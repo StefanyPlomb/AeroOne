@@ -96,6 +96,9 @@ begin
   try
     novoVoo := TVoo.Create;
     novoVoo.setNumeroVoo(edtNumeroVoo.Text);
+    if cbxAeronave.ItemIndex < 0 then begin
+      raise Exception.Create('Favor selecionar uma aeronave');
+    end;
     novoVoo.setIdAeronave(TAeronave(cbxAeronave.Items.Objects[cbxAeronave.ItemIndex]).getId);
     novoVoo.setOrigem(edtOrigem.Text);
     novoVoo.setDestino(edtDestino.Text);
@@ -255,13 +258,13 @@ begin
     TVooController.update(novoVoo, TVooController.getVoo(idVooGrid));
 
     limparEdits;
-    loadGrid(edtSearch.Text);
     novoVoo.Free;
   except
     on E: Exception do begin
       ShowMessage(E.Message);
     end;
   end;
+  loadGrid(edtSearch.Text);
 end;
 
 procedure TFormGestorVoo.imgStatusWhiteMouseLeave(Sender: TObject);

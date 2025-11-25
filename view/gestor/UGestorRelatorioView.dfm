@@ -98,7 +98,7 @@ object FormGestorRelatorio: TFormGestorRelatorio
         Margins.Bottom = 0
         Align = alTop
         BevelOuter = bvNone
-        Caption = 'Quantidade de voos origem por cidade'
+        Caption = 'Quantidade de voos por Rota'
         Color = 6310948
         Font.Charset = ANSI_CHARSET
         Font.Color = clWhite

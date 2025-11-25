@@ -165,12 +165,12 @@ begin
     raise Exception.Create('Quantidade de comissários inválida');
   end;
 
-  if Trim(novaaeronave.getStatus) <> '' then begin
+  if Trim(novaAeronave.getStatus) <> '' then begin
     if novaAeronave.getStatus <> aeronave.getStatus then begin
 
       if novaAeronave.getStatus = 'I' then begin
-        if TVooController.temVooEmAndamentoOuAtivo(novaAeronave.getId) then begin
-          raise Exception.Create('Não pode inativar uma aeronave com voos ativos e em andamento vinculados');
+        if TVooController.temVooEmAndamentoOuAtivo(alterado.getId) then begin
+          raise Exception.Create('Não pode inativar uma aeronave com voos ativos ou em andamento vinculados');
         end;
       end;
 

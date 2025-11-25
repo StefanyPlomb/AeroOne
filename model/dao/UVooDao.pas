@@ -455,7 +455,7 @@ begin
   query := DataModuleConn.FDQueryVoos;
   query.Close;
   query.SQL.Clear;
-  query.SQL.Add('SELECT * FROM voos WHERE idAeronave = :idAeronave AND status IN(' + QuotedStr('E') + QuotedStr('A') + ')');
+  query.SQL.Add('SELECT * FROM voos WHERE idAeronave = :idAeronave AND status IN(' + QuotedStr('E') + ', ' + QuotedStr('A') + ')');
   query.ParamByName('idAeronave').AsInteger := idAeronave;
   query.Open;
 
